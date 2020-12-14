@@ -1,0 +1,61 @@
+.lead {
+  background-image: url(../../images/black-marbled-surface-1.png);
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 88px 11.45% 88px 11.45%;
+  font-family: "Vollkorn", sans-serif;
+  color: #ffffff;
+}
+
+.lead__header {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 58px;
+  text-transform: uppercase;
+  max-width: 700px;
+  margin: 0;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.lead__list {
+  padding-left: 28px;
+  margin: 24px 0 0 0;
+}
+.lead__list-item {
+  position: relative;
+  margin-top: 29px;
+}
+.lead__list-item:first-of-type {
+
+  margin-top: 0px;
+}
+
+.lead__text {
+  font-size: 24px;
+  margin: 0;
+}
+
+.lead__list-item::before {
+  position: absolute;
+  content: "\2022";
+  color:  #B69D74;
+  left: -32px;
+  top: 13px;
+  font-size: 55px;
+  line-height: 0;
+}
+
+.lead__button {
+  margin: 64px auto 0 0;
+  border: 1px solid #D6B43E;
+  min-width: 330px;
+  min-height: 56px;
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+
+}

@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^12.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.3.1",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -40,5 +42,16 @@
   "devDependencies": {
     "gh-pages": "^3.1.0"
   },
-  "homepage": "."
+  "homepage": "http://.",
+  "description": "Stone Flower project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nerevar123/stoneflower.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nerevar123/stoneflower/issues"
+  }
 }

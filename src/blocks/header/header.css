@@ -1,0 +1,63 @@
+.header {
+  width: 77.1%;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  align-items: center;
+  padding: 0 11.45% 0 11.45%;
+}
+.logo {
+  width: 59px;
+  height: 64px;
+  margin: 0;
+}
+.header__logo {
+  margin: 8px 52.5px 8px 0;
+}
+.header__links {
+  display: flex;
+  flex-direction: row;
+  width: 40.625%;
+  min-width: 585px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0 52.5px 0 auto;
+}
+.button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  font-family: 'FuturaBookC', sans-serif;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.header__button {
+  margin: 0 0 0 0;
+  border: 1px solid #D6B43E;
+  min-width: 208px;
+  min-height: 46px;
+  color: #333333;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+  font-family: 'FuturaBookC', sans-serif;
+}
+
+.header__link {
+  text-transform: uppercase;
+  color: #333333;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  line-height: 24px;
+}
+
