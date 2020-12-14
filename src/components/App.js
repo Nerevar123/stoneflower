@@ -1,21 +1,23 @@
 import React from "react";
 import { NavHashLink as NavLink } from 'react-router-hash-link';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import Header from './Header';
+import Main from './Main';
 
 function App() {
   return (
     <>
-      <header className="header">
-        <img className="header__logo logo" />
-        <nav className="header__links">
-          <NavLink smooth to="/" className="header__link link">Главная</NavLink>
-          <NavLink smooth to="/" className="header__link link">Услуги</NavLink>
-          <NavLink smooth to="/" className="header__link link">Поверхности</NavLink>
-          <NavLink smooth to="/" className="header__link link">Портфолио</NavLink>
-          <NavLink smooth to="/" className="header__link link">Контакты</NavLink>
-        </nav>
-        <button className="header__button button">Оставить заявку</button>
-      </header>
-      <main className="content">
+     <HashRouter basename='/'>
+      <Header>
+
+      </Header>
+      <Main>
+
+      </Main>
+
+
+      </HashRouter>
+      {/* <main className="content">
         <section className="info">
           <article className="lead">
             <h1 className="lead__header">Студия Керамогранита «Каменный цветок»</h1>
@@ -237,7 +239,7 @@ function App() {
             </form>
           </article>
         </section>
-      </main>
+      </main> */}
       <footer className="footer">
         <img className="footer__logo logo" />
         <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>
