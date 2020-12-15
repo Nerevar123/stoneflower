@@ -1,42 +1,49 @@
 .header {
-  width: 77.1%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin: 0;
   align-items: center;
-  padding: 0 11.45% 0 11.45%;
+  padding: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 63, 57, 0.9) 0%,
+    rgba(42, 101, 94, 0.9) 119.61%,
+    rgba(103, 181, 169, 0.9) 213.48%
+  );
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.16);
+
 }
 .logo {
-  width: 59px;
-  height: 64px;
-  margin: 0;
+  width: 53.17px;
+  height: 57.69px;
+  margin: 0 0 0 0;
 }
 .header__logo {
-  margin: 8px 52.5px 8px 0;
+  margin: 11.16px 8.5% 11.16px 11.87%;
 }
 .header__links {
   display: flex;
   flex-direction: row;
-  width: 40.625%;
-  min-width: 585px;
-  justify-content: space-between;
+  min-width: 40.625%;
+
   align-items: center;
   padding: 0;
-  margin: 0 52.5px 0 auto;
+  margin: 0 8.8% 0 auto;
 }
 .button {
   border: none;
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  font-family: 'FuturaBookC', sans-serif;
+  font-family: "FuturaBookC", sans-serif;
   text-transform: uppercase;
   padding: 0;
 }
 
 .header__button {
-  margin: 0 0 0 0;
-  border: 1px solid #D6B43E;
+  margin: 0 11.389% 0 0;
+  border: 1px solid #67B5A9;
   min-width: 208px;
   min-height: 46px;
   color: #333333;
@@ -44,20 +51,24 @@
   letter-spacing: 0.04em;
   font-weight: 400;
   line-height: 24px;
+  color: #FFFFFF;
 }
 
 .link {
   text-decoration: none;
   color: #000;
-  font-family: 'FuturaBookC', sans-serif;
+  font-family: "FuturaBookC", sans-serif;
 }
 
 .header__link {
   text-transform: uppercase;
-  color: #333333;
   font-size: 16px;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  line-height: 24px;
+  letter-spacing: 0.04px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #FFFFFF;
+  margin: 0 6.84% 0 0;
 }
-
+.header__link:last-of-type {
+  margin-right: 0;
+}

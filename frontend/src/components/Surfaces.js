@@ -4,7 +4,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 
 function Surfaces() {
   return (
-    <section className="surfaces">
+    <article className="surfaces">
             <h2 className="content__title">Варианты поверностей</h2>
             <p className="content__text">Помимо изображенных на поверхности материала природных и художественных ликов, разработанных  дизайнерами Италии и Испании, материал выполнен с разнообразными рельефами: полированный, шелковистый, матовый, повторяющий грубую обработанную поверхность дерева и камня.</p>
             <NavLink to="/" className="surfaaces__link link">Читать далее</NavLink>
@@ -26,7 +26,7 @@ function Surfaces() {
                 <button className="surfaces__button button">Дизайн</button>
               </li>
             </ul>
-          </section>
+          </article>
   );
 }
 

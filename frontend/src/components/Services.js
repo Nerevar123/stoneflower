@@ -4,7 +4,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 
 function Services() {
   return (
-    <section className="services">
+    <article className="services">
       <h2 className="content__title">Услуги</h2>
       <ul className="services__list list">
         <li className="services__list-item">
@@ -37,7 +37,7 @@ function Services() {
           </p>
         </li>
       </ul>
-    </section>
+    </article>
   );
 }
 
