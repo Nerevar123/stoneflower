@@ -4,7 +4,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 
 function Advantages() {
   return (
-    <section className="advantages">
+    <article className="advantages">
             <h2 className="content__title">Преимущества материала</h2>
             <p className="content__text">Мы работаем с листовым керамическим прокатом от ведущих производителей: Laminam, Cotto d’Este, Panaria, Florim, Thesize.  Это керамогранит  толщиной от 3 до 6 мм и размером листа от 3 до 4,5 кв. метров с уникальными механическими характеристиками и эстетикой. Инновационный материал: тонкий, прочный, экологически чистый. Применяется в качестве финишного покрытия в интерьерах, фасадах, при производстве мебели.</p>
             <ul className="advantages__list list">
@@ -55,7 +55,7 @@ function Advantages() {
                 </li>
               </ul>
             </div>
-          </section>
+          </article>
   );
 }
 

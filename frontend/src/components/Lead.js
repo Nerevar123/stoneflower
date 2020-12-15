@@ -5,7 +5,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 
 function Lead() {
   return (
-    <section className="lead">
+    <article className="lead">
       <h1 className="lead__header">Студия Керамогранита «Каменный цветок»</h1>
       <ul className="lead__list list">
         <li className="lead__list-item">
@@ -21,7 +21,7 @@ function Lead() {
         </li>
       </ul>
       <button className="lead__button button">Бесплатная консультация</button>
-    </section>
+    </article>
   )
 }
 
