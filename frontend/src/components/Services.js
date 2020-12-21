@@ -4,7 +4,7 @@ import { NavHashLink as NavLink } from "react-router-hash-link";
 
 function Services() {
   return (
-    <article className="services">
+    <article id="services" className="services">
       <h2 className="content__title">Услуги</h2>
       <ul className="services__list list">
         <li className="services__list-item">

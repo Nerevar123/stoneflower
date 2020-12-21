@@ -3,31 +3,17 @@
   font-style:  normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./FuturaBookC.woff") format("woff"),
-}
-
-@font-face {
-  font-family: 'FuturaBookC';
-  font-style:  italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./FuturaBookC-Italic.ttf") format("truetype"),
-}
-
-@font-face {
-  font-family: 'EBGaramond';
-  font-style:  italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./EBGaramond-Italic-VariableFont_wght.ttf") format("truetype"),
+  src: url(./FuturaBookC.woff2),
+       url(./FuturaBookC.woff);
 }
 
 @font-face {
   font-family: 'EBGaramond';
   font-style:  normal;
-  font-weight: 400;
+  font-weight: 800;
   font-display: swap;
-  src: url("./EBGaramond-VariableFont_wght.ttf") format("truetype"),
+  src: url(./EBGaramond-ExtraBold.woff2),
+       url(./EBGaramond-ExtraBold.woff);
 }
 
 

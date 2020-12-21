@@ -1,21 +1,19 @@
 import React from "react";
 // import { NavHashLink as NavLink } from 'react-router-hash-link';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import Header from './Header';
-import Main from './Main';
+import { HashRouter, Route, Switch } from "react-router-dom";
+import Header from "./Header";
+import Main from "./Main";
 
 function App() {
   return (
     <>
-     <HashRouter basename='/'>
-      <Header>
-
-      </Header>
-      <Main>
-
-      </Main>
-
-
+      <HashRouter basename="/">
+        <Header></Header>
+        <Switch>
+        <Route>
+          <Main/>
+        </Route>
+        </Switch>
       </HashRouter>
       {/* <main className="content">
         <section className="info">
