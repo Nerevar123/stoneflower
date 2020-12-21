@@ -136,7 +136,7 @@ function Header() {
               className="header__order-button button"
               onClick={toggleMenuOpen}
             >
-              Оставить заявку
+              Оставить заявку.
             </button>
           </div>
           <div className="header__overlay" onClick={toggleMenuOpen}></div>
