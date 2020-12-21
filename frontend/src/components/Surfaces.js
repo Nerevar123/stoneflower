@@ -1,6 +1,5 @@
 import React from "react";
-// import { HashLink as Link } from 'react-router-hash-link';
-import { NavHashLink as NavLink } from "react-router-hash-link";
+import { NavLink } from "react-router-dom";
 
 function Surfaces() {
   return (
