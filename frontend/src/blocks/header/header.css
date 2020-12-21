@@ -150,8 +150,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 139vw;
+    height: 139vh;
+    min-height: -webkit-fill-available;
+    min-width: -webkit-fill-available;
     background-color: rgba(0, 17, 17, 0.7);
     visibility: hidden;
   }
@@ -163,7 +165,7 @@
     top: 0px;
     right: 0px;
     width: 0;
-    height: 100vh;
+    height: 139vh;
     min-height: 344px;
     background-color: #75978c;
     z-index: 2;
