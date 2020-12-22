@@ -19,6 +19,15 @@
 @font-face {
   font-family: 'EBGaramond';
   font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./EBGaramond-Bold.woff2) format('woff2'),
+       url(./EBGaramond-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'EBGaramond';
+  font-style:  normal;
   font-weight: 500;
   font-display: swap;
   src: url(./EBGaramond-Medium.woff2) format('woff2'),

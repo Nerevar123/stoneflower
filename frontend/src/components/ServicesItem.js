@@ -4,7 +4,7 @@ function ServicesItem(props) {
   console.log('here');
   return (
     <li className="services__list-item">
-      <img className="services__image" src={props.image}/>
+      <img alt={props.heading} className="services__image" src={props.image}/>
       <h3 className="services__title">
         {props.heading}
       </h3>

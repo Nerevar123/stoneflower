@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
 // as scroll говорит, что дальше будет использоваться scroll, а если используется сам Link то наверн это лишнее
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);

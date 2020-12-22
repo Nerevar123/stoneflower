@@ -7,7 +7,6 @@
     url(../../images/lead-bg-image-1.png) no-repeat 0 top,
     url(../../images/lead-bg-image-2.png) no-repeat 720px top;
   background-size: 100%, 720px, 720px;
-  background-position: fixed;
   margin: 0;
   padding: 13.889% 11.459% 10.487% 11.459%;
   font-family: "EBGaramond", Helvetica, sans-serif;
@@ -42,6 +41,7 @@
 
 .lead__list-item {
   position: relative;
+  margin: 0;
   margin-top: 29px;
 }
 
@@ -86,7 +86,18 @@
 .lead__link:hover {
   background: #75978c;
 }
-
+@media screen and (min-width: 1440px) {
+  .lead {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.58) 0.73%,
+      rgba(255, 255, 255, 0) 61.78%
+    ),
+    url(../../images/lead-bg-image-1.png) no-repeat left top,
+    url(../../images/lead-bg-image-2.png) no-repeat right top;
+    background-size: 100%, 50%, 50%;
+  }
+}
 @media screen and (max-width: 849px) {
   .lead {
     background: linear-gradient(
@@ -94,18 +105,19 @@
         rgba(255, 255, 255, 0.8) 0%,
         rgba(255, 255, 255, 0) 50%
       ),
-      url(../../images/lead-bg-image-1.png) no-repeat left top;
+      url(../../images/lead-bg-mobile.png) no-repeat left top;
     background-size: 100%, cover;
     padding: 112px 14px 32px 15px;
   }
   .lead__header {
     font-size: 32px;
-    line-height: 1.31;
+    line-height: 1.32;
     width: 270px;
     min-width: 291px;
+    letter-spacing: 0.04em;
   }
   .lead__list {
-    margin: 25px 0 0 0;
+    margin: 23px 0 0 0;
   }
   .lead__text {
     font-size: 18px;
@@ -129,7 +141,7 @@
     min-width: 346px;
   }
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 374px) {
   .lead__link {
     align-self: center;
     width: calc(100% - 29px);
@@ -137,7 +149,7 @@
     font-size: 19px;
   }
   .lead__header {
-    font-size: 31px;
+    font-size: 32px;
   }
   .lead__list-item {
     width: 270px;

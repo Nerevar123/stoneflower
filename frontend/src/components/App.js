@@ -235,7 +235,7 @@ function App() {
         </section>
       </main> */}
       <footer className="footer">
-        <img className="footer__logo logo" />
+        <img alt="Логотип" className="footer__logo logo" />
         <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>
         <p className="footer__text">+7 (963) 782 23 47</p>
       </footer>
