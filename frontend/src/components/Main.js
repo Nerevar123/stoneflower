@@ -3,14 +3,8 @@ import Lead from './Lead';
 import Advantages from './Advantages';
 import Surfaces from './Surfaces';
 import Services from './Services';
-import { servicesItems } from "../utils/config";
 
-
-function Main() {
-  const [services, setServices] = useState([]);
-  useEffect(() => {
-    setServices(servicesItems);
-  },[]);
+function Main({ services }) {
   return (
     <main className="content">
         <Lead />

@@ -9,8 +9,8 @@ function Services({ elements }) {
         {elements.map((item) => (
           <ServicesItem
             item={item}
-            key={item.id}
-            image={item.imageUrl}
+            key={item._id}
+            image={item.link}
             heading={item.heading}
             description={item.description}
           />

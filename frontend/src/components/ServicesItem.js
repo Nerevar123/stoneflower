@@ -1,7 +1,7 @@
 import React from "react";
 
 function ServicesItem(props) {
-  console.log('here');
+  console.log(props.image);
   return (
     <li className="services__list-item">
       <img alt={props.heading} className="services__image" src={props.image}/>
