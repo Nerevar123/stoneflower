@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Router, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
+import { api } from "../utils/api";
+import { servicesItems } from "../utils/config";
 
 function App() {
   const history = useHistory();
+  const [services, setServices] = useState([]);
+
+  // useEffect(() => {
+  //   Promise.all([api.getServices()])
+  //     .then(([services]) => {
+  //       console.log(services)
+  //       setServices(services);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  useEffect(() => {
+    setServices(servicesItems);
+  },[]);
+
   return (
     <>
       <Router history={history} basename="/">
         <Header />
-        <Main />
+        <Main services={services} />
       </Router>
       {/* <main className="content">
         <section className="info">

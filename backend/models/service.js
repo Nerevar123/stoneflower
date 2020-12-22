@@ -15,10 +15,10 @@ const serviceSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => isURL(v),
-      message: 'Неправильный формат ссылки',
-    },
+    // validate: {
+    //   validator: (v) => isURL(v),
+    //   message: 'Неправильный формат ссылки',
+    // },
   },
   createdAt: {
     type: Date,
