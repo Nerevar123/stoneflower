@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// import { HashLink as Link } from 'react-router-hash-link';
-import { NavHashLink as NavLink } from "react-router-hash-link";
+import { NavLink } from "react-router-dom";
 import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
+// as scroll говорит, что дальше будет использоваться scroll, а если используется сам Link то наверн это лишнее
 import { Link, animateScroll as scroll } from "react-scroll";
 
 function Header() {

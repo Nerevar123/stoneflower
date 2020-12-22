@@ -1,0 +1,10 @@
+.button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  font-family: "FuturaBookC", Helvetica, sans-serif;
+  text-transform: uppercase;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}

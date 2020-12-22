@@ -7,11 +7,9 @@
     url(../../images/lead-bg-image-1.png) no-repeat left top,
     url(../../images/lead-bg-image-2.png) no-repeat right top;
   background-size: 100%, 50%, 50%;
-
   margin: 0;
   padding: 13.889% 11.459% 10.487% 11.459%;
   font-family: "EBGaramond", Helvetica, sans-serif;
-  color: #ffffff;
   position: relative;
   z-index: 2;
   color: #01796f;
@@ -38,10 +36,12 @@
   padding-left: 28px;
   margin: 47px 0 0 0;
 }
+
 .lead__list-item {
   position: relative;
   margin-top: 29px;
 }
+
 .lead__list-item:first-of-type {
   margin-top: 0px;
 }
@@ -68,20 +68,15 @@
   background: #995750;
   min-width: 314px;
   min-height: 24px;
-  color: #ffffff;
+  color: #fff;
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: 0.04em;
   transition: all 0.2s ease-in;
-  cursor: pointer;
-  font-family: FuturaBookC;
-  font-style: normal;
-  font-weight: normal;
   font-size: 20px;
   line-height: 1.2;
   text-align: center;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   padding: 17px 0 15px 0;
 }
 
