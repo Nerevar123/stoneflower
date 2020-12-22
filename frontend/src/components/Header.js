@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
 // as scroll говорит, что дальше будет использоваться scroll, а если используется сам Link то наверн это лишнее
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -11,6 +10,7 @@ function Header() {
   function toggleMenuOpen() {
     setMenuOpened(!menuOpened);
   }
+
   const window = useWindowSize();
   return (
     <header className={`header ${menuOpened ? "open" : ""}`}>
@@ -91,46 +91,66 @@ function Header() {
           </button>
           <div className="header__sidebar">
             <nav className="header__links">
-              <NavLink
-                smooth
-                to="/"
-                className="header__link link"
-                onClick={toggleMenuOpen}
-              >
-                Главная
-              </NavLink>
-              <NavLink
-                smooth
-                to="/"
-                className="header__link link"
-                onClick={toggleMenuOpen}
-              >
-                Услуги
-              </NavLink>
-              <NavLink
-                smooth
-                to="/"
-                className="header__link link"
-                onClick={toggleMenuOpen}
-              >
-                Поверхности
-              </NavLink>
-              <NavLink
-                smooth
-                to="/"
-                className="header__link link"
-                onClick={toggleMenuOpen}
-              >
-                Портфолио
-              </NavLink>
-              <NavLink
-                smooth
-                to="/"
-                className="header__link link"
-                onClick={toggleMenuOpen}
-              >
-                Контакты
-              </NavLink>
+            <Link
+              className="header__link link"
+              activeClass="header__link_active"
+              to="main"
+              spy={false}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={toggleMenuOpen}
+            >
+              Главная
+            </Link>
+            <Link
+              className="header__link link"
+              activeClass="header__link_active"
+              to="services"
+              spy={false}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={toggleMenuOpen}
+            >
+              Услуги
+            </Link>
+            <Link
+              className="header__link link"
+              activeClass="header__link_active"
+              to="surfaces"
+              spy={false}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={toggleMenuOpen}
+            >
+              Поверхности
+            </Link>
+            <Link
+              className="header__link link"
+              activeClass="header__link_active"
+              to="portfolio"
+              spy={false}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={toggleMenuOpen}
+            >
+              Портфолио
+            </Link>
+            <Link
+              className="header__link link"
+              activeClass="header__link_active"
+              to="contacts"
+              spy={false}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={toggleMenuOpen}
+            >
+              Контакты
+            </Link>
             </nav>
             <button
               className="header__order-button button"
