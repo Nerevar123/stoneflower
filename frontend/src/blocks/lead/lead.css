@@ -129,6 +129,8 @@
   }
   .lead__link {
     margin-top: 24px;
+    width: 100%;
+    max-width: 450px;
   }
   .lead__list-item:before {
     top: 18px;
@@ -137,15 +139,12 @@
   .lead__list-item:first-of-type::before {
     top: 34px;
   }
-  .lead__link {
-    min-width: 346px;
-  }
 }
 @media screen and (max-width: 374px) {
   .lead__link {
     align-self: center;
-    width: calc(100% - 29px);
-    min-width: 291px;
+    min-width: 100%;
+
     font-size: 19px;
   }
   .lead__header {
