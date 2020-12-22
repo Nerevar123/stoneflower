@@ -1,7 +1,8 @@
 .header {
   width: calc(100% - 11.459% - 11.459%);
+  min-width: 290px;
   height: 64px;
-  position: sticky;
+  position: fixed;
   top: 0px;
   left: 0px;
   display: grid;
@@ -17,7 +18,7 @@
 }
 
 .header:hover {
-  background: #335E58;
+  background: #335e58;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.16);
   opacity: 1;
 }
@@ -52,13 +53,18 @@
   border: 1px solid #67b5a9;
   max-width: 216px;
   max-height: 48px;
-  color: #333333;
   font-size: 20px;
   letter-spacing: 0.04em;
   font-weight: 400;
   line-height: 24px;
   color: #ffffff;
   grid-area: order-button;
+  transition: all 0.2s ease-in-out;
+}
+
+.header__order-button:hover {
+  background: #ffffff;
+  color: #335e58;
 }
 
 .header__menu-button {
@@ -111,18 +117,17 @@
   transition: all 0.2s ease;
   text-decoration: underline;
   text-decoration-color: transparent;
-    /* вариант для бордера, но мне кажется ни тот ни другой под макет не подходят, там как-будто по середине между ними */
-    /* border-bottom: 1px solid transparent; */
+  /* вариант для бордера, но мне кажется ни тот ни другой под макет не подходят, там как-будто по середине между ними */
+  /* border-bottom: 1px solid transparent; */
 }
 
 .header__link:hover {
- color: #B4BAAD;
+  color: #b4baad;
 }
 
 .header__link_active {
   text-decoration-color: #fff;
-    /* border-color: #fff; */
-
+  /* border-color: #fff; */
 }
 
 .header__link:last-of-type {
@@ -147,8 +152,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 139vw;
-    height: 139vh;
+    width: 100vw;
+    height: 100vh;
     min-height: -webkit-fill-available;
     min-width: -webkit-fill-available;
     background-color: rgba(0, 17, 17, 0.7);
@@ -164,7 +169,7 @@
     top: 0px;
     right: 0px;
     width: 0;
-    height: 139vh;
+    height: 100vh;
     min-height: 344px;
     background-color: #75978c;
     z-index: 2;
