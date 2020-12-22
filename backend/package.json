@@ -4,18 +4,27 @@
   "description": "backend for Stone flower",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=prod node app.js",
-    "dev": "NODE_ENV=dev nodemon app.js --node-env=dev"
+    "start": "cross-env NODE_ENV=prod node app.js",
+    "dev": "cross-env NODE_ENV=dev nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "celebrate": "^13.0.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.8"
+    "express-winston": "^4.0.5",
+    "mongoose": "^5.11.8",
+    "validator": "^13.5.2",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.6"
   }
 }
