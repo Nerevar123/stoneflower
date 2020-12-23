@@ -12,8 +12,9 @@ const serviceSchema = new mongoose.Schema({
     minlength: 2,
     required: true,
   },
-  link: {
-    type: String,
+  image: {
+    type: Object,
+    binData: Buffer,
     required: true,
     // validate: {
     //   validator: (v) => isURL(v),

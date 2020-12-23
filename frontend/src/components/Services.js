@@ -10,7 +10,7 @@ function Services({ elements }) {
           <ServicesItem
             item={item}
             key={item._id}
-            image={item.link}
+            image={item.image}
             heading={item.heading}
             description={item.description}
           />
