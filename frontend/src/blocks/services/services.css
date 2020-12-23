@@ -1,8 +1,8 @@
 .services {
-  width: calc(100% - 2 * 11.459%);
+  /* width: calc(100% - 2 (165px - 0.253807107 * (1440px - 100vw))); */
+  margin: 0 calc(165px - 0.253807107 * (1440px - 100vw));
   display: flex;
   flex-direction: column;
-  margin: 0 11.459%;
 }
 
 .services__list {

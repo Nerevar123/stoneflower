@@ -3,11 +3,14 @@ import { Router, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import { api } from "../utils/api";
-import { servicesItems } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList } from "../utils/config";
 
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
+  const [advantagesText, setAdvantegesText] = useState({});
+  const [advantagesIcons, setAdvantegesIcons] = useState({});
+
 
   // useEffect(() => {
   //   Promise.all([api.getServices()])
@@ -20,13 +23,19 @@ function App() {
 
   useEffect(() => {
     setServices(servicesItems);
+    setAdvantegesText(advantagesTextContent);
+    setAdvantegesIcons(advantagesIconsList);
   },[]);
 
   return (
     <>
       <Router history={history} basename="/">
         <Header />
-        <Main services={services} />
+        <Main
+        services={services}
+        advantagesText={advantagesText}
+        advantagesIcons={advantagesIcons}
+        />
       </Router>
       {/* <main className="content">
         <section className="info">

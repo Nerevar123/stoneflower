@@ -1,6 +1,7 @@
 .content {
   margin: 0;
   padding: 0;
+
 }
 .content__title {
   font-family: "EBGaramond", Helvetica, sans-serif;
@@ -24,14 +25,28 @@
   color: #001717;
   margin: 0;
 }
+.content__text_place_advantages {
+  font-size: calc(20px - 0.003384095 * (1440px - 100vw));
+  color: inherit;
+}
+
+@media screen and (min-width: 1440px) {
+  .content__text_place_advantages {
+    font-size: 20px;
+  }
+}
 @media screen and (max-width: 849px) {
   .content__title {
-    margin: 32px 0 19px 0;
+    margin: 32px 0 16px 0;
     font-size: 28px;
     line-height: 1.43;
   }
   .content__text {
     font-size: 18px;
     line-height: 1.35;
+  }
+  .content__text_place_advantages {
+    font-size: 16px;
+    line-height: 1.25;
   }
 }
