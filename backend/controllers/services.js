@@ -7,9 +7,10 @@ module.exports.getServices = (req, res, next) => {
 };
 
 module.exports.createService = (req, res, next) => {
-  const { heading, description, link } = req.body;
+  const { heading, description } = req.body;
+  const image = req.file;
 
-  Service.create({ heading, description, link })
+  Service.create({ heading, description, image })
     .then((service) => res.status(201).send(service))
     .catch(next);
 };
