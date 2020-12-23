@@ -1,34 +1,41 @@
 const router = require('express').Router();
+// const path = require('path');
 const { celebrate, Joi } = require('celebrate');
 const multer  = require('multer');
 const {
   getServices, createService,
 } = require('../controllers/services');
 
-// const upload = multer({ dest: 'uploads/' });
-
 // const storage = multer.diskStorage({
-//   destination: "./public/uploads/",
-//   filename: function(req, file, cb){
-//      cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+//   destination: function(req, file, callback) {
+//     callback(null, './uploads');
+//   },
+//   filename: function (req, file, callback) {
+//     callback(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
 //   }
 // });
 
-// const upload = multer({
-//   dest: "/tmp",
-//   fileFilter: (req, file, cb) => {
-//     if (file.mimetype == "text/csv" && file.fieldname === "test_doc") {
-//       cb(null, true);
-//     } else {
-//       cb(null, false);
-//       return cb(new Error('Invalid upload: fieldname should be test_doc and .csv format '));
-//     }
-//   }
-// });
+var storage = multer.diskStorage({
+  destination: function(req, file, callback){
+      callback(null, "./uploads");
+  },
+  filename: function(req, file, callback){
+      callback(null, Date.now() + file.originalname);
+  }
+});
 
 const upload = multer({
-  dest: 'uploads/',
-  limits:{fileSize: 1000000},
+  // dest: 'uploads/',
+  storage : storage,
+  limits: {
+    fileSize: 2 * 1024 * 1024,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error("please upload png,jpeg or jpg"));
+    }
+    cb(undefined, true);
+  }
 }).single("image");
 
 router.get('/', getServices);

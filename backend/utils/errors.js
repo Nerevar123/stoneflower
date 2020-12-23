@@ -18,24 +18,33 @@ const errorMessage409 = 'Введенный вами адрес электрон
 const errorMessage500 = 'На сервере произошла ошибка';
 
 const checkError = (err, res) => {
-  if (err.name === 'CastError' || err.name === 'ValidationError') {
+  console.log(err);
+  if (err.name === 'MulterError' || err.message === 'please upload png,jpeg or jpg') {
     res.status(ERROR_CODE_400).send({ message: errorMessage400, details: err.message });
-  } else if (err.message === 'notValidLogin') {
-    res.status(ERROR_CODE_401).send({ message: errorMessage401 });
-  } else if (err.message === 'JsonWebTokenError' || err.name === 'JsonWebTokenError') {
-    res.status(ERROR_CODE_401).send({ message: errorMessageWithToken401 });
-  } else if (err.message === 'forbidden') {
-    res.status(ERROR_CODE_403).send({ message: errorMessage403 });
-  } else if (err.message === 'cardNotFound') {
-    res.status(ERROR_CODE_404).send({ message: errorMessageWithCard404 });
-  } else if (err.message === 'userNotFound') {
-    res.status(ERROR_CODE_404).send({ message: errorMessageWithUser404 });
-  } else if (err.name === 'MongoError' && (err.message.startsWith('E11000'))) {
-    res.status(ERROR_CODE_409).send({ message: errorMessage409 });
   } else {
     res.status(ERROR_CODE_500).send({ message: errorMessage500, details: err.message });
   }
 };
+
+// const checkError = (err, res) => {
+//   if (err.name === 'CastError' || err.name === 'ValidationError' || err.message === 'please upload png,jpeg or jpg') {
+//     res.status(ERROR_CODE_400).send({ message: errorMessage400, details: err.message });
+//   } else if (err.message === 'notValidLogin') {
+//     res.status(ERROR_CODE_401).send({ message: errorMessage401 });
+//   } else if (err.message === 'JsonWebTokenError' || err.name === 'JsonWebTokenError') {
+//     res.status(ERROR_CODE_401).send({ message: errorMessageWithToken401 });
+//   } else if (err.message === 'forbidden') {
+//     res.status(ERROR_CODE_403).send({ message: errorMessage403 });
+//   } else if (err.message === 'cardNotFound') {
+//     res.status(ERROR_CODE_404).send({ message: errorMessageWithCard404 });
+//   } else if (err.message === 'userNotFound') {
+//     res.status(ERROR_CODE_404).send({ message: errorMessageWithUser404 });
+//   } else if (err.name === 'MongoError' && (err.message.startsWith('E11000'))) {
+//     res.status(ERROR_CODE_409).send({ message: errorMessage409 });
+//   } else {
+//     res.status(ERROR_CODE_500).send({ message: errorMessage500, details: err.message });
+//   }
+// };
 
 // function cryptHash(password) {
 //   if (!password) {
