@@ -4,7 +4,7 @@ import Advantages from './Advantages';
 import Surfaces from './Surfaces';
 import Services from './Services';
 
-function Main({ services }) {
+function Main({ services, advantagesText, advantagesIcons }) {
   return (
     <main className="content">
         <Lead />
@@ -15,7 +15,10 @@ function Main({ services }) {
         />
 
 
-        <Advantages />
+        <Advantages
+          textContent={advantagesText}
+          icons={advantagesIcons}
+        />
 
 
         <Surfaces />

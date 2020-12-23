@@ -8,7 +8,7 @@
     url(../../images/lead-bg-image-2.png) no-repeat 720px top;
   background-size: 100%, 720px, 720px;
   margin: 0;
-  padding: 13.889% 11.459% 10.487% 11.459%;
+  padding: 13.889% calc(165px - 0.253807107 * (1440px - 100vw)) 10.487% calc(165px - 0.253807107 * (1440px - 100vw));
   font-family: "EBGaramond", Helvetica, sans-serif;
   position: relative;
   z-index: 2;
