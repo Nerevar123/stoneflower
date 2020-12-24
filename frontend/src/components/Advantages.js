@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
 import arrowIcon from '../images/icons/ArrowRight.svg';
+import useWindowSize from "../hooks/useWindowSize";
 
-function Advantages({ textContent, icons }) {
+function Advantages({ textContent, icons, showModal, image }) {
   const [textExpanded, setTextExpanded] = useState(false);
-
+  function handleOpenEvent() {
+    console.log(image);
+    showModal(image);
+  }
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
+
+  const window = useWindowSize();
 
   return (
     <article className="advantages">
@@ -33,6 +39,7 @@ function Advantages({ textContent, icons }) {
             <p className="content__text">{textContent.expandedText}</p>
           </div>
         </div>
+        {window.width > 849 && (
         <Link
           to="applicability"
           spy={false}
@@ -43,7 +50,14 @@ function Advantages({ textContent, icons }) {
           className="advantages__link_type_navigation advantages__link link"
         >
           таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
-        </Link>
+        </Link>)}
+        {window.width < 849 && (
+          <a
+          onClick={handleOpenEvent}
+          className="advantages__link_type_navigation advantages__link link"
+        >
+          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
+        </a>)}
       </div>
       <ul className="advantages__list list">
         <li className="advantages__list-item">

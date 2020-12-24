@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
+import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
 import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems } from "../utils/config";
 
@@ -12,7 +13,19 @@ function App() {
   const [advantagesIcons, setAdvantegesIcons] = useState({});
   const [applicabilityTable, setApplicabilityTable] = useState();
   const [disadvantagesContent, setDisadvantagesContent] = useState([]);
+  const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
+  const [modalImage, setModalImage] = useState();
+  const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
 
+  function showModalWithImage (image) {
+    setModalImage(image);
+    setModalWithImageOpen(true);
+    console.log(isModalWithImageOpen);
+  }
+  function closeModal() {
+    setModalImage()
+    setModalWithImageOpen(false);
+  }
 
   // useEffect(() => {
   //   Promise.all([api.getServices()])
@@ -41,6 +54,7 @@ function App() {
         advantagesIcons={advantagesIcons}
         applicabilityTable={applicabilityTable}
         disadvantagesContent={disadvantagesContent}
+        showModalWithImage={showModalWithImage}
         />
       </Router>
       {/* <main className="content">
@@ -266,6 +280,12 @@ function App() {
           </article>
         </section>
       </main> */}
+      {isModalWithImageOpen && (
+      <ModalWithImage
+        closeModal={closeModal}
+        image={modalImage}
+        showArrows={false}
+      />)}
       <footer className="footer">
         <img alt="Логотип" className="footer__logo logo" />
         <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>

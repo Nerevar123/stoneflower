@@ -7,7 +7,7 @@ import Applicability from './Applicability';
 import useWindowSize from "../hooks/useWindowSize";
 import Disadvantages from './Disadvantages';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage }) {
   const window = useWindowSize();
   return (
     <main className="content">
@@ -22,6 +22,8 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
         <Advantages
           textContent={advantagesText}
           icons={advantagesIcons}
+          showModal={showModalWithImage}
+          image={applicabilityTable}
         />
 
         {window.width > 849 && (
