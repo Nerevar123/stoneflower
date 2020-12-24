@@ -8,3 +8,7 @@
 @import url(./blocks/services/services.css);
 @import url(./blocks/content/content.css);
 @import url(./blocks/advantages/advantages.css);
+@import url(./blocks/applicability/applicability.css);
+@import url(./blocks/disadvantages/disadvantages.css);
+@import url(./blocks/modal/modal.css);
+@import url(./blocks/phases/phases.css);

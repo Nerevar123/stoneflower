@@ -2,15 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Router, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
+import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons } from "../utils/config";
 
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
   const [advantagesText, setAdvantegesText] = useState({});
   const [advantagesIcons, setAdvantegesIcons] = useState({});
-
+  const [applicabilityTable, setApplicabilityTable] = useState();
+  const [disadvantagesContent, setDisadvantagesContent] = useState([]);
+  const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
+  const [modalImage, setModalImage] = useState();
+  const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
+  const [phasesIconList, setphasesIconList] = useState({});
+  function showModalWithImage (image) {
+    setModalImage(image);
+    setModalWithImageOpen(true);
+    console.log(isModalWithImageOpen);
+  }
+  function closeModal() {
+    setModalImage()
+    setModalWithImageOpen(false);
+  }
 
   // useEffect(() => {
   //   Promise.all([api.getServices()])
@@ -25,6 +40,9 @@ function App() {
     setServices(servicesItems);
     setAdvantegesText(advantagesTextContent);
     setAdvantegesIcons(advantagesIconsList);
+    setApplicabilityTable(applicabilityTableImage);
+    setDisadvantagesContent(disadvantagesContentItems);
+    setphasesIconList(phasesIcons);
   },[]);
 
   return (
@@ -35,6 +53,10 @@ function App() {
         services={services}
         advantagesText={advantagesText}
         advantagesIcons={advantagesIcons}
+        applicabilityTable={applicabilityTable}
+        disadvantagesContent={disadvantagesContent}
+        showModalWithImage={showModalWithImage}
+        phasesIcons={phasesIconList}
         />
       </Router>
       {/* <main className="content">
@@ -260,6 +282,12 @@ function App() {
           </article>
         </section>
       </main> */}
+      {isModalWithImageOpen && (
+      <ModalWithImage
+        closeModal={closeModal}
+        image={modalImage}
+        showArrows={false}
+      />)}
       <footer className="footer">
         <img alt="Логотип" className="footer__logo logo" />
         <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>

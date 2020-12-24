@@ -14,6 +14,7 @@
   color: #335E58;
   margin: 105px 0 0 0;
   width: 100%;
+  max-width: 740px;
 }
 .content__text {
   font-family: 'FuturaBookC', Helvetica, sans-serif;
@@ -24,6 +25,7 @@
   letter-spacing: 0.04em;
   color: #001717;
   margin: 0;
+  white-space:normal;
 }
 .content__text_place_advantages {
   font-size: calc(20px - 0.003384095 * (1440px - 100vw));
