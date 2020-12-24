@@ -12,7 +12,7 @@ function Advantages({ textContent, icons }) {
   return (
     <article className="advantages">
       <h2 className="content__title">Преимущества материала</h2>
-      <div className="advatages__info-block">
+      <div className="advantages__info-block">
         <div className="advantages__text-container">
           <p className="content__text">
             {textContent.shortTextBeforeAccent}
@@ -40,7 +40,7 @@ function Advantages({ textContent, icons }) {
           offset={-80}
           duration={500}
           href="/"
-          className="advanteges__link_type_navigation advantages__link link"
+          className="advantages__link_type_navigation advantages__link link"
         >
           таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
         </Link>
