@@ -3,13 +3,15 @@ import { Router, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems } from "../utils/config";
 
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
   const [advantagesText, setAdvantegesText] = useState({});
   const [advantagesIcons, setAdvantegesIcons] = useState({});
+  const [applicabilityTable, setApplicabilityTable] = useState();
+  const [disadvantagesContent, setDisadvantagesContent] = useState([]);
 
 
   // useEffect(() => {
@@ -25,6 +27,8 @@ function App() {
     setServices(servicesItems);
     setAdvantegesText(advantagesTextContent);
     setAdvantegesIcons(advantagesIconsList);
+    setApplicabilityTable(applicabilityTableImage);
+    setDisadvantagesContent(disadvantagesContentItems);
   },[]);
 
   return (
@@ -35,6 +39,8 @@ function App() {
         services={services}
         advantagesText={advantagesText}
         advantagesIcons={advantagesIcons}
+        applicabilityTable={applicabilityTable}
+        disadvantagesContent={disadvantagesContent}
         />
       </Router>
       {/* <main className="content">

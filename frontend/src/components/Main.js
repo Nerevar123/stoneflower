@@ -3,8 +3,12 @@ import Lead from './Lead';
 import Advantages from './Advantages';
 import Surfaces from './Surfaces';
 import Services from './Services';
+import Applicability from './Applicability';
+import useWindowSize from "../hooks/useWindowSize";
+import Disadvantages from './Disadvantages';
 
-function Main({ services, advantagesText, advantagesIcons }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent }) {
+  const window = useWindowSize();
   return (
     <main className="content">
         <Lead />
@@ -20,6 +24,14 @@ function Main({ services, advantagesText, advantagesIcons }) {
           icons={advantagesIcons}
         />
 
+        {window.width > 849 && (
+        <Applicability
+          table={applicabilityTable}
+        />)}
+
+        <Disadvantages
+          tableItems = {disadvantagesContent}
+        />
 
         <Surfaces />
 

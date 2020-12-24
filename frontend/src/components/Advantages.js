@@ -34,10 +34,10 @@ function Advantages({ textContent, icons }) {
           </div>
         </div>
         <Link
-          to="applicability-list"
+          to="applicability"
           spy={false}
           smooth={true}
-          offset={-80}
+          offset={-30}
           duration={500}
           href="/"
           className="advantages__link_type_navigation advantages__link link"
