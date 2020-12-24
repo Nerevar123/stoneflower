@@ -11,6 +11,11 @@ import icon_7 from "../images/icons/advantages-icon-7.svg";
 import icon_8 from "../images/icons/advantages-icon-8.svg";
 import applicabilityTable from "../images/applicability-table.png";
 import shieldWarning from "../images/ShieldWarning.svg";
+import phaseIcon_1 from "../images/phases-images/1.svg";
+import phaseIcon_2 from "../images/phases-images/2.svg";
+import phaseIcon_3 from "../images/phases-images/3.svg";
+import phaseIcon_4 from "../images/phases-images/4.svg";
+
 
 export const servicesItems = [
   {
@@ -75,12 +80,19 @@ export const disadvantagesContentItems = [
   },
   {
     image: shieldWarning,
-    text: "Кварцевый агломерат не защищён от ультрафиолета, поэтому светлые его виды могут пожелтеть на солнце",
+    text: "Большой удельный вес слэбов и плитки из натурального камня на фасадах зданий существенно увеличивают нагрузку на фундамент и при клеевом способе крепления на фасаде не всегда выдерживают несколько погодных циклов",
     _id: 2,
   },
   {
     image: shieldWarning,
-    text: "Большой удельный вес слэбов и плитки из натурального камня на фасадах зданий существенно увеличивают нагрузку на фундамент и при клеевом способе крепления на фасаде не всегда выдерживают несколько погодных циклов",
+    text: "Кварцевый агломерат не защищён от ультрафиолета, поэтому светлые его виды могут пожелтеть на солнце",
     _id: 3,
   },
 ];
+
+export const phasesIcons = {
+  firstIcon: phaseIcon_1,
+  secondIcon: phaseIcon_2,
+  thirdIcon: phaseIcon_3,
+  fourthIcon: phaseIcon_4,
+}

@@ -1,3 +1,4 @@
+import React from 'react';
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 
