@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 202px;
+  max-width: 205px;
 }
 
 .pahses__scheme-line {
