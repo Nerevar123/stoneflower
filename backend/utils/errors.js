@@ -19,8 +19,10 @@ const errorMessage500 = 'На сервере произошла ошибка';
 
 const checkError = (err, res) => {
   console.log(err);
-  if (err.name === 'MulterError' || err.message === 'please upload png,jpeg or jpg') {
+  if (err.name === 'MulterError' || err.message === 'please upload png,jpeg or jpg' || err.message === 'ValidationError') {
     res.status(ERROR_CODE_400).send({ message: errorMessage400, details: err.message });
+  } else if (err.message === 'notFound') {
+    res.status(ERROR_CODE_404).send({ message: errorMessage404 });
   } else {
     res.status(ERROR_CODE_500).send({ message: errorMessage500, details: err.message });
   }

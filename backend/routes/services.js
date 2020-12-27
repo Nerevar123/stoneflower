@@ -3,24 +3,15 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const multer  = require('multer');
 const {
-  getServices, createService,
+  getServices, createService, deleteService, updateService,
 } = require('../controllers/services');
-
-// const storage = multer.diskStorage({
-//   destination: function(req, file, callback) {
-//     callback(null, './uploads');
-//   },
-//   filename: function (req, file, callback) {
-//     callback(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
-//   }
-// });
 
 var storage = multer.diskStorage({
   destination: function(req, file, callback){
       callback(null, "./uploads");
   },
   filename: function(req, file, callback){
-      callback(null, Date.now() + file.originalname);
+      callback(null, new Date().toISOString().slice(0,10) + file.originalname);
   }
 });
 
@@ -46,23 +37,19 @@ router.post('/', upload, celebrate({
     // image: Joi.binary().encoding('base64').max(2 * 1024 * 1024).required(),
   }).unknown(true),
 }), createService);
-
-// router.post('/', upload, createService);
-
-// router.delete('/:cardId', celebrate({
-//   params: Joi.object().keys({
-//     cardId: Joi.string().alphanum().length(24),
-//   }),
-// }), deleteCard);
-// router.put('/:cardId/likes', celebrate({
-//   params: Joi.object().keys({
-//     cardId: Joi.string().alphanum().length(24),
-//   }),
-// }), putLike);
-// router.delete('/:cardId/likes', celebrate({
-//   params: Joi.object().keys({
-//     cardId: Joi.string().alphanum().length(24),
-//   }),
-// }), deleteLike);
+router.delete('/:serviceId', celebrate({
+  params: Joi.object().keys({
+    serviceId: Joi.string().alphanum().length(24),
+  }),
+}), deleteService);
+router.patch('/:serviceId', upload, celebrate({
+  params: Joi.object().keys({
+    serviceId: Joi.string().alphanum().length(24),
+  }),
+  body: Joi.object().keys({
+    heading: Joi.string().min(2).required(),
+    description: Joi.string().min(2).required(),
+  }),
+}), updateService);
 
 module.exports = router;

@@ -1,4 +1,5 @@
-const Service = require('../models/service');
+const fs = require("fs");
+const Service = require("../models/service");
 
 module.exports.getServices = (req, res, next) => {
   Service.find({})
@@ -15,38 +16,45 @@ module.exports.createService = (req, res, next) => {
     .catch(next);
 };
 
-// module.exports.deleteCard = (req, res, next) => {
-//   Card.findById(req.params.cardId)
-//     .orFail(new Error('cardNotFound'))
-//     .then((data) => {
-//       // eslint-disable-next-line eqeqeq
-//       if (data.owner != req.user._id) {
-//         throw new Error('forbidden');
-//       }
-//       Card.findByIdAndRemove(req.params.cardId)
-//         .then((card) => res.send(card));
-//     })
-//     .catch(next);
-// };
+module.exports.deleteService = (req, res, next) => {
+  Service.findById(req.params.serviceId)
+    .orFail(new Error("notFound"))
+    .then((data) => {
+      try {
+        fs.unlinkSync(data.image.path);
+      } catch {
+        throw new Error("notFound");
+      }
+      Service.findByIdAndRemove(req.params.serviceId).then((service) =>
+        res.send(service)
+      );
+    })
+    .catch(next);
+};
 
-// module.exports.putLike = (req, res, next) => {
-//   Card.findByIdAndUpdate(
-//     req.params.cardId,
-//     { $addToSet: { likes: req.user._id } },
-//     { new: true },
-//   )
-//     .orFail(new Error('cardNotFound'))
-//     .then((card) => res.send(card))
-//     .catch(next);
-// };
+module.exports.updateService = (req, res, next) => {
+  const { heading, description } = req.body;
+  const image = req.file;
+  if (!image) throw new Error("ValidationError");
 
-// module.exports.deleteLike = (req, res, next) => {
-//   Card.findByIdAndUpdate(
-//     req.params.cardId,
-//     { $pull: { likes: req.user._id } },
-//     { new: true },
-//   )
-//     .orFail(new Error('cardNotFound'))
-//     .then((card) => res.send(card))
-//     .catch(next);
-// };
+  Service.findById(req.params.serviceId)
+    .orFail(new Error("notFound"))
+    .then((data) => {
+      try {
+        fs.unlinkSync(data.image.path);
+      } catch {
+        throw new Error("notFound");
+      }
+      Service.findByIdAndUpdate(
+        req.params.serviceId,
+        { heading, description, image },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+        .orFail(new Error("notFound"))
+        .then((service) => res.send(service));
+    })
+    .catch(next);
+};
