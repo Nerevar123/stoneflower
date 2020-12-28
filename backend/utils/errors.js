@@ -21,6 +21,8 @@ const checkError = (err, res) => {
   console.log(err);
   if (err.name === 'MulterError' || err.message === 'please upload png,jpeg or jpg' || err.message === 'ValidationError') {
     res.status(ERROR_CODE_400).send({ message: errorMessage400, details: err.message });
+  } else if (err.message.startsWith('Invalid login')) {
+    res.status(ERROR_CODE_401).send({ message: errorMessage401 });
   } else if (err.message === 'notFound') {
     res.status(ERROR_CODE_404).send({ message: errorMessage404 });
   } else {
