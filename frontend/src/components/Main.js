@@ -7,8 +7,9 @@ import Applicability from './Applicability';
 import useWindowSize from "../hooks/useWindowSize";
 import Disadvantages from './Disadvantages';
 import Phases from './Phases';
+import Pricing from './Pricing';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent }) {
   const window = useWindowSize();
   return (
     <main className="content">
@@ -38,6 +39,10 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
 
         <Phases
           phasesIcons={phasesIcons}
+        />
+
+        <Pricing
+          content={pricingContent}
         />
 
         <Surfaces />

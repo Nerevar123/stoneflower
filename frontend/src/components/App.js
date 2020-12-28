@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing } from "../utils/config";
 
 function App() {
   const history = useHistory();
@@ -17,6 +17,8 @@ function App() {
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
   const [phasesIconList, setphasesIconList] = useState({});
+  const [pricingContent, setPricingContent] = useState({})
+
   function showModalWithImage (image) {
     setModalImage(image);
     setModalWithImageOpen(true);
@@ -43,6 +45,7 @@ function App() {
     setApplicabilityTable(applicabilityTableImage);
     setDisadvantagesContent(disadvantagesContentItems);
     setphasesIconList(phasesIcons);
+    setPricingContent(pricing);
   },[]);
 
   return (
@@ -57,6 +60,7 @@ function App() {
         disadvantagesContent={disadvantagesContent}
         showModalWithImage={showModalWithImage}
         phasesIcons={phasesIconList}
+        pricingContent={pricingContent}
         />
       </Router>
       {/* <main className="content">
