@@ -1,14 +1,17 @@
 require("dotenv-flow").config();
 const cors = require("cors");
 const express = require("express");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
+const routes = require("./routes");
 // const multer  = require('multer');
 const { celebrate, Joi, errors } = require("celebrate");
 const {
-  ERROR_CODE_404,
-  errorMessage404,
+  // ERROR_CODE_404,
+  // errorMessage404,
   checkError,
 } = require("./utils/errors");
 // const {
@@ -17,12 +20,17 @@ const {
 // const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { PORT = 3000 } = process.env;
-// const upload = multer({ dest: 'uploads/' })
+const { PORT = 3000, MONGO_URL = "mongodb://localhost:27017/stoneflower" } = process.env;
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/stoneflower", {
+  .connect(MONGO_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -42,12 +50,13 @@ app.use(
   })
 );
 
+app.use(requestLogger);
+
+app.use(limiter);
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
-
-app.use(requestLogger);
-app.use('/uploads', express.static('uploads'));
 
 // app.post('/signin', celebrate({
 //   body: Joi.object().keys({
@@ -66,13 +75,11 @@ app.use('/uploads', express.static('uploads'));
 
 // app.get('/check', checkCookies);
 // app.use('/users', require('./routes/users'));
-app.use("/services", require("./routes/services"));
 
 // app.use('/logout', logout);
 
-app.use("*", (req, res) => {
-  res.status(ERROR_CODE_404).send({ message: errorMessage404 });
-});
+app.use('/uploads', express.static('uploads'));
+app.use(routes);
 
 app.use(errorLogger);
 
