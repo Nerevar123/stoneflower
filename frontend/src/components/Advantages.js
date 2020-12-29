@@ -18,8 +18,8 @@ function Advantages({ textContent, icons, showModal, image }) {
   return (
     <article className="advantages">
       <h2 className="content__title">Преимущества материала</h2>
-      <div className="advantages__info-block">
-        <div className="advantages__text-container">
+      <div className="content__info-block">
+        <div className="content__text-container">
           <p className="content__text">
             {textContent.shortTextBeforeAccent}
             <span className="advantages__accent">
@@ -28,12 +28,12 @@ function Advantages({ textContent, icons, showModal, image }) {
             {textContent.shortTextAfterAccent}
           </p>
           <a onClick={handleTextExpand} className={`advantages__link link ${textExpanded ? 'open' : ''}`}>
-            <span className="advantages__link-accent">{textContent.linkText}</span>
+            <span className="link__accent">{textContent.linkText}</span>
             <div className="advantages__arrow"></div>
           </a>
           <div
-            className={`advantages__expand-container ${
-              textExpanded ? "advantages__expand-container_opened" : ""
+            className={`content__expand-container ${
+              textExpanded ? "content__expand-container_opened" : ""
             }`}
           >
             <p className="content__text">{textContent.expandedText}</p>
@@ -47,16 +47,16 @@ function Advantages({ textContent, icons, showModal, image }) {
           offset={-30}
           duration={500}
           href="/"
-          className="advantages__link_type_navigation advantages__link link"
+          className="link_type_navigation link"
         >
-          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
+          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="icon icon_type_arrow"/>
         </Link>)}
         {window.width < 849 && (
           <a
           onClick={handleOpenEvent}
-          className="advantages__link_type_navigation advantages__link link"
+          className="link_type_navigation link"
         >
-          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
+          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="icon icon_type_arrow"/>
         </a>)}
       </div>
       <ul className="advantages__list list">
