@@ -52,6 +52,9 @@
   height: 24px;
   margin: 0px 0 0 0;
 }
+.link_place_pricing {
+  min-width: 207px;
+}
 @media screen and (max-width: 1000px) {
 
   .link_type_navigation {
@@ -59,6 +62,12 @@
     min-width: 250px;
     height: 50px;
     padding: 17px 10px 15px 10px;
+  }
+  .link_place_pricing {
+    width: 209px;
+    min-width: 209px;
+    padding: 17px 24px 15px 24px;
+    height: 24px;
   }
 }
 @media screen and (max-width: 849px) {
@@ -75,5 +84,9 @@
   }
   .link__arrow {
     margin: 14px 0 0 2px;
+  }
+  .link_place_pricing {
+    align-items: center;
+    justify-content: center;
   }
 }

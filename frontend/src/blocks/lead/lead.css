@@ -81,6 +81,9 @@
   text-align: center;
   letter-spacing: 0.04em;
   padding: 17px 0 15px 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  justify-content: center;
 }
 
 .lead__link:hover {

@@ -44,6 +44,16 @@
   font-size: calc(20px - 0.003384095 * (1440px - 100vw));
   color: inherit;
 }
+.content__text-container_place_pricing {
+  width: 63.2%;
+}
+.content__text_place_pricing {
+  white-space: pre-line;
+  margin: 16px 0 0 0;
+}
+.content__text_place_pricing:first-of-type {
+  margin: 0 0 0 0;
+}
 
 @media screen and (min-width: 1440px) {
   .content__text_place_advantages {
@@ -56,6 +66,9 @@
     width: 65%;
     padding: 0 0 0 0;
     margin: 0 15px 0 0;
+  }
+  .content__text_place_pricing {
+    white-space: normal;
   }
 }
 @media screen and (max-width: 849px) {
@@ -80,4 +93,11 @@
     width: calc(100% - 15px);
     padding-right: 15px;
   }
+  .content__text_place_pricing {
+    margin: 8px 0 0 0;
+  }
+  .content__text_place_pricing:first-of-type {
+    margin: 0 0 0 0;
+  }
+
 }

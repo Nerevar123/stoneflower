@@ -15,11 +15,16 @@
 
   .icon_type_arrow {
     margin: 15px 5px 0 10px;
-
+  }
+  .icon_place_pricing {
+    margin: 3px 0 0 16px;
   }
 }
 @media screen and (max-width: 849px) {
   .icon_type_arrow {
-    margin: 4px 0 0 auto;
+    margin: 2px 0 0 auto;
+  }
+  .icon_place_pricing {
+    margin: 0 0 0 16px;
   }
 }

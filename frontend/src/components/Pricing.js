@@ -6,10 +6,10 @@ function Pricing({ content }) {
   return (
     <article id="pricing" className="pricing">
       <h2 className="content__title">{content.heading}</h2>
-      <div className="advantages__info-block">
-        <div className="advantages__text-container">
-          <p className="content__text">{content.textMajor}</p>
-          <p className="content__text">{content.textMinor}</p>
+      <div className="content__info-block">
+        <div className="content__text-container content__text-container_place_pricing">
+          <p className="content__text content__text_place_pricing">{content.textMajor}</p>
+          <p className="content__text content__text_place_pricing">{content.textMinor}</p>
         </div>
         <Link
           to="form"
@@ -18,9 +18,9 @@ function Pricing({ content }) {
           offset={-30}
           duration={500}
           href="/"
-          className="advantages__link_type_navigation advantages__link link"
+          className="link_type_navigation link_place_pricing link"
         >
-          {content.buttonText}<img src={arrowIcon} alt="иконка стрелки"className="advantages__icon advantages_icon_type_arrow"/>
+          {content.buttonText}<img src={arrowIcon} alt="иконка стрелки"className="icon icon_place_pricing icon_type_arrow"/>
         </Link>
       </div>
     </article>

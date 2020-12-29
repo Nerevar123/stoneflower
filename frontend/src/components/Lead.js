@@ -20,7 +20,7 @@ function Lead() {
       </ul>
       <Link
         className="lead__link link"
-        to="services"
+        to="form"
         spy={false}
         smooth={true}
         offset={-80}
