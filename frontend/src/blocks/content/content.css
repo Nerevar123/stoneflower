@@ -16,6 +16,19 @@
   width: 100%;
   max-width: 740px;
 }
+.content__info-block {
+  display: flex;
+  flex-direction: row;
+  margin: 32px 0 0 0;
+  position: relative;
+}
+.content__text-container {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin: 0 55px 0 0;
+  padding: 0 0 0 0;
+}
 .content__text {
   font-family: 'FuturaBookC', Helvetica, sans-serif;
   font-style: normal;
@@ -37,6 +50,14 @@
     font-size: 20px;
   }
 }
+@media screen and (max-width: 1000px) {
+
+  .content__text-container {
+    width: 65%;
+    padding: 0 0 0 0;
+    margin: 0 15px 0 0;
+  }
+}
 @media screen and (max-width: 849px) {
   .content__title {
     margin: 32px 0 16px 0;
@@ -50,5 +71,13 @@
   .content__text_place_advantages {
     font-size: 16px;
     line-height: 1.25;
+  }
+  .content__info-block {
+    margin-top: 0px;
+    flex-direction: column;
+  }
+  .content__text-container{
+    width: calc(100% - 15px);
+    padding-right: 15px;
   }
 }
