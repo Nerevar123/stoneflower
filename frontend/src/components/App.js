@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Router, useHistory } from "react-router-dom";
+import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces } from "../utils/config";
 
 function App() {
   const history = useHistory();
@@ -17,7 +17,8 @@ function App() {
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
   const [phasesIconList, setphasesIconList] = useState({});
-  const [pricingContent, setPricingContent] = useState({})
+  const [pricingContent, setPricingContent] = useState({});
+  const [surfacesContent, setSurfacesContent] = useState({});
 
   function showModalWithImage (image) {
     setModalImage(image);
@@ -37,7 +38,6 @@ function App() {
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
-
   useEffect(() => {
     setServices(servicesItems);
     setAdvantegesText(advantagesTextContent);
@@ -46,11 +46,15 @@ function App() {
     setDisadvantagesContent(disadvantagesContentItems);
     setphasesIconList(phasesIcons);
     setPricingContent(pricing);
+    setSurfacesContent(surfaces);
+    console.log(surfacesContent);
   },[]);
-
+  console.log(surfacesContent)
   return (
     <>
       <Router history={history} basename="/">
+        <Switch>
+        <Route exact path="/">
         <Header />
         <Main
         services={services}
@@ -61,7 +65,13 @@ function App() {
         showModalWithImage={showModalWithImage}
         phasesIcons={phasesIconList}
         pricingContent={pricingContent}
+        surfacesContent={surfacesContent}
         />
+        </Route>
+        <Route exact path="/materials">
+          <div className="smth">kmakma;lskmdalkms</div>
+        </Route>
+        </Switch>
       </Router>
       {/* <main className="content">
         <section className="info">

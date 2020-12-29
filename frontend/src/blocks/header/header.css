@@ -117,6 +117,7 @@
   transition: all 0.2s ease;
   text-decoration: underline;
   text-decoration-color: transparent;
+  text-transform: uppercase;
   /* вариант для бордера, но мне кажется ни тот ни другой под макет не подходят, там как-будто по середине между ними */
   /* border-bottom: 1px solid transparent; */
 }

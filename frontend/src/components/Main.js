@@ -9,8 +9,9 @@ import Disadvantages from './Disadvantages';
 import Phases from './Phases';
 import Pricing from './Pricing';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent }) {
   const window = useWindowSize();
+  console.log(surfacesContent )
   return (
     <main className="content">
         <Lead />
@@ -45,7 +46,9 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
           content={pricingContent}
         />
 
-        <Surfaces />
+        <Surfaces
+          content={surfacesContent}
+        />
 
         {/*
 

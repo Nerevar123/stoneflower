@@ -32,8 +32,8 @@ function Advantages({ textContent, icons, showModal, image }) {
             <div className="advantages__arrow"></div>
           </a>
           <div
-            className={`advantages__expand-container ${
-              textExpanded ? "advantages__expand-container_opened" : ""
+            className={`content__expand-container ${
+              textExpanded ? "content__expand-container_opened" : ""
             }`}
           >
             <p className="content__text">{textContent.expandedText}</p>

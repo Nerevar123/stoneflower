@@ -6,15 +6,17 @@ function Services({ elements }) {
     <article id="services" className="services">
       <h2 className="content__title">Услуги</h2>
       <ul className="services__list list">
-        {elements.map((item) => (
-          <ServicesItem
-            item={item}
-            key={item._id}
-            image={item.image}
-            heading={item.heading}
-            description={item.description}
-          />
-        ))}
+        {elements
+          ? elements.map((item) => (
+              <ServicesItem
+                item={item}
+                key={item._id}
+                image={item.image}
+                heading={item.heading}
+                description={item.description}
+              />
+            ))
+          : ""}
       </ul>
     </article>
   );
