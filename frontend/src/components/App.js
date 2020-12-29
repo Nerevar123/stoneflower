@@ -53,9 +53,10 @@ function App() {
   return (
     <>
       <Router history={history} basename="/">
+      <Header />
         <Switch>
         <Route exact path="/">
-        <Header />
+
         <Main
         services={services}
         advantagesText={advantagesText}
