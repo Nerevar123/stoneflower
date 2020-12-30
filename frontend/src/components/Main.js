@@ -9,10 +9,10 @@ import Disadvantages from './Disadvantages';
 import Phases from './Phases';
 import Pricing from './Pricing';
 import Advices from './Advices';
+import Portfolio from './Portfolio';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel }) {
   const window = useWindowSize();
-  console.log(surfacesContent )
   return (
     <main className="content">
         <Lead />
@@ -53,6 +53,11 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
 
         <Advices
           content={advicesContent}
+        />
+
+        <Portfolio
+          content={portfolioContent}
+          showModal={showModalWithCarousel}
         />
 
         {/*

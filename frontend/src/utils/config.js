@@ -22,6 +22,9 @@ import material_4 from "../images/surfaces/designed.png";
 import advice_1 from "../images/advices/advice_1.png";
 import advice_2 from "../images/advices/advice_2.png";
 import advice_3 from "../images/advices/advice_3.png";
+import portfolio_1 from "../images/portfolio/portfolio_1.jpg";
+import portfolio_2 from "../images/portfolio/portfolio_2.jpg";
+import portfolio_3 from "../images/portfolio/portfolio_3.jpg";
 
 export const servicesItems = [
   {
@@ -169,4 +172,18 @@ export const advices = [
   },
 ]
 
+export const portfolio = [
+  {
+    image: portfolio_1,
+    _id: 1,
+  },
+  {
+    image: portfolio_2,
+    _id: 2,
+  },
+  {
+    image: portfolio_3,
+    _id: 3,
+  }
+]
 
