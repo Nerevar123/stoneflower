@@ -8,8 +8,9 @@ import useWindowSize from "../hooks/useWindowSize";
 import Disadvantages from './Disadvantages';
 import Phases from './Phases';
 import Pricing from './Pricing';
+import Advices from './Advices';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent }) {
   const window = useWindowSize();
   console.log(surfacesContent )
   return (
@@ -48,6 +49,10 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
 
         <Surfaces
           content={surfacesContent}
+        />
+
+        <Advices
+          content={advicesContent}
         />
 
         {/*

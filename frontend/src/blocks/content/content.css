@@ -1,7 +1,6 @@
 .content {
   margin: 0;
   padding: 0;
-
 }
 .content__title {
   font-family: "EBGaramond", Helvetica, sans-serif;
@@ -11,7 +10,7 @@
   line-height: 1.25;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #335E58;
+  color: #335e58;
   margin: 105px 0 0 0;
   width: 100%;
   max-width: 740px;
@@ -30,7 +29,7 @@
   padding: 0 0 0 0;
 }
 .content__text {
-  font-family: 'FuturaBookC', Helvetica, sans-serif;
+  font-family: "FuturaBookC", Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -38,7 +37,7 @@
   letter-spacing: 0.04em;
   color: #001717;
   margin: 0;
-  white-space:normal;
+  white-space: normal;
 }
 .content__text_place_advantages {
   font-size: calc(20px - 0.003384095 * (1440px - 100vw));
@@ -70,14 +69,16 @@
 .content__text-container_place_surfaces {
   width: 75%;
 }
-
+.content__text-container_place_advices {
+  width: auto;
+  margin: 0;
+}
 @media screen and (min-width: 1440px) {
   .content__text_place_advantages {
     font-size: 20px;
   }
 }
 @media screen and (max-width: 1000px) {
-
   .content__text-container {
     width: 65%;
     padding: 0 0 0 0;
@@ -108,7 +109,7 @@
     margin-top: 0px;
     flex-direction: column;
   }
-  .content__text-container{
+  .content__text-container {
     width: calc(100% - 15px);
     padding-right: 15px;
   }
@@ -118,5 +119,10 @@
   .content__text_place_pricing:first-of-type {
     margin: 0 0 0 0;
   }
-
+  .content__title_place_advices {
+    margin: 32px 0 0 0;
+  }
+  .content__title_place_surfaces {
+    margin: 32px 0 8px 0;
+  }
 }

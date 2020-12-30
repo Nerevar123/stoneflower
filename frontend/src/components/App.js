@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices } from "../utils/config";
 
 function App() {
   const history = useHistory();
@@ -19,6 +19,7 @@ function App() {
   const [phasesIconList, setphasesIconList] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
+  const [advicesContent, setAdvicesContent] = useState([])
 
   function showModalWithImage (image) {
     setModalImage(image);
@@ -47,7 +48,7 @@ function App() {
     setphasesIconList(phasesIcons);
     setPricingContent(pricing);
     setSurfacesContent(surfaces);
-    console.log(surfacesContent);
+    setAdvicesContent(advices);
   },[]);
   console.log(surfacesContent)
   return (
@@ -67,6 +68,7 @@ function App() {
         phasesIcons={phasesIconList}
         pricingContent={pricingContent}
         surfacesContent={surfacesContent}
+        advicesContent={advicesContent}
         />
         </Route>
         <Route exact path="/materials">
