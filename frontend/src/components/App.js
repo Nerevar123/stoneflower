@@ -58,7 +58,7 @@ function App() {
     setAdvicesContent(advices);
     setPortfolioContent(portfolio);
   },[]);
-  console.log(surfacesContent)
+
   return (
     <>
       <Router history={history} basename="/">

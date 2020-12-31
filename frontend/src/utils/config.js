@@ -175,15 +175,15 @@ export const advices = [
 export const portfolio = [
   {
     image: portfolio_1,
-    _id: 1,
+    _id: 0,
   },
   {
     image: portfolio_2,
-    _id: 2,
+    _id: 1,
   },
   {
     image: portfolio_3,
-    _id: 3,
+    _id: 2,
   }
 ]
 
