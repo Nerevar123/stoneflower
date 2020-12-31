@@ -21,6 +21,8 @@
 
 .portfolio__slide {
   margin: 0 25px 0 0;
+  transition: all 0.5s ease;
+  cursor: grab;
 }
 .portfolio__slide_type_empty {
   display: flex;
