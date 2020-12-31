@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices, portfolio } from "../utils/config";
 
 function App() {
   const history = useHistory();
@@ -19,15 +19,23 @@ function App() {
   const [phasesIconList, setphasesIconList] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
+  const [advicesContent, setAdvicesContent] = useState([]);
+  const [portfolioContent, setPortfolioContent] = useState([]);
 
   function showModalWithImage (image) {
     setModalImage(image);
     setModalWithImageOpen(true);
     console.log(isModalWithImageOpen);
   }
+  function showModalWithCarousel (image) {
+    setModalImage(image);
+    setModalWithImageOpen(true);
+    console.log(isModalWithCarouselOpen);
+  }
   function closeModal() {
     setModalImage()
     setModalWithImageOpen(false);
+    setModalWithCarouselOpen(false);
   }
 
   // useEffect(() => {
@@ -47,9 +55,10 @@ function App() {
     setphasesIconList(phasesIcons);
     setPricingContent(pricing);
     setSurfacesContent(surfaces);
-    console.log(surfacesContent);
+    setAdvicesContent(advices);
+    setPortfolioContent(portfolio);
   },[]);
-  console.log(surfacesContent)
+
   return (
     <>
       <Router history={history} basename="/">
@@ -67,6 +76,9 @@ function App() {
         phasesIcons={phasesIconList}
         pricingContent={pricingContent}
         surfacesContent={surfacesContent}
+        advicesContent={advicesContent}
+        portfolioContent={portfolioContent}
+        showModalWithCarousel={showModalWithCarousel}
         />
         </Route>
         <Route exact path="/materials">

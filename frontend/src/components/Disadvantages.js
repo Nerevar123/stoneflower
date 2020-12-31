@@ -2,7 +2,6 @@ import React from "react";
 import DisadvantagesItem from "./DisadvantagesItem";
 
 function Disadvantages({ tableItems }) {
-  console.log(tableItems)
   return (
     <article className="disadvantages">
       <h2 className="content__title">

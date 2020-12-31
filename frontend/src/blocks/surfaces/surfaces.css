@@ -26,8 +26,7 @@
   position: relative;
 }
 .surfaces__link {
-  text-decoration: none;
-
+  text-decoration: underline;
 }
 .surfaces__link:visited {
   text-decoration: none;
@@ -87,5 +86,8 @@
   .surfaces__list {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fill, 1fr);
+  }
+  .surfaces__link {
+    font-size: 18px;
   }
 }

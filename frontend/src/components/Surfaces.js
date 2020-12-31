@@ -8,7 +8,7 @@ function Surfaces({ content }) {
   }
   return (
     <article id="surfaces" className="surfaces">
-      <h2 className="content__title">Варианты поверностей</h2>
+      <h2 className="content__title content__title_place_surfaces">Варианты поверностей</h2>
       <div className="content__text-container content__text-container_place_surfaces">
         <p className="content__text">{content.shortText}</p>
         <div
