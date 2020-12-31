@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // const cookieParser = require("cookie-parser");
 const routes = require("./routes");
-// const multer  = require('multer');
 const { celebrate, Joi, errors } = require("celebrate");
 const {
   // ERROR_CODE_404,
