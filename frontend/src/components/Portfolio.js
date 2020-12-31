@@ -7,7 +7,7 @@ function Portfolio({ content, showModal }) {
   const [slideRefs, setSlideRefs] = useState([]);
 
   useEffect(() => {
-    setSlideRefs((elRefs) =>
+    setSlideRefs((slideRefs) =>
       Array(contentLength)
         .fill()
         .map((i) => slideRefs[i] || createRef())
