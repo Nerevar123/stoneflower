@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef } from "react";
 import { Link } from "react-scroll";
 
 function Portfolio({ content, showModal }) {
-  const [selectedSlide, setSelectedSlide] = useState(1);
+  var selectedSlide = 0;
   const [contentLength, setContentLength] = useState(1);
   const [slideRefs, setSlideRefs] = useState([]);
 
@@ -24,11 +24,11 @@ function Portfolio({ content, showModal }) {
     var newId = selectedSlide;
     newId += 1;
     console.log('new id', newId);
-    setSelectedSlide(newId);
+    selectedSlide = newId;
     console.log('now:', selectedSlide)
-    console.log(selectedSlide, contentLength, selectedSlide <= contentLength - 1)
-    if (selectedSlide >= (contentLength - 1) ){
-      setSelectedSlide(contentLength - 1);
+    console.log(selectedSlide, contentLength, selectedSlide >= contentLength - 1)
+    if (selectedSlide > (contentLength - 1) ){
+      selectedSlide = selectedSlide - 1;
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
       console.log('last slide');
       console.log(selectedSlide);
@@ -40,7 +40,7 @@ function Portfolio({ content, showModal }) {
   }
   function slideBackwards() {
     console.log('before:', selectedSlide)
-    setSelectedSlide(selectedSlide - 1);
+    selectedSlide = selectedSlide - 1;
     console.log('now:', selectedSlide)
     if (selectedSlide > 0) {
       console.log('moving back from id:',selectedSlide);
@@ -48,7 +48,7 @@ function Portfolio({ content, showModal }) {
       console.log(selectedSlide);
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
     } else {
-      setSelectedSlide(0)
+      selectedSlide = 0;
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
       console.log('last slide');
       console.log(selectedSlide);
