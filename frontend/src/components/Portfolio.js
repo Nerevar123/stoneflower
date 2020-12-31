@@ -10,7 +10,7 @@ function Portfolio({ content, showModal }) {
     setSlideRefs((elRefs) =>
       Array(contentLength)
         .fill()
-        .map((_, i) => slideRefs[i] || createRef())
+        .map((i) => slideRefs[i] || createRef())
     );
   }, [contentLength]);
 
