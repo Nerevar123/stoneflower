@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 function Portfolio({ content, showModal }) {
   const [selectedSlide, setSelectedSlide] = useState(1);
-  const [contentLength, setContentLength] = useState(0);
+  const [contentLength, setContentLength] = useState(1);
   const [slideRefs, setSlideRefs] = useState([]);
 
   useEffect(() => {
@@ -20,23 +20,35 @@ function Portfolio({ content, showModal }) {
   }, [content,slideRefs]);
 
   function slideForward() {
+    console.log('before:', selectedSlide);
+    var newId = selectedSlide;
+    newId += 1;
+    console.log('new id', newId);
+    setSelectedSlide(newId);
+    console.log('now:', selectedSlide)
     console.log(selectedSlide, contentLength, selectedSlide <= contentLength - 1)
     if (selectedSlide >= (contentLength - 1) ){
+      setSelectedSlide(contentLength - 1);
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
       console.log('last slide');
       console.log(selectedSlide);
     } else {
-      setSelectedSlide(selectedSlide + 1);
-      console.log(selectedSlide);
+      console.log('moving forward from id:',selectedSlide);
+      console.log('moving forward to id:',selectedSlide);
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
     }
   }
   function slideBackwards() {
+    console.log('before:', selectedSlide)
+    setSelectedSlide(selectedSlide - 1);
+    console.log('now:', selectedSlide)
     if (selectedSlide > 0) {
-      setSelectedSlide(selectedSlide - 1);
+      console.log('moving back from id:',selectedSlide);
+      console.log('moving back to id:',selectedSlide);
       console.log(selectedSlide);
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
     } else {
+      setSelectedSlide(0)
       slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
       console.log('last slide');
       console.log(selectedSlide);
