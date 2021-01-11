@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import DisadvantagesItem from "./DisadvantagesItem";
-import Swiper from "swiper";
 
 function AdvicesItem(props) {
   const [textExpanded, setTextExpanded] = useState(false);
