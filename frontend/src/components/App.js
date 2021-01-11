@@ -5,6 +5,7 @@ import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
 import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices, portfolio } from "../utils/config";
+import ModalWithCarousel from "./ModalWIthCarousel";
 
 function App() {
   const history = useHistory();
@@ -21,15 +22,16 @@ function App() {
   const [surfacesContent, setSurfacesContent] = useState({});
   const [advicesContent, setAdvicesContent] = useState([]);
   const [portfolioContent, setPortfolioContent] = useState([]);
+  const [modalInitialSlide, setModalInitialSlide] = useState(0)
 
   function showModalWithImage (image) {
     setModalImage(image);
     setModalWithImageOpen(true);
     console.log(isModalWithImageOpen);
   }
-  function showModalWithCarousel (image) {
-    setModalImage(image);
-    setModalWithImageOpen(true);
+  function showModalWithCarousel (slideIndex) {
+    setModalInitialSlide(slideIndex);
+    setModalWithCarouselOpen(true);
     console.log(isModalWithCarouselOpen);
   }
   function closeModal() {
@@ -82,7 +84,7 @@ function App() {
         />
         </Route>
         <Route exact path="/materials">
-          <div className="smth">kmakma;lskmdalkms</div>
+          <div className="smth">dqwefewfr2r2sdg3g</div>
         </Route>
         </Switch>
       </Router>
@@ -313,7 +315,13 @@ function App() {
       <ModalWithImage
         closeModal={closeModal}
         image={modalImage}
-        showArrows={false}
+      />)}
+      {isModalWithCarouselOpen && (
+      <ModalWithCarousel
+        isModalWithCarouselOpen={isModalWithCarouselOpen}
+        closeModal={closeModal}
+        content={portfolioContent}
+        initialSlide={modalInitialSlide}
       />)}
       <footer className="footer">
         <img alt="Логотип" className="footer__logo logo" />

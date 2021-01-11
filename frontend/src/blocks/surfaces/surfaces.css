@@ -32,6 +32,9 @@
   text-decoration: none;
   color: inherit;
 }
+.surfaces__link_place_list {
+  text-decoration: none;
+}
 .surfaces__overlay {
   position: absolute;
   width: 100%;
@@ -74,6 +77,7 @@
   border: 1px solid #995750;
   height: 54px;
   transition: all 0.2s ease-in-out;
+  text-decoration: none;
 }
 .surfaces__item-heading_highlited {
   color: #FFFFFF;

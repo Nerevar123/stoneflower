@@ -9,7 +9,7 @@ function handleHoverEvent() {
 
   return (
     <li className="surfaces__list-item" onMouseEnter={handleHoverEvent} onMouseLeave={handleHoverEvent}>
-      <Link to="/materials" className="surfaces__link">
+      <Link to="/materials" className="surfaces__link surfaces__link_place_list">
       <div className="surfaces__image-container">
         <img src={props.image} alt="Картинка" className="surfaces__image" />
         <div className={`surfaces__overlay ${mouseIn?'surfaces__overlay_visible':''}`}>{props.heading}</div>

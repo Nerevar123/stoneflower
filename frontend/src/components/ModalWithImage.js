@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 
-function ModalWithImage({ image, closeModal, showArrows }) {
+function ModalWithImage({ image, closeModal}) {
   function handleClose() {
     closeModal();
   }
@@ -10,7 +10,7 @@ function ModalWithImage({ image, closeModal, showArrows }) {
   return (
     <Modal
       closeModal={closeModal}
-      showArrows={showArrows}
+      carousel={false}
       children={
         <>
           <div onClick={handleClose} className="modal__overlay"></div>

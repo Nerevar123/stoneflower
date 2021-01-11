@@ -1,86 +1,85 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
 import { Link } from "react-scroll";
-import useMousePosition from '../hooks/useMousePosition';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import arrowRight from "../images/slider/ArrowRight.svg";
+import arrowLeft from "../images/slider/ArrowLeft.svg";
 
 function Portfolio({ content, showModal }) {
-  let selectedSlide = 0;
-  const [contentLength, setContentLength] = useState(1);
-  const [slideRefs, setSlideRefs] = useState([]);
-  const [isScrolling, setScrolling] = useState(false);
-  const [mouseXCoordinateOnClick, setMouseXCoordinateOnClick] = useState(0);
-  const [mouseXCoordinateOnDrag, setMouseXCoordinateOnDrag] = useState(0);
-  const [translateDelta, setTranslateDelta] = useState('')
-
-  // const sliderContainerRef = useRef();
-  const mouseCoordinates = useMousePosition();
-
-  useEffect(() => {
-    setMouseXCoordinateOnDrag(mouseCoordinates.x)
-    if(!isScrolling) {
-      setMouseXCoordinateOnClick(mouseCoordinates.x);
-    }
-    setTranslateDelta(`translateX(${mouseXCoordinateOnDrag - mouseXCoordinateOnClick}px)`);
-    if((mouseXCoordinateOnDrag - mouseXCoordinateOnClick) < -100) {
-      setScrolling(false);
-      slideForward();
-    }
-    if((mouseXCoordinateOnDrag - mouseXCoordinateOnClick) > 100) {
-      setScrolling(false);
-      slideBackwards();
-    }
-    console.log('delta',translateDelta)
-  }, [mouseCoordinates])
 
 
+  function handleImageClick (evt) {
+    console.log(evt.target.id);
 
-  useEffect(() => {
-    setSlideRefs((slideRefs) =>
-      Array(contentLength)
-        .fill()
-        .map((i) => slideRefs[i] || createRef())
+    showModal(evt.target.id);
+  }
+  function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <img
+        className={className}
+        src={arrowRight}
+        alt="Иконка"
+        style={{ ...style, width: "65px", height: "56px", right: "-60px" }}
+        onClick={onClick}
+      />
     );
-  }, [contentLength]);
-
-  useEffect(() => {
-    setContentLength(content.length);
-
-  }, [content,slideRefs]);
-  function slideForward() {
-    selectedSlide += 1;
-    console.log(selectedSlide);
-    if (selectedSlide > (contentLength - 1) ){
-      selectedSlide = selectedSlide - 1;
-      slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
-    } else {
-      slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
-    }
-  }
-  function slideBackwards() {
-    selectedSlide = selectedSlide - 1;
-    console.log(selectedSlide > 0);
-    if (selectedSlide > 0) {
-      slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
-    } else {
-      console.log('here');
-      selectedSlide = 0;
-      slideRefs[selectedSlide].current.scrollIntoView({ inline: "start" });
-    }
   }
 
-  function enableScrolling() {
-    setMouseXCoordinateOnClick(mouseCoordinates.x)
-    setScrolling(true)
-    // console.log('on-click',mouseXCoordinateOnClick);
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <img
+        className={className}
+        src={arrowLeft}
+        alt="Иконка"
+        style={{ ...style, width: "65px", height: "56px", left: "-60px" }}
+        onClick={onClick}
+      />
+    );
   }
-  function disableScrolling() {
-    setTranslateDelta(0);
-    setScrolling(false);
-  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    initialSlide: 0,
+    speed: 500,
+    slidesToShow: 1,
+    centerMode: true,
+    variableWidth: true,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
   return (
     <article className="portfolio">
       <h2 className="content__title content__title_place_advices">Портфолио</h2>
+      <div className="portfolio__slider-container">
 
-      <div className="portfolio__slider">
+      <Slider {...settings}>
+        {content &&
+          content.map((item) => (
+            <div
+              key={item._id}
+              className="portfolio__slide"
+            >
+              <img
+                key={item._id}
+                alt="img"
+                id={item._id}
+                src={item.image}
+                className="portfolio__image"
+                draggable="false"
+                onClick={handleImageClick}
+              />
+            </div>
+          ))}
+      </Slider>
+      </div>
+
+      {/* <div className="portfolio__slider">
         {content &&
           content.map((item) => (
             <div
@@ -88,8 +87,6 @@ function Portfolio({ content, showModal }) {
               ref={slideRefs[item._id]}
               id={`image_${item._id}`}
               className="portfolio__slide"
-              onMouseDown={enableScrolling}
-              onMouseUp={disableScrolling}
               style={{
                 transform: `${isScrolling? translateDelta :''}`,
               }}
@@ -103,10 +100,7 @@ function Portfolio({ content, showModal }) {
               />
             </div>
           ))}
-        <div className="portfolio__slide portfolio__slide_type_empty"></div>
-      </div>
-      <button onClick={slideForward}>&rarr;</button>
-      <button onClick={slideBackwards}>&larr;</button>
+      </div> */}
     </article>
   );
 }
