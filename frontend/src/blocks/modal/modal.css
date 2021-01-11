@@ -18,12 +18,11 @@
   margin: 0 165px;
 }
 .modal__slider-container {
-  width: 77%;
-
+  width: calc(100% - 400px);
   display: block;
   align-self: center;
   justify-self: center;
-  margin: 0 auto;
+  padding: 150px 200px;
 }
 .modal__close-button {
   position: absolute;
@@ -37,7 +36,8 @@
   background-position: center;
 }
 .modal__image {
-  width: 77vw;
+  width: 100%;
+
   z-index: 1;
 }
 .modal__slide {
@@ -46,7 +46,7 @@
 
 .modal__overlay {
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba( 0, 0, 0, 0.7);

@@ -4,13 +4,11 @@ import Slider from "react-slick";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";
 import arrowLeft from "../images/slider/ArrowLeft.svg";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Keyboard } from 'swiper';
 import "swiper/swiper-bundle.min.css";
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Keyboard]);
 
 
 
@@ -20,44 +18,6 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
   }
   const window = useWindowSize();
   const slide = initialSlide;
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <img
-        className="swiper-button-next"
-        src={arrowRight}
-        alt="Иконка"
-        style={{ ...style, width: "65px", height: "56px", right: "-60px" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <img
-        className="swiper-button-prev"
-        src={arrowLeft}
-        alt="Иконка"
-        style={{ ...style, width: "65px", height: "56px", left: "-60px" }}
-        onClick={onClick}
-      />
-    );
-  }
-  const settings = {
-    dots: true,
-    infinite: true,
-    initialSlide: initialSlide,
-    speed: 500,
-    slidesToShow: 1,
-    centerMode: true,
-    variableWidth: false,
-    adaptiveHeight: true,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
 
   return (
     <Modal
@@ -89,6 +49,9 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
               }}
+              keyboard={{
+                enabled: true
+              }}
             >
               {content &&
                 content.map((item) => (
@@ -111,7 +74,7 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
                           className="swiper-button-prev"
               src={arrowLeft}
               alt="Иконка"
-              style={{ width: "65px", height: "56px", outline: "none" }}
+              style={{ width: "65px", height: "56px", left: "60px", outline: "none",  filter: "brightness(0) invert(1)" }}
             />
 
 
@@ -119,7 +82,7 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
               className="swiper-button-next"
               src={arrowRight}
               alt="Иконка"
-              style={{ width: "65px", height: "56px", outline: "none" }}
+              style={{ width: "65px", height: "56px",right: "60px", outline: "none", filter: "brightness(0) invert(1)" }}
             />
         </>
       }

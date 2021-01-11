@@ -81,6 +81,7 @@ function App() {
         advicesContent={advicesContent}
         portfolioContent={portfolioContent}
         showModalWithCarousel={showModalWithCarousel}
+        isModalWithCarouselOpen={isModalWithCarouselOpen}
         />
         </Route>
         <Route exact path="/materials">

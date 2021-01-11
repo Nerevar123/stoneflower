@@ -11,7 +11,7 @@ import Pricing from './Pricing';
 import Advices from './Advices';
 import Portfolio from './Portfolio';
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel, isModalWithCarouselOpen }) {
   const window = useWindowSize();
   return (
     <main className="content">
@@ -58,6 +58,7 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
         <Portfolio
           content={portfolioContent}
           showModal={showModalWithCarousel}
+          isModalWithCarouselOpen={isModalWithCarouselOpen}
         />
 
         {/*
