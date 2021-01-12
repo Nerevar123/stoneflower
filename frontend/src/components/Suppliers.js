@@ -6,13 +6,13 @@ function Suppliers({ content }) {
   return (
     <article className="suppliers">
       <h2 className="content__title content__title_place_suppliers">
-        Производители листового керамического проката
+        {content.heading}
       </h2>
       <p className="content__text content__text_place_suppliers">
-        Мы используем лучшие материалы от надежных и проверенных поставщиков
+        {content.subheading}
       </p>
       <ul className="suppliers__list list">
-        {content && content.map((item) => (
+        {content.suppliersData && content.suppliersData.map((item) => (
 
           <li key={item._id} className="suppliers__list-item">
             <a className="suppliers__link" href={item.link} target="_blank" rel="noreferrer">

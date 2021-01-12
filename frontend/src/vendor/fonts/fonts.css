@@ -33,6 +33,15 @@
   src: url(./EBGaramond-Medium.woff2) format('woff2'),
        url(./EBGaramond-Medium.woff) format('woff');
 }
+@font-face {
+  font-family: 'EBGaramond';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./EBGaramond-Regular.woff2) format('woff2'),
+       url(./EBGaramond-Regular.woff) format('woff');
+}
+
 
 
 

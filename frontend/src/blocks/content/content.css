@@ -80,6 +80,9 @@
 .content__text-container_place_portfolio {
   margin: 120px 0 0 0;
 }
+.content__title_place_form {
+  margin: 0 auto 16px 0;
+}
 @media screen and (min-width: 1440px) {
   .content__text_place_advantages {
     font-size: 20px;
@@ -140,5 +143,8 @@
   }
   .content__title_place_suppliers {
     margin-bottom: 0;
+  }
+  .content__title_place_form {
+    margin: 0 0 0 0;
   }
 }

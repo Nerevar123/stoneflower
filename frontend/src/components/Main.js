@@ -1,75 +1,77 @@
-import React, {useState, useEffect} from 'react';
-import Lead from './Lead';
-import Advantages from './Advantages';
-import Surfaces from './Surfaces';
-import Services from './Services';
-import Applicability from './Applicability';
+import React, { useState, useEffect } from "react";
+import Lead from "./Lead";
+import Advantages from "./Advantages";
+import Surfaces from "./Surfaces";
+import Services from "./Services";
+import Applicability from "./Applicability";
 import useWindowSize from "../hooks/useWindowSize";
-import Disadvantages from './Disadvantages';
-import Phases from './Phases';
-import Pricing from './Pricing';
-import Advices from './Advices';
-import Portfolio from './Portfolio';
-import Suppliers from './Suppliers'
-
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel, isModalWithCarouselOpen, suppliersContent }) {
+import Disadvantages from "./Disadvantages";
+import Phases from "./Phases";
+import Pricing from "./Pricing";
+import Advices from "./Advices";
+import Portfolio from "./Portfolio";
+import Suppliers from "./Suppliers";
+import PostForm from "./PostForm";
+function Main({
+  services,
+  advantagesText,
+  advantagesIcons,
+  applicabilityTable,
+  disadvantagesContent,
+  showModalWithImage,
+  phasesIcons,
+  pricingContent,
+  surfacesContent,
+  advicesContent,
+  portfolioContent,
+  showModalWithCarousel,
+  isModalWithCarouselOpen,
+  suppliersContent,
+  postFormContent,
+  showModalWithConfirmation,
+}) {
   const window = useWindowSize();
   return (
     <main className="content">
-        <Lead />
+      <Lead />
 
+      <Services elements={services} />
 
-        <Services
-          elements={services}
-        />
+      <Advantages
+        textContent={advantagesText}
+        icons={advantagesIcons}
+        showModal={showModalWithImage}
+        image={applicabilityTable}
+      />
 
+      {window.width > 849 && <Applicability table={applicabilityTable} />}
 
-        <Advantages
-          textContent={advantagesText}
-          icons={advantagesIcons}
-          showModal={showModalWithImage}
-          image={applicabilityTable}
-        />
+      <Disadvantages tableItems={disadvantagesContent} />
 
-        {window.width > 849 && (
-        <Applicability
-          table={applicabilityTable}
-        />)}
+      <Phases phasesIcons={phasesIcons} />
 
-        <Disadvantages
-          tableItems = {disadvantagesContent}
-        />
+      <Pricing content={pricingContent} />
 
-        <Phases
-          phasesIcons={phasesIcons}
-        />
+      <Surfaces content={surfacesContent} />
 
-        <Pricing
-          content={pricingContent}
-        />
+      <Advices content={advicesContent} />
 
-        <Surfaces
-          content={surfacesContent}
-        />
+      <Portfolio
+        content={portfolioContent}
+        showModal={showModalWithCarousel}
+        isModalWithCarouselOpen={isModalWithCarouselOpen}
+      />
+      <Suppliers content={suppliersContent} />
+      <PostForm
+        content={postFormContent}
+        showModal={showModalWithConfirmation}
+      />
 
-        <Advices
-          content={advicesContent}
-        />
-
-        <Portfolio
-          content={portfolioContent}
-          showModal={showModalWithCarousel}
-          isModalWithCarouselOpen={isModalWithCarouselOpen}
-        />
-        <Suppliers
-            content={suppliersContent}
-        />
-
-        {/*
+      {/*
 
 
          */}
-        {/* <section className="portfolio">
+      {/* <section className="portfolio">
         <h2 className="content__title">Портфолио</h2>
         <Karusel />
         </section>
@@ -170,8 +172,8 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
             </form>
           </article>
         </section> */}
-      </main>
-  )
+    </main>
+  );
 }
 
 export default Main;

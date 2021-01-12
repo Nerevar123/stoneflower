@@ -2,10 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
-import ModalWithImage from './ModalWithImage'
+import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices, portfolio, suppliers } from "../utils/config";
+import {
+  servicesItems,
+  advantagesTextContent,
+  advantagesIconsList,
+  applicabilityTableImage,
+  disadvantagesContentItems,
+  phasesIcons,
+  pricing,
+  surfaces,
+  advices,
+  portfolio,
+  suppliers,
+  postForm,
+} from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
+import ModalWithConfirmation from "./ModalWithConfirmation";
+
 
 function App() {
   const history = useHistory();
@@ -24,21 +39,27 @@ function App() {
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
+  const [postFormContent, setPostFormContent] = useState({});
+  const [isModalWithConfitmationOpen, setModalWithConfitmationOpen] = useState(false)
 
-  function showModalWithImage (image) {
+  function showModalWithImage(image) {
     setModalImage(image);
     setModalWithImageOpen(true);
     console.log(isModalWithImageOpen);
   }
-  function showModalWithCarousel (slideIndex) {
+  function showModalWithCarousel(slideIndex) {
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
     console.log(isModalWithCarouselOpen);
   }
+  function showModalWithConfirmation() {
+    setModalWithConfitmationOpen(true);
+  }
   function closeModal() {
-    setModalImage()
+    setModalImage();
     setModalWithImageOpen(false);
     setModalWithCarouselOpen(false);
+    setModalWithConfitmationOpen(false);
   }
 
   // useEffect(() => {
@@ -61,35 +82,37 @@ function App() {
     setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
-  },[]);
+    setPostFormContent(postForm);
+  }, []);
 
   return (
     <>
       <Router history={history} basename="/">
-      <Header />
+        <Header />
         <Switch>
-        <Route exact path="/">
-
-        <Main
-        services={services}
-        advantagesText={advantagesText}
-        advantagesIcons={advantagesIcons}
-        applicabilityTable={applicabilityTable}
-        disadvantagesContent={disadvantagesContent}
-        showModalWithImage={showModalWithImage}
-        phasesIcons={phasesIconList}
-        pricingContent={pricingContent}
-        surfacesContent={surfacesContent}
-        advicesContent={advicesContent}
-        portfolioContent={portfolioContent}
-        showModalWithCarousel={showModalWithCarousel}
-        isModalWithCarouselOpen={isModalWithCarouselOpen}
-        suppliersContent={suppliersContent}
-        />
-        </Route>
-        <Route exact path="/materials">
-          <div className="smth">dqwefewfr2r2sdg3g</div>
-        </Route>
+          <Route exact path="/">
+            <Main
+              services={services}
+              advantagesText={advantagesText}
+              advantagesIcons={advantagesIcons}
+              applicabilityTable={applicabilityTable}
+              disadvantagesContent={disadvantagesContent}
+              showModalWithImage={showModalWithImage}
+              phasesIcons={phasesIconList}
+              pricingContent={pricingContent}
+              surfacesContent={surfacesContent}
+              advicesContent={advicesContent}
+              portfolioContent={portfolioContent}
+              showModalWithCarousel={showModalWithCarousel}
+              isModalWithCarouselOpen={isModalWithCarouselOpen}
+              suppliersContent={suppliersContent}
+              postFormContent={postFormContent}
+              showModalWithConfirmation={showModalWithConfirmation}
+            />
+          </Route>
+          <Route exact path="/materials">
+            <div className="smth">dqwefewfr2r2sdg3g</div>
+          </Route>
         </Switch>
       </Router>
       {/* <main className="content">
@@ -316,17 +339,24 @@ function App() {
         </section>
       </main> */}
       {isModalWithImageOpen && (
-      <ModalWithImage
-        closeModal={closeModal}
-        image={modalImage}
-      />)}
+        <ModalWithImage closeModal={closeModal} image={modalImage} />
+      )}
       {isModalWithCarouselOpen && (
-      <ModalWithCarousel
-        isModalWithCarouselOpen={isModalWithCarouselOpen}
-        closeModal={closeModal}
-        content={portfolioContent}
-        initialSlide={modalInitialSlide}
-      />)}
+        <ModalWithCarousel
+          isModalWithCarouselOpen={isModalWithCarouselOpen}
+          closeModal={closeModal}
+          content={portfolioContent}
+          initialSlide={modalInitialSlide}
+        />
+      )}
+      {isModalWithConfitmationOpen && (
+        <ModalWithConfirmation
+          isModalWithCarouselOpen={isModalWithCarouselOpen}
+          closeModal={closeModal}
+          content={portfolioContent}
+          initialSlide={modalInitialSlide}
+        />
+      )}
       <footer className="footer">
         <img alt="Логотип" className="footer__logo logo" />
         <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>
