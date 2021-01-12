@@ -10,8 +10,9 @@ import Phases from './Phases';
 import Pricing from './Pricing';
 import Advices from './Advices';
 import Portfolio from './Portfolio';
+import Suppliers from './Suppliers'
 
-function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel, isModalWithCarouselOpen }) {
+function Main({ services, advantagesText, advantagesIcons, applicabilityTable, disadvantagesContent, showModalWithImage, phasesIcons, pricingContent, surfacesContent, advicesContent, portfolioContent, showModalWithCarousel, isModalWithCarouselOpen, suppliersContent }) {
   const window = useWindowSize();
   return (
     <main className="content">
@@ -59,6 +60,9 @@ function Main({ services, advantagesText, advantagesIcons, applicabilityTable, d
           content={portfolioContent}
           showModal={showModalWithCarousel}
           isModalWithCarouselOpen={isModalWithCarouselOpen}
+        />
+        <Suppliers
+            content={suppliersContent}
         />
 
         {/*

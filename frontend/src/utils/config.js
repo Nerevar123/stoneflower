@@ -25,6 +25,17 @@ import advice_3 from "../images/advices/advice_3.png";
 import portfolio_1 from "../images/portfolio/portfolio_1.jpg";
 import portfolio_2 from "../images/portfolio/portfolio_2.jpg";
 import portfolio_3 from "../images/portfolio/portfolio_3.jpg";
+import supplier_logo_1 from '../images/suppliers/1.png';
+import supplier_logo_2 from '../images/suppliers/2.png';
+import supplier_logo_3 from '../images/suppliers/3.png';
+import supplier_logo_4 from '../images/suppliers/4.png';
+import supplier_logo_5 from '../images/suppliers/5.png';
+import supplier_logo_6 from '../images/suppliers/6.png';
+import supplier_logo_7 from '../images/suppliers/7.png';
+import supplier_logo_8 from '../images/suppliers/8.png';
+import supplier_logo_9 from '../images/suppliers/9.png';
+import supplier_logo_10 from '../images/suppliers/10.png';
+
 
 export const servicesItems = [
   {
@@ -184,6 +195,59 @@ export const portfolio = [
   {
     image: portfolio_3,
     _id: 2,
+  }
+]
+
+export const suppliers = [
+  {
+    link: 'https://www.laminam.com/en/',
+    logo: supplier_logo_2,
+    _id: 0
+  },
+  {
+    link: 'https://www.thesize.es/en/',
+    logo: supplier_logo_3,
+    _id: 1
+  },
+  {
+    link: 'https://www.thesize.es/en/',
+    logo: supplier_logo_4,
+    _id: 2
+  },
+  {
+    link: 'https://www.cottodeste.it/',
+    logo: supplier_logo_5,
+    _id: 3
+  },
+  {
+    link: 'https://www.cottodeste.it/',
+    logo: supplier_logo_7,
+    _id: 4
+  },
+  {
+    link: 'https://www.ariostea.it/',
+    logo: supplier_logo_8,
+    _id: 5
+  },
+  {
+    link: 'https://www.ariostea.it/',
+    logo: supplier_logo_10,
+    _id: 6
+  },
+  {
+    link: 'https://www.florim.com/',
+    logo: supplier_logo_9,
+    _id: 7
+  },
+  {
+    link: 'https://www.florim.com/',
+    logo: supplier_logo_6,
+    _id: 8
+  },
+  {
+    link: 'https://www.panaria.it/collezione/zero3-eternity',
+    logo: supplier_logo_1,
+    _id: 9
   }
 ]
 

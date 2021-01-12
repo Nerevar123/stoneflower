@@ -76,7 +76,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
 
   return (
     <article className="portfolio">
-      <h2 className="content__title content__title_place_advices">Портфолио</h2>
+      <h2 className="content__title content__title_place_portfolio">Портфолио</h2>
       <div className="portfolio__slider-container">
         {/* <Swiper
           spaceBetween={50}

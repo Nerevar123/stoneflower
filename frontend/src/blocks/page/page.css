@@ -5,7 +5,7 @@
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  min-width: 100vw;
+  min-width: 320px;
   min-height: 100vh;
   /* max-width: 1440px; */
   font-size: 16px;

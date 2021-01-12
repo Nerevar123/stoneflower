@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import ModalWithImage from './ModalWithImage'
 import { api } from "../utils/api";
-import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices, portfolio } from "../utils/config";
+import { servicesItems, advantagesTextContent, advantagesIconsList, applicabilityTableImage, disadvantagesContentItems, phasesIcons, pricing, surfaces, advices, portfolio, suppliers } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
   const [surfacesContent, setSurfacesContent] = useState({});
   const [advicesContent, setAdvicesContent] = useState([]);
   const [portfolioContent, setPortfolioContent] = useState([]);
-  const [modalInitialSlide, setModalInitialSlide] = useState(0)
+  const [modalInitialSlide, setModalInitialSlide] = useState(0);
+  const [suppliersContent, setSuppliersContent] = useState([]);
 
   function showModalWithImage (image) {
     setModalImage(image);
@@ -59,6 +60,7 @@ function App() {
     setSurfacesContent(surfaces);
     setAdvicesContent(advices);
     setPortfolioContent(portfolio);
+    setSuppliersContent(suppliers);
   },[]);
 
   return (
@@ -82,6 +84,7 @@ function App() {
         portfolioContent={portfolioContent}
         showModalWithCarousel={showModalWithCarousel}
         isModalWithCarouselOpen={isModalWithCarouselOpen}
+        suppliersContent={suppliersContent}
         />
         </Route>
         <Route exact path="/materials">

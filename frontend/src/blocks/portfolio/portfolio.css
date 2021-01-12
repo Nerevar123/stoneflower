@@ -36,11 +36,13 @@
 @media screen and (max-width: 849px) {
   .portfolio {
     margin: 0 14px 0 15px;
+    padding-bottom: 18px;
   }
   .portfolio__slider-container {
     margin: 0;
   }
   .portfolio__image {
     width: calc(100vw - 100px);
+    min-width: 320px;
   }
 }

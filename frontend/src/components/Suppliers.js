@@ -1,0 +1,33 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import supplier_logo_1 from "../images/suppliers/1.png";
+
+function Suppliers({ content }) {
+  return (
+    <article className="suppliers">
+      <h2 className="content__title content__title_place_suppliers">
+        Производители листового керамического проката
+      </h2>
+      <p className="content__text content__text_place_suppliers">
+        Мы используем лучшие материалы от надежных и проверенных поставщиков
+      </p>
+      <ul className="suppliers__list list">
+        {content && content.map((item) => (
+
+          <li key={item._id} className="suppliers__list-item">
+            <a className="suppliers__link" href={item.link} target="_blank" rel="noreferrer">
+             <img
+              className="suppliers__logo"
+              alt="Логотип"
+              src={item.logo}
+            />
+          </a>
+          </li>
+        ))}
+
+      </ul>
+    </article>
+  );
+}
+
+export default Suppliers;
