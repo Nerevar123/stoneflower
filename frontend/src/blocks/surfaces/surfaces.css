@@ -34,6 +34,7 @@
 }
 .surfaces__link_place_list {
   text-decoration: none;
+  color: inherit;
 }
 .surfaces__overlay {
   position: absolute;

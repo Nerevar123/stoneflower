@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import arrowRight from "../images/slider/ArrowRight.svg";
 import arrowLeft from "../images/slider/ArrowLeft.svg";
+import useWindowSize from "../hooks/useWindowSize";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
@@ -19,16 +20,16 @@ import "swiper/swiper-bundle.min.css";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Keyboard]);
 
 function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
-  function handleImageClick(evt) {
-    console.log(evt.target.id);
+  const window = useWindowSize();
 
+  function handleImageClick(evt) {
     showModal(evt.target.id);
   }
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <>
-        {!isModalWithCarouselOpen && (
+        {!isModalWithCarouselOpen && window.width > 849 && (
           <img
             className={className}
             src={arrowRight}
@@ -45,7 +46,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     const { className, style, onClick } = props;
     return (
       <>
-        {!isModalWithCarouselOpen && (
+        {!isModalWithCarouselOpen && window.width > 849 && (
           <img
             className={className}
             src={arrowLeft}
@@ -64,8 +65,9 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     initialSlide: 0,
     speed: 500,
     slidesToShow: 1,
-    centerMode: true,
+    centerMode: window.width > 849? true: false,
     variableWidth: true,
+    adaptiveHeight: true,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
