@@ -99,35 +99,6 @@ function Advantages({ textContent, icons, showModal, image }) {
           <p className="content__text content__text_place_advantages">Стойкий к щелочам и кислотам</p>
         </li>
       </ul>
-      <div className="advantages__analogs">
-        <h4 className="advantages__subtitle">
-          Недостатки популярных аналогов в сегменте столешниц и фасадов
-        </h4>
-        <ul className="advantages__analogs-list">
-          <li className="advantages__analogs-item">
-            <p className="content__text">
-              Натуральный камень не обладает достаточной химической стойкостью:
-              мрамор легко испортить вином или напитками, гранит облит
-              оптическим эпоксидным составом, который царапается и мутнеет от
-              кислотосодержащих моющих средств
-            </p>
-          </li>
-          <li className="advantages__analogs-item">
-            <p className="content__text">
-              Кварцевый агломерат не защищён от ультрафиолета, поэтому светлые
-              его виды могут пожелтеть на солнце
-            </p>
-          </li>
-          <li className="advantages__analogs-item">
-            <p className="content__text">
-              Большой удельный вес слэбов и плитки из натурального камня на
-              фасадах зданий существенно увеличивают нагрузку на фундамент и при
-              клеевом способе крепления на фасаде не всегда выдерживают
-              несколько погодных циклов
-            </p>
-          </li>
-        </ul>
-      </div>
     </article>
   );
 }

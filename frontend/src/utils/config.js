@@ -58,13 +58,6 @@ export const servicesItems = [
       "Полы, стены и потолки из керамики. Контурная подсветка и встроенные светильники.",
     _id: "3",
   },
-  {
-    image: servicesInteriorImage,
-    heading: "Отделка интерьеров. Фасадная и интерьерная подсветка",
-    description:
-      "Полы, стены и потолки из керамики. Контурная подсветка и встроенные светильники.",
-    _id: "4",
-  },
 ];
 
 export const advantagesTextContent = {
@@ -187,19 +180,6 @@ export const surfaces = {
       heading: "Дизайн",
       image: material_4,
       _id: 3,
-      materialExamples: [
-        { _id: 0, image: material_4, description: "Название материала" },
-        { _id: 1, image: material_4, description: "Название материала" },
-        { _id: 2, image: material_4, description: "Название материала" },
-        { _id: 3, image: material_4, description: "Название материала" },
-        { _id: 4, image: material_4, description: "Название материала" },
-        { _id: 5, image: material_4, description: "Название материала" },
-      ],
-    },
-    {
-      heading: "Дизайн",
-      image: material_4,
-      _id: 4,
       materialExamples: [
         { _id: 0, image: material_4, description: "Название материала" },
         { _id: 1, image: material_4, description: "Название материала" },
