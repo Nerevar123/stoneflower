@@ -92,6 +92,10 @@
 
 .link_place_pricing {
   min-width: 207px;
+  transition: all 0.2s ease-in-out;
+}
+.link_place_pricing:hover {
+  background-color:#335e58;
 }
 @media screen and (max-width: 1000px) {
 
