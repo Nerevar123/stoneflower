@@ -29,7 +29,7 @@ function Advantages({ textContent, icons, showModal, image }) {
           </p>
           <a onClick={handleTextExpand} className={`advantages__link link ${textExpanded ? 'open' : ''}`}>
             <span className="link__accent">{textContent.linkText}</span>
-            <div className="advantages__arrow"></div>
+            <div className="link__expand-arrow"></div>
           </a>
           <div
             className={`content__expand-container ${

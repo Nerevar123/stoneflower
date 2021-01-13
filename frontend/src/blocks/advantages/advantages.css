@@ -39,46 +39,6 @@
 
 
 
-.advantages__arrow {
-  position: relative;
-  margin: 0;
-  transition: all 0.2s ease;
-  width: 12px;
-  height: 24px;
-  margin: 0px 0 0 0;
-}
-
-.open .advantages__arrow {
-  margin-bottom: 6px;
-  transform: rotate(90deg);
-}
-
-.advantages__arrow::before {
-  position: absolute;
-  content: " ";
-  width: 12px;
-  height: 2px;
-  border-radius: 2px;
-  background-color: #335e58;
-  top: 7px;
-  left: 0px;
-  transform: rotate(45deg);
-}
-
-.advantages__arrow::after {
-  position: absolute;
-  content: " ";
-  width: 12px;
-  height: 2px;
-  border-radius: 2px;
-  background-color: #335e58;
-  top: 15px;
-  left: 0px;
-  transform: rotate(-45deg);
-}
-
-
-
 .advantages__list-item {
   padding: 24px;
   border: 1px solid #6f2421;
