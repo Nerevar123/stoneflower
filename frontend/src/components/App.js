@@ -95,7 +95,7 @@ function App() {
       <Router history={history} basename="/">
         <Header />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/stoneflower">
             <Main
               services={services}
               advantagesText={advantagesText}
