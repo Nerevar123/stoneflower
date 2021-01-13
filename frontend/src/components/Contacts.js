@@ -79,7 +79,7 @@ function Contacts({ content }) {
                 <span className="contacts__expand-accent">
                   Автобусом из Москвы
                 </span>
-                <div className="link__expand-arrow"></div>
+                <span className="link__expand-arrow"></span>
               </p>
               <div
                 className={`content__expand-container ${
@@ -99,7 +99,7 @@ function Contacts({ content }) {
                 <span className="contacts__expand-accent">
                   Пригородными поездами
                 </span>
-                <div className="link__expand-arrow"></div>
+                <span className="link__expand-arrow"></span>
               </p>
               <div
                 className={`content__expand-container ${
@@ -118,7 +118,7 @@ function Contacts({ content }) {
                 }`}
               >
                 <span className="contacts__expand-accent">На автомобиле</span>
-                <div className="link__expand-arrow"></div>
+                <span className="link__expand-arrow"></span>
               </p>
               <div
                 className={`content__expand-container ${

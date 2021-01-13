@@ -72,7 +72,7 @@ function PostForm({ content, showModal }) {
         }) => (
           <Form className="form" noValidate>
             <fieldset className="form__fieldset">
-              <div class="form__inputs-wrapper">
+              <div className="form__inputs-wrapper">
               <div className="form__credentials-wrapper">
               <label htmlFor="name" className="form__label form__label_type_input">
                 <p className="form__heading">Ваше имя</p>

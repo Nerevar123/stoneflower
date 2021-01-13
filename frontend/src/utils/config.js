@@ -144,11 +144,71 @@ export const surfaces = {
   linkTextMinimized: "Читать далее",
   linkTextExpanded: "Скрыть",
   materialsList: [
-    { heading: "Дерево", image: material_1, _id: 1 },
-    { heading: "Камень", image: material_2, _id: 2 },
-    { heading: "Цемент", image: material_3, _id: 3 },
-    { heading: "Дизайн", image: material_4, _id: 4 },
-    { heading: "Дизайн", image: material_4, _id: 5 },
+    {
+      heading: "Дерево",
+      image: material_1,
+      _id: 0,
+      materialExamples: [
+        { _id: 0, image: material_1, description: "Название материала" },
+        { _id: 1, image: material_1, description: "Название материала" },
+        { _id: 2, image: material_1, description: "Название материала" },
+        { _id: 3, image: material_1, description: "Название материала" },
+        { _id: 4, image: material_1, description: "Название материала" },
+        { _id: 5, image: material_1, description: "Название материала" },
+      ],
+    },
+    {
+      heading: "Камень",
+      image: material_2,
+      _id: 1,
+      materialExamples: [
+        { _id: 0, image: material_2, description: "Название материала" },
+        { _id: 1, image: material_2, description: "Название материала" },
+        { _id: 2, image: material_2, description: "Название материала" },
+        { _id: 3, image: material_2, description: "Название материала" },
+        { _id: 4, image: material_2, description: "Название материала" },
+        { _id: 5, image: material_2, description: "Название материала" },
+      ],
+    },
+    {
+      heading: "Цемент",
+      image: material_3,
+      _id: 2,
+      materialExamples: [
+        { _id: 0, image: material_3, description: "Название материала" },
+        { _id: 1, image: material_3, description: "Название материала" },
+        { _id: 2, image: material_3, description: "Название материала" },
+        { _id: 3, image: material_3, description: "Название материала" },
+        { _id: 4, image: material_3, description: "Название материала" },
+        { _id: 5, image: material_3, description: "Название материала" },
+      ],
+    },
+    {
+      heading: "Дизайн",
+      image: material_4,
+      _id: 3,
+      materialExamples: [
+        { _id: 0, image: material_4, description: "Название материала" },
+        { _id: 1, image: material_4, description: "Название материала" },
+        { _id: 2, image: material_4, description: "Название материала" },
+        { _id: 3, image: material_4, description: "Название материала" },
+        { _id: 4, image: material_4, description: "Название материала" },
+        { _id: 5, image: material_4, description: "Название материала" },
+      ],
+    },
+    {
+      heading: "Дизайн",
+      image: material_4,
+      _id: 4,
+      materialExamples: [
+        { _id: 0, image: material_4, description: "Название материала" },
+        { _id: 1, image: material_4, description: "Название материала" },
+        { _id: 2, image: material_4, description: "Название материала" },
+        { _id: 3, image: material_4, description: "Название материала" },
+        { _id: 4, image: material_4, description: "Название материала" },
+        { _id: 5, image: material_4, description: "Название материала" },
+      ],
+    },
   ],
 };
 
@@ -256,24 +316,28 @@ export const suppliers = {
       link: "https://www.panaria.it/collezione/zero3-eternity",
       logo: supplier_logo_1,
       _id: 9,
-    }
-  ]
+    },
+  ],
 };
 
 export const postForm = {
-  heading: 'Оставить заявку',
-  subHeading: 'Подберем оптимальное решение для вашего интерьера',
-  offerLink: 'https://ya.ru'
-}
+  heading: "Оставить заявку",
+  subHeading: "Подберем оптимальное решение для вашего интерьера",
+  offerLink: "https://ya.ru",
+};
 export const contacts = {
-   heading: 'Наши контакты',
-   address: 'г. Ивантеевка, ул. Толмачева 1/2',
-   phonePrimary: '+7 (915) 047 48 11',
-   phoneAdditional: '+7 (963) 782 23 47',
-   emailAddress: 'fioredipietra@yandex.ru',
-   howToGetText: 'К нам можно добраться любым видом наземного транспорта:',
-   byBusText: 'От м. ВДНХ на маршруте 316 до остановки ул. Новая Слобода. Далее пересечь двор «П-образного» жилого дома до дальней от остановки секции, вход на углу дома.',
-   byTrainText: 'Москва Ярославская – Фрязино Пассажирская до остановки «Ивантеевка 2», далее пешком на восток через жилой массив к зданию с зелеными башенками на крыше, крыльцо с южного торца здания.',
-   byVehicleText: 'От Ярославского шоссе через ближайшие въезды в город Ивантеевку до ул. Карла Маркса. В навигаторе задайте «Студия Каменный цветок» или ул. «Карла Маркса, дом 2»',
-   landmarksDescription: 'Общие визуальные ориентиры: дом с бежевым фасадом и зелеными башенками на крыше, на кованых решетках входных дверей и окнах студии увидите наш логотип, тротуар тоже заметный, выложен цветной брусчаткой.'
-}
+  heading: "Наши контакты",
+  address: "г. Ивантеевка, ул. Толмачева 1/2",
+  phonePrimary: "+7 (915) 047 48 11",
+  phoneAdditional: "+7 (963) 782 23 47",
+  emailAddress: "fioredipietra@yandex.ru",
+  howToGetText: "К нам можно добраться любым видом наземного транспорта:",
+  byBusText:
+    "От м. ВДНХ на маршруте 316 до остановки ул. Новая Слобода. Далее пересечь двор «П-образного» жилого дома до дальней от остановки секции, вход на углу дома.",
+  byTrainText:
+    "Москва Ярославская – Фрязино Пассажирская до остановки «Ивантеевка 2», далее пешком на восток через жилой массив к зданию с зелеными башенками на крыше, крыльцо с южного торца здания.",
+  byVehicleText:
+    "От Ярославского шоссе через ближайшие въезды в город Ивантеевку до ул. Карла Маркса. В навигаторе задайте «Студия Каменный цветок» или ул. «Карла Маркса, дом 2»",
+  landmarksDescription:
+    "Общие визуальные ориентиры: дом с бежевым фасадом и зелеными башенками на крыше, на кованых решетках входных дверей и окнах студии увидите наш логотип, тротуар тоже заметный, выложен цветной брусчаткой.",
+};
