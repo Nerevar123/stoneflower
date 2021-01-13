@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 import Main from "./Main";
 import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
@@ -17,11 +18,10 @@ import {
   portfolio,
   suppliers,
   postForm,
-  contacts
+  contacts,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
-
 
 function App() {
   const history = useHistory();
@@ -41,8 +41,10 @@ function App() {
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
   const [postFormContent, setPostFormContent] = useState({});
-  const [isModalWithConfitmationOpen, setModalWithConfitmationOpen] = useState(false);
-  const [contactsContent, setContactsContent] = useState({})
+  const [isModalWithConfitmationOpen, setModalWithConfitmationOpen] = useState(
+    false
+  );
+  const [contactsContent, setContactsContent] = useState({});
 
   function showModalWithImage(image) {
     setModalImage(image);
@@ -139,11 +141,9 @@ function App() {
           initialSlide={modalInitialSlide}
         />
       )}
-      <footer className="footer">
-        <img alt="Логотип" className="footer__logo logo" />
-        <p className="footer__text">Студия керамогранита «Каменный Цветок»</p>
-        <p className="footer__text">+7 (963) 782 23 47</p>
-      </footer>
+      <Footer
+        content={contactsContent}
+      />
     </>
   );
 }
