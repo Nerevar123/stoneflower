@@ -24,6 +24,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
 
   function handleImageClick(evt) {
     showModal(evt.target.id);
+
   }
   function NextArrow(props) {
     const { className, style, onClick } = props;
@@ -60,6 +61,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
   }
 
   const settings = {
+    className: "portfolio__carousel",
     dots: true,
     infinite: true,
     initialSlide: 0,
@@ -71,7 +73,8 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    accessibility: false
+    accessibility: false,
+    draggable: false
   };
 
   return (

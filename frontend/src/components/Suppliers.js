@@ -8,6 +8,7 @@ function Suppliers({ content }) {
       <h2 className="content__title content__title_place_suppliers">
         {content.heading}
       </h2>
+
       <p className="content__text content__text_place_suppliers">
         {content.subheading}
       </p>

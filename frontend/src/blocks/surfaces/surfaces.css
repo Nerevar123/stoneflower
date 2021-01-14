@@ -99,7 +99,10 @@
   height: auto;
 }
 .surfaces__example-item {
-
+ margin: 0 10px 5px 0;
+}
+.surfaces__example-item_selected {
+ outline: 5px solid green;
 }
 @media screen and (max-width: 849px) {
   .surfaces {

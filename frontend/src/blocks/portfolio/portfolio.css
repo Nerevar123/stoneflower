@@ -42,7 +42,7 @@
     margin: 0;
   }
   .portfolio__image {
-    width: calc(100vw - 100px);
+    width: calc(100vw - 20px);
     min-width: 320px;
   }
 }

@@ -1,11 +1,35 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, useRef } from "react";
 import SurfacesListItem from "./SurfacesListItem";
+import SurfacesExampleItem from './SurfacesExampleItem';
 
 function Surfaces({ content }) {
   const [textExpanded, setTextExpanded] = useState(false);
-  const [materialRefs, setMaterialRefs] = useState([]);
+  const [exampleRefs, setExampleRefs] = useState([]);
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
+  const [selectedExample, setSelectedExample] = useState(null);
+
+  function handleExampleSelection(evt) {
+    setSelectedExample(evt.target.closest('.surfaces__example-item'))
+
+  }
+  useEffect(() => {
+    console.log(selectedExample);
+  }, [selectedExample])
+
+  useEffect(() => {
+    if (selectedMaterial !== null) {
+      const refArray = [];
+      for (
+        let i = 0;
+        i < content.materialsList[selectedMaterial].materialExamples.length;
+        i++
+      ) {
+        refArray.push(createRef());
+      }
+      setExampleRefs(refArray);
+    }
+  }, [selectedMaterial]);
 
   const handleElementClick = (evt) => {
     if (evt.target.closest("li").id !== selectedMaterial) {
@@ -18,6 +42,7 @@ function Surfaces({ content }) {
     console.log(selectedMaterial);
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
+
     } else {
       setMaterialListOpened(false);
     }
@@ -28,13 +53,6 @@ function Surfaces({ content }) {
   }
   const materialsNumber = content.length;
 
-  useEffect(() => {
-    setMaterialRefs((materialRefs) =>
-      Array(materialsNumber)
-        .fill()
-        .map((_, i) => materialRefs[i] || createRef())
-    );
-  }, [content, materialsNumber]);
   return (
     <article id="surfaces" className="surfaces">
       <h2 className="content__title content__title_place_surfaces">
@@ -61,7 +79,6 @@ function Surfaces({ content }) {
           ? content.materialsList.map((item) => (
               <li
                 id={item._id}
-                ref={materialRefs[item._id]}
                 onClick={handleElementClick}
                 key={item._id}
                 className="surfaces__list-item"
@@ -77,20 +94,24 @@ function Surfaces({ content }) {
           : ""}
       </ul>
       <div
+        onClick={handleExampleSelection}
         className={`surfaces__materials-container ${
           materialListOpened ? "surfaces__materials-container_opened" : ""
         }`}
       >
-        {content && selectedMaterial !== null &&
-        (
-          content.materialsList[selectedMaterial].materialExamples.map((item) => (
-            <div className="surfaces__example-item" key={item._id}>
-              <img className="surfaces__example-image" src={item.image} alt='Пример материала'/>
-              <p className="content__text">{item.description}</p>
-            </div>
-          ))
-        )}
-
+        {content &&
+          selectedMaterial !== null &&
+          content.materialsList[selectedMaterial].materialExamples.map(
+            (item) => (
+              <SurfacesExampleItem
+                item={item}
+                key={item._id}
+                forwardRef={exampleRefs[item._id]}
+                selectedExample={selectedExample}
+                setSelectedExample={setSelectedExample}
+              />
+            )
+          )}
       </div>
     </article>
   );

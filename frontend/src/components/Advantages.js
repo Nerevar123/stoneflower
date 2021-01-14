@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
-import arrowIcon from '../images/icons/ArrowRight.svg';
+import arrowIcon from "../images/icons/ArrowRight.svg";
 import useWindowSize from "../hooks/useWindowSize";
+
 
 function Advantages({ textContent, icons, showModal, image }) {
   const [textExpanded, setTextExpanded] = useState(false);
+  const slide = 2;
   function handleOpenEvent() {
     console.log(image);
     showModal(image);
@@ -27,7 +29,10 @@ function Advantages({ textContent, icons, showModal, image }) {
             </span>
             {textContent.shortTextAfterAccent}
           </p>
-          <a onClick={handleTextExpand} className={`advantages__link link ${textExpanded ? 'open' : ''}`}>
+          <a
+            onClick={handleTextExpand}
+            className={`advantages__link link ${textExpanded ? "open" : ""}`}
+          >
             <span className="link__accent">{textContent.linkText}</span>
             <div className="link__expand-arrow"></div>
           </a>
@@ -40,65 +45,117 @@ function Advantages({ textContent, icons, showModal, image }) {
           </div>
         </div>
         {window.width > 849 && (
-        <Link
-          to="applicability"
-          spy={false}
-          smooth={true}
-          offset={-30}
-          duration={500}
-          href="/"
-          className="link_type_navigation link"
-        >
-          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="icon icon_type_arrow"/>
-        </Link>)}
+          <Link
+            to="applicability"
+            spy={false}
+            smooth={true}
+            offset={-30}
+            duration={500}
+            href="/"
+            className="link_type_navigation link"
+          >
+            таблица применимости
+            <img
+              src={arrowIcon}
+              alt="иконка стрелки"
+              className="icon icon_type_arrow"
+            />
+          </Link>
+        )}
         {window.width < 849 && (
-          <a
-          onClick={handleOpenEvent}
-          className="link_type_navigation link"
-        >
-          таблица применимости<img src={arrowIcon} alt="иконка стрелки"className="icon icon_type_arrow"/>
-        </a>)}
+          <a onClick={handleOpenEvent} className="link_type_navigation link">
+            таблица применимости
+            <img
+              src={arrowIcon}
+              alt="иконка стрелки"
+              className="icon icon_type_arrow"
+            />
+          </a>
+        )}
       </div>
       <ul className="advantages__list list">
         <li className="advantages__list-item">
-          <img src={icons.icon_1} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
-          <p className="content__text content__text_place_advantages">Обширная область применения</p>
+          <img
+            src={icons.icon_1}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
+          <p className="content__text content__text_place_advantages">
+            Обширная область применения
+          </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_2} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
-          <p className="content__text content__text_place_advantages">Легко наносится на старую облицовку</p>
+          <img
+            src={icons.icon_2}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
+          <p className="content__text content__text_place_advantages">
+            Легко наносится на старую облицовку
+          </p>
         </li>
         <li alt="Иконка" className="advantages__list-item">
-          <img src={icons.icon_3} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
-          <p className="content__text content__text_place_advantages">Прочный и гибкий матриал</p>
+          <img
+            src={icons.icon_3}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
+          <p className="content__text content__text_place_advantages">
+            Прочный и гибкий матриал
+          </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_4} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
-          <p className="content__text content__text_place_advantages">Гарантийный срок службы 20 лет</p>
+          <img
+            src={icons.icon_4}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
+          <p className="content__text content__text_place_advantages">
+            Гарантийный срок службы 20 лет
+          </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_5} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
+          <img
+            src={icons.icon_5}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
           <p className="content__text content__text_place_advantages">
             Сертифицирован для дет. садов и мед. учреждений
           </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_6} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
+          <img
+            src={icons.icon_6}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
           <p className="content__text content__text_place_advantages">
             Не содержит токсичных веществ, экологичен
           </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_7} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
+          <img
+            src={icons.icon_7}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
           <p className="content__text content__text_place_advantages">
             Не горит, не впитывает влагу, не изменяет цвет
           </p>
         </li>
         <li className="advantages__list-item">
-          <img src={icons.icon_8} alt="Иконка" className="advantages__icon advantages__icon_place_table" />
-          <p className="content__text content__text_place_advantages">Стойкий к щелочам и кислотам</p>
+          <img
+            src={icons.icon_8}
+            alt="Иконка"
+            className="advantages__icon advantages__icon_place_table"
+          />
+          <p className="content__text content__text_place_advantages">
+            Стойкий к щелочам и кислотам
+          </p>
         </li>
       </ul>
+
     </article>
   );
 }

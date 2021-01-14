@@ -8,14 +8,13 @@
   margin: 0;
   display: flex;
 }
-.modal_type_carousel {
-  display: flex;
-}
+
 .modal__image-container {
   align-self: center;
   z-index: 2;
   position: relative;
   margin: 0 165px;
+  padding: 0 50px 0 0;
 }
 .modal__slider-container {
   width: 100%;
@@ -74,12 +73,12 @@
   background-position: center;
 }
 .modal__close-button_place_carousel {
-  top: 0px;
+  top: -48px;
   right: -100px;
 }
 .modal__image {
   max-width: 100vw;
-  max-height: 100vh;
+  max-height: 85vh;
   width: auto;
   height: auto;
   z-index: 1;
@@ -98,7 +97,7 @@
 }
 @media screen and (max-width: 1440px) {
   .modal__image-container {
-    margin: 0 calc(165px - 0.253807107 * (1440px - 100vw));
+    margin: auto auto;
   }
   .modal__close-button {
     right: calc(-81px + 0.11 * (1440px - 100vw));

@@ -51,11 +51,13 @@ function App() {
     setModalWithImageOpen(true);
     console.log(isModalWithImageOpen);
   }
-  function showModalWithCarousel(slideIndex) {
+
+  function ShowModalWithCarousel(slideIndex) {
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
-    console.log(isModalWithCarouselOpen);
   }
+
+
   function showModalWithConfirmation() {
     setModalWithConfitmationOpen(true);
   }
@@ -95,7 +97,7 @@ function App() {
       <Router history={history} basename="/">
         <Header />
         <Switch>
-          <Route exact path="/stoneflower">
+          <Route exact path="/">
             <Main
               services={services}
               advantagesText={advantagesText}
@@ -108,7 +110,7 @@ function App() {
               surfacesContent={surfacesContent}
               advicesContent={advicesContent}
               portfolioContent={portfolioContent}
-              showModalWithCarousel={showModalWithCarousel}
+              showModalWithCarousel={ShowModalWithCarousel}
               isModalWithCarouselOpen={isModalWithCarouselOpen}
               suppliersContent={suppliersContent}
               postFormContent={postFormContent}
@@ -125,14 +127,14 @@ function App() {
       {isModalWithImageOpen && (
         <ModalWithImage closeModal={closeModal} image={modalImage} />
       )}
-      {isModalWithCarouselOpen && (
+{isModalWithCarouselOpen && (
         <ModalWithCarousel
           isModalWithCarouselOpen={isModalWithCarouselOpen}
           closeModal={closeModal}
           content={portfolioContent}
           initialSlide={modalInitialSlide}
         />
-      )}
+        )}
       {isModalWithConfitmationOpen && (
         <ModalWithConfirmation
           isModalWithCarouselOpen={isModalWithCarouselOpen}

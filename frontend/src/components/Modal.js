@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Modal({ closeModal, children, carousel }) {
+function Modal({ closeModal, children, carousel, isModalWithCarouselOpen }) {
   function handleCloseEvent() {
     closeModal();
   }
   return (
-    <div className={`modal ${carousel?'modal_type_carousel':''}`}>
+    <div className="modal">
       {children}
     </div>
   )
