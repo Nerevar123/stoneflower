@@ -3,6 +3,7 @@
   flex-direction: row;
   background-color: #335e58;
   height: 58px;
+  margin: 86px 0 0 0;
   padding: 11px calc(165px - 0.262711864 * (1440px - 100vw));
   width: calc(100% - 2 * (165px - 0.262711864 * (1440px - 100vw)));
 }
@@ -29,6 +30,7 @@
   .footer {
     width: calc(100% - 30px);
     padding: 8px 15px;
+    margin: 0;
   }
   .footer__text {
     max-width: 193px;

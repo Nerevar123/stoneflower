@@ -9,14 +9,15 @@ function Surfaces({ content }) {
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [selectedExample, setSelectedExample] = useState(-1);
+  const examples = useRef();
   const window = useWindowSize();
 
   function handleExampleSelection(evt) {
+
     setSelectedExample(evt.target.closest(".surfaces__example-item"));
+
   }
-  useEffect(() => {
-    console.log(selectedExample);
-  }, [selectedExample]);
+
 
   useEffect(() => {
     if (selectedMaterial !== null) {
@@ -45,6 +46,7 @@ function Surfaces({ content }) {
   useEffect(() => {
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
+      examples.current.scrollIntoView({block: "center", behavior: "smooth"})
     } else {
       setMaterialListOpened(false);
     }
@@ -54,7 +56,6 @@ function Surfaces({ content }) {
     setTextExpanded(!textExpanded);
   }
   useEffect(() => {
-    console.log(selectedExample, materialListOpened, selectedMaterial);
     if (selectedExample === -1 && materialListOpened) {
       const el = document.getElementById("example_0");
       setSelectedExample(el);
@@ -92,6 +93,7 @@ function Surfaces({ content }) {
                 className="surfaces__list-item"
               >
                 <SurfacesListItem
+                  selectedMaterial={selectedMaterial}
                   isMobile={false}
                   item={item}
                   key={item._id}
@@ -102,7 +104,7 @@ function Surfaces({ content }) {
             ))
           : ""}
       </ul>
-      <div
+      <div ref={examples}
         onClick={handleExampleSelection}
         className={`surfaces__materials-container ${
           materialListOpened ? "surfaces__materials-container_opened" : ""

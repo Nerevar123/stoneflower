@@ -6,6 +6,14 @@ function Contacts({ content }) {
   const [byBusExpanded, setByBusExpanded] = useState(false);
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  function enableScroll () {
+    console.log('hi')
+    setIsFocused(true);
+  }
+  function disableScroll() {
+    setIsFocused(false);
+  }
 
   useEffect(() => {
     if (content.phonePrimary) {
@@ -133,8 +141,10 @@ function Contacts({ content }) {
             </p>
           </div>
         </div>
+
         <iframe
-          className="contacts__map"
+
+          className={`contacts__map ${isFocused?'contacts__map_enabled': ''}`}
           title="map"
           src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
           frameBorder="0"

@@ -19,6 +19,8 @@
   margin: 30px 0 0 0;
   width: 100%;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 
 }
 .surfaces__image-container {
@@ -149,6 +151,16 @@
   transition: all 0.4s ease;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.surfaces__scroll-link {
+  display: flex;
+  min-width: 100%;
+  min-height: 100%;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  justify-content: center;
+  align-items: center;
 }
 .surfaces__material-description_visible {
   opacity: 1;

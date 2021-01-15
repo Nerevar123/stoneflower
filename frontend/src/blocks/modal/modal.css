@@ -16,6 +16,9 @@
   margin: 0 165px;
   padding: 0 0 0 0;
 }
+.modal__image-container:focus {
+  outline: none;
+}
 .modal__slider-container {
   width: 100%;
   display: block;

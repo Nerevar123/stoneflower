@@ -100,7 +100,7 @@ function Header() {
                 to="main"
                 spy={false}
                 smooth={true}
-                offset={-80}
+                offset={-70}
                 duration={500}
                 onClick={toggleMenuOpen}
               >
@@ -112,7 +112,7 @@ function Header() {
                 to="services"
                 spy={false}
                 smooth={true}
-                offset={-80}
+                offset={-70}
                 duration={500}
                 onClick={toggleMenuOpen}
               >
@@ -124,7 +124,7 @@ function Header() {
                 to="surfaces"
                 spy={false}
                 smooth={true}
-                offset={-80}
+                offset={-70}
                 duration={500}
                 onClick={toggleMenuOpen}
               >
@@ -136,7 +136,7 @@ function Header() {
                 to="portfolio"
                 spy={false}
                 smooth={true}
-                offset={-80}
+                offset={-70}
                 duration={500}
                 onClick={toggleMenuOpen}
               >
@@ -148,7 +148,7 @@ function Header() {
                 to="contacts"
                 spy={false}
                 smooth={true}
-                offset={-80}
+                offset={-70}
                 duration={500}
                 onClick={toggleMenuOpen}
               >

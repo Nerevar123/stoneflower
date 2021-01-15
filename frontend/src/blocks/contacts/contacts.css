@@ -34,6 +34,7 @@
   height: 704px;
   margin: 0 0 0 auto;
 }
+
 .contacts__info-block {
   display: flex;
   flex-direction: column;
@@ -73,6 +74,7 @@
   }
   .contacts__map {
     width: 100%;
+    pointer-events: none;
   }
   .contacts__logo {
     left: 165px;
