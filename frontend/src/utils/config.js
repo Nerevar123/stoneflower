@@ -15,10 +15,51 @@ import phaseIcon_1 from "../images/phases-images/1.svg";
 import phaseIcon_2 from "../images/phases-images/2.svg";
 import phaseIcon_3 from "../images/phases-images/3.svg";
 import phaseIcon_4 from "../images/phases-images/4.svg";
-import material_1 from "../images/surfaces/wood.png";
-import material_2 from "../images/surfaces/stone.png";
-import material_3 from "../images/surfaces/cement.png";
-import material_4 from "../images/surfaces/designed.png";
+import material_wood_main from "../images/surfaces/wood.png";
+import material_wood_1 from "../images/surfaces/wood/1.jpg";
+import material_wood_2 from "../images/surfaces/wood/2.jpg";
+import material_wood_3 from "../images/surfaces/wood/3.jpg";
+import material_wood_4 from "../images/surfaces/wood/4.jpg";
+import material_wood_5 from "../images/surfaces/wood/5.jpg";
+import material_stone_main from "../images/surfaces/stone.png";
+import material_stone_1 from "../images/surfaces/stone/1.jpg";
+import material_stone_2 from "../images/surfaces/stone/2.jpg";
+import material_stone_3 from "../images/surfaces/stone/3.jpg";
+import material_stone_4 from "../images/surfaces/stone/4.jpg";
+import material_stone_5 from "../images/surfaces/stone/5.jpg";
+import material_stone_6 from "../images/surfaces/stone/6.jpg";
+import material_stone_7 from "../images/surfaces/stone/7.jpg";
+import material_stone_8 from "../images/surfaces/stone/8.jpg";
+import material_stone_9 from "../images/surfaces/stone/9.jpg";
+import material_stone_10 from "../images/surfaces/stone/10.jpg";
+import material_stone_11 from "../images/surfaces/stone/11.jpg";
+import material_stone_12 from "../images/surfaces/stone/12.jpg";
+import material_stone_13 from "../images/surfaces/stone/13.jpg";
+import material_stone_14 from "../images/surfaces/stone/14.jpg";
+import material_stone_15 from "../images/surfaces/stone/15.jpg";
+import material_stone_16 from "../images/surfaces/stone/16.jpg";
+import material_stone_17 from "../images/surfaces/stone/17.jpg";
+import material_cement_main from "../images/surfaces/cement.png";
+import material_cement_1 from "../images/surfaces/cement/1.jpg";
+import material_cement_2 from "../images/surfaces/cement/2.jpg";
+import material_cement_3 from "../images/surfaces/cement/3.jpg";
+import material_cement_4 from "../images/surfaces/cement/4.jpg";
+import material_cement_5 from "../images/surfaces/cement/5.jpg";
+import material_cement_6 from "../images/surfaces/cement/6.jpg";
+import material_cement_7 from "../images/surfaces/cement/7.jpg";
+import material_design_main from "../images/surfaces/design.png";
+import material_design_1 from "../images/surfaces/design/1.jpg";
+import material_design_2 from "../images/surfaces/design/2.jpg";
+import material_design_3 from "../images/surfaces/design/3.jpg";
+import material_design_4 from "../images/surfaces/design/4.jpg";
+import material_design_5 from "../images/surfaces/design/5.jpg";
+import material_design_6 from "../images/surfaces/design/6.jpg";
+import material_design_7 from "../images/surfaces/design/7.jpg";
+import material_design_8 from "../images/surfaces/design/8.jpg";
+import material_design_9 from "../images/surfaces/design/9.jpg";
+import material_design_10 from "../images/surfaces/design/10.jpg";
+import material_design_11 from "../images/surfaces/design/11.jpg";
+import material_design_12 from "../images/surfaces/design/12.jpg";
 import advice_1 from "../images/advices/advice_1.png";
 import advice_2 from "../images/advices/advice_2.png";
 import advice_3 from "../images/advices/advice_3.png";
@@ -139,54 +180,215 @@ export const surfaces = {
   materialsList: [
     {
       heading: "Дерево",
-      image: material_1,
+      image: material_wood_1,
       _id: 0,
       materialExamples: [
-        { _id: 0, image: material_1, description: "Название материала 1" },
-        { _id: 1, image: material_1, description: "Название материала 2" },
-        { _id: 2, image: material_1, description: "Название материала 3" },
-        { _id: 3, image: material_1, description: "Название материала 4" },
-        { _id: 4, image: material_1, description: "Название материала 5" },
-        { _id: 5, image: material_1, description: "Название материала 6" },
+        { _id: 0, image: material_wood_1, description: "Название материала 1" },
+        { _id: 1, image: material_wood_2, description: "Название материала 2" },
+        { _id: 2, image: material_wood_3, description: "Название материала 3" },
+        { _id: 3, image: material_wood_4, description: "Название материала 4" },
+        { _id: 4, image: material_wood_5, description: "Название материала 5" },
       ],
     },
     {
       heading: "Камень",
-      image: material_2,
+      image: material_stone_1,
       _id: 1,
       materialExamples: [
-        { _id: 0, image: material_2, description: "Название материала 1" },
-        { _id: 1, image: material_2, description: "Название материала 2" },
-        { _id: 2, image: material_2, description: "Название материала 3" },
-        { _id: 3, image: material_2, description: "Название материала 4" },
-        { _id: 4, image: material_2, description: "Название материала 5" },
-        { _id: 5, image: material_2, description: "Название материала 6" },
+        {
+          _id: 0,
+          image: material_stone_1,
+          description: "Название материала 1",
+        },
+        {
+          _id: 1,
+          image: material_stone_2,
+          description: "Название материала 2",
+        },
+        {
+          _id: 2,
+          image: material_stone_3,
+          description: "Название материала 3",
+        },
+        {
+          _id: 3,
+          image: material_stone_4,
+          description: "Название материала 4",
+        },
+        {
+          _id: 4,
+          image: material_stone_5,
+          description: "Название материала 5",
+        },
+        {
+          _id: 5,
+          image: material_stone_6,
+          description: "Название материала 6",
+        },
+        {
+          _id: 6,
+          image: material_stone_7,
+          description: "Название материала 7",
+        },
+        {
+          _id: 7,
+          image: material_stone_8,
+          description: "Название материала 8",
+        },
+        {
+          _id: 8,
+          image: material_stone_9,
+          description: "Название материала 9",
+        },
+        {
+          _id: 9,
+          image: material_stone_10,
+          description: "Название материала 10",
+        },
+        {
+          _id: 10,
+          image: material_stone_11,
+          description: "Название материала 11",
+        },
+        {
+          _id: 11,
+          image: material_stone_12,
+          description: "Название материала 12",
+        },
+        {
+          _id: 12,
+          image: material_stone_13,
+          description: "Название материала 13",
+        },
+        {
+          _id: 13,
+          image: material_stone_14,
+          description: "Название материала 14",
+        },
+        {
+          _id: 14,
+          image: material_stone_15,
+          description: "Название материала 15",
+        },
+        {
+          _id: 15,
+          image: material_stone_16,
+          description: "Название материала 16",
+        },
+        {
+          _id: 16,
+          image: material_stone_17,
+          description: "Название материала 17",
+        },
       ],
     },
     {
       heading: "Цемент",
-      image: material_3,
+      image: material_cement_1,
       _id: 2,
       materialExamples: [
-        { _id: 0, image: material_3, description: "Название материала 1" },
-        { _id: 1, image: material_3, description: "Название материала 2" },
-        { _id: 2, image: material_3, description: "Название материала 3" },
-        { _id: 3, image: material_3, description: "Название материала 4" },
-        { _id: 4, image: material_3, description: "Название материала 5" },
-        { _id: 5, image: material_3, description: "Название материала 6" },
+        {
+          _id: 0,
+          image: material_cement_1,
+          description: "Название материала 1",
+        },
+        {
+          _id: 1,
+          image: material_cement_2,
+          description: "Название материала 2",
+        },
+        {
+          _id: 2,
+          image: material_cement_3,
+          description: "Название материала 3",
+        },
+        {
+          _id: 3,
+          image: material_cement_4,
+          description: "Название материала 4",
+        },
+        {
+          _id: 4,
+          image: material_cement_5,
+          description: "Название материала 5",
+        },
+        {
+          _id: 5,
+          image: material_cement_6,
+          description: "Название материала 6",
+        },
+        {
+          _id: 6,
+          image: material_cement_7,
+          description: "Название материала 7",
+        },
       ],
     },
     {
       heading: "Дизайн",
-      image: material_4,
+      image: material_design_1,
       _id: 3,
       materialExamples: [
-        { _id: 0, image: material_4, description: "Название материала 1" },
-        { _id: 1, image: material_4, description: "Название материала 2" },
-        { _id: 2, image: material_4, description: "Название материала 3" },
-        { _id: 3, image: material_4, description: "Название материала 4" },
-        { _id: 4, image: material_4, description: "Название материала 5" },
-        { _id: 5, image: material_4, description: "Название материала 6" },
+        {
+          _id: 0,
+          image: material_design_1,
+          description: "Название материала 1",
+        },
+        {
+          _id: 1,
+          image: material_design_2,
+          description: "Название материала 2",
+        },
+        {
+          _id: 2,
+          image: material_design_3,
+          description: "Название материала 3",
+        },
+        {
+          _id: 3,
+          image: material_design_4,
+          description: "Название материала 4",
+        },
+        {
+          _id: 4,
+          image: material_design_5,
+          description: "Название материала 5",
+        },
+        {
+          _id: 5,
+          image: material_design_6,
+          description: "Название материала 6",
+        },
+        {
+          _id: 6,
+          image: material_design_7,
+          description: "Название материала 7",
+        },
+        {
+          _id: 7,
+          image: material_design_8,
+          description: "Название материала 8",
+        },
+        {
+          _id: 8,
+          image: material_design_9,
+          description: "Название материала 9",
+        },
+        {
+          _id: 9,
+          image: material_design_10,
+          description: "Название материала 10",
+        },
+        {
+          _id: 10,
+          image: material_design_11,
+          description: "Название материала 11",
+        },
+        {
+          _id: 11,
+          image: material_design_12,
+          description: "Название материала 12",
+        },
       ],
     },
   ],

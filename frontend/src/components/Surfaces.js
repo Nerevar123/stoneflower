@@ -1,21 +1,22 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
 import SurfacesListItem from "./SurfacesListItem";
-import SurfacesExampleItem from './SurfacesExampleItem';
+import SurfacesExampleItem from "./SurfacesExampleItem";
+import useWindowSize from "../hooks/useWindowSize";
 
 function Surfaces({ content }) {
   const [textExpanded, setTextExpanded] = useState(false);
   const [exampleRefs, setExampleRefs] = useState([]);
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
-  const [selectedExample, setSelectedExample] = useState(null);
+  const [selectedExample, setSelectedExample] = useState(-1);
+  const window = useWindowSize();
 
   function handleExampleSelection(evt) {
-    setSelectedExample(evt.target.closest('.surfaces__example-item'))
-
+    setSelectedExample(evt.target.closest(".surfaces__example-item"));
   }
   useEffect(() => {
     console.log(selectedExample);
-  }, [selectedExample])
+  }, [selectedExample]);
 
   useEffect(() => {
     if (selectedMaterial !== null) {
@@ -33,16 +34,17 @@ function Surfaces({ content }) {
 
   const handleElementClick = (evt) => {
     if (evt.target.closest("li").id !== selectedMaterial) {
+      setMaterialListOpened(false);
       setSelectedMaterial(evt.target.closest("li").id);
+      setSelectedExample(-1);
     } else {
       setSelectedMaterial(null);
+      setSelectedExample(-1);
     }
   };
   useEffect(() => {
-    console.log(selectedMaterial);
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
-
     } else {
       setMaterialListOpened(false);
     }
@@ -51,7 +53,13 @@ function Surfaces({ content }) {
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
-  const materialsNumber = content.length;
+  useEffect(() => {
+    console.log(selectedExample, materialListOpened, selectedMaterial);
+    if (selectedExample === -1 && materialListOpened) {
+      const el = document.getElementById("example_0");
+      setSelectedExample(el);
+    }
+  }, [selectedExample, selectedMaterial, materialListOpened]);
 
   return (
     <article id="surfaces" className="surfaces">
@@ -84,6 +92,7 @@ function Surfaces({ content }) {
                 className="surfaces__list-item"
               >
                 <SurfacesListItem
+                  isMobile={false}
                   item={item}
                   key={item._id}
                   image={item.image}
@@ -101,17 +110,17 @@ function Surfaces({ content }) {
       >
         {content &&
           selectedMaterial !== null &&
-          content.materialsList[selectedMaterial].materialExamples.map(
-            (item) => (
-              <SurfacesExampleItem
-                item={item}
-                key={item._id}
-                forwardRef={exampleRefs[item._id]}
-                selectedExample={selectedExample}
-                setSelectedExample={setSelectedExample}
-              />
-            )
-          )}
+          content.materialsList[
+            selectedMaterial
+          ].materialExamples.map((item) => (
+            <SurfacesExampleItem
+              item={item}
+              key={item._id}
+              forwardRef={exampleRefs[item._id]}
+              selectedExample={selectedExample}
+              setSelectedExample={setSelectedExample}
+            />
+          ))}
       </div>
     </article>
   );

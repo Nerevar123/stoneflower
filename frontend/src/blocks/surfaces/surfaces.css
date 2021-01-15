@@ -18,6 +18,8 @@
 .surfaces__list-item {
   margin: 30px 0 0 0;
   width: 100%;
+  cursor: pointer;
+
 }
 .surfaces__image-container {
   display: flex;
@@ -62,6 +64,16 @@
 .surfaces__image {
   width: 100%;
 }
+
+.surfaces__example-image {
+  width: 350px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.surfaces__example-image_loaded {
+}
+
 .surfaces__item-heading {
   width: calc(100% - 2px);
   margin: 16px 0 0 0;
@@ -83,31 +95,115 @@
   color: #ffffff;
   background: #995750;
 }
+.surfaces__item-heading_opened {
+  background: #75978C;
+  color: #ffffff;
+  border: 1px solid #75978C;
+}
 .surfaces__materials-container {
-  min-width: 100%;
-  min-height: 0px;
-  height: 0px;
-  background: red;
+  min-width: calc(100%);
+  max-height: 0px;
+  background: #fff;
   margin: 0;
   transition: all 0.15s ease-in-out;
+  display: flex;
+  overflow: hidden;
+  justify-content: flex-start;
 }
 .surfaces__materials-container_opened {
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 40px;
-  height: auto;
+  margin: 0px -40px 0 -40px;
+  padding: 40px;
+  max-height: 300vh;
 }
 .surfaces__example-item {
- margin: 0 10px 5px 0;
+  margin: 0 30px 24px 0;
+  position: relative;
+  height: 240px;
+  width: 160px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
 }
 .surfaces__example-item_selected {
- outline: 5px solid green;
+  width: 350px;
+  filter: drop-shadow(0px 0px 24px rgba(180, 186, 173, 0.5));
+}
+.surfaces__material-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 8px);
+  color: #000;
+  font-family: 'FuturaBookC', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  background-color: #FFF;
+  padding: 14px 0 0 8px;
+  min-height: 34px;
+  margin: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.surfaces__material-description_visible {
+  opacity: 1;
+}
+
+.surfaces__example-item_selected {
+
 }
 @media screen and (max-width: 849px) {
   .surfaces {
     margin: 0 14px 0 15px;
   }
+  .surfaces__slider-container {
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+  }
+  .surfaces__slider-container_opened {
+    margin: 16px 0 0 0;
+    max-height: 100vh;
+    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 0.5));
+  }
+  .surfaces__slide {
+    margin: 0 25px 0 0;
+    position: relative;
+    width: 100%;
+  }
+  .surfaces__image {
+    width: calc(100vw - 20px);
+    min-width: 320px;
+  }
+  .surfaces__image_main {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+  }
+
+  .surfaces__example-image_mobile {
+    width: 100%;
+
+  }
+
+
+  .surfaces__list {
+    display: flex;
+    flex-direction: column;
+  }
+  .surfaces__list-item {
+    margin: 0 0 32px 0;
+
+  }
+
+
   .surfaces__list {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fill, 1fr);

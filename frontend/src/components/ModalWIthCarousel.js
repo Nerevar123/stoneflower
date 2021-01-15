@@ -32,7 +32,7 @@ function ModalWithCarousel({
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    centerMode: false,
+    centerMode: true,
     variableWidth: true,
     adaptiveHeight: true,
     slidesToScroll: 1,

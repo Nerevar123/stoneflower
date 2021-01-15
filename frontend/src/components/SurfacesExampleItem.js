@@ -1,38 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function SurfacesExampleItem({
   item,
   forwardRef,
   selectedExample,
-  setSelectedExample
-
+  setSelectedExample,
 }) {
 
-  function setSelectedOnLoad(evt) {
-    if (selectedExample === null) {
-      setSelectedExample(evt.target.closest('div'));
-    }
-  }
 
 
   return (
     <div
-      className={`surfaces__example-item ${(forwardRef &&
-        selectedExample === forwardRef.current)
+      className={`surfaces__example-item ${forwardRef &&
+        selectedExample === forwardRef.current
           ? "surfaces__example-item_selected"
           : ""
       }`}
       key={item._id}
       ref={forwardRef}
+      id={`example_${item._id}`}
     >
       <img
         id={item._id}
-        onLoad={setSelectedOnLoad}
         className="surfaces__example-image"
         src={item.image}
         alt="Пример материала"
       />
-      <p className="content__text">{item.description}</p>
+
+      <p
+        className={`surfaces__material-description ${
+          forwardRef && selectedExample === forwardRef.current
+            ? "surfaces__material-description_visible"
+            : ""
+        }`}
+      >
+        {item.description}
+      </p>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Lead from "./Lead";
 import Advantages from "./Advantages";
 import Surfaces from "./Surfaces";
+import SurfacesMobile from "./SurfacesMobile";
 import Services from "./Services";
 import Applicability from "./Applicability";
 import useWindowSize from "../hooks/useWindowSize";
@@ -13,6 +14,7 @@ import Portfolio from "./Portfolio";
 import Suppliers from "./Suppliers";
 import PostForm from "./PostForm";
 import Contacts from "./Contacts";
+
 function Main({
   services,
   advantagesText,
@@ -30,7 +32,7 @@ function Main({
   suppliersContent,
   postFormContent,
   showModalWithConfirmation,
-  contactsContent
+  contactsContent,
 }) {
   const window = useWindowSize();
   return (
@@ -53,9 +55,8 @@ function Main({
       <Phases phasesIcons={phasesIcons} />
 
       <Pricing content={pricingContent} />
-
-      <Surfaces content={surfacesContent} />
-
+      {window.width > 849 && <Surfaces content={surfacesContent} />}
+      {window.width < 850 && <SurfacesMobile content={surfacesContent} />}
       <Advices content={advicesContent} />
 
       <Portfolio
@@ -68,11 +69,7 @@ function Main({
         content={postFormContent}
         showModal={showModalWithConfirmation}
       />
-      <Contacts
-        content={contactsContent}
-      />
-
-
+      <Contacts content={contactsContent} />
     </main>
   );
 }
