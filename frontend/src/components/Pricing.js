@@ -17,7 +17,7 @@ function Pricing({ content }) {
         </div>
         <Link
           to="form"
-          offset={-180}
+          offset={-200}
           duration={500}
           spy={false}
           smooth={true}

@@ -23,7 +23,7 @@ function Lead() {
         to="form"
         spy={false}
         smooth={true}
-        offset={-180}
+        offset={-200}
         duration={500}
       >
         Бесплатная консультация

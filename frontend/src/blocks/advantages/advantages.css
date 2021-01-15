@@ -46,16 +46,20 @@
   border-radius: 8px;
   transition: all 0.1s ease-in-out;
 }
-
-.advantages__list-item:hover {
-  border: 1px solid #75978C;
-  background-color: #75978C;
-  color: #fff;
+@media(hover: hover) and (pointer: fine) {
+  .advantages__list-item:hover {
+    border: 1px solid #75978C;
+    background-color: #75978C;
+    color: #fff;
+  }
+  .advantages__list-item:hover .advantages__icon_place_table {
+    filter: brightness(0) invert(1);
+  }
 }
 
-.advantages__list-item:hover .advantages__icon_place_table {
-  filter: brightness(0) invert(1);
-}
+
+
+
 
 
 

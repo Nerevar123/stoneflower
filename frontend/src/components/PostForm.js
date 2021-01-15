@@ -29,8 +29,8 @@ function PostForm({ content, showModal }) {
       .phone("RU", false, "Введите корректный номер телефона")
       .required("Вы пропустили это поле"),
     email: Yup.string()
-      .typeError("Введите корректный email-вдрес")
-      .email("Введите email-вдрес")
+      .typeError("Введите корректный email-адрес")
+      .email("Введите email-адрес")
       .required("Вы пропустили это поле"),
   });
 
