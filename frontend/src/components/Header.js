@@ -74,9 +74,12 @@ function Header() {
               Контакты
             </Link>
           </nav>
-          <button className="header__order-button button">
-            Оставить заявку
-          </button>
+
+            <button className="header__order-button button">
+            <Link className="header__order-link" to="form" spy={false} smooth={true} offset={-200} duration={500}>
+              Оставить заявку</Link>
+            </button>
+
         </>
       )}
       {window.width < 850 && (
@@ -91,72 +94,73 @@ function Header() {
           </button>
           <div className="header__sidebar">
             <nav className="header__links">
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="main"
-              spy={false}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={toggleMenuOpen}
-            >
-              Главная
-            </Link>
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="services"
-              spy={false}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={toggleMenuOpen}
-            >
-              Услуги
-            </Link>
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="surfaces"
-              spy={false}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={toggleMenuOpen}
-            >
-              Поверхности
-            </Link>
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="portfolio"
-              spy={false}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={toggleMenuOpen}
-            >
-              Портфолио
-            </Link>
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="contacts"
-              spy={false}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={toggleMenuOpen}
-            >
-              Контакты
-            </Link>
+              <Link
+                className="header__link link"
+                activeClass="header__link_active"
+                to="main"
+                spy={false}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                onClick={toggleMenuOpen}
+              >
+                Главная
+              </Link>
+              <Link
+                className="header__link link"
+                activeClass="header__link_active"
+                to="services"
+                spy={false}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                onClick={toggleMenuOpen}
+              >
+                Услуги
+              </Link>
+              <Link
+                className="header__link link"
+                activeClass="header__link_active"
+                to="surfaces"
+                spy={false}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                onClick={toggleMenuOpen}
+              >
+                Поверхности
+              </Link>
+              <Link
+                className="header__link link"
+                activeClass="header__link_active"
+                to="portfolio"
+                spy={false}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                onClick={toggleMenuOpen}
+              >
+                Портфолио
+              </Link>
+              <Link
+                className="header__link link"
+                activeClass="header__link_active"
+                to="contacts"
+                spy={false}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                onClick={toggleMenuOpen}
+              >
+                Контакты
+              </Link>
             </nav>
             <button
               className="header__order-button button"
               onClick={toggleMenuOpen}
             >
-              Оставить заявку
+              <Link onClick={toggleMenuOpen} className="header__order-link" to="form" spy={false} smooth={true} offset={-200} duration={500}>
+              Оставить заявку</Link>
             </button>
           </div>
           <div className="header__overlay" onClick={toggleMenuOpen}></div>

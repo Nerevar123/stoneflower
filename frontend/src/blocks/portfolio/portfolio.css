@@ -15,6 +15,9 @@
   flex-direction: row;
   scroll-behavior: smooth;
 }
+.portfolio__slider-container {
+  margin-top: 32px;
+}
 
 .portfolio__slide {
   margin: 0 25px 0 0;
@@ -22,8 +25,8 @@
 
 .portfolio__image {
   width: 540px;
-  height: 440px;
   margin: 0px;
+  cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
   .portfolio__slider-container {
@@ -32,7 +35,14 @@
 }
 @media screen and (max-width: 849px) {
   .portfolio {
-    /* margin: 0 14px 0 15px; */
+    margin: 0 14px 0 15px;
+    padding-bottom: 18px;
+  }
+  .portfolio__slider-container {
     margin: 0;
+  }
+  .portfolio__image {
+    width: calc(100vw - 20px);
+    min-width: 320px;
   }
 }

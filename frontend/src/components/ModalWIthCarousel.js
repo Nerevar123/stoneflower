@@ -1,62 +1,115 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
-import Slider from "react-slick";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";
 import arrowLeft from "../images/slider/ArrowLeft.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Keyboard } from 'swiper';
-import "swiper/swiper-bundle.min.css";
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Keyboard]);
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 
-function ModalWithCarousel({ closeModal, initialSlide, content }) {
+function ModalWithCarousel({
+  closeModal,
+  initialSlide,
+  content,
+  isModalWithCarouselOpen,
+}) {
+
+
+  function getFocus() {
+    const el = document.querySelector('.modal__image-container');
+    el.focus();
+  }
+
+
+
+  const window = useWindowSize();
+
+  const numSlide = parseInt(initialSlide);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    centerMode: true,
+    variableWidth: true,
+    adaptiveHeight: true,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    accessibility: true,
+    draggable: true,
+    initialSlide: numSlide,
+  };
+
+  function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <>
+        <img
+          className={className}
+          src={arrowRight}
+          alt="Иконка"
+          style={{
+            ...style,
+            width: "65px",
+            height: "56px",
+            right: "-60px",
+            filter: "brightness(0) invert(1)",
+          }}
+          onClick={onClick}
+        />
+      </>
+    );
+  }
+
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <>
+        <img
+          className={className}
+          src={arrowLeft}
+          alt="Иконка"
+          style={{
+            ...style,
+            width: "65px",
+            height: "56px",
+            left: "-60px",
+            filter: "brightness(0) invert(1)",
+          }}
+          onClick={onClick}
+        />
+      </>
+    );
+  }
+
   function handleClose() {
     closeModal();
   }
-  const window = useWindowSize();
-  const slide = initialSlide;
 
   return (
     <Modal
       closeModal={closeModal}
+      isModalWithCarouselOpen={isModalWithCarouselOpen}
       carousel={true}
       children={
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-            {/* <Slider {...settings}>
-            {content &&
-              content.map((item) => (
-
-                  <img
-                    key={item._id}
-                    alt="img"
-                    id={item._id}
-                    src={item.image}
-                    className="modal__image"
-                    draggable="false"
-                  />
-              ))}
-          </Slider> */}
-            <Swiper
-              spaceBetween={50}
-              slidesPerView={1}
-              initialSlide={slide}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
-              keyboard={{
-                enabled: true
-              }}
-            >
+            {window.width > 849 && (
+              <button
+                onClick={handleClose}
+                className="modal__close-button button modal__close-button_place_carousel"
+              ></button>
+            )}
+            <Slider {...settings} >
               {content &&
                 content.map((item) => (
-                  <SwiperSlide key={item._id}>
+                  <div key={item._id} className="modal__image-container" onLoad={getFocus}>
                     <img
+
                       key={item._id}
                       alt="img"
                       id={item._id}
@@ -64,26 +117,10 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
                       className="modal__image"
                       draggable="false"
                     />
-                  </SwiperSlide>
+                  </div>
                 ))}
-
-            </Swiper>
+            </Slider>
           </div>
-
-            <img
-                          className="swiper-button-prev"
-              src={arrowLeft}
-              alt="Иконка"
-              style={{ width: "65px", height: "56px", left: "60px", outline: "none",  filter: "brightness(0) invert(1)" }}
-            />
-
-
-            <img
-              className="swiper-button-next"
-              src={arrowRight}
-              alt="Иконка"
-              style={{ width: "65px", height: "56px",right: "60px", outline: "none", filter: "brightness(0) invert(1)" }}
-            />
         </>
       }
     />

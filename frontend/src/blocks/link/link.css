@@ -37,8 +37,11 @@
   background-color: #995750;
   padding: 17px 24px 15px 24px;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
-
+.link_type_navigation:hover {
+  background-color: #335e58;
+}
 .link__accent {
   display: inline-flex;
   margin: 0 14px 0 0;
@@ -52,17 +55,59 @@
   height: 24px;
   margin: 0px 0 0 0;
 }
+.link__expand-arrow {
+  position: relative;
+  margin: 0;
+  transition: all 0.2s ease;
+  width: 12px;
+  height: 24px;
+  margin: 0px 0 0 0;
+}
+
+.open .link__expand-arrow {
+  margin-bottom: 6px;
+  transform: rotate(90deg);
+}
+
+.link__expand-arrow::before {
+  position: absolute;
+  content: " ";
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #335e58;
+  top: 7px;
+  left: 0px;
+  transform: rotate(45deg);
+}
+
+.link__expand-arrow::after {
+  position: absolute;
+  content: " ";
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #335e58;
+  top: 15px;
+  left: 0px;
+  transform: rotate(-45deg);
+}
+
 .link_place_pricing {
   min-width: 207px;
+  transition: all 0.2s ease-in-out;
+}
+.link_place_pricing:hover {
+  background-color: #335e58;
 }
 @media screen and (max-width: 1000px) {
-
   .link_type_navigation {
     width: 250px;
     min-width: 250px;
     height: 50px;
     padding: 17px 10px 15px 10px;
   }
+
   .link_place_pricing {
     width: 209px;
     min-width: 209px;
@@ -73,9 +118,9 @@
 @media screen and (max-width: 849px) {
   .link_type_navigation {
     margin: 22px 0 0 0;
-    width: 302px;
+    width: 294px;
     height: 24px;
-    padding: 16px 23px 15px 22px;
+    padding: 16px 16px 15px 22px;
   }
   .link__accent {
     font-size: 18px;

@@ -61,6 +61,13 @@
   grid-area: order-button;
   transition: all 0.2s ease-in-out;
 }
+.header__order-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+}
 
 .header__order-button:hover {
   background: #ffffff;

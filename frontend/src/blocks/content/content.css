@@ -38,6 +38,13 @@
   color: #001717;
   margin: 0;
   white-space: normal;
+
+}
+.content__text_place_contacts {
+  margin: 8px 0 0 0;
+  position: relative;
+
+
 }
 .content__text_place_advantages {
   font-size: calc(20px - 0.003384095 * (1440px - 100vw));
@@ -52,6 +59,9 @@
 }
 .content__text_place_pricing:first-of-type {
   margin: 0 0 0 0;
+}
+.content__text_place_suppliers {
+  margin-top: 16px;
 }
 .content__expand-container {
   margin: 0;
@@ -72,6 +82,15 @@
 .content__text-container_place_advices {
   width: auto;
   margin: 0;
+}
+.content__text-container_place_portfolio {
+  margin: 120px 0 0 0;
+}
+.content__title_place_form {
+  margin: 0 auto 16px 0;
+}
+.content__title_place_contacts {
+  margin: 88px 0 0 0;
 }
 @media screen and (min-width: 1440px) {
   .content__text_place_advantages {
@@ -124,5 +143,21 @@
   }
   .content__title_place_surfaces {
     margin: 32px 0 8px 0;
+  }
+  .content__text_place_suppliers {
+    margin-top: 8px;
+  }
+  .content__text-container_place_portfolio {
+    margin: 32px 0 8px 0;
+  }
+  .content__title_place_suppliers {
+    margin-bottom: 0;
+  }
+  .content__title_place_form {
+    margin: 0 0 0 0;
+  }
+  .content__title_place_contacts {
+    margin-left: 14px;
+    width: calc(100% - 14px);
   }
 }

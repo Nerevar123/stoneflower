@@ -35,7 +35,7 @@
 }
 .phases_description {
   margin: 24px 0 0 0;
-  max-width: 205px;
+  min-width: 215px;
   font-family: "EBGaramond", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
