@@ -68,16 +68,16 @@ function App() {
     setModalWithConfitmationOpen(false);
   }
 
-  // useEffect(() => {
-  //   Promise.all([api.getServices()])
-  //     .then(([services]) => {
-  //       console.log(services)
-  //       setServices(services);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
   useEffect(() => {
-    setServices(servicesItems);
+    Promise.all([api.getServices(), api.getTexts()])
+      .then(([services, texts]) => {
+        console.log(texts[0].text[0])
+        setServices(services);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    // setServices(servicesItems);
     setAdvantegesText(advantagesTextContent);
     setAdvantegesIcons(advantagesIconsList);
     setApplicabilityTable(applicabilityTableImage);

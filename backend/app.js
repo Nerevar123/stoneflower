@@ -8,11 +8,8 @@ const mongoose = require("mongoose");
 // const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const { celebrate, Joi, errors } = require("celebrate");
-const {
-  // ERROR_CODE_404,
-  // errorMessage404,
-  checkError,
-} = require("./utils/errors");
+
+const errorHandler = require('./middlewares/errorHandler');
 // const {
 //   createUser, login, logout, checkCookies,
 // } = require('./controllers/users');
@@ -81,8 +78,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(routes);
 
 app.use(errorLogger);
-
 app.use(errors());
-app.use((err, req, res, next) => checkError(err, res, next));
+app.use(errorHandler);
 
 app.listen(PORT);
