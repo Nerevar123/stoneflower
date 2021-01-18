@@ -1,0 +1,22 @@
+.page {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  min-width: 320px;
+  max-width: 1440px;
+  width: 100%;
+  min-height: 100vh;
+  font-size: 16px;
+  /* background-color: #F8F8F8;
+  color: white; */
+  /* margin: 0 auto;
+  display: flex;
+  flex-direction: column; */
+
+}
+.content {
+  min-width: 320px;
+}

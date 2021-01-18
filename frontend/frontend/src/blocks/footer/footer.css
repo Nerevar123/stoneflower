@@ -1,0 +1,43 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  background-color: #335e58;
+  height: 58px;
+  margin: 86px 0 0 0;
+  padding: 11px calc(165px - 0.262711864 * (1440px - 100vw));
+  width: calc(100% - 2 * (165px - 0.262711864 * (1440px - 100vw)));
+}
+.footer__logo {
+  width: 60px;
+  height: 59px;
+  margin-right: 36px;
+}
+.footer__text {
+  color: #fff;
+  font-family: "FuturaBookC", helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.footer__text:last-of-type {
+  justify-self: flex-end;
+  margin: auto 0 auto auto;
+}
+@media screen and (max-width: 849px) {
+  .footer {
+    width: calc(100% - 30px);
+    padding: 8px 15px;
+    margin: 0;
+  }
+  .footer__text {
+    max-width: 193px;
+    align-self: center;
+  }
+
+  .footer__text_type_additional {
+    display: none;
+  }
+}
