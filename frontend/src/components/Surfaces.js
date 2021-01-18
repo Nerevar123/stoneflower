@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 import SurfacesExampleItem from "./SurfacesExampleItem";
-import useWindowSize from "../hooks/useWindowSize";
+// import useWindowSize from "../hooks/useWindowSize";
 
 function Surfaces({ content }) {
   const [textExpanded, setTextExpanded] = useState(false);
@@ -10,7 +10,7 @@ function Surfaces({ content }) {
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [selectedExample, setSelectedExample] = useState(-1);
   const examples = useRef();
-  const window = useWindowSize();
+  // const window = useWindowSize();
 
   function handleExampleSelection(evt) {
 

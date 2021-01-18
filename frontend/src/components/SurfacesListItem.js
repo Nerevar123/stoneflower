@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import arrow_left from "../images/icons/surfaces_arrow_left.svg";
 import arrow_right from "../images/icons/surfaces_arrow_right.svg";
 import useWindowSize from "../hooks/useWindowSize";
-import { Link } from "react-scroll";
+// import { Link } from "react-scroll";
 
 function SurfacesListItem(props) {
   const window = useWindowSize();
@@ -13,7 +13,6 @@ function SurfacesListItem(props) {
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
-  function f() {}
 
   useEffect(() => {
     if (

@@ -13,6 +13,8 @@ module.exports = ((err, req, res, next) => {
     return;
   }
 
+  console.log(err);
+
   res.status(statusCode).send({ message: statusCode === 500 ? serverErrorMessage : message });
 
   next();

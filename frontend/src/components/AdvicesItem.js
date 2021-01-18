@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import DisadvantagesItem from "./DisadvantagesItem";
+import React, { useState } from "react";
+// import DisadvantagesItem from "./DisadvantagesItem";
 
 function AdvicesItem(props) {
   const [textExpanded, setTextExpanded] = useState(false);

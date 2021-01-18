@@ -6,18 +6,18 @@ import Main from "./Main";
 import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
 import {
-  servicesItems,
+  // servicesItems,
   advantagesTextContent,
   advantagesIconsList,
   applicabilityTableImage,
   disadvantagesContentItems,
   phasesIcons,
-  pricing,
+  // pricing,
   surfaces,
   advices,
   portfolio,
   suppliers,
-  postForm,
+  // postForm,
   contacts,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
@@ -26,14 +26,14 @@ import ModalWithConfirmation from "./ModalWithConfirmation";
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
-  const [advantagesText, setAdvantegesText] = useState({});
-  const [advantagesIcons, setAdvantegesIcons] = useState({});
+  const [advantagesText, setAdvantagesText] = useState({});
+  const [advantagesIcons, setAdvantagesIcons] = useState({});
   const [applicabilityTable, setApplicabilityTable] = useState();
   const [disadvantagesContent, setDisadvantagesContent] = useState([]);
   const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
-  const [phasesIconList, setphasesIconList] = useState({});
+  const [phasesIconList, setPhasesIconList] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
   const [advicesContent, setAdvicesContent] = useState([]);
@@ -41,7 +41,7 @@ function App() {
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
   const [postFormContent, setPostFormContent] = useState({});
-  const [isModalWithConfitmationOpen, setModalWithConfitmationOpen] = useState(
+  const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
   );
   const [contactsContent, setContactsContent] = useState({});
@@ -59,36 +59,37 @@ function App() {
 
 
   function showModalWithConfirmation() {
-    setModalWithConfitmationOpen(true);
+    setModalWithConfirmationOpen(true);
   }
   function closeModal() {
     setModalImage();
     setModalWithImageOpen(false);
     setModalWithCarouselOpen(false);
-    setModalWithConfitmationOpen(false);
+    setModalWithConfirmationOpen(false);
   }
 
   useEffect(() => {
     Promise.all([api.getServices(), api.getTexts()])
       .then(([services, texts]) => {
-        console.log(texts[0].text[0])
+        setPostFormContent(texts.postForm);
+        setPricingContent(texts.pricing);
         setServices(services);
       })
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    // setServices(servicesItems);
-    setAdvantegesText(advantagesTextContent);
-    setAdvantegesIcons(advantagesIconsList);
+    setAdvantagesText(advantagesTextContent);
+    setAdvantagesIcons(advantagesIconsList);
     setApplicabilityTable(applicabilityTableImage);
     setDisadvantagesContent(disadvantagesContentItems);
-    setphasesIconList(phasesIcons);
-    setPricingContent(pricing);
+    setPhasesIconList(phasesIcons);
     setSurfacesContent(surfaces);
     setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
-    setPostFormContent(postForm);
+    // setPostFormContent(postForm);
+    // setServices(servicesItems);
+    // setPricingContent(pricing);
     setContactsContent(contacts);
   }, []);
 
@@ -135,7 +136,7 @@ function App() {
           initialSlide={modalInitialSlide}
         />
         )}
-      {isModalWithConfitmationOpen && (
+      {isModalWithConfirmationOpen && (
         <ModalWithConfirmation
           isModalWithCarouselOpen={isModalWithCarouselOpen}
           closeModal={closeModal}

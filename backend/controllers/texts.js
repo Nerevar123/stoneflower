@@ -4,14 +4,24 @@ const { notFoundPageErrorMessage } = require("../utils/constants");
 
 module.exports.getTexts = (req, res, next) => {
   Text.find({})
-    .then((texts) => res.send(texts))
+    .then((texts) => {
+      let result = {};
+      texts.map((text) => {
+        let w = {};
+        const content = text.content.map((item) => {
+          w = { ...w, ...{ [item.name]: item.text } };
+        });
+        result = { ...result, ...{ [text.title]: w } };
+      });
+      res.send(result);
+    })
     .catch(next);
 };
 
 module.exports.saveText = (req, res, next) => {
-  const { title, text } = req.body;
+  const { title, content } = req.body;
 
-  Text.create({ title, text })
+  Text.create({ title, content })
     .then((text) => res.status(201).send(text))
     .catch(next);
 };

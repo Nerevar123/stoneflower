@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../images/footer__logo.svg";
-import { Link } from "react-scroll";
 
 function Footer( {content} ) {
   return (

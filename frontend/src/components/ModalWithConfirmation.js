@@ -1,12 +1,12 @@
 import React from "react";
 import Modal from "./Modal";
-import useWindowSize from "../hooks/useWindowSize";
+// import useWindowSize from "../hooks/useWindowSize";
 
 function ModalWithConfirmation({ closeModal }) {
   function handleClose() {
     closeModal();
   }
-  const window = useWindowSize();
+  // const window = useWindowSize();
   return (
     <Modal
       closeModal={closeModal}
