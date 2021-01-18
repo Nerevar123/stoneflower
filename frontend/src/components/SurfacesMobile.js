@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef, useRef } from "react";
+import React, { useState } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 
 function SurfacesMobile({ content }) {
