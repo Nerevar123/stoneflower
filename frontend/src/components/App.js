@@ -7,19 +7,19 @@ import Main from "./Main";
 import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
 import {
-  servicesItems,
-  advantagesTextContent,
+  // servicesItems,
+    // advantagesTextContent,
   advantagesIconsList,
   applicabilityTableImage,
   disadvantagesContentItems,
   phasesIcons,
-  pricing,
+  // pricing,
   surfaces,
   advices,
   portfolio,
   suppliers,
-  postForm,
-  contacts,
+  // postForm,
+  // contacts,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
@@ -27,14 +27,14 @@ import ModalWithConfirmation from "./ModalWithConfirmation";
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
-  const [advantagesText, setAdvantegesText] = useState({});
-  const [advantagesIcons, setAdvantegesIcons] = useState({});
+  const [advantagesText, setAdvantagesText] = useState({});
+  const [advantagesIcons, setAdvantagesIcons] = useState({});
   const [applicabilityTable, setApplicabilityTable] = useState();
   const [disadvantagesContent, setDisadvantagesContent] = useState([]);
   const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
-  const [phasesIconList, setphasesIconList] = useState({});
+  const [phasesIconList, setPhasesIconList] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
   const [advicesContent, setAdvicesContent] = useState([]);
@@ -42,7 +42,7 @@ function App() {
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
   const [postFormContent, setPostFormContent] = useState({});
-  const [isModalWithConfitmationOpen, setModalWithConfitmationOpen] = useState(
+  const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
   );
   const [contactsContent, setContactsContent] = useState({});
@@ -60,37 +60,41 @@ function App() {
 
 
   function showModalWithConfirmation() {
-    setModalWithConfitmationOpen(true);
+    setModalWithConfirmationOpen(true);
   }
   function closeModal() {
     setModalImage();
     setModalWithImageOpen(false);
     setModalWithCarouselOpen(false);
-    setModalWithConfitmationOpen(false);
+    setModalWithConfirmationOpen(false);
   }
 
-  // useEffect(() => {
-  //   Promise.all([api.getServices()])
-  //     .then(([services]) => {
-  //       console.log(services)
-  //       setServices(services);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
   useEffect(() => {
-    setServices(servicesItems);
-    setAdvantegesText(advantagesTextContent);
-    setAdvantegesIcons(advantagesIconsList);
+    Promise.all([api.getServices(), api.getTexts(), api.getAdvices()])
+      .then(([services, texts, advices]) => {
+        setPostFormContent(texts.postForm);
+        setPricingContent(texts.pricing);
+        setAdvantagesText(texts.advantages);
+        setContactsContent(texts.contacts);
+        setServices(services);
+        setAdvicesContent(advices);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    setAdvantagesIcons(advantagesIconsList);
     setApplicabilityTable(applicabilityTableImage);
     setDisadvantagesContent(disadvantagesContentItems);
-    setphasesIconList(phasesIcons);
-    setPricingContent(pricing);
+    setPhasesIconList(phasesIcons);
     setSurfacesContent(surfaces);
-    setAdvicesContent(advices);
+    // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
-    setPostFormContent(postForm);
-    setContactsContent(contacts);
+    // setPostFormContent(postForm);
+    // setServices(servicesItems);
+    // setPricingContent(pricing);
+    // setAdvantagesText(advantagesTextContent);
+    // setContactsContent(contacts);
   }, []);
 
   return (
@@ -130,7 +134,7 @@ function App() {
           initialSlide={modalInitialSlide}
         />
         )}
-      {isModalWithConfitmationOpen && (
+      {isModalWithConfirmationOpen && (
         <ModalWithConfirmation
           isModalWithCarouselOpen={isModalWithCarouselOpen}
           closeModal={closeModal}

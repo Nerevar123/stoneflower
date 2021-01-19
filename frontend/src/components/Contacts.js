@@ -7,13 +7,13 @@ function Contacts({ content }) {
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  function enableScroll () {
-    console.log('hi')
-    setIsFocused(true);
-  }
-  function disableScroll() {
-    setIsFocused(false);
-  }
+  // function enableScroll () {
+  //   console.log('hi')
+  //   setIsFocused(true);
+  // }
+  // function disableScroll() {
+  //   setIsFocused(false);
+  // }
 
   useEffect(() => {
     if (content.phonePrimary) {

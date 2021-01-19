@@ -1,6 +1,6 @@
-import servicesFurnitureImage from "../images/services-furniture.png";
-import servicesSillImage from "../images/services-sill.png";
-import servicesInteriorImage from "../images/services-interior.png";
+// import servicesFurnitureImage from "../images/services-furniture.png";
+// import servicesSillImage from "../images/services-sill.png";
+// import servicesInteriorImage from "../images/services-interior.png";
 import icon_1 from "../images/icons/advantages-icon-1.svg";
 import icon_2 from "../images/icons/advantages-icon-2.svg";
 import icon_3 from "../images/icons/advantages-icon-3.svg";
@@ -15,13 +15,13 @@ import phaseIcon_1 from "../images/phases-images/1.svg";
 import phaseIcon_2 from "../images/phases-images/2.svg";
 import phaseIcon_3 from "../images/phases-images/3.svg";
 import phaseIcon_4 from "../images/phases-images/4.svg";
-import material_wood_main from "../images/surfaces/wood.png";
+// import material_wood_main from "../images/surfaces/wood.png";
 import material_wood_1 from "../images/surfaces/wood/1.jpg";
 import material_wood_2 from "../images/surfaces/wood/2.jpg";
 import material_wood_3 from "../images/surfaces/wood/3.jpg";
 import material_wood_4 from "../images/surfaces/wood/4.jpg";
 import material_wood_5 from "../images/surfaces/wood/5.jpg";
-import material_stone_main from "../images/surfaces/stone.png";
+// import material_stone_main from "../images/surfaces/stone.png";
 import material_stone_1 from "../images/surfaces/stone/1.jpg";
 import material_stone_2 from "../images/surfaces/stone/2.jpg";
 import material_stone_3 from "../images/surfaces/stone/3.jpg";
@@ -39,7 +39,7 @@ import material_stone_14 from "../images/surfaces/stone/14.jpg";
 import material_stone_15 from "../images/surfaces/stone/15.jpg";
 import material_stone_16 from "../images/surfaces/stone/16.jpg";
 import material_stone_17 from "../images/surfaces/stone/17.jpg";
-import material_cement_main from "../images/surfaces/cement.png";
+// import material_cement_main from "../images/surfaces/cement.png";
 import material_cement_1 from "../images/surfaces/cement/1.jpg";
 import material_cement_2 from "../images/surfaces/cement/2.jpg";
 import material_cement_3 from "../images/surfaces/cement/3.jpg";
@@ -47,7 +47,7 @@ import material_cement_4 from "../images/surfaces/cement/4.jpg";
 import material_cement_5 from "../images/surfaces/cement/5.jpg";
 import material_cement_6 from "../images/surfaces/cement/6.jpg";
 import material_cement_7 from "../images/surfaces/cement/7.jpg";
-import material_design_main from "../images/surfaces/design.png";
+// import material_design_main from "../images/surfaces/design.png";
 import material_design_1 from "../images/surfaces/design/1.jpg";
 import material_design_2 from "../images/surfaces/design/2.jpg";
 import material_design_3 from "../images/surfaces/design/3.jpg";
@@ -77,40 +77,40 @@ import supplier_logo_8 from "../images/suppliers/8.png";
 import supplier_logo_9 from "../images/suppliers/9.png";
 import supplier_logo_10 from "../images/suppliers/10.png";
 
-export const servicesItems = [
-  {
-    image: servicesFurnitureImage,
-    heading: "Производство керамических столешниц, мебели",
-    description:
-      "Кухонные столешницы и фартуки, мебель для ванной, подоконники. Столовая мебель с деревянными подстольями в классическом стиле",
-    _id: "1",
-  },
-  {
-    image: servicesSillImage,
-    heading: "Реновация подоконников",
-    description:
-      "Экологичное использование старых подоконников: без демонтажа, без повреждения откосов и стен, облицовка керамическими «винирами» за один день",
-    _id: "2",
-  },
-  {
-    image: servicesInteriorImage,
-    heading: "Отделка интерьеров. Фасадная и интерьерная подсветка",
-    description:
-      "Полы, стены и потолки из керамики. Контурная подсветка и встроенные светильники.",
-    _id: "3",
-  },
-];
+// export const servicesItems = [
+//   {
+//     image: servicesFurnitureImage,
+//     heading: "Производство керамических столешниц, мебели",
+//     description:
+//       "Кухонные столешницы и фартуки, мебель для ванной, подоконники. Столовая мебель с деревянными подстольями в классическом стиле",
+//     _id: "1",
+//   },
+//   {
+//     image: servicesSillImage,
+//     heading: "Реновация подоконников",
+//     description:
+//       "Экологичное использование старых подоконников: без демонтажа, без повреждения откосов и стен, облицовка керамическими «винирами» за один день",
+//     _id: "2",
+//   },
+//   {
+//     image: servicesInteriorImage,
+//     heading: "Отделка интерьеров. Фасадная и интерьерная подсветка",
+//     description:
+//       "Полы, стены и потолки из керамики. Контурная подсветка и встроенные светильники.",
+//     _id: "3",
+//   },
+// ];
 
-export const advantagesTextContent = {
-  shortTextAccent: "листовым керамическим прокатом",
-  shortTextBeforeAccent: "Мы работаем с ",
-  shortTextAfterAccent:
-    " от ведущих производителей: Laminam, Cotto d’Este, Panaria, Florim, Thesize. Это керамогранит толщиной от 3 до 6 мм и размером листа от 3 до 4,5 кв. метров с уникальными механическими характеристиками и эстетикой. Применяется в качестве финишного покрытия в интерьерах, фасадах, при производстве мебели.",
-  linkText: `Принципиальное отличие
-               от традиционного керамогранита`,
-  expandedText:
-    "Применяется технология горизонтального формования сырой керамической массы при формовании плиты и дальнейший прокат (давление 15 тонн на кв. метр), с последующим  обжигом и сушкой (традиционный керамогранит и керамическая плитка формуются на вертикальных прессах с максимальным давлением 8 тонн). В результате в структуре материала после обжига и сушки не возникает пустот и, как следствие, остаточных напряжений (присущих традиционной технологии прессования в металлическую рамку), что улучшает прочностные и эксплуатационные характеристики, обеспечивает все свойства традиционного керамогранита при существенно меньшей толщине и многократно большей площади плиты. Появляются такие механические свойства, как гибкость и упругость в небольших амплитудах, не присущие другим керамическим материалам. Прокат толщиной 3 мм можно сгибать с радиусом 6 метров (например, оклеивание сводов тоннелей одним листом).",
-};
+// export const advantagesTextContent = {
+//   shortTextAccent: "листовым керамическим прокатом",
+//   shortTextBeforeAccent: "Мы работаем с ",
+//   shortTextAfterAccent:
+//     " от ведущих производителей: Laminam, Cotto d’Este, Panaria, Florim, Thesize. Это керамогранит толщиной от 3 до 6 мм и размером листа от 3 до 4,5 кв. метров с уникальными механическими характеристиками и эстетикой. Применяется в качестве финишного покрытия в интерьерах, фасадах, при производстве мебели.",
+//   linkText: `Принципиальное отличие
+//                от традиционного керамогранита`,
+//   expandedText:
+//     "Применяется технология горизонтального формования сырой керамической массы при формовании плиты и дальнейший прокат (давление 15 тонн на кв. метр), с последующим  обжигом и сушкой (традиционный керамогранит и керамическая плитка формуются на вертикальных прессах с максимальным давлением 8 тонн). В результате в структуре материала после обжига и сушки не возникает пустот и, как следствие, остаточных напряжений (присущих традиционной технологии прессования в металлическую рамку), что улучшает прочностные и эксплуатационные характеристики, обеспечивает все свойства традиционного керамогранита при существенно меньшей толщине и многократно большей площади плиты. Появляются такие механические свойства, как гибкость и упругость в небольших амплитудах, не присущие другим керамическим материалам. Прокат толщиной 3 мм можно сгибать с радиусом 6 метров (например, оклеивание сводов тоннелей одним листом).",
+// };
 
 export const applicabilityTableImage = applicabilityTable;
 
@@ -153,16 +153,16 @@ export const phasesIcons = {
   fourthIcon: phaseIcon_4,
 };
 
-export const pricing = {
-  heading: "расчет цены на изделия и услуги",
-  textMajor: `В связи с минимальным размером листа выбранного вами материала
-    (как правило, это 3000 х 1000 мм, 3000 х 1500 мм), и особенностью его
-    раскроя конечная цена не поддается расчету, применяемому в отношении
-    традиционных облицовочных материалов.`,
-  textMinor: `У нас часто проводятся акции на одиночные изделия из материалов,
-    которыми мы располагаем в остатках.`,
-  buttonText: "заказать расчет",
-};
+// export const pricing = {
+//   heading: "расчет цены на изделия и услуги",
+//   textMajor: `В связи с минимальным размером листа выбранного вами материала
+//     (как правило, это 3000 х 1000 мм, 3000 х 1500 мм), и особенностью его
+//     раскроя конечная цена не поддается расчету, применяемому в отношении
+//     традиционных облицовочных материалов.`,
+//   textMinor: `У нас часто проводятся акции на одиночные изделия из материалов,
+//     которыми мы располагаем в остатках.`,
+//   buttonText: "заказать расчет",
+// };
 
 export const surfaces = {
   shortText: `Помимо изображенных на поверхности материала природных и художественных
@@ -502,27 +502,24 @@ export const suppliers = {
   ],
 };
 
-export const postForm = {
-  heading: "Оставить заявку",
-  subHeading: "Подберем оптимальное решение для вашего интерьера",
-  offerLink: "https://ya.ru",
-};
-export const contacts = {
-  heading: "Наши контакты",
-  address: "г. Ивантеевка, ул. Толмачева 1/2",
-  phonePrimary: "+7 (915) 047 48 11",
-  phoneAdditional: "+7 (963) 782 23 47",
-  emailAddress: "fioredipietra@yandex.ru",
-  howToGetText: "К нам можно добраться любым видом наземного транспорта:",
-  byBusText:
-    "От м. ВДНХ на маршруте 316 до остановки ул. Новая Слобода. Далее пересечь двор «П-образного» жилого дома до дальней от остановки секции, вход на углу дома.",
-  byTrainText:
-    "Москва Ярославская – Фрязино Пассажирская до остановки «Ивантеевка 2», далее пешком на восток через жилой массив к зданию с зелеными башенками на крыше, крыльцо с южного торца здания.",
-  byVehicleText:
-    "От Ярославского шоссе через ближайшие въезды в город Ивантеевку до ул. Карла Маркса. В навигаторе задайте «Студия Каменный цветок» или ул. «Карла Маркса, дом 2»",
-  landmarksDescription:
-    "Общие визуальные ориентиры: дом с бежевым фасадом и зелеными башенками на крыше, на кованых решетках входных дверей и окнах студии увидите наш логотип, тротуар тоже заметный, выложен цветной брусчаткой.",
-};
-
-
-
+// export const postForm = {
+//   heading: "Оставить заявку",
+//   subHeading: "Подберем оптимальное решение для вашего интерьера",
+//   offerLink: "https://ya.ru",
+// };
+// export const contacts = {
+//   heading: "Наши контакты",
+//   address: "г. Ивантеевка, ул. Толмачева 1/2",
+//   phonePrimary: "+7 (915) 047 48 11",
+//   phoneAdditional: "+7 (963) 782 23 47",
+//   emailAddress: "fioredipietra@yandex.ru",
+//   howToGetText: "К нам можно добраться любым видом наземного транспорта:",
+//   byBusText:
+//     "От м. ВДНХ на маршруте 316 до остановки ул. Новая Слобода. Далее пересечь двор «П-образного» жилого дома до дальней от остановки секции, вход на углу дома.",
+//   byTrainText:
+//     "Москва Ярославская – Фрязино Пассажирская до остановки «Ивантеевка 2», далее пешком на восток через жилой массив к зданию с зелеными башенками на крыше, крыльцо с южного торца здания.",
+//   byVehicleText:
+//     "От Ярославского шоссе через ближайшие въезды в город Ивантеевку до ул. Карла Маркса. В навигаторе задайте «Студия Каменный цветок» или ул. «Карла Маркса, дом 2»",
+//   landmarksDescription:
+//     "Общие визуальные ориентиры: дом с бежевым фасадом и зелеными башенками на крыше, на кованых решетках входных дверей и окнах студии увидите наш логотип, тротуар тоже заметный, выложен цветной брусчаткой.",
+// };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef, useRef } from "react";
+import React, { useState } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 
 function SurfacesMobile({ content }) {
@@ -23,12 +23,12 @@ function SurfacesMobile({ content }) {
         >
           <p className="content__text">{content.expandedText}</p>
         </div>
-        <a
+        <button
           onClick={handleTextExpand}
           className={`surfaces__link link ${textExpanded ? "open" : ""}`}
         >
           {textExpanded ? content.linkTextExpanded : content.linkTextMinimized}
-        </a>
+        </button>
       </div>
       <ul className="surfaces__list list">
         {content.materialsList

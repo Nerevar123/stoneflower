@@ -1,53 +1,41 @@
 require("dotenv-flow").config();
 const cors = require("cors");
 const express = require("express");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-// const multer  = require('multer');
-const { celebrate, Joi, errors } = require("celebrate");
-const {
-  ERROR_CODE_404,
-  errorMessage404,
-  checkError,
-} = require("./utils/errors");
-// const {
-//   createUser, login, logout, checkCookies,
-// } = require('./controllers/users');
-// const auth = require('./middlewares/auth');
+// const cookieParser = require("cookie-parser");
+const routes = require("./routes");
+const { errors } = require("celebrate");
+
+const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { PORT = 3000 } = process.env;
-// const upload = multer({ dest: 'uploads/' })
+const {
+  PORT, MONGO_URL, rateLimitConfig, corsConfig,
+} = require('./config');
+
 const app = express();
 
-mongoose
-  .connect("mongodb://localhost:27017/stoneflower", {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("connected-to-DB");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
-    credentials: true,
-  })
-);
+const limiter = rateLimit(rateLimitConfig);
 
+app.use(cors(corsConfig));
+
+app.use(requestLogger);
+
+app.use(limiter);
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
-
-app.use(requestLogger);
-app.use('/uploads', express.static('uploads'));
 
 // app.post('/signin', celebrate({
 //   body: Joi.object().keys({
@@ -66,17 +54,14 @@ app.use('/uploads', express.static('uploads'));
 
 // app.get('/check', checkCookies);
 // app.use('/users', require('./routes/users'));
-app.use("/services", require("./routes/services"));
 
 // app.use('/logout', logout);
 
-app.use("*", (req, res) => {
-  res.status(ERROR_CODE_404).send({ message: errorMessage404 });
-});
+app.use('/uploads', express.static('uploads'));
+app.use(routes);
 
 app.use(errorLogger);
-
 app.use(errors());
-app.use((err, req, res, next) => checkError(err, res, next));
+app.use(errorHandler);
 
 app.listen(PORT);

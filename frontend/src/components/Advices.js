@@ -17,8 +17,8 @@ function Advices({ content }) {
             image={item.image}
             shortText={item.shortText}
             expandedText={item.expandedText}
-            linkTextExpanded={item.linkTextExpanded}
-            linkTextMinimized={item.linkTextMinimized}
+            linkTextExpanded="Скрыть"
+            linkTextMinimized="Читать далее"
           />
         ))}
       </ul>
