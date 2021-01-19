@@ -7,11 +7,11 @@ module.exports.getTexts = (req, res, next) => {
     .then((texts) => {
       let result = {};
       texts.map((text) => {
-        let w = {};
-        const content = text.content.map((item) => {
-          w = { ...w, ...{ [item.name]: item.text } };
+        let content = {};
+        text.content.map((item) => {
+          content = { ...content, ...{ [item.name]: item.text } };
         });
-        result = { ...result, ...{ [text.title]: w } };
+        result = { ...result, ...{ [text.title]: content } };
       });
       res.send(result);
     })
