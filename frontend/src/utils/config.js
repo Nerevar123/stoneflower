@@ -502,6 +502,23 @@ export const suppliers = {
   ],
 };
 
+export const adminItems = [
+  { id: "requests", content: "Заявки" },
+  { id: "lead", content: "Главная" },
+  { id: "services", content: "Услуги" },
+  { id: "advantages", content: "Преимущества" },
+  { id: "disadvantages", content: "Недостатки" },
+  { id: "infostages", content: "Этапы работы" },
+  { id: "pricing", content: "Расчёт цен" },
+  { id: "surfaces", content: "Варианты поверхностей" },
+  { id: "advices", content: "Советы дизайнера" },
+  { id: "portfolio", content: "Портфолио" },
+  { id: "suppliers", content: "Производители" },
+  { id: "postform", content: "Оставить заявку" },
+  { id: "contacts", content: "Контакты" },
+];
+
+
 // export const postForm = {
 //   heading: "Оставить заявку",
 //   subHeading: "Подберем оптимальное решение для вашего интерьера",

@@ -1,0 +1,42 @@
+.admin {
+  width: 1440px;
+  margin: 0 auto 0 auto;
+  height: 1024px;
+}
+.admin__button-block {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 100%;
+  position: relative;
+}
+.admin__floating-block {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  height: 38px;
+  z-index: -1;
+  background: #2F80ED;
+  opacity: 0.1;
+  transition: all 0.2s ease-in-out;
+}
+.admin__button {
+  border: none;
+  margin: 0 auto 8px 0;
+  padding: 10px 0 10px 8px;
+  min-width: 200px;
+  text-align: left;
+  background-color: rgba(0,0,0, 0);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+.admin__button_selected {
+  color: #2F80ED;
+}
+
+.admin__button_type_logout {
+
+}
+
+
