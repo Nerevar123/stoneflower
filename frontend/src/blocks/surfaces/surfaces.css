@@ -31,6 +31,12 @@
 }
 .surfaces__link {
   text-decoration: underline;
+  border: 0;
+  background-color: #fff;
+  padding: 0;
+}
+.surfaces__link:focus {
+  outline: none;
 }
 .surfaces__link:visited {
   text-decoration: none;
@@ -71,9 +77,6 @@
   width: 350px;
 
   transition: all 0.2s ease-in-out;
-}
-
-.surfaces__example-image_loaded {
 }
 
 .surfaces__item-heading {
@@ -166,9 +169,6 @@
   opacity: 1;
 }
 
-.surfaces__example-item_selected {
-
-}
 @media screen and (max-width: 849px) {
   .surfaces {
     margin: 0 14px 0 15px;

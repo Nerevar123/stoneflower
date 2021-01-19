@@ -36,8 +36,15 @@
   max-height: 100vh;
 }
 
-
-
+.advantages__link {
+  border: 0;
+  background-color: #fff;
+  padding: 0;
+  text-align: left;
+}
+.advantages__link:focus {
+  outline: none;
+}
 
 .advantages__list-item {
   padding: 24px;
@@ -56,12 +63,6 @@
     filter: brightness(0) invert(1);
   }
 }
-
-
-
-
-
-
 
 @media screen and (min-width: 1441px) {
   .advantages__list {

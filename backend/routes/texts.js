@@ -10,12 +10,12 @@ const {
 router.get("/", getTexts);
 router.post(
   "/",
-  // celebrate({
-  //   body: Joi.object().keys({
-  //     title: Joi.string().min(2).required(),
-  //     text: Joi.string().min(2).required(),
-  //   }),
-  // }),
+  celebrate({
+    body: Joi.object().keys({
+      title: Joi.string().min(2).required(),
+      content: Joi.array().required(),
+    }),
+  }),
   saveText
 );
 router.delete(
@@ -35,7 +35,7 @@ router.patch(
     }),
     body: Joi.object().keys({
       title: Joi.string().min(2).required(),
-      text: Joi.string().min(2).required(),
+      content: Joi.array().required(),
     }),
   }),
   updateText

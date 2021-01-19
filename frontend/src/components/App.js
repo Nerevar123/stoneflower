@@ -7,7 +7,7 @@ import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
 import {
   // servicesItems,
-  advantagesTextContent,
+    // advantagesTextContent,
   advantagesIconsList,
   applicabilityTableImage,
   disadvantagesContentItems,
@@ -18,7 +18,7 @@ import {
   portfolio,
   suppliers,
   // postForm,
-  contacts,
+  // contacts,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
@@ -69,28 +69,31 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([api.getServices(), api.getTexts()])
-      .then(([services, texts]) => {
+    Promise.all([api.getServices(), api.getTexts(), api.getAdvices()])
+      .then(([services, texts, advices]) => {
         setPostFormContent(texts.postForm);
         setPricingContent(texts.pricing);
+        setAdvantagesText(texts.advantages);
+        setContactsContent(texts.contacts);
         setServices(services);
+        setAdvicesContent(advices);
       })
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    setAdvantagesText(advantagesTextContent);
     setAdvantagesIcons(advantagesIconsList);
     setApplicabilityTable(applicabilityTableImage);
     setDisadvantagesContent(disadvantagesContentItems);
     setPhasesIconList(phasesIcons);
     setSurfacesContent(surfaces);
-    setAdvicesContent(advices);
+    // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
     // setPostFormContent(postForm);
     // setServices(servicesItems);
     // setPricingContent(pricing);
-    setContactsContent(contacts);
+    // setAdvantagesText(advantagesTextContent);
+    // setContactsContent(contacts);
   }, []);
 
   return (

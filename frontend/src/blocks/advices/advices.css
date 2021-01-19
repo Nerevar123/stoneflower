@@ -34,6 +34,12 @@
 .advices__link {
   text-decoration: underline;
   margin: 8px 0 0 0;
+  border: 0;
+  background-color: #fff;
+  padding: 0;
+}
+.advices__link:focus {
+  outline: none;
 }
 .advices__link:visited {
   text-decoration: none;

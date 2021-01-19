@@ -3,10 +3,9 @@ import { Link } from "react-scroll";
 import arrowIcon from "../images/icons/ArrowRight.svg";
 import useWindowSize from "../hooks/useWindowSize";
 
-
 function Advantages({ textContent, icons, showModal, image }) {
   const [textExpanded, setTextExpanded] = useState(false);
-  const slide = 2;
+  // const slide = 2;
   function handleOpenEvent() {
     console.log(image);
     showModal(image);
@@ -29,13 +28,13 @@ function Advantages({ textContent, icons, showModal, image }) {
             </span>
             {textContent.shortTextAfterAccent}
           </p>
-          <a
+          <button
             onClick={handleTextExpand}
             className={`advantages__link link ${textExpanded ? "open" : ""}`}
           >
             <span className="link__accent">{textContent.linkText}</span>
             <div className="link__expand-arrow"></div>
-          </a>
+          </button>
           <div
             className={`content__expand-container ${
               textExpanded ? "content__expand-container_opened" : ""
@@ -63,14 +62,17 @@ function Advantages({ textContent, icons, showModal, image }) {
           </Link>
         )}
         {window.width < 849 && (
-          <a onClick={handleOpenEvent} className="link_type_navigation link">
+          <button
+            onClick={handleOpenEvent}
+            className="link_type_navigation link"
+          >
             таблица применимости
             <img
               src={arrowIcon}
               alt="иконка стрелки"
               className="icon icon_type_arrow"
             />
-          </a>
+          </button>
         )}
       </div>
       <ul className="advantages__list list">
@@ -155,7 +157,6 @@ function Advantages({ textContent, icons, showModal, image }) {
           </p>
         </li>
       </ul>
-
     </article>
   );
 }
