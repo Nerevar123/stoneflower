@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Lead from "./Lead";
 import Advantages from "./Advantages";
 import Surfaces from "./Surfaces";

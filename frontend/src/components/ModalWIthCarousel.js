@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";

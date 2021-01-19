@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "scp -P 49178 -r ./build/* root@ovz1.nerevar123.px7zm.vps.myjino.ru:/root/stoneflower/backend/dist"
   },
   "eslintConfig": {
     "extends": [
