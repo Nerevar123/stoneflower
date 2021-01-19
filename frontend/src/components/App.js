@@ -8,7 +8,7 @@ import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
 import {
   // servicesItems,
-    // advantagesTextContent,
+  // advantagesTextContent,
   advantagesIconsList,
   applicabilityTableImage,
   disadvantagesContentItems,
@@ -58,7 +58,6 @@ function App() {
     setModalWithCarouselOpen(true);
   }
 
-
   function showModalWithConfirmation() {
     setModalWithConfirmationOpen(true);
   }
@@ -100,10 +99,9 @@ function App() {
   return (
     <>
       <Router history={history} basename="/">
-
         <Switch>
           <Route exact path="/">
-          <Header />
+            <Header />
             <Main
               services={services}
               advantagesText={advantagesText}
@@ -124,35 +122,31 @@ function App() {
               contactsContent={contactsContent}
             />
             {isModalWithImageOpen && (
-        <ModalWithImage closeModal={closeModal} image={modalImage} />
-      )}
-{isModalWithCarouselOpen && (
-        <ModalWithCarousel
-          isModalWithCarouselOpen={isModalWithCarouselOpen}
-          closeModal={closeModal}
-          content={portfolioContent}
-          initialSlide={modalInitialSlide}
-        />
-        )}
-      {isModalWithConfirmationOpen && (
-        <ModalWithConfirmation
-          isModalWithCarouselOpen={isModalWithCarouselOpen}
-          closeModal={closeModal}
-          content={portfolioContent}
-          initialSlide={modalInitialSlide}
-        />
-      )}
-      <Footer
-        content={contactsContent}
-      />
+              <ModalWithImage closeModal={closeModal} image={modalImage} />
+            )}
+            {isModalWithCarouselOpen && (
+              <ModalWithCarousel
+                isModalWithCarouselOpen={isModalWithCarouselOpen}
+                closeModal={closeModal}
+                content={portfolioContent}
+                initialSlide={modalInitialSlide}
+              />
+            )}
+            {isModalWithConfirmationOpen && (
+              <ModalWithConfirmation
+                isModalWithCarouselOpen={isModalWithCarouselOpen}
+                closeModal={closeModal}
+                content={portfolioContent}
+                initialSlide={modalInitialSlide}
+              />
+            )}
+            <Footer content={contactsContent} />
           </Route>
           <Route exact path="/admin">
             <Admin />
           </Route>
         </Switch>
       </Router>
-
-
     </>
   );
 }
