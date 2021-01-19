@@ -13,7 +13,6 @@ function SurfacesListItem(props) {
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
-  function f() {}
 
   useEffect(() => {
     if (
