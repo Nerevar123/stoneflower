@@ -10,6 +10,7 @@ import {
   // servicesItems,
   // advantagesTextContent,
   advantagesIconsList,
+  adminItems,
   applicabilityTableImage,
   disadvantagesContentItems,
   phasesIcons,
@@ -143,7 +144,7 @@ function App() {
             <Footer content={contactsContent} />
           </Route>
           <Route exact path="/admin">
-            <Admin />
+            <Admin adminItems={adminItems}/>
           </Route>
         </Switch>
       </Router>

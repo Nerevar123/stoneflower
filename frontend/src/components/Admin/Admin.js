@@ -1,34 +1,17 @@
-import React, { useState, useEffect, useRef, createRef } from "react";
-import {
-  Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useHistory,
-} from "react-router-dom";
-import { pricing } from "../../utils/config";
+import React, { useState, useEffect, createRef } from "react";
 
-function Admin(props) {
+function Admin({ adminItems }) {
   const [selectedItem, setSelectedItem] = useState("requests");
-  const adminItems = [
-    { id: "requests", content: "Заявки" },
-    { id: "lead", content: "Главная" },
-    { id: "services", content: "Услуги" },
-    { id: "advantages", content: "Преимущества" },
-    { id: "disadvantages", content: "Недостатки" },
-    { id: "infostages", content: "Этапы работы" },
-    { id: "pricing", content: "Расчёт цен" },
-    { id: "surfaces", content: "Варианты поверхностей" },
-    { id: "advices", content: "Советы дизайнера" },
-    { id: "portfolio", content: "Портфолио" },
-    { id: "suppliers", content: "Производители" },
-    { id: "postform", content: "Оставить заявку" },
-    { id: "contacts", content: "Контакты" },
-  ];
+  const [offset, setOffset] = useState(0)
+
   let buttonRefs = [];
-  for (let i = 0; i < adminItems.length; i++) {
+
+  adminItems.forEach(() => {
     buttonRefs.push(createRef());
+  });
+  function changeFloatingItemOffset(index) {
+    console.log(buttonRefs[index].current.offsetTop);
+    setOffset(buttonRefs[index].current.offsetTop);
   }
 
   useEffect(() => {
@@ -37,11 +20,16 @@ function Admin(props) {
       ? setSelectedItem(adminItems[index].id)
       : setSelectedItem("requests");
     console.log(selectedItem);
-  }, [selectedItem]);
+
+    changeFloatingItemOffset(index)
+    buttonRefs.forEach((item) => {
+      item.current.id === selectedItem? item.current.classList.add('admin__button_selected'): item.current.classList.remove('admin__button_selected');
+    })
+  }, [selectedItem, adminItems]);
 
   function handleButtonClick(ref) {
-      changeUrl(`edit=${ref.current.id}`);
-      setSelectedItem(ref.current.id)
+    changeUrl(`edit=${ref.current.id}`);
+    setSelectedItem(ref.current.id);
   }
 
   useEffect(() => {
@@ -69,15 +57,26 @@ function Admin(props) {
   }
 
   return (
-    <nav className="admin">
-      {adminItems.map((item, index) => (
-        <button onClick={() => {handleButtonClick(buttonRefs[index])}} ref={buttonRefs[index]} id={item.id} className="test_button">
-          {item.content}
-        </button>
-      ))}
-
+    <main className="admin">
+      <div className="admin__button-block">
+        {adminItems.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              handleButtonClick(buttonRefs[index]);
+            }}
+            ref={buttonRefs[index]}
+            id={item.id}
+            className="admin__button admin__button_type_navigation"
+          >
+            {item.content}
+          </button>
+        ))}
+        <button className="admin__button admin__button_type_logout">Выйти</button>
+        <div className="admin__floating-block" style={{transform: `translateY(${offset}px)`}}></div>
+      </div>
       {selectedItem}
-    </nav>
+    </main>
   );
 }
 
