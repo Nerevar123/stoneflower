@@ -12,7 +12,7 @@ const rateLimitConfig = {
 };
 
 const corsConfig = {
-  origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://stone.ner.works", "https://sarychev.su/stoneflower/"],
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://stone.ner.works", "https://sarychev.su"],
   credentials: true,
 };
 
