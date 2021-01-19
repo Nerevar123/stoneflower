@@ -121,6 +121,8 @@
     width: 294px;
     height: 24px;
     padding: 16px 16px 15px 22px;
+    box-sizing: content-box;
+    border: 0;
   }
   .link__accent {
     font-size: 18px;

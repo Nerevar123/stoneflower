@@ -7,44 +7,27 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // const cookieParser = require("cookie-parser");
 const routes = require("./routes");
-const { celebrate, Joi, errors } = require("celebrate");
+const { errors } = require("celebrate");
 
 const errorHandler = require('./middlewares/errorHandler');
-// const {
-//   createUser, login, logout, checkCookies,
-// } = require('./controllers/users');
-// const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { PORT = 3000, MONGO_URL = "mongodb://localhost:27017/stoneflower" } = process.env;
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
+const {
+  PORT, MONGO_URL, rateLimitConfig, corsConfig,
+} = require('./config');
 
 const app = express();
 
-mongoose
-  .connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("connected-to-DB");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
-    credentials: true,
-  })
-);
+const limiter = rateLimit(rateLimitConfig);
+
+app.use(cors(corsConfig));
 
 app.use(requestLogger);
 

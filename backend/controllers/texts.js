@@ -1,6 +1,6 @@
 const Text = require("../models/text");
 const NotFoundError = require("../errors/not-found-error");
-const { notFoundPageErrorMessage } = require("../utils/constants");
+const { notFoundErrorMessage } = require("../utils/constants");
 
 module.exports.getTexts = (req, res, next) => {
   Text.find({})
@@ -28,7 +28,7 @@ module.exports.saveText = (req, res, next) => {
 
 module.exports.deleteText = (req, res, next) => {
   Text.findById(req.params.id)
-    .orFail(new NotFoundError(notFoundPageErrorMessage))
+    .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
       Text.findByIdAndRemove(req.params.id).then((text) => res.send(text));
     })
@@ -36,17 +36,17 @@ module.exports.deleteText = (req, res, next) => {
 };
 
 module.exports.updateText = (req, res, next) => {
-  const { title, text } = req.body;
+  const { title, content } = req.body;
 
   Text.findByIdAndUpdate(
     req.text._id,
-    { title, text },
+    { title, content },
     {
       new: true,
       runValidators: true,
     }
   )
-    .orFail(new Error("userNotFound"))
+  .orFail(new NotFoundError(notFoundErrorMessage))
     .then((text) => res.send(text))
     .catch(next);
 };

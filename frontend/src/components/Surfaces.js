@@ -31,7 +31,7 @@ function Surfaces({ content }) {
       }
       setExampleRefs(refArray);
     }
-  }, [selectedMaterial]);
+  }, [content.materialsList, selectedMaterial]);
 
   const handleElementClick = (evt) => {
     if (evt.target.closest("li").id !== selectedMaterial) {
@@ -76,12 +76,12 @@ function Surfaces({ content }) {
         >
           <p className="content__text">{content.expandedText}</p>
         </div>
-        <a
+        <button
           onClick={handleTextExpand}
-          className={`surfaces__link link ${textExpanded ? "open" : ""}`}
+          className={`surfaces__link surfaces__link_type_button link ${textExpanded ? "open" : ""}`}
         >
           {textExpanded ? content.linkTextExpanded : content.linkTextMinimized}
-        </a>
+        </button>
       </div>
       <ul className="surfaces__list list">
         {content.materialsList

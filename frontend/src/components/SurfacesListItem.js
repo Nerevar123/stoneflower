@@ -24,7 +24,7 @@ function SurfacesListItem(props) {
     } else {
       setIsSelected(false);
     }
-  }, [props.selectedMaterial]);
+  }, [itemId, props.selectedMaterial, window.width]);
 
   function toggleSliderOpen() {
     if (window.width < 849) {

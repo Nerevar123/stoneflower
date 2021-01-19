@@ -31,6 +31,13 @@ class Api {
       // credentials: "include",
     }).then(this._checkError);
   }
+
+  getAdvices() {
+    return fetch(`${this._baseUrl}/advices`, {
+      headers: this._headers,
+      // credentials: "include",
+    }).then(this._checkError);
+  }
 }
 
 export const api = new Api(apiOptions);
