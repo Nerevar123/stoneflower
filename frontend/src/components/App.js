@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import Admin from "./Admin/Admin";
 import Main from "./Main";
 import ModalWithImage from "./ModalWithImage";
 import { api } from "../utils/api";
@@ -99,9 +100,10 @@ function App() {
   return (
     <>
       <Router history={history} basename="/">
-        <Header />
+
         <Switch>
           <Route exact path="/">
+          <Header />
             <Main
               services={services}
               advantagesText={advantagesText}
@@ -121,14 +123,7 @@ function App() {
               showModalWithConfirmation={showModalWithConfirmation}
               contactsContent={contactsContent}
             />
-          </Route>
-          <Route exact path="/materials">
-            <div className="smth">dqwefewfr2r2sdg3g</div>
-          </Route>
-        </Switch>
-      </Router>
-
-      {isModalWithImageOpen && (
+            {isModalWithImageOpen && (
         <ModalWithImage closeModal={closeModal} image={modalImage} />
       )}
 {isModalWithCarouselOpen && (
@@ -150,6 +145,14 @@ function App() {
       <Footer
         content={contactsContent}
       />
+          </Route>
+          <Route exact path="/admin">
+            <Admin />
+          </Route>
+        </Switch>
+      </Router>
+
+
     </>
   );
 }

@@ -74,7 +74,7 @@
 .content__expand-container_opened {
   margin: 16px 0 0 0;
   visibility: visible;
-  max-height: 100vh;
+  max-height: 300vh;
 }
 .content__text-container_place_surfaces {
   width: 75%;
