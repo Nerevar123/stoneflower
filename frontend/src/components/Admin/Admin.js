@@ -2,16 +2,15 @@ import React, { useState, useEffect, createRef } from "react";
 
 function Admin({ adminItems }) {
   const [selectedItem, setSelectedItem] = useState("requests");
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(0);
 
   let buttonRefs = [];
 
   adminItems.forEach(() => {
     buttonRefs.push(createRef());
   });
-  function changeFloatingItemOffset(index) {
-    console.log(buttonRefs[index].current.offsetTop);
-    setOffset(buttonRefs[index].current.offsetTop);
+  function changeFloatingItemOffset(ref) {
+    ref ? setOffset(ref.current.offsetTop) : setOffset(0);
   }
 
   useEffect(() => {
@@ -20,15 +19,16 @@ function Admin({ adminItems }) {
       ? setSelectedItem(adminItems[index].id)
       : setSelectedItem("requests");
     console.log(selectedItem);
-
-    changeFloatingItemOffset(index)
     buttonRefs.forEach((item) => {
-      item.current.id === selectedItem? item.current.classList.add('admin__button_selected'): item.current.classList.remove('admin__button_selected');
-    })
+      item.current.id === selectedItem
+        ? item.current.classList.add("admin__button_selected")
+        : item.current.classList.remove("admin__button_selected");
+    });
   }, [selectedItem, adminItems]);
 
   function handleButtonClick(ref) {
     changeUrl(`edit=${ref.current.id}`);
+    changeFloatingItemOffset(ref);
     setSelectedItem(ref.current.id);
   }
 
@@ -39,10 +39,12 @@ function Admin({ adminItems }) {
   function handlePageLoad() {
     const searchParams = new URLSearchParams(window.location.search);
     const type = searchParams.get("edit");
-    adminItems.findIndex((item) => item.id === type) !== -1
+    const index = adminItems.findIndex((item) => item.id === type);
+    index !== -1
       ? searchParams.set("edit", type)
       : searchParams.set("edit", "requests");
     setSelectedItem(type);
+    changeFloatingItemOffset(buttonRefs[index]);
     changeUrl(searchParams);
   }
   function changeUrl(searchParams) {
@@ -72,10 +74,18 @@ function Admin({ adminItems }) {
             {item.content}
           </button>
         ))}
-        <button className="admin__button admin__button_type_logout">Выйти</button>
-        <div className="admin__floating-block" style={{transform: `translateY(${offset}px)`}}></div>
+        <button className="admin__button admin__button_type_logout">
+          Выйти
+        </button>
+        <div
+          className="admin__floating-block"
+          style={{ transform: `translateY(${offset}px)` }}
+        ></div>
       </div>
-      {selectedItem}
+      <div className="admin__edit-area">
+        {selectedItem}
+      </div>
+
     </main>
   );
 }
