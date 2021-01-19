@@ -2,6 +2,8 @@
   width: 1440px;
   margin: 0 auto 0 auto;
   height: 1024px;
+  display: flex;
+  flex-direction: row;
 }
 .admin__button-block {
   display: flex;
@@ -30,6 +32,12 @@
   background-color: rgba(0,0,0, 0);
   outline: none;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+.admin__button_type_navigation:hover {
+  color: #2F80ED;
 }
 .admin__button_selected {
   color: #2F80ED;
