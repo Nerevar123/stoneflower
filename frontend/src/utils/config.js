@@ -77,6 +77,13 @@ import supplier_logo_8 from "../images/suppliers/8.png";
 import supplier_logo_9 from "../images/suppliers/9.png";
 import supplier_logo_10 from "../images/suppliers/10.png";
 
+export const lead = {
+  heading: "Студия Керамогранита «Каменный цветок»",
+  item_1: "Производство изделий из листового керамического проката",
+  item_2: "Дизайн интерьеров",
+  item_3: "Cветотехнические решения для дома",
+};
+
 // export const servicesItems = [
 //   {
 //     image: servicesFurnitureImage,
@@ -517,7 +524,6 @@ export const adminItems = [
   { id: "postform", content: "Оставить заявку" },
   { id: "contacts", content: "Контакты" },
 ];
-
 
 // export const postForm = {
 //   heading: "Оставить заявку",
