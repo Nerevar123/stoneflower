@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-scroll";
 
-function Lead() {
+function Lead({ content }) {
   return (
     <article id="main" className="lead">
-      <h1 className="lead__header">Студия Керамогранита «Каменный цветок»</h1>
+      <h1 className="lead__header">{content.heading}</h1>
       <ul className="lead__list list">
         <li className="lead__list-item">
           <p className="lead__text">
-            Производство изделий из листового керамического проката
+          {content.item_1}
           </p>
         </li>
         <li className="lead__list-item">
-          <p className="lead__text">Дизайн интерьеров</p>
+          <p className="lead__text">{content.item_2}</p>
         </li>
         <li className="lead__list-item">
-          <p className="lead__text">Cветотехнические решения для дома</p>
+          <p className="lead__text">{content.item_3}</p>
         </li>
       </ul>
       <Link

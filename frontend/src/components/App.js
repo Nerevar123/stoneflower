@@ -9,6 +9,7 @@ import { api } from "../utils/api";
 import {
   // servicesItems,
   // advantagesTextContent,
+  lead,
   advantagesIconsList,
   adminItems,
   applicabilityTableImage,
@@ -28,6 +29,7 @@ import ModalWithConfirmation from "./ModalWithConfirmation";
 function App() {
   const history = useHistory();
   const [services, setServices] = useState([]);
+  const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
   const [advantagesIcons, setAdvantagesIcons] = useState({});
   const [applicabilityTable, setApplicabilityTable] = useState();
@@ -90,6 +92,7 @@ function App() {
     // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
+    setLeadContent(lead)
     // setPostFormContent(postForm);
     // setServices(servicesItems);
     // setPricingContent(pricing);
@@ -101,7 +104,7 @@ function App() {
     <>
       <Router history={history} basename="/">
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/stoneflower">
             <Header />
             <Main
               services={services}
@@ -121,6 +124,7 @@ function App() {
               postFormContent={postFormContent}
               showModalWithConfirmation={showModalWithConfirmation}
               contactsContent={contactsContent}
+              leadContent={leadContent}
             />
             {isModalWithImageOpen && (
               <ModalWithImage closeModal={closeModal} image={modalImage} />

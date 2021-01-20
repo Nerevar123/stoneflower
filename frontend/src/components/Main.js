@@ -33,11 +33,14 @@ function Main({
   postFormContent,
   showModalWithConfirmation,
   contactsContent,
+  leadContent
 }) {
   const window = useWindowSize();
   return (
     <main className="content">
-      <Lead />
+      <Lead
+        content={leadContent}
+      />
 
       <Services elements={services} />
 
