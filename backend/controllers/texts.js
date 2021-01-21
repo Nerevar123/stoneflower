@@ -9,7 +9,7 @@ module.exports.getTexts = (req, res, next) => {
       texts.map((text) => {
         let content = {};
         text.content.map((item) => {
-          content = { ...content, ...{ [item.name]: item.text } };
+          content = { ...content, ...{ [item.name]: item.text, id: text._id } };
         });
         result = { ...result, ...{ [text.title]: content } };
       });
@@ -39,14 +39,20 @@ module.exports.updateText = (req, res, next) => {
   const { title, content } = req.body;
 
   Text.findByIdAndUpdate(
-    req.text._id,
+    req.params.textId,
     { title, content },
     {
       new: true,
       runValidators: true,
     }
   )
-  .orFail(new NotFoundError(notFoundErrorMessage))
-    .then((text) => res.send(text))
+    .orFail(new NotFoundError(notFoundErrorMessage))
+    .then((text) => {
+      let content = {};
+      text.content.map((item) => {
+        content = { ...content, ...{ [item.name]: item.text, id: text._id } };
+      });
+      res.send(content);
+    })
     .catch(next);
 };
