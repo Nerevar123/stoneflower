@@ -1,77 +1,64 @@
-import React, { useState, useEffect, createRef, useRef } from "react";
-import { lead } from "../../utils/config";
+import React, { useState } from "react";
 import Lead from "../Lead";
+import Label from "../Label";
 
-function AdminLeadEditor() {
-  const [data, setData] = useState(lead);
+function AdminLeadEditor({ validation, onSaveText, leadContent }) {
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(true);
-  const leadHeadingInputRef = useRef();
-  const leadFirstItemImputRef = useRef();
-  const leadSecondItemInputItemRef = useRef();
-  const leadThirdItemInputItemRef = useRef();
-  const [compiledData, setCompiledData] = useState(data);
-  // const [headingText, setHeadingText] = useState(lead.heading);
-  // const [firstItemText, setFirstItemText] = useState(lead.item_1);
-  // const [secondItemText, setSecondItemText] = useState(lead.item_2);
-  // const [thirdItemText, setThirdItemText] = useState(lead.item_3);
+  const [compiledData, setCompiledData] = useState(leadContent);
 
-  function Input({ forwardRef, maxLength, value}) {
-    const [isValid, setIsValid] = useState(true);
-    const [symbolCounter, setSymbolCounter] = useState(0);
-    const eraseInput = () => {
-      forwardRef.current.value = "";
-      setSymbolCounter(0);
+  const { values, isValid, resetForm, setIsValid } = validation;
+
+  React.useEffect(() => {
+    resetForm(leadContent);
+    setIsValid(true);
+    return () => {
+      resetForm();
+      setIsValid(false);
     };
-    const handleCounterChange = (ref) => {
-      const stringLength = ref.current.value.split("").length;
-      setSymbolCounter(stringLength);
-    };
-    useEffect(() => {
-      symbolCounter > 0 && symbolCounter <= maxLength
-        ? setIsValid(true)
-        : setIsValid(false);
-    }, [symbolCounter]);
+  }, [leadContent, resetForm, setIsValid]);
 
-    useEffect(() => {
-      forwardRef.current.value = value;
-      setSymbolCounter(value.split("").length);
-    }, []);
+  // function onSaveLead(data) {
+  //   console.log(data);
+  // }
 
-    return (
-      <>
-        <div className="admin__input-wrapper">
-          <input
-            ref={forwardRef}
-            onChange={() => {
-              handleCounterChange(forwardRef);
-            }}
-            placeholder="Введите текст"
-            className={`admin__input ${isValid ? "" : "admin__input_invalid"}`}
-          />
-          <button
-            type="button"
-            onClick={eraseInput}
-            className="admin__reset-button"
-          ></button>
-        </div>
+  function handleSubmit(e) {
+    e.preventDefault();
 
-        <span className="admin__input-counter">{`${symbolCounter}/${maxLength}`}</span>
-      </>
+    onSaveText(
+      {
+        title: "lead",
+        content: [
+          {
+            name: "leadTitle",
+            text: values.leadTitle,
+          },
+          {
+            name: "leadText1",
+            text: values.leadText1,
+          },
+          {
+            name: "leadText2",
+            text: values.leadText2,
+          },
+          {
+            name: "leadText3",
+            text: values.leadText3,
+          },
+        ],
+      },
+      leadContent.id
     );
   }
 
-  function compileInputData() {
-    setData({
-      heading: leadHeadingInputRef.current.value,
-      item_1: leadFirstItemImputRef.current.value,
-      item_2: leadSecondItemInputItemRef.current.value,
-      item_3: leadThirdItemInputItemRef.current.value,
+  function handlePreview() {
+    setCompiledData({
+      leadTitle: values.leadTitle || "",
+      leadText1: values.leadText1 || "",
+      leadText2: values.leadText2 || "",
+      leadText3: values.leadText3 || "",
     });
   }
-  useEffect(() => {
-    setCompiledData(data);
-  },[data])
 
   return (
     <div className="admin__edit-wrapper">
@@ -111,58 +98,68 @@ function AdminLeadEditor() {
             )}
           </div>
         </form>
-        <form className="admin__form admin__form_type_lead-text">
+        <form
+          className="admin__form admin__form_type_lead-text"
+          name="admin-lead"
+          method="GET"
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={compileInputData} className="admin__preview-link">
+            <p onClick={handlePreview} className="admin__preview-link">
               Показать превью
             </p>
           </div>
-          <div className="admin__input-container">
-            <label className="admin__input-label">Заголовок</label>
-            <Input
-
-              value={data.heading}
-              forwardRef={leadHeadingInputRef}
-              maxLength={45}
-            />
-          </div>
-          <div className="admin__input-container">
-            <label className="admin__input-label">Пункт 1</label>
-            <Input
-
-              value={data.item_1}
-              forwardRef={leadFirstItemImputRef}
-              maxLength={65}
-            />
-          </div>
-          <div className="admin__input-container">
-            <label className="admin__input-label">Пункт 2</label>
-            <Input
-
-              value={data.item_2}
-              forwardRef={leadSecondItemInputItemRef}
-              maxLength={65}
-            />
-          </div>
-          <div className="admin__input-container">
-            <label className="admin__input-label">Пункт 3</label>
-            <Input
-
-              value={data.item_3}
-              forwardRef={leadThirdItemInputItemRef}
-              maxLength={65}
-            />
-          </div>
+          <Label
+            validation={validation}
+            className="admin"
+            name="leadTitle"
+            labelText="Заголовок"
+            type="text"
+            required
+            maxLength="45"
+          />
+          <Label
+            validation={validation}
+            className="admin"
+            name="leadText1"
+            labelText="Пункт 1"
+            type="text"
+            required
+            maxLength="65"
+          />
+          <Label
+            validation={validation}
+            className="admin"
+            name="leadText2"
+            labelText="Пункт 2"
+            type="text"
+            required
+            maxLength="65"
+          />
+          <Label
+            validation={validation}
+            className="admin"
+            name="leadText3"
+            labelText="Пункт 3"
+            type="text"
+            required
+            maxLength="65"
+          />
           <div className="admin__buttons-container">
             <button
-              type="button"
-              className="admin__upload-button admin__upload-button_type_select"
+              type="submit"
+              disabled={!isValid}
+              className={`admin__upload-button admin__upload-button_type_select ${
+                !isValid ? "admin__upload-button_disabled" : ""
+              }`}
             >
               Сохранить
             </button>
             <button
               type="button"
+              onClick={(_) => resetForm(leadContent, {}, true)}
               className="admin__upload-button admin__upload-button_type_cancell"
             >
               Отменить

@@ -4,18 +4,18 @@ import { Link } from "react-scroll";
 function Lead({ content }) {
   return (
     <article id="main" className="lead">
-      <h1 className="lead__header">{content.heading}</h1>
+      <h1 className="lead__header">{content.leadTitle}</h1>
       <ul className="lead__list list">
         <li className="lead__list-item">
           <p className="lead__text">
-          {content.item_1}
+          {content.leadText1}
           </p>
         </li>
         <li className="lead__list-item">
-          <p className="lead__text">{content.item_2}</p>
+          <p className="lead__text">{content.leadText2}</p>
         </li>
         <li className="lead__list-item">
-          <p className="lead__text">{content.item_3}</p>
+          <p className="lead__text">{content.leadText3}</p>
         </li>
       </ul>
       <Link

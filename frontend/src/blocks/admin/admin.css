@@ -206,6 +206,12 @@
 .admin__upload-button_type_cancell:hover {
   color: #eb5757;
 }
+
+.admin__upload-button_disabled {
+  color: gray;
+  background:rgba(0, 0, 0, 0.2)
+}
+
 .admin__input-container {
   display: flex;
   flex-direction: column;
