@@ -47,6 +47,13 @@ class Api {
       // credentials: "include",
     }).then(this._checkError);
   }
+
+  getImages() {
+    return fetch(`${this._baseUrl}/images`, {
+      headers: this._headers,
+      // credentials: "include",
+    }).then(this._checkError);
+  }
 }
 
 export const api = new Api(apiOptions);

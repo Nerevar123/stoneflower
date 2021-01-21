@@ -18,10 +18,6 @@ function AdminLeadEditor({ validation, onSaveText, leadContent }) {
     };
   }, [leadContent, resetForm, setIsValid]);
 
-  // function onSaveLead(data) {
-  //   console.log(data);
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
 
