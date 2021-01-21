@@ -32,6 +32,15 @@ class Api {
     }).then(this._checkError);
   }
 
+  patchText(text, id) {
+    return fetch(`${this._baseUrl}/texts/${id}`, {
+      method: "PATCH",
+      headers: this._headers,
+      // credentials: "include",
+      body: JSON.stringify(text),
+    }).then(this._checkError);
+  }
+
   getAdvices() {
     return fetch(`${this._baseUrl}/advices`, {
       headers: this._headers,

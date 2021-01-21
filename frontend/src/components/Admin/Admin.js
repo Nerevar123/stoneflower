@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from "react";
 import AdminLeadEditor from "./AdminLeadEditor";
 
-function Admin({ adminItems }) {
+function Admin({ adminItems, validation, onSaveText, leadContent }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
 
@@ -62,8 +62,9 @@ function Admin({ adminItems }) {
   return (
     <main className="admin">
       <div className="admin__button-block">
-        <h2 className="admin__sub-heading">Студия Керамогранита
-«Каменный цветок»</h2>
+        <h2 className="admin__sub-heading">
+          Студия Керамогранита «Каменный цветок»
+        </h2>
         {adminItems.map((item, index) => (
           <button
             key={index}
@@ -87,11 +88,13 @@ function Admin({ adminItems }) {
       </div>
       <div className="admin__edit-section">
         {selectedItem === "lead" && (
-          <AdminLeadEditor />
+          <AdminLeadEditor
+            validation={validation}
+            onSaveText={onSaveText}
+            leadContent={leadContent}
+          />
         )}
       </div>
-
-
     </main>
   );
 }

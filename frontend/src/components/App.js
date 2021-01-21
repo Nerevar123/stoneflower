@@ -9,7 +9,7 @@ import { api } from "../utils/api";
 import {
   // servicesItems,
   // advantagesTextContent,
-  lead,
+  // lead,
   advantagesIconsList,
   adminItems,
   applicabilityTableImage,
@@ -17,7 +17,7 @@ import {
   phasesIcons,
   // pricing,
   surfaces,
-  advices,
+  // advices,
   portfolio,
   suppliers,
   // postForm,
@@ -25,9 +25,11 @@ import {
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function App() {
   const history = useHistory();
+  const validation = useFormWithValidation();
   const [services, setServices] = useState([]);
   const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
@@ -78,6 +80,7 @@ function App() {
         setPricingContent(texts.pricing);
         setAdvantagesText(texts.advantages);
         setContactsContent(texts.contacts);
+        setLeadContent(texts.lead);
         setServices(services);
         setAdvicesContent(advices);
       })
@@ -92,13 +95,23 @@ function App() {
     // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     setSuppliersContent(suppliers);
-    setLeadContent(lead)
+    // setLeadContent(lead)
     // setPostFormContent(postForm);
     // setServices(servicesItems);
     // setPricingContent(pricing);
     // setAdvantagesText(advantagesTextContent);
     // setContactsContent(contacts);
   }, []);
+
+  function handleSaveText(data, id) {
+    api
+      .patchText(data, id)
+      .then((data) => {
+        setLeadContent(data, id);
+        console.log("Сохранено");
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <>
@@ -148,7 +161,12 @@ function App() {
             <Footer content={contactsContent} />
           </Route>
           <Route exact path="/admin">
-            <Admin adminItems={adminItems}/>
+            <Admin
+              adminItems={adminItems}
+              validation={validation}
+              onSaveText={handleSaveText}
+              leadContent={leadContent}
+            />
           </Route>
         </Switch>
       </Router>
