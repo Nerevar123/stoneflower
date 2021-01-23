@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 
-const serviceSchema = new mongoose.Schema({
-  heading: {
-    type: String,
-    minlength: 2,
-    required: true,
-  },
-  description: {
+const imageSchema = new mongoose.Schema({
+  name: {
     type: String,
     minlength: 2,
     required: true,
@@ -22,4 +17,4 @@ const serviceSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('service', serviceSchema);
+module.exports = mongoose.model('image', imageSchema);

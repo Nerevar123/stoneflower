@@ -47,6 +47,25 @@ class Api {
       // credentials: "include",
     }).then(this._checkError);
   }
+
+  getImages() {
+    return fetch(`${this._baseUrl}/images`, {
+      headers: this._headers,
+      // credentials: "include",
+    }).then(this._checkError);
+  }
+
+  patchImage(image, id) {
+    const formData = new FormData()
+    formData.append('image', image.image)
+    formData.append('name', image.name)
+
+    return fetch(`${this._baseUrl}/images/${id}`, {
+      method: "PATCH",
+      // credentials: "include",
+      body: formData,
+    }).then(this._checkError);
+  }
 }
 
 export const api = new Api(apiOptions);

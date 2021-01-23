@@ -31,6 +31,7 @@ function App() {
   const history = useHistory();
   const validation = useFormWithValidation();
   const [services, setServices] = useState([]);
+  const [images, setImages] = useState({});
   const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
   const [advantagesIcons, setAdvantagesIcons] = useState({});
@@ -74,8 +75,20 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([api.getServices(), api.getTexts(), api.getAdvices()])
-      .then(([services, texts, advices]) => {
+    Promise.all([
+      api.getServices(),
+      api.getTexts(),
+      api.getAdvices(),
+      api.getImages(),
+    ])
+      .then(([services, texts, advices, images]) => {
+        Object.keys(images).map((key) => {
+          console.log(key)
+          images[key].path =
+            process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
+          return images;
+        });
+        setImages(images);
         setPostFormContent(texts.postForm);
         setPricingContent(texts.pricing);
         setAdvantagesText(texts.advantages);
@@ -83,9 +96,11 @@ function App() {
         setLeadContent(texts.lead);
         setServices(services);
         setAdvicesContent(advices);
+        console.log(images);
       })
       .catch((err) => console.log(err));
   }, []);
+
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
     setApplicabilityTable(applicabilityTableImage);
@@ -107,10 +122,21 @@ function App() {
     api
       .patchText(data, id)
       .then((data) => {
-        setLeadContent(data, id);
-        console.log("Сохранено");
+        window.location.reload();
+        console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
+  }
+
+  function handleSaveImage(data, id) {
+    console.log(data, id);
+    api
+    .patchImage(data, id)
+    .then((data) => {
+      // window.location.reload();
+      console.log("Сохранено", data);
+    })
+    .catch((err) => console.log(err));
   }
 
   return (
@@ -138,6 +164,7 @@ function App() {
               showModalWithConfirmation={showModalWithConfirmation}
               contactsContent={contactsContent}
               leadContent={leadContent}
+              images={images}
             />
             {isModalWithImageOpen && (
               <ModalWithImage closeModal={closeModal} image={modalImage} />
@@ -165,7 +192,9 @@ function App() {
               adminItems={adminItems}
               validation={validation}
               onSaveText={handleSaveText}
+              onSaveImage={handleSaveImage}
               leadContent={leadContent}
+              images={images}
             />
           </Route>
         </Switch>

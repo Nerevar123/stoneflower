@@ -10,7 +10,7 @@ const {
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./uploads");
+    callback(null, "./uploads/advices");
   },
   filename: function (req, file, callback) {
     callback(null, new Date().toISOString().slice(0, 10) + file.originalname);

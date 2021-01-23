@@ -4,9 +4,10 @@
       rgba(255, 255, 255, 0.58) 0.73%,
       rgba(255, 255, 255, 0) 61.78%
     ),
-    url(../../images/lead-bg-image-1.png) no-repeat 0 top,
-    url(../../images/lead-bg-image-2.png) no-repeat 720px top;
-  background-size: 100%, 720px, 720px;
+    url(../../images/lead-bg-image.jpg);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
   margin: 0;
   padding: 13.889% calc(165px - 0.253807107 * (1440px - 100vw)) 10.487% calc(165px - 0.253807107 * (1440px - 100vw));
   font-family: "EBGaramond", Helvetica, sans-serif;

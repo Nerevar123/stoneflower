@@ -3,15 +3,15 @@ const router = require("express").Router();
 const { celebrate, Joi } = require("celebrate");
 const multer = require("multer");
 const {
-  getServices,
-  createService,
-  deleteService,
-  updateService,
-} = require("../controllers/services");
+  getImages,
+  saveImage,
+  deleteImage,
+  updateImage,
+} = require("../controllers/images");
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./uploads/services");
+    callback(null, "./uploads");
   },
   filename: function (req, file, callback) {
     callback(null, new Date().toISOString().slice(0, 10) + file.originalname);
@@ -19,7 +19,6 @@ var storage = multer.diskStorage({
 });
 
 const upload = multer({
-  // dest: 'uploads/',
   storage: storage,
   limits: {
     fileSize: 2 * 1024 * 1024,
@@ -32,42 +31,26 @@ const upload = multer({
   },
 }).single("image");
 
-router.get("/", getServices);
-router.post(
-  "/",
-  upload,
-  celebrate({
-    body: Joi.object()
-      .keys({
-        heading: Joi.string().min(2).required(),
-        description: Joi.string().min(2).required(),
-      })
-      .unknown(true),
-  }),
-  createService
-);
+router.get("/", getImages);
+router.post("/", upload, saveImage);
 router.delete(
-  "/:serviceId",
+  "/:imageId",
   celebrate({
     params: Joi.object().keys({
-      serviceId: Joi.string().alphanum().length(24),
+      imageId: Joi.string().alphanum().length(24),
     }),
   }),
-  deleteService
+  deleteImage
 );
 router.patch(
-  "/:serviceId",
+  "/:imageId",
   upload,
   celebrate({
     params: Joi.object().keys({
-      serviceId: Joi.string().alphanum().length(24),
-    }),
-    body: Joi.object().keys({
-      heading: Joi.string().min(2).required(),
-      description: Joi.string().min(2).required(),
+      imageId: Joi.string().alphanum().length(24),
     }),
   }),
-  updateService
+  updateImage
 );
 
 module.exports = router;

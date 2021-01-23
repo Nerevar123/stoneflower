@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import Lead from "../Lead";
 import Label from "../Label";
 
-function AdminLeadEditor({ validation, onSaveText, leadContent }) {
+function AdminLeadEditor({
+  validation,
+  onSaveText,
+  onSaveImage,
+  leadContent,
+  leadBgImage,
+}) {
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(true);
   const [compiledData, setCompiledData] = useState(leadContent);
+  const [picture, setPicture] = useState(null);
+  const [imgData, setImgData] = useState(null);
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -17,10 +25,6 @@ function AdminLeadEditor({ validation, onSaveText, leadContent }) {
       setIsValid(false);
     };
   }, [leadContent, resetForm, setIsValid]);
-
-  // function onSaveLead(data) {
-  //   console.log(data);
-  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -60,11 +64,39 @@ function AdminLeadEditor({ validation, onSaveText, leadContent }) {
     });
   }
 
+  const onChangePicture = e => {
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  function handleImageSubmit(e) {
+    e.preventDefault();
+
+    onSaveImage(
+      {
+        name: "leadBgImage",
+        image: picture,
+      },
+      leadBgImage.id
+    );
+  }
+
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
         <h2 className="admin__heading">Главная</h2>
-        <form className="admin__form admin__form_type_upload admin__form_place_lead">
+        <form
+          className="admin__form admin__form_type_upload admin__form_place_lead"
+          onSubmit={handleImageSubmit}
+          encType="multipart/form-data"
+          method="POST"
+        >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Изображение</p>
             <p className="admin__preview-link">Показать превью</p>
@@ -77,11 +109,16 @@ function AdminLeadEditor({ validation, onSaveText, leadContent }) {
           </ul>
           <div className="admin__upload-info admin__upload-info_visible">
             <div className="admin__progress-info admin__progress-info_completed"></div>
+            <input
+              className="admin__file-input"
+              type="file"
+              onChange={onChangePicture}
+            />
             <p className="admin__file-name">картинка_1.jpg</p>
           </div>
           <div className="admin__buttons-container">
             <button
-              type="button"
+              type="submit"
               className={`admin__upload-button admin__upload-button_type_select ${
                 isUploading ? "admin__upload-button_state_uploading" : ""
               } ${isUploaded ? "admin__upload-button_state_uploaded" : ""}`}
@@ -168,7 +205,10 @@ function AdminLeadEditor({ validation, onSaveText, leadContent }) {
         </form>
       </div>
       <div className="admin__preview-container">
-        <Lead content={compiledData} />
+        <Lead
+          content={compiledData}
+          leadBgImage={imgData ? imgData : leadBgImage}
+        />
       </div>
     </div>
   );
