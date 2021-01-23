@@ -49,6 +49,7 @@ module.exports.updateImage = (req, res, next) => {
   Image.findById(req.params.imageId)
     .orFail(new Error("notFound"))
     .then((data) => {
+      if (!data) throw new Error("notFound");
       try {
         fs.unlinkSync(data.image.path);
       } catch {

@@ -128,6 +128,17 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleSaveImage(data, id) {
+    console.log(data, id);
+    api
+    .patchImage(data, id)
+    .then((data) => {
+      // window.location.reload();
+      console.log("Сохранено", data);
+    })
+    .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Router history={history} basename="/">
@@ -181,7 +192,9 @@ function App() {
               adminItems={adminItems}
               validation={validation}
               onSaveText={handleSaveText}
+              onSaveImage={handleSaveImage}
               leadContent={leadContent}
+              images={images}
             />
           </Route>
         </Switch>

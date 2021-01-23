@@ -40,7 +40,7 @@ function Main({
   return (
     <main className="content">
       <Lead
-        content={leadContent} images={images}
+        content={leadContent} leadBgImage={images.leadBgImage}
       />
 
       <Services elements={services} />

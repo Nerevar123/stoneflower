@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from "react";
 import AdminLeadEditor from "./AdminLeadEditor";
 
-function Admin({ adminItems, validation, onSaveText, leadContent }) {
+function Admin({ adminItems, validation, onSaveText, onSaveImage, leadContent, images }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
 
@@ -92,6 +92,8 @@ function Admin({ adminItems, validation, onSaveText, leadContent }) {
             validation={validation}
             onSaveText={onSaveText}
             leadContent={leadContent}
+            leadBgImage={images.leadBgImage}
+            onSaveImage={onSaveImage}
           />
         )}
       </div>

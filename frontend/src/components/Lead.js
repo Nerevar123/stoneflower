@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-scroll";
 
-function Lead({ content, images }) {
+function Lead({ content, leadBgImage }) {
   return (
     <article id="main" className="lead" style={{
-      backgroundImage: `url(${images.leadBgImage && images.leadBgImage.path})`
+      backgroundImage: `url(${leadBgImage && (leadBgImage.path || leadBgImage)})`
     }} >
       <h1 className="lead__header">{content.leadTitle}</h1>
       <ul className="lead__list list">
