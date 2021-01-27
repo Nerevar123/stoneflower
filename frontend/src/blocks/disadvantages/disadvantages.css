@@ -2,32 +2,34 @@
   margin: 0 165px;
 }
 
-@media screen and (max-width: 1440px) {
-.disadvantages {
-  margin: 0 calc(165px - 0.253807107 * (1440px - 100vw));
-}
-}
-
 .disadvantages__list {
   margin: 48px 0 0 0;
   padding: 0;
   max-width: 100%;
 }
+
 .disadvantages__list-item {
   display: flex;
   flex-direction: row;
   margin: 32px 0 0 0;
-  max-width: 100%
+  max-width: 100%;
 }
+
 .disadvantages__list-item:first-of-type {
   margin-top: 0;
 }
+
 .disadvantages__list-image {
   width: 65px;
   height: 72px;
   margin: 0 30px 0 0;
 }
 
+@media screen and (max-width: 1440px) {
+  .disadvantages {
+    margin: 0 calc(165px - 0.253807107 * (1440px - 100vw));
+  }
+}
 
 @media screen and (max-width: 849px) {
   .disadvantages {

@@ -48,7 +48,6 @@
 }
 
 .header__order-button {
-  /* margin: 0 11.389% 0 0; */
   margin: 8px 0;
   border: 1px solid #67b5a9;
   max-width: 216px;
@@ -61,6 +60,7 @@
   grid-area: order-button;
   transition: all 0.2s ease-in-out;
 }
+
 .header__order-link {
   display: flex;
   justify-content: center;
@@ -125,8 +125,6 @@
   text-decoration: underline;
   text-decoration-color: transparent;
   text-transform: uppercase;
-  /* вариант для бордера, но мне кажется ни тот ни другой под макет не подходят, там как-будто по середине между ними */
-  /* border-bottom: 1px solid transparent; */
 }
 
 .header__link:hover {
@@ -135,7 +133,6 @@
 
 .header__link_active {
   text-decoration-color: #fff;
-  /* border-color: #fff; */
 }
 
 .header__link:last-of-type {

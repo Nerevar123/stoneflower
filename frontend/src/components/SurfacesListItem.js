@@ -115,7 +115,7 @@ function SurfacesListItem(props) {
               mouseIn ? "surfaces__overlay_visible" : ""
             }`}
           >
-              {props.heading}
+            {props.heading}
           </div>
         </div>
         <p
@@ -124,7 +124,11 @@ function SurfacesListItem(props) {
           } ${isSliderOpen ? "surfaces__item-heading_opened" : " "}
         ${isSelected ? "surfaces__item-heading_opened" : " "}`}
         >
-          {mouseIn ? (isSelected? "скрыть каталог":"посмотреть каталог"): props.heading}
+          {mouseIn
+            ? isSelected
+              ? "скрыть каталог"
+              : "посмотреть каталог"
+            : props.heading}
         </p>
       </div>
       {props.isMobile && props.content && (

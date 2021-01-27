@@ -56,9 +56,9 @@ class Api {
   }
 
   patchImage(image, id) {
-    const formData = new FormData()
-    formData.append('image', image.image)
-    formData.append('name', image.name)
+    const formData = new FormData();
+    formData.append("image", image.image);
+    formData.append("name", image.name);
 
     return fetch(`${this._baseUrl}/images/${id}`, {
       method: "PATCH",

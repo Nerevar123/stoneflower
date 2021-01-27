@@ -4,9 +4,11 @@
   flex-direction: column;
   max-width: 1440px;
 }
+
 .surfaces__link {
   margin: 8px 0 0 0;
 }
+
 .surfaces__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -15,13 +17,13 @@
   margin: 0 0 0 0;
   column-gap: 2.701%;
 }
+
 .surfaces__list-item {
   margin: 30px 0 0 0;
   width: 100%;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
-
 }
 .surfaces__image-container {
   display: flex;
@@ -29,23 +31,28 @@
   padding: 0;
   position: relative;
 }
+
 .surfaces__link {
   text-decoration: underline;
   border: 0;
   background-color: #fff;
   padding: 0;
 }
+
 .surfaces__link:focus {
   outline: none;
 }
+
 .surfaces__link:visited {
   text-decoration: none;
   color: inherit;
 }
+
 .surfaces__link_place_list {
   text-decoration: none;
   color: inherit;
 }
+
 .surfaces__overlay {
   position: absolute;
   width: 100%;
@@ -75,7 +82,6 @@
 
 .surfaces__example-image {
   width: 350px;
-
   transition: all 0.2s ease-in-out;
 }
 
@@ -96,15 +102,18 @@
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 }
+
 .surfaces__item-heading_highlited {
   color: #ffffff;
   background: #995750;
 }
+
 .surfaces__item-heading_opened {
-  background: #75978C;
+  background: #75978c;
   color: #ffffff;
-  border: 1px solid #75978C;
+  border: 1px solid #75978c;
 }
+
 .surfaces__materials-container {
   min-width: calc(100%);
   max-height: 0px;
@@ -115,6 +124,7 @@
   overflow: hidden;
   justify-content: flex-start;
 }
+
 .surfaces__materials-container_opened {
   flex-direction: row;
   flex-wrap: wrap;
@@ -122,6 +132,7 @@
   padding: 40px;
   max-height: 300vh;
 }
+
 .surfaces__example-item {
   margin: 0 30px 24px 0;
   position: relative;
@@ -130,23 +141,25 @@
   overflow: hidden;
   transition: all 0.4s ease-in-out;
 }
+
 .surfaces__example-item_selected {
   width: 350px;
   filter: drop-shadow(0px 0px 24px rgba(180, 186, 173, 0.5));
 }
+
 .surfaces__material-description {
   position: absolute;
   bottom: 0;
   left: 0;
   width: calc(100% - 8px);
   color: #000;
-  font-family: 'FuturaBookC', Helvetica, sans-serif;
+  font-family: "FuturaBookC", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.3;
   letter-spacing: 0.04em;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 14px 0 0 8px;
   min-height: 34px;
   margin: 0;
@@ -155,6 +168,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .surfaces__scroll-link {
   display: flex;
   min-width: 100%;
@@ -165,6 +179,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .surfaces__material-description_visible {
   opacity: 1;
 }
@@ -197,14 +212,11 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-
   }
 
   .surfaces__example-image_mobile {
     width: 100%;
-
   }
-
 
   .surfaces__list {
     display: flex;
@@ -212,9 +224,7 @@
   }
   .surfaces__list-item {
     margin: 0 0 32px 0;
-
   }
-
 
   .surfaces__list {
     grid-template-columns: 1fr;

@@ -28,7 +28,7 @@ function useFormWithValidation() {
     setValues({ ...values, [name]: "" });
     setErrors({ ...errors, [name]: "" });
     setIsValid(false);
-  }
+  };
 
   return {
     values,

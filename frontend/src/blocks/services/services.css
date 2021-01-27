@@ -19,10 +19,12 @@
   width: 31.532%;
   min-width: 265px;
 }
+
 .services__image {
   margin: 0;
   width: 100%;
 }
+
 .services__title {
   margin: 20px 0 15px 0;
   font-family: "EBGaramond", Helvetica, sans-serif;
@@ -59,9 +61,7 @@
   }
   .services__title {
     margin: 13px 0 8px 0;
-
   }
-
 }
 
 @media screen and (max-width: 373px) {

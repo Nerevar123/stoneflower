@@ -13,11 +13,8 @@ function Surfaces({ content }) {
   // const window = useWindowSize();
 
   function handleExampleSelection(evt) {
-
     setSelectedExample(evt.target.closest(".surfaces__example-item"));
-
   }
-
 
   useEffect(() => {
     if (selectedMaterial !== null) {
@@ -46,7 +43,7 @@ function Surfaces({ content }) {
   useEffect(() => {
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
-      examples.current.scrollIntoView({block: "center", behavior: "smooth"})
+      examples.current.scrollIntoView({ block: "center", behavior: "smooth" });
     } else {
       setMaterialListOpened(false);
     }
@@ -78,7 +75,9 @@ function Surfaces({ content }) {
         </div>
         <button
           onClick={handleTextExpand}
-          className={`surfaces__link surfaces__link_type_button link ${textExpanded ? "open" : ""}`}
+          className={`surfaces__link surfaces__link_type_button link ${
+            textExpanded ? "open" : ""
+          }`}
         >
           {textExpanded ? content.linkTextExpanded : content.linkTextMinimized}
         </button>
@@ -104,7 +103,8 @@ function Surfaces({ content }) {
             ))
           : ""}
       </ul>
-      <div ref={examples}
+      <div
+        ref={examples}
         onClick={handleExampleSelection}
         className={`surfaces__materials-container ${
           materialListOpened ? "surfaces__materials-container_opened" : ""

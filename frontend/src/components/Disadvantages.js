@@ -8,7 +8,7 @@ function Disadvantages({ tableItems }) {
         Недостатки популярных аналогов в сегменте столешниц и фасадов
       </h2>
       <ul className="disadvantages__list list">
-      {tableItems.map((item) => (
+        {tableItems.map((item) => (
           <DisadvantagesItem
             item={item}
             key={item._id}

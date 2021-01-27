@@ -8,7 +8,6 @@ function SurfacesMobile({ content }) {
     setTextExpanded(!textExpanded);
   }
 
-
   return (
     <article id="surfaces" className="surfaces">
       <h2 className="content__title content__title_place_surfaces">
@@ -33,11 +32,7 @@ function SurfacesMobile({ content }) {
       <ul className="surfaces__list list">
         {content.materialsList
           ? content.materialsList.map((item) => (
-              <li
-                id={item._id}
-                key={item._id}
-                className="surfaces__list-item"
-              >
+              <li id={item._id} key={item._id} className="surfaces__list-item">
                 <SurfacesListItem
                   content={item.materialExamples}
                   isMobile={true}

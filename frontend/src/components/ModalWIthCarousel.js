@@ -7,22 +7,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
 function ModalWithCarousel({
   closeModal,
   initialSlide,
   content,
   isModalWithCarouselOpen,
 }) {
-
-
   function getFocus() {
-    const el = document.querySelector('.modal__image-container');
+    const el = document.querySelector(".modal__image-container");
     el.focus();
   }
-
-
 
   const window = useWindowSize();
 
@@ -104,12 +98,15 @@ function ModalWithCarousel({
                 className="modal__close-button button modal__close-button_place_carousel"
               ></button>
             )}
-            <Slider {...settings} >
+            <Slider {...settings}>
               {content &&
                 content.map((item) => (
-                  <div key={item._id} className="modal__image-container" onLoad={getFocus}>
+                  <div
+                    key={item._id}
+                    className="modal__image-container"
+                    onLoad={getFocus}
+                  >
                     <img
-
                       key={item._id}
                       alt="img"
                       id={item._id}

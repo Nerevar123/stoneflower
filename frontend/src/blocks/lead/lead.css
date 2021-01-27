@@ -9,11 +9,12 @@
   background-position: top;
   background-size: cover;
   margin: 0;
-  padding: 13.889% calc(165px - 0.253807107 * (1440px - 100vw)) 10.487% calc(165px - 0.253807107 * (1440px - 100vw));
+  padding: 13.889% calc(165px - 0.253807107 * (1440px - 100vw)) 10.487%
+    calc(165px - 0.253807107 * (1440px - 100vw));
   font-family: "EBGaramond", Helvetica, sans-serif;
   position: relative;
   z-index: 2;
-  color: #335E58;
+  color: #335e58;
   display: flex;
   flex-direction: column;
   min-width: 291px;
@@ -90,18 +91,20 @@
 .lead__link:hover {
   background: #75978c;
 }
+
 @media screen and (min-width: 1440px) {
   .lead {
     background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.58) 0.73%,
-      rgba(255, 255, 255, 0) 61.78%
-    ),
-    url(../../images/lead-bg-image-1.png) no-repeat left top,
-    url(../../images/lead-bg-image-2.png) no-repeat right top;
+        90deg,
+        rgba(255, 255, 255, 0.58) 0.73%,
+        rgba(255, 255, 255, 0) 61.78%
+      ),
+      url(../../images/lead-bg-image-1.png) no-repeat left top,
+      url(../../images/lead-bg-image-2.png) no-repeat right top;
     background-size: 100%, 50%, 50%;
   }
 }
+
 @media screen and (max-width: 849px) {
   .lead {
     background: linear-gradient(
@@ -144,6 +147,7 @@
     top: 34px;
   }
 }
+
 @media screen and (max-width: 374px) {
   .lead__link {
     align-self: center;

@@ -39,9 +39,7 @@ function Main({
   const window = useWindowSize();
   return (
     <main className="content">
-      <Lead
-        content={leadContent} leadBgImage={images.leadBgImage}
-      />
+      <Lead content={leadContent} leadBgImage={images.leadBgImage} />
 
       <Services elements={services} />
 

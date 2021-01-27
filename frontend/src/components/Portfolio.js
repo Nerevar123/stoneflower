@@ -6,13 +6,11 @@ import arrowRight from "../images/slider/ArrowRight.svg";
 import arrowLeft from "../images/slider/ArrowLeft.svg";
 import useWindowSize from "../hooks/useWindowSize";
 
-
 function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
   const window = useWindowSize();
 
   function handleImageClick(evt) {
     showModal(evt.target.id);
-
   }
   function NextArrow(props) {
     const { className, style, onClick } = props;
@@ -55,39 +53,38 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     initialSlide: 0,
     speed: 500,
     slidesToShow: 1,
-    centerMode: window.width > 849? true: false,
+    centerMode: window.width > 849 ? true : false,
     variableWidth: true,
     adaptiveHeight: true,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     accessibility: false,
-    draggable: false
+    draggable: false,
   };
 
   return (
     <article className="portfolio">
-      <h2 className="content__title content__title_place_portfolio">Портфолио</h2>
+      <h2 className="content__title content__title_place_portfolio">
+        Портфолио
+      </h2>
       <div className="portfolio__slider-container">
         <Slider {...settings}>
-        {content &&
-          content.map((item) => (
-            <div
-              key={item._id}
-              className="portfolio__slide"
-            >
-              <img
-                key={item._id}
-                alt="img"
-                id={item._id}
-                src={item.image}
-                className="portfolio__image"
-                draggable="false"
-                onClick={handleImageClick}
-              />
-            </div>
-          ))}
-      </Slider>
+          {content &&
+            content.map((item) => (
+              <div key={item._id} className="portfolio__slide">
+                <img
+                  key={item._id}
+                  alt="img"
+                  id={item._id}
+                  src={item.image}
+                  className="portfolio__image"
+                  draggable="false"
+                  onClick={handleImageClick}
+                />
+              </div>
+            ))}
+        </Slider>
       </div>
     </article>
   );

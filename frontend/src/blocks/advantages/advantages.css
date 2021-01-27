@@ -42,6 +42,7 @@
   padding: 0;
   text-align: left;
 }
+
 .advantages__link:focus {
   outline: none;
 }
@@ -53,10 +54,11 @@
   border-radius: 8px;
   transition: all 0.1s ease-in-out;
 }
-@media(hover: hover) and (pointer: fine) {
+
+@media (hover: hover) and (pointer: fine) {
   .advantages__list-item:hover {
-    border: 1px solid #75978C;
-    background-color: #75978C;
+    border: 1px solid #75978c;
+    background-color: #75978c;
     color: #fff;
   }
   .advantages__list-item:hover .advantages__icon_place_table {
@@ -72,7 +74,6 @@
 }
 
 @media screen and (max-width: 1000px) {
-
   .advantages__link_type_navigation {
     width: 250px;
     min-width: 250px;
@@ -81,7 +82,6 @@
   }
   .advantages_icon_type_arrow {
     margin: 15px 5px 0 10px;
-
   }
   .advantages__text-container {
     width: 65%;
@@ -100,7 +100,7 @@
   .advantages__info-block {
     margin-top: 14px;
   }
-  .advantages__text-container{
+  .advantages__text-container {
     width: calc(100% - 15px);
     padding-right: 15px;
   }
@@ -136,4 +136,3 @@
     padding: 8px;
   }
 }
-

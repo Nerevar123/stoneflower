@@ -8,7 +8,11 @@ function AdvicesItem(props) {
   }
   return (
     <li className="advices__item">
-      <img alt={props.heading} className="advices__image" src={process.env.REACT_APP_URL + props.image.path}/>
+      <img
+        alt={props.heading}
+        className="advices__image"
+        src={process.env.REACT_APP_URL + props.image.path}
+      />
       <div className="content__text-container content__text-container_place_advices">
         <h3 className="advices__title">{props.heading}</h3>
         <p className="content__text">{props.shortText}</p>
@@ -26,7 +30,6 @@ function AdvicesItem(props) {
           {textExpanded ? props.linkTextExpanded : props.linkTextMinimized}
         </button>
       </div>
-
     </li>
   );
 }

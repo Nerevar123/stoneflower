@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";
@@ -15,8 +15,6 @@ import "swiper/swiper-bundle.min.css";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Keyboard]);
 
-
-
 function ModalWithCarousel({ closeModal, initialSlide, content }) {
   const window = useWindowSize();
 
@@ -27,7 +25,6 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
   const slide = parseInt(initialSlide);
 
   return (
-
     <Modal
       closeModal={closeModal}
       carousel={true}
@@ -35,7 +32,7 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-          {window.width > 849 && (
+            {window.width > 849 && (
               <button
                 onClick={handleClose}
                 className="modal__close-button button modal__close-button_place_carousel"
@@ -88,7 +85,7 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
                     />
                   </SwiperSlide>
                 ))}
-                {content &&
+              {content &&
                 content.map((item) => (
                   <SwiperSlide key={item._id}>
                     <img
@@ -104,36 +101,34 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
                 ))}
             </Swiper>
           </div>
-              <img
-                className="swiper-button swiper-button-prev"
-                src={arrowLeft}
-                alt="Иконка"
-                style={{
-                  width: "65px",
-                  height: "56px",
-                  left: "60px",
-                  outline: "none",
-                  filter: "brightness(0) invert(1)",
-                }}
-              />
+          <img
+            className="swiper-button swiper-button-prev"
+            src={arrowLeft}
+            alt="Иконка"
+            style={{
+              width: "65px",
+              height: "56px",
+              left: "60px",
+              outline: "none",
+              filter: "brightness(0) invert(1)",
+            }}
+          />
 
-              <img
-                className="swiper-button swiper-button-next"
-                src={arrowRight}
-                alt="Иконка"
-                style={{
-                  width: "65px",
-                  height: "56px",
-                  right: "60px",
-                  outline: "none",
-                  filter: "brightness(0) invert(1)",
-                }}
-              />
-
+          <img
+            className="swiper-button swiper-button-next"
+            src={arrowRight}
+            alt="Иконка"
+            style={{
+              width: "65px",
+              height: "56px",
+              right: "60px",
+              outline: "none",
+              filter: "brightness(0) invert(1)",
+            }}
+          />
         </>
       }
     />
-
-    );
+  );
 }
 export default ModalWithCarousel;

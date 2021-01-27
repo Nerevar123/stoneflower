@@ -13,19 +13,23 @@ function Suppliers({ content }) {
         {content.subheading}
       </p>
       <ul className="suppliers__list list">
-        {content.suppliersData && content.suppliersData.map((item) => (
-
-          <li key={item._id} className="suppliers__list-item">
-            <a className="suppliers__link" href={item.link} target="_blank" rel="noreferrer">
-             <img
-              className="suppliers__logo"
-              alt="Логотип"
-              src={item.logo}
-            />
-          </a>
-          </li>
-        ))}
-
+        {content.suppliersData &&
+          content.suppliersData.map((item) => (
+            <li key={item._id} className="suppliers__list-item">
+              <a
+                className="suppliers__link"
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="suppliers__logo"
+                  alt="Логотип"
+                  src={item.logo}
+                />
+              </a>
+            </li>
+          ))}
       </ul>
     </article>
   );
