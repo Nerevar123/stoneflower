@@ -156,6 +156,7 @@ function AdminLeadEditor({
             type="text"
             required
             maxLength="45"
+            withCount
           />
           <Label
             validation={validation}
@@ -165,6 +166,7 @@ function AdminLeadEditor({
             type="text"
             required
             maxLength="65"
+            withCount
           />
           <Label
             validation={validation}
@@ -174,6 +176,7 @@ function AdminLeadEditor({
             type="text"
             required
             maxLength="65"
+            withCount
           />
           <Label
             validation={validation}
@@ -183,6 +186,7 @@ function AdminLeadEditor({
             type="text"
             required
             maxLength="65"
+            withCount
           />
           <div className="admin__buttons-container">
             <button

@@ -6,6 +6,8 @@ function Label({
   name,
   labelText,
   maxLength,
+  placeholder = "Введите текст",
+  withCount,
   ...props
 }) {
   const { values, errors, handleChange, resetInput } = validation;
@@ -21,19 +23,23 @@ function Label({
           }`}
           value={values[name] || ""}
           onChange={handleChange}
-          placeholder="Введите текст"
+          placeholder={placeholder}
           maxLength={maxLength}
           {...props}
         />
-        <button
-          type="button"
-          onClick={resetInput}
-          className={`${className}__reset-button`}
-        />
+        {withCount && (
+          <button
+            type="button"
+            onClick={resetInput}
+            className={`${className}__reset-button`}
+          />
+        )}
       </div>
-      <span className={`${className}__input-counter`}>{`${
-        values[name] ? values[name].length : 0
-      }/${maxLength}`}</span>
+      {withCount && (
+        <span className={`${className}__input-counter`}>{`${
+          values[name] ? values[name].length : 0
+        }/${maxLength}`}</span>
+      )}
     </div>
   );
 }

@@ -4,7 +4,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Admin from "./Admin/Admin";
 import Main from "./Main";
+import Login from "./Login";
 import ModalWithImage from "./ModalWithImage";
+import PageNotFound from "./PageNotFound";
 import { api } from "../utils/api";
 import {
   // servicesItems,
@@ -26,6 +28,7 @@ import {
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
 import useFormWithValidation from "../hooks/useFormWithValidation";
+// import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const history = useHistory();
@@ -52,6 +55,7 @@ function App() {
     false
   );
   const [contactsContent, setContactsContent] = useState({});
+  // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   function showModalWithImage(image) {
     setModalImage(image);
@@ -117,6 +121,26 @@ function App() {
     // setAdvantagesText(advantagesTextContent);
     // setContactsContent(contacts);
   }, []);
+
+  // function handleLogin(user) {
+  //   setIsSaving(true);
+  //   api
+  //     .login(user)
+  //     .then((user) => {
+  //       setIsLoggedIn(true);
+  //     })
+  //     .catch((err) => {
+  //       if (typeof err === "object") {
+  //         validation.setErrors({ submit: "Ошибка сервера" });
+  //       } else {
+  //         validation.setErrors({ submit: err });
+  //       }
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setIsSaving(false);
+  //     });
+  // }
 
   function handleSaveText(data, id) {
     api
@@ -187,7 +211,11 @@ function App() {
             )}
             <Footer content={contactsContent} />
           </Route>
+          <Route exact path="/login">
+            <Login validation={validation} />
+          </Route>
           <Route exact path="/admin">
+            {/* <ProtectedRoute exact path="/admin" loggedIn={isLoggedIn}> */}
             <Admin
               adminItems={adminItems}
               validation={validation}
@@ -196,6 +224,10 @@ function App() {
               leadContent={leadContent}
               images={images}
             />
+            {/* </ProtectedRoute> */}
+          </Route>
+          <Route path="*">
+            <PageNotFound />
           </Route>
         </Switch>
       </Router>
