@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 
-function ModalWithImage({ image, closeModal}) {
+function ModalWithImage({ image, closeModal }) {
   function handleClose() {
     closeModal();
   }

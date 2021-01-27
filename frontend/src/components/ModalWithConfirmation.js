@@ -19,9 +19,9 @@ function ModalWithConfirmation({ closeModal }) {
               {`Спасибо за вашу заявку!
               В ближайшее время мы с вами свяжемся.`}
             </p>
-          <button className="modal__button button" onClick={handleClose}>
-            ок
-          </button>
+            <button className="modal__button button" onClick={handleClose}>
+              ок
+            </button>
           </div>
         </>
       }

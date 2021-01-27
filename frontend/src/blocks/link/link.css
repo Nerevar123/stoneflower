@@ -18,6 +18,7 @@
   top: 0;
   left: 0;
 }
+
 .link_type_navigation {
   position: sticky;
   top: 96px;
@@ -39,9 +40,11 @@
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
+
 .link_type_navigation:hover {
   background-color: #335e58;
 }
+
 .link__accent {
   display: inline-flex;
   margin: 0 14px 0 0;
@@ -55,6 +58,7 @@
   height: 24px;
   margin: 0px 0 0 0;
 }
+
 .link__expand-arrow {
   position: relative;
   margin: 0;
@@ -97,9 +101,11 @@
   min-width: 207px;
   transition: all 0.2s ease-in-out;
 }
+
 .link_place_pricing:hover {
   background-color: #335e58;
 }
+
 @media screen and (max-width: 1000px) {
   .link_type_navigation {
     width: 250px;
@@ -107,7 +113,6 @@
     height: 50px;
     padding: 17px 10px 15px 10px;
   }
-
   .link_place_pricing {
     width: 209px;
     min-width: 209px;
@@ -115,6 +120,7 @@
     height: 24px;
   }
 }
+
 @media screen and (max-width: 849px) {
   .link_type_navigation {
     margin: 22px 0 0 0;

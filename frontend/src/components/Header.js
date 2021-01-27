@@ -75,11 +75,18 @@ function Header() {
             </Link>
           </nav>
 
-            <button className="header__order-button button">
-            <Link className="header__order-link" to="form" spy={false} smooth={true} offset={-200} duration={500}>
-              Оставить заявку</Link>
-            </button>
-
+          <button className="header__order-button button">
+            <Link
+              className="header__order-link"
+              to="form"
+              spy={false}
+              smooth={true}
+              offset={-200}
+              duration={500}
+            >
+              Оставить заявку
+            </Link>
+          </button>
         </>
       )}
       {window.width < 850 && (
@@ -159,8 +166,17 @@ function Header() {
               className="header__order-button button"
               onClick={toggleMenuOpen}
             >
-              <Link onClick={toggleMenuOpen} className="header__order-link" to="form" spy={false} smooth={true} offset={-200} duration={500}>
-              Оставить заявку</Link>
+              <Link
+                onClick={toggleMenuOpen}
+                className="header__order-link"
+                to="form"
+                spy={false}
+                smooth={true}
+                offset={-200}
+                duration={500}
+              >
+                Оставить заявку
+              </Link>
             </button>
           </div>
           <div className="header__overlay" onClick={toggleMenuOpen}></div>

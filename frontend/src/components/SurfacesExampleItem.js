@@ -6,13 +6,10 @@ function SurfacesExampleItem({
   selectedExample,
   setSelectedExample,
 }) {
-
-
-
   return (
     <div
-      className={`surfaces__example-item ${forwardRef &&
-        selectedExample === forwardRef.current
+      className={`surfaces__example-item ${
+        forwardRef && selectedExample === forwardRef.current
           ? "surfaces__example-item_selected"
           : ""
       }`}

@@ -4,26 +4,31 @@
   flex-direction: column;
   max-width: 1440px;
 }
+
 .advices__list {
   margin: 32px 0 0 0;
   padding: 0;
 }
+
 .advices__item {
   display: flex;
   flex-direction: row;
   margin: 40px 0 0 0;
 }
+
 .advices__item:first-of-type {
   margin-top: 0;
 }
+
 .advices__image {
   width: 350px;
   height: 280px;
   margin: 0 30px 0 0;
 }
+
 .advices__title {
   margin: 0 0 16px 0;
-  font-family: 'EBGaramond', Helvetica, sans-serif;
+  font-family: "EBGaramond", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -31,6 +36,7 @@
   letter-spacing: 0.04em;
   color: #995750;
 }
+
 .advices__link {
   text-decoration: underline;
   margin: 8px 0 0 0;
@@ -38,14 +44,15 @@
   background-color: #fff;
   padding: 0;
 }
+
 .advices__link:focus {
   outline: none;
 }
+
 .advices__link:visited {
   text-decoration: none;
   color: inherit;
 }
-
 
 @media screen and (max-width: 849px) {
   .advices {

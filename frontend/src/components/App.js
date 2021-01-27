@@ -83,7 +83,7 @@ function App() {
     ])
       .then(([services, texts, advices, images]) => {
         Object.keys(images).map((key) => {
-          console.log(key)
+          console.log(key);
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
           return images;
@@ -131,12 +131,12 @@ function App() {
   function handleSaveImage(data, id) {
     console.log(data, id);
     api
-    .patchImage(data, id)
-    .then((data) => {
-      // window.location.reload();
-      console.log("Сохранено", data);
-    })
-    .catch((err) => console.log(err));
+      .patchImage(data, id)
+      .then((data) => {
+        // window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

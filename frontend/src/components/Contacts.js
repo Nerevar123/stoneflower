@@ -143,8 +143,9 @@ function Contacts({ content }) {
         </div>
 
         <iframe
-
-          className={`contacts__map ${isFocused?'contacts__map_enabled': ''}`}
+          className={`contacts__map ${
+            isFocused ? "contacts__map_enabled" : ""
+          }`}
           title="map"
           src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
           frameBorder="0"

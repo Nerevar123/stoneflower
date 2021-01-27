@@ -15,33 +15,33 @@ function Phases({ phasesIcons }) {
 и расчет стоимости`}</p>
         </div>
         <div className="phases__scheme-element">
-        <img
+          <img
             alt="Иконка этапов"
             className="phases__phase-image"
             src={phasesIcons.secondIcon}
           />
-           <p className="phases_description">{`Выезд замерщика
+          <p className="phases_description">{`Выезд замерщика
           на объект`}</p>
         </div>
         <div className="phases__scheme-element">
-        <img
+          <img
             alt="Иконка этапов"
             className="phases__phase-image"
             src={phasesIcons.thirdIcon}
           />
-           <p className="phases_description">{`Оформление
+          <p className="phases_description">{`Оформление
            договора`}</p>
         </div>
         <div className="phases__scheme-element">
-        <img
+          <img
             alt="Иконка этапов"
             className="phases__phase-image"
             src={phasesIcons.fourthIcon}
           />
-            <p className="phases_description">{`Производство
+          <p className="phases_description">{`Производство
            и монтаж изделия`}</p>
         </div>
-        <div className="pahses__scheme-line"></div>
+        <div className="phases__scheme-line"></div>
         {/* <img
             alt="Иконка этапов"
             className="phases__phase-image"
