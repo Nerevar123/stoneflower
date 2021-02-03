@@ -27,8 +27,7 @@ mongoose.connect(MONGO_URL, {
 
 const limiter = rateLimit(rateLimitConfig);
 
-// app.use(cors(corsConfig));
-app.use(cors());
+app.use(cors(corsConfig));
 
 app.use(requestLogger);
 
