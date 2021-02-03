@@ -279,6 +279,7 @@
   }
   .surfaces__image-container {
     height: 328px;
+    max-height: fit-content;
   }
   .surfaces__image_place_slider {
     height: 328px;

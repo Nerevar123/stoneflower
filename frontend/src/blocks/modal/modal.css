@@ -147,6 +147,9 @@
   .modal__image-container_type_regular {
     width: 100%;
   }
+  .modal__slider {
+    touch-action:  auto!important;
+  }
 }
 @media screen and (orientation: landscape) {
   .modal__slider-container {

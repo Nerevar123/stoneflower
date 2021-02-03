@@ -26,7 +26,7 @@ function ModalWithCarousel({
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    centerMode: true,
+    centerMode: false,
     variableWidth: true,
     adaptiveHeight: true,
     slidesToScroll: 1,
@@ -35,6 +35,7 @@ function ModalWithCarousel({
     accessibility: true,
     draggable: true,
     initialSlide: numSlide,
+
   };
 
   function NextArrow(props) {
@@ -98,7 +99,7 @@ function ModalWithCarousel({
                 className="modal__close-button button modal__close-button_place_carousel"
               ></button>
             )}
-            <Slider {...settings}>
+            <Slider {...settings} className="modal__slider">
               {content &&
                 content.map((item) => (
                   <div
