@@ -77,12 +77,12 @@ import supplier_logo_8 from "../images/suppliers/8.png";
 import supplier_logo_9 from "../images/suppliers/9.png";
 import supplier_logo_10 from "../images/suppliers/10.png";
 
-export const lead = {
-  leadTitle: "Студия Керамогранита «Каменный цветок»",
-  leadText1: "Производство изделий из листового керамического проката",
-  leadText2: "Дизайн интерьеров",
-  leadText3: "Cветотехнические решения для дома",
-};
+// export const lead = {
+//   leadTitle: "Студия Керамогранита «Каменный цветок»",
+//   leadText1: "Производство изделий из листового керамического проката",
+//   leadText2: "Дизайн интерьеров",
+//   leadText3: "Cветотехнические решения для дома",
+// };
 
 // export const servicesItems = [
 //   {
