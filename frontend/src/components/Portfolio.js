@@ -10,7 +10,6 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
   const window = useWindowSize();
 
   function handleImageClick(evt) {
-    console.log(evt.target.id, content)
     showModal(evt.target.id, content);
   }
   function NextArrow(props) {

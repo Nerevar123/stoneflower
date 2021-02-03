@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Lead from "../Lead";
 import Label from "../Label";
 
@@ -10,14 +10,16 @@ function AdminLeadEditor({
   leadBgImage,
 }) {
   const [isUploading, setIsUploading] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(true);
+  const [isUploaded, setIsUploaded] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
   const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
 
+  const uploadInputRef = useRef();
+
   const { values, isValid, resetForm, setIsValid } = validation;
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetForm(leadContent);
     setIsValid(true);
     return () => {
@@ -64,20 +66,28 @@ function AdminLeadEditor({
     });
   }
 
-  const onChangePicture = e => {
+  const onChangePicture = (e) => {
     if (e.target.files[0]) {
       setPicture(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
+        console.log(imgData);
         setImgData(reader.result);
       });
       reader.readAsDataURL(e.target.files[0]);
     }
   };
-
+  useEffect(() => {
+    console.log("upl");
+  }, [isUploading]);
+  const handleUploadButtonClick = () => {
+    if(imgData === null) {
+      uploadInputRef.current.click();
+    }
+  };
   function handleImageSubmit(e) {
     e.preventDefault();
-
+    setIsUploading(true);
     onSaveImage(
       {
         name: "leadBgImage",
@@ -113,12 +123,14 @@ function AdminLeadEditor({
               className="admin__file-input"
               type="file"
               onChange={onChangePicture}
+              ref={uploadInputRef}
             />
             <p className="admin__file-name">картинка_1.jpg</p>
           </div>
           <div className="admin__buttons-container">
             <button
               type="submit"
+              onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
                 isUploading ? "admin__upload-button_state_uploading" : ""
               } ${isUploaded ? "admin__upload-button_state_uploaded" : ""}`}

@@ -61,7 +61,6 @@ function App() {
   function showModalWithImage(image) {
     setModalImage(image);
     setModalWithImageOpen(true);
-    console.log(isModalWithImageOpen);
   }
 
   function ShowModalWithCarousel(slideIndex, content) {
@@ -104,7 +103,6 @@ function App() {
         setLeadContent(texts.lead);
         setServices(services);
         setAdvicesContent(advices);
-        console.log(images);
       })
       .catch((err) => console.log(err));
   }, []);
