@@ -23,6 +23,15 @@
   margin: 0;
   z-index: 2;
   min-width: 699px;
+  text-shadow: 0 -2px 0 #ffffff, 0 -2px 0 #ffffff, 0 2px 0 #ffffff,
+    0 2px 0 #ffffff, -2px 0 0 #ffffff, 2px 0 0 #ffffff, -2px 0 0 #ffffff,
+    2px 0 0 #ffffff, -1px -2px 0 #ffffff, 1px -2px 0 #ffffff, -1px 2px 0 #ffffff,
+    1px 2px 0 #ffffff, -2px -1px 0 #ffffff, 2px -1px 0 #ffffff,
+    -2px 1px 0 #ffffff, 2px 1px 0 #ffffff, -2px -2px 0 #ffffff,
+    2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff,
+    -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff,
+    2px 2px 0 #ffffff;
+
 }
 
 .list {
