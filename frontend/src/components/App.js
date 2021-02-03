@@ -54,16 +54,17 @@ function App() {
   const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
   );
+  const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   function showModalWithImage(image) {
     setModalImage(image);
     setModalWithImageOpen(true);
-    console.log(isModalWithImageOpen);
   }
 
-  function ShowModalWithCarousel(slideIndex) {
+  function ShowModalWithCarousel(slideIndex, content) {
+    setModalCarouselContent(content);
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
@@ -72,10 +73,12 @@ function App() {
     setModalWithConfirmationOpen(true);
   }
   function closeModal() {
-    setModalImage();
-    setModalWithImageOpen(false);
-    setModalWithCarouselOpen(false);
-    setModalWithConfirmationOpen(false);
+    setTimeout(() => {
+      setModalImage();
+      setModalWithImageOpen(false);
+      setModalWithCarouselOpen(false);
+      setModalWithConfirmationOpen(false);
+    }, 300);
   }
 
   useEffect(() => {
@@ -100,7 +103,6 @@ function App() {
         setLeadContent(texts.lead);
         setServices(services);
         setAdvicesContent(advices);
-        console.log(images);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -197,7 +199,7 @@ function App() {
               <ModalWithCarousel
                 isModalWithCarouselOpen={isModalWithCarouselOpen}
                 closeModal={closeModal}
-                content={portfolioContent}
+                content={modalCarouselContent}
                 initialSlide={modalInitialSlide}
               />
             )}

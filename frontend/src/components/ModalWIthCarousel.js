@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";
@@ -7,12 +7,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 function ModalWithCarousel({
   closeModal,
   initialSlide,
   content,
   isModalWithCarouselOpen,
 }) {
+
   function getFocus() {
     const el = document.querySelector(".modal__image-container");
     el.focus();
@@ -26,7 +28,7 @@ function ModalWithCarousel({
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    centerMode: true,
+    centerMode: false,
     variableWidth: true,
     adaptiveHeight: true,
     slidesToScroll: 1,
@@ -35,6 +37,7 @@ function ModalWithCarousel({
     accessibility: true,
     draggable: true,
     initialSlide: numSlide,
+
   };
 
   function NextArrow(props) {
@@ -78,10 +81,11 @@ function ModalWithCarousel({
       </>
     );
   }
-
-  function handleClose() {
+  const handleClose = (evt) => {
+    evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
+
 
   return (
     <Modal
@@ -98,7 +102,7 @@ function ModalWithCarousel({
                 className="modal__close-button button modal__close-button_place_carousel"
               ></button>
             )}
-            <Slider {...settings}>
+            <Slider {...settings} className="modal__slider">
               {content &&
                 content.map((item) => (
                   <div

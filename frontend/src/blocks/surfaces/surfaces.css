@@ -4,9 +4,39 @@
   flex-direction: column;
   max-width: 1440px;
 }
+@media screen and (min-width: 1441px) {
+  .surfaces {
+    margin: 0 165px;
+  }
+}
 
 .surfaces__link {
   margin: 8px 0 0 0;
+}
+.surfaces__description-container {
+  font-family: "FuturaBookC", Helvetica, sans-serif;
+}
+.surfaces__description-heading {
+  margin: 0 0 0 0;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  color: #001717;
+}
+.surfaces__description-item {
+  margin: 8px 0 0 0;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  color: #75978c;
+}
+.surfaces__description-accent {
+  margin: 0 0 0 8px;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  color: #001717;
 }
 
 .surfaces__list {
@@ -20,16 +50,21 @@
 
 .surfaces__list-item {
   margin: 30px 0 0 0;
+  overflow: hidden;
   width: 100%;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
+  height: 380px;
 }
 .surfaces__image-container {
   display: flex;
   margin: 0;
   padding: 0;
   position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
 }
 
 .surfaces__link {
@@ -51,6 +86,9 @@
 .surfaces__link_place_list {
   text-decoration: none;
   color: inherit;
+  max-height: 240px;
+  display: flex;
+  flex-direction: column;
 }
 
 .surfaces__overlay {
@@ -77,16 +115,22 @@
 }
 
 .surfaces__image {
-  width: 100%;
+  width: auto;
+  height: 240px;
 }
 
 .surfaces__example-image {
-  width: 350px;
+  height: 240px;
+  width: auto;
   transition: all 0.2s ease-in-out;
+}
+.surfaces__example-image_type_regular {
+  width: 100%;
+  height: 240px;
 }
 
 .surfaces__item-heading {
-  width: calc(100% - 2px);
+  min-width: calc(100% - 2px);
   margin: 16px 0 0 0;
   display: flex;
   justify-content: center;
@@ -98,7 +142,7 @@
   line-height: 24px;
   text-transform: uppercase;
   border: 1px solid #995750;
-  height: 54px;
+  min-height: 54px;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 }
@@ -126,25 +170,27 @@
 }
 
 .surfaces__materials-container_opened {
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  column-gap: 5.1%;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
   margin: 0px -40px 0 -40px;
   padding: 40px;
   max-height: 300vh;
 }
 
 .surfaces__example-item {
-  margin: 0 30px 24px 0;
+  margin: 0 1% 24px 0;
   position: relative;
-  height: 240px;
-  width: 160px;
+  width: 100%;
+  display: flex;
   overflow: hidden;
   transition: all 0.4s ease-in-out;
 }
 
-.surfaces__example-item_selected {
-  width: 350px;
-  filter: drop-shadow(0px 0px 24px rgba(180, 186, 173, 0.5));
+.surfaces__example-item:hover {
+  filter: drop-shadow(0px 0px 24px rgba(180, 186, 173, 1));
 }
 
 .surfaces__material-description {
@@ -180,13 +226,20 @@
   align-items: center;
 }
 
+.selected .surfaces__material-description {
+  opacity: 1;
+}
 .surfaces__material-description_visible {
   opacity: 1;
 }
 
 @media screen and (max-width: 849px) {
   .surfaces {
-    margin: 0 14px 0 15px;
+    /* margin: 0 14px 0 15px; */
+    margin: 0;
+  }
+  .surfaces__list {
+    width: 100%;
   }
   .surfaces__slider-container {
     margin: 0;
@@ -194,24 +247,43 @@
     overflow: hidden;
     max-height: 0;
   }
+  .surfaces__description-container {
+    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 1));
+    background-color: #fff;
+    padding: 8px 0 5px 16px;
+  }
   .surfaces__slider-container_opened {
-    margin: 16px 0 0 0;
+    margin: 32px 0 0 0;
     max-height: 100vh;
-    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 0.5));
+    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 1));
   }
   .surfaces__slide {
     margin: 0 25px 0 0;
     position: relative;
     width: 100%;
   }
+  .surfaces__link_place_list {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: fit-content;
+  }
   .surfaces__image {
-    width: calc(100vw - 20px);
-    min-width: 320px;
+    /* width: calc(100vw - 20px); */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
   .surfaces__image_main {
-    width: 100%;
     height: 100%;
-    object-fit: contain;
+  }
+  .surfaces__image-container {
+    height: 328px;
+    max-height: fit-content;
+  }
+  .surfaces__image_place_slider {
+    height: 328px;
+    width: 100%;
   }
 
   .surfaces__example-image_mobile {
@@ -223,7 +295,12 @@
     flex-direction: column;
   }
   .surfaces__list-item {
-    margin: 0 0 32px 0;
+    /* margin: 16px 0 32px 0; */
+    margin: 0;
+    padding: 6px 14px 26px 15px;
+    height: auto;
+    width: calc(100% - 29px);
+
   }
 
   .surfaces__list {

@@ -14,6 +14,10 @@ function SurfacesListItem(props) {
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
 
+  const handleSlideClick = (item) => {
+    props.showModal(item.image);
+  };
+
   useEffect(() => {
     if (
       window.width > 849 &&
@@ -26,9 +30,10 @@ function SurfacesListItem(props) {
     }
   }, [itemId, props.selectedMaterial, window.width]);
 
-  function toggleSliderOpen() {
+  function toggleSliderOpen(evt) {
     if (window.width < 849) {
       setIsSliderOpen(!isSliderOpen);
+      evt.target.closest('li').classList.toggle('surfaces__list-item_expanded');
     }
   }
   function handleHoverEvent() {
@@ -50,7 +55,7 @@ function SurfacesListItem(props) {
             width: "60px",
             height: "60px",
             right: "-5px",
-            top: "45%",
+            top: "35%",
           }}
           onClick={onClick}
         />
@@ -72,7 +77,7 @@ function SurfacesListItem(props) {
             height: "60px",
             left: "-5px",
             zIndex: "1",
-            top: "45%",
+            top: "35%",
           }}
           onClick={onClick}
         />
@@ -83,12 +88,13 @@ function SurfacesListItem(props) {
     className: "surfaces__carousel",
     dots: false,
     infinite: true,
+    lazyLoad: true,
     initialSlide: 0,
     speed: 500,
     slidesToShow: 1,
     centerMode: false,
-    variableWidth: true,
-    adaptiveHeight: true,
+    variableWidth: false,
+    adaptiveHeight: false,
     slidesToScroll: 1,
     accessibility: false,
     draggable: false,
@@ -145,12 +151,27 @@ function SurfacesListItem(props) {
                   alt="Пример материала"
                   id={item._id}
                   src={item.image}
-                  className="surfaces__image"
+                  className="surfaces__image surfaces__image_place_slider"
                   draggable="false"
+                  onClick={() => handleSlideClick(item)}
                 />
-                <p className="surfaces__material-description surfaces__material-description_visible">
-                  {item.description}
-                </p>
+                <div className="surfaces__description-container">
+                  <p className="surfaces__description-heading">
+                    {item.description}
+                  </p>
+                  <p className="surfaces__description-item">
+                    Фабрика:<span className="surfaces__description-accent">{item.manufacturer}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Страна:<span className="surfaces__description-accent">{item.origin}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Коллекция:<span className="surfaces__description-accent">{item.collection}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Поверхность:<span className="surfaces__description-accent">{item.surface}</span>
+                  </p>
+                </div>
               </div>
             ))}
           </Slider>

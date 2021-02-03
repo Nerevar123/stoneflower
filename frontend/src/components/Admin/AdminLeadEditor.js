@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Lead from "../Lead";
 import Label from "../Label";
 
@@ -10,14 +10,18 @@ function AdminLeadEditor({
   leadBgImage,
 }) {
   const [isUploading, setIsUploading] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(true);
+  const [isUploaded, setIsUploaded] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
-  const [picture, setPicture] = useState(null);
+  const [picture, setPicture] = useState({name: 'имя картинки'});
   const [imgData, setImgData] = useState(null);
+  const [isPictureSelected, setIsPictureSelected] = useState(false);
+
+
+  const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetForm(leadContent);
     setIsValid(true);
     return () => {
@@ -64,8 +68,10 @@ function AdminLeadEditor({
     });
   }
 
-  const onChangePicture = e => {
+
+  const onChangePicture = (e) => {
     if (e.target.files[0]) {
+      setIsPictureSelected(true);
       setPicture(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -74,17 +80,26 @@ function AdminLeadEditor({
       reader.readAsDataURL(e.target.files[0]);
     }
   };
-
+  useEffect(() => {
+    console.log("upl");
+  }, [isUploading]);
+  const handleUploadButtonClick = (evt) => {
+    evt.preventDefault();
+    if(imgData === null) {
+      uploadInputRef.current.click();
+    } else {
+      handleImageSubmit(evt);
+    }
+  };
   function handleImageSubmit(e) {
-    e.preventDefault();
-
+    setIsUploading(true);
     onSaveImage(
       {
         name: "leadBgImage",
         image: picture,
       },
       leadBgImage.id
-    );
+    )
   }
 
   return (
@@ -113,19 +128,21 @@ function AdminLeadEditor({
               className="admin__file-input"
               type="file"
               onChange={onChangePicture}
+              ref={uploadInputRef}
             />
-            <p className="admin__file-name">картинка_1.jpg</p>
+            <p className="admin__file-name">{picture.name}</p>
           </div>
           <div className="admin__buttons-container">
             <button
               type="submit"
+              onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
                 isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${isUploaded ? "admin__upload-button_state_uploaded" : ""}`}
+              } ${isPictureSelected ? "admin__upload-button_state_uploaded" : ""}`}
             >
-              {isUploaded ? "Сохранить" : "Выбрать файл"}
+              {isPictureSelected ? "Сохранить" : "Выбрать файл"}
             </button>
-            {isUploaded && (
+            {isPictureSelected && (
               <button
                 type="button"
                 className="admin__upload-button admin__upload-button_type_cancell"

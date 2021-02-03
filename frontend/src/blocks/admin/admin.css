@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: row;
 }
+.admin__file-input {
+  display: none;
+}
 
 .admin__button-block {
   display: flex;
