@@ -57,8 +57,8 @@ function Main({
       <Phases phasesIcons={phasesIcons} />
 
       <Pricing content={pricingContent} />
-      {window.width > 849 && <Surfaces content={surfacesContent} />}
-      {window.width < 850 && <SurfacesMobile content={surfacesContent} />}
+      {window.width > 849 && <Surfaces content={surfacesContent} showModal={showModalWithImage}/>}
+      {window.width < 850 && <SurfacesMobile content={surfacesContent} showModal={showModalWithImage}/>}
       <Advices content={advicesContent} />
 
       <Portfolio

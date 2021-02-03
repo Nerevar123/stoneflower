@@ -54,6 +54,7 @@ function App() {
   const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
   );
+  const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -63,7 +64,8 @@ function App() {
     console.log(isModalWithImageOpen);
   }
 
-  function ShowModalWithCarousel(slideIndex) {
+  function ShowModalWithCarousel(slideIndex, content) {
+    setModalCarouselContent(content)
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
@@ -197,7 +199,7 @@ function App() {
               <ModalWithCarousel
                 isModalWithCarouselOpen={isModalWithCarouselOpen}
                 closeModal={closeModal}
-                content={portfolioContent}
+                content={modalCarouselContent}
                 initialSlide={modalInitialSlide}
               />
             )}

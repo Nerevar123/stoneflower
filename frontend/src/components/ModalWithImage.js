@@ -14,7 +14,7 @@ function ModalWithImage({ image, closeModal }) {
       children={
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
-          <div className="modal__image-container">
+          <div className="modal__image-container modal__image-container_type_regular">
             {window.width > 849 && (
               <button
                 onClick={handleClose}
@@ -22,7 +22,7 @@ function ModalWithImage({ image, closeModal }) {
               ></button>
             )}
             <img
-              className="modal__image"
+              className="modal__image modal__image_type_regular"
               src={image}
               alt="Картинка модального окна"
             />

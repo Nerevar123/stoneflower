@@ -3,7 +3,7 @@ import SurfacesListItem from "./SurfacesListItem";
 import SurfacesExampleItem from "./SurfacesExampleItem";
 // import useWindowSize from "../hooks/useWindowSize";
 
-function Surfaces({ content }) {
+function Surfaces({ content, showModal }) {
   const [textExpanded, setTextExpanded] = useState(false);
   const [exampleRefs, setExampleRefs] = useState([]);
   const [materialListOpened, setMaterialListOpened] = useState(false);
@@ -121,6 +121,7 @@ function Surfaces({ content }) {
               forwardRef={exampleRefs[item._id]}
               selectedExample={selectedExample}
               setSelectedExample={setSelectedExample}
+              showModal={showModal}
             />
           ))}
       </div>

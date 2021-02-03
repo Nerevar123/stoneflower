@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 
-function SurfacesMobile({ content }) {
+function SurfacesMobile({ content, showModal }) {
   const [textExpanded, setTextExpanded] = useState(false);
 
   function handleTextExpand() {
@@ -40,6 +40,7 @@ function SurfacesMobile({ content }) {
                   key={item._id}
                   image={item.image}
                   heading={item.heading}
+                  showModal={showModal}
                 />
               </li>
             ))

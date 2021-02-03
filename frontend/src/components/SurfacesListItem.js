@@ -14,6 +14,11 @@ function SurfacesListItem(props) {
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
 
+  const handleSlideClick = (item) => {
+    props.showModal(item.image)
+}
+
+
   useEffect(() => {
     if (
       window.width > 849 &&
@@ -83,17 +88,19 @@ function SurfacesListItem(props) {
     className: "surfaces__carousel",
     dots: false,
     infinite: true,
+    lazyLoad: true,
     initialSlide: 0,
     speed: 500,
     slidesToShow: 1,
     centerMode: false,
-    variableWidth: true,
-    adaptiveHeight: true,
+    variableWidth: false,
+    adaptiveHeight: false,
     slidesToScroll: 1,
     accessibility: false,
     draggable: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+
   };
 
   return (
@@ -137,7 +144,7 @@ function SurfacesListItem(props) {
             isSliderOpen ? "surfaces__slider-container_opened" : ""
           }`}
         >
-          <Slider {...settings}>
+          <Slider {...settings} >
             {props.content.map((item) => (
               <div key={item._id} className="surfaces__slide">
                 <img
@@ -145,8 +152,10 @@ function SurfacesListItem(props) {
                   alt="Пример материала"
                   id={item._id}
                   src={item.image}
-                  className="surfaces__image"
+                  className="surfaces__image surfaces__image_place_slider"
                   draggable="false"
+                  onClick={() => handleSlideClick(item)}
+
                 />
                 <p className="surfaces__material-description surfaces__material-description_visible">
                   {item.description}
