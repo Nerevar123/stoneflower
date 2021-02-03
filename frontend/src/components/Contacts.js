@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import whatsapp_icon from "../images/icons/whatsapp_icon.svg";
+import useWindowSize from "../hooks/useWindowSize";
 
-function Contacts({ content }) {
+function Contacts({ content, entranceImage }) {
   const [whatsAppPhone, setWhatsAppPhone] = useState("");
   const [byBusExpanded, setByBusExpanded] = useState(false);
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+
+  const window = useWindowSize();
   // function enableScroll () {
   //   console.log('hi')
   //   setIsFocused(true);
@@ -14,7 +17,7 @@ function Contacts({ content }) {
   // function disableScroll() {
   //   setIsFocused(false);
   // }
-
+  console.log(entranceImage);
   useEffect(() => {
     if (content.phonePrimary) {
       let num = content.phonePrimary.match(/\d/g);
@@ -136,20 +139,32 @@ function Contacts({ content }) {
                 <p className="content__text">{content.byVehicleText}</p>
               </div>
             </div>
-            <p className="content__text content__text_type_landmarks">
-              {content.landmarksDescription}
-            </p>
           </div>
         </div>
-
-        <iframe
-          className={`contacts__map ${
-            isFocused ? "contacts__map_enabled" : ""
-          }`}
-          title="map"
-          src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
-          frameBorder="0"
-        ></iframe>
+        <div className="contacts__map-wrapper">
+        {window.width < 850 &&
+          <div className="contacts__landmarks">
+             <p className="content__text content__text_place_landmarks">
+              {content.landmarksDescription}
+            </p>
+            {entranceImage &&  <img className="contacts__image" src={entranceImage.path} alt="Изображение входа"/>}
+          </div>}
+          <iframe
+            className={`contacts__map ${
+              isFocused ? "contacts__map_enabled" : ""
+            }`}
+            title="map"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
+            frameBorder="0"
+          ></iframe>
+          {window.width > 849 &&
+          <div className="contacts__landmarks">
+           {entranceImage && <img className="contacts__image" src={entranceImage.path} alt="Изображение входа"/>}
+            <p className="content__text content__text_place_landmarks">
+              {content.landmarksDescription}
+            </p>
+          </div>}
+        </div>
       </div>
     </article>
   );

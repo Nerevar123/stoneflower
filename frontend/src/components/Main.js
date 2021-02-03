@@ -71,7 +71,7 @@ function Main({
         content={postFormContent}
         showModal={showModalWithConfirmation}
       />
-      <Contacts content={contactsContent} />
+      <Contacts content={contactsContent} entranceImage={images.contactsEntranceImage}/>
     </main>
   );
 }

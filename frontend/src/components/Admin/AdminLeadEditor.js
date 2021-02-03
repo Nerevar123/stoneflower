@@ -16,7 +16,7 @@ function AdminLeadEditor({
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
 
-
+  console.log(leadContent)
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
@@ -61,10 +61,10 @@ function AdminLeadEditor({
 
   function handlePreview() {
     setCompiledData({
-      leadTitle: values.leadTitle || "",
-      leadText1: values.leadText1 || "",
-      leadText2: values.leadText2 || "",
-      leadText3: values.leadText3 || "",
+      leadTitle: values.leadTitle || leadContent.leadTitle,
+      leadText1: values.leadText1 || leadContent.leadText1,
+      leadText2: values.leadText2 || leadContent.leadText2,
+      leadText3: values.leadText3 || leadContent.leadText3,
     });
   }
 

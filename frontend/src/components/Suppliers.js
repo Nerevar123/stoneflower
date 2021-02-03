@@ -10,7 +10,29 @@ function Suppliers({ content }) {
       </h2>
 
       <p className="content__text content__text_place_suppliers">
-        {content.subheading}
+        {content.subheadingMaterials}
+      </p>
+      <ul className="suppliers__list list">
+        {content.materialsData &&
+          content.materialsData.map((item) => (
+            <li key={item._id} className="suppliers__list-item">
+              <a
+                className="suppliers__link"
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="suppliers__logo"
+                  alt="Логотип"
+                  src={item.logo}
+                />
+              </a>
+            </li>
+          ))}
+      </ul>
+      <p className="content__text content__text_place_suppliers">
+        {content.subheadingSuppliers}
       </p>
       <ul className="suppliers__list list">
         {content.suppliersData &&

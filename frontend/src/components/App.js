@@ -59,20 +59,24 @@ function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   function showModalWithImage(image) {
+    document.body.style.overflow = 'hidden';
     setModalImage(image);
     setModalWithImageOpen(true);
   }
 
   function ShowModalWithCarousel(slideIndex, content) {
+    document.body.style.overflow = 'hidden';
     setModalCarouselContent(content);
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
 
   function showModalWithConfirmation() {
+    document.body.style.overflow = 'hidden';
     setModalWithConfirmationOpen(true);
   }
   function closeModal() {
+    document.body.style.overflow = 'unset';
     setTimeout(() => {
       setModalImage();
       setModalWithImageOpen(false);

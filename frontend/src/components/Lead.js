@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-scroll";
+import useWindowSize from "../hooks/useWindowSize";
 
 function Lead({ content, leadBgImage }) {
+  const window = useWindowSize();
   return (
     <article
       id="main"
@@ -15,7 +17,8 @@ function Lead({ content, leadBgImage }) {
           leadBgImage && (leadBgImage.path || leadBgImage)
         })`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: "cover, cover",
+        backgroundSize: `cover, ${window.width > 1280?'cover':'1280px'}`,
+        backgroundPosition: 'top left, top left',
       }}
 
     >

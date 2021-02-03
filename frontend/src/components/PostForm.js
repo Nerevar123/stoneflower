@@ -6,7 +6,6 @@ import "yup-phone";
 
 function PostForm({ content, showModal }) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
   const initialValues = {
     name: "",
     tel: "",
@@ -107,7 +106,7 @@ function PostForm({ content, showModal }) {
                         !!touched.tel &&
                         "form__input_type_error"
                       }`}
-                      placeholder="+7 (___) ___ __ __"
+                      placeholder="+7___ ___ __ __"
                     />
                     <ErrorMessage
                       component="span"

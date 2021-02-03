@@ -43,7 +43,9 @@ function ModalWithCarousel({
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
+
       <>
+      {window.width > 849?
         <img
           className={className}
           src={arrowRight}
@@ -52,11 +54,12 @@ function ModalWithCarousel({
             ...style,
             width: "65px",
             height: "56px",
-            right: "-60px",
+            right: "-75px",
             filter: "brightness(0) invert(1)",
           }}
           onClick={onClick}
         />
+      :<></>}
       </>
     );
   }
@@ -65,6 +68,7 @@ function ModalWithCarousel({
     const { className, style, onClick } = props;
     return (
       <>
+      {window.width > 849?
         <img
           className={className}
           src={arrowLeft}
@@ -73,12 +77,12 @@ function ModalWithCarousel({
             ...style,
             width: "65px",
             height: "56px",
-            left: "-60px",
+            left: "-75px",
             filter: "brightness(0) invert(1)",
           }}
           onClick={onClick}
-        />
-      </>
+          />:<></>}
+          </>
     );
   }
   const handleClose = (evt) => {

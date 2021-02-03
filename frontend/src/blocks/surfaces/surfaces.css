@@ -16,6 +16,19 @@
 .surfaces__description-container {
   font-family: "FuturaBookC", Helvetica, sans-serif;
 }
+.surfaces__description-container_desktop {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 0 0 8px 16px;
+  width: calc(100% - 16px);
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.selected .surfaces__description-container_desktop {
+  opacity: 1;
+}
 .surfaces__description-heading {
   margin: 0 0 0 0;
   font-weight: 400;
@@ -29,7 +42,7 @@
   font-size: 16px;
   line-height: 18px;
   letter-spacing: 0.04em;
-  color: #75978c;
+  color: #335E58;
 }
 .surfaces__description-accent {
   margin: 0 0 0 8px;
@@ -267,6 +280,9 @@
     flex-direction: column;
     height: auto;
     max-height: fit-content;
+  }
+  .surfaces__description-item {
+    color: #75978C;
   }
   .surfaces__image {
     /* width: calc(100vw - 20px); */
