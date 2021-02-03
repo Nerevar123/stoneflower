@@ -87,6 +87,7 @@
 
 .content__text-container_place_surfaces {
   width: 75%;
+
 }
 
 .content__text-container_place_advices {
@@ -158,11 +159,13 @@
     margin: 32px 0 0 0;
   }
   .content__title_place_surfaces {
-    margin: 32px 0 8px 0;
+    margin: 32px 14px 8px 15px;
+    width: calc(100% - 29px);
   }
   .content__text_place_suppliers {
     margin-top: 8px;
   }
+
   .content__text-container_place_portfolio {
     margin: 32px 0 8px 0;
   }
@@ -176,4 +179,11 @@
     margin-left: 14px;
     width: calc(100% - 14px);
   }
+  .content__text-container_place_surfaces {
+    width: calc(100% - 29px);
+    padding-left: 15px;
+    padding-right: 14px;
+    margin: 0;
+  }
+
 }

@@ -15,9 +15,8 @@ function SurfacesListItem(props) {
   const itemId = props.item._id.toString();
 
   const handleSlideClick = (item) => {
-    props.showModal(item.image)
-}
-
+    props.showModal(item.image);
+  };
 
   useEffect(() => {
     if (
@@ -31,9 +30,10 @@ function SurfacesListItem(props) {
     }
   }, [itemId, props.selectedMaterial, window.width]);
 
-  function toggleSliderOpen() {
+  function toggleSliderOpen(evt) {
     if (window.width < 849) {
       setIsSliderOpen(!isSliderOpen);
+      evt.target.closest('li').classList.toggle('surfaces__list-item_expanded');
     }
   }
   function handleHoverEvent() {
@@ -55,7 +55,7 @@ function SurfacesListItem(props) {
             width: "60px",
             height: "60px",
             right: "-5px",
-            top: "45%",
+            top: "35%",
           }}
           onClick={onClick}
         />
@@ -77,7 +77,7 @@ function SurfacesListItem(props) {
             height: "60px",
             left: "-5px",
             zIndex: "1",
-            top: "45%",
+            top: "35%",
           }}
           onClick={onClick}
         />
@@ -100,7 +100,6 @@ function SurfacesListItem(props) {
     draggable: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-
   };
 
   return (
@@ -144,7 +143,7 @@ function SurfacesListItem(props) {
             isSliderOpen ? "surfaces__slider-container_opened" : ""
           }`}
         >
-          <Slider {...settings} >
+          <Slider {...settings}>
             {props.content.map((item) => (
               <div key={item._id} className="surfaces__slide">
                 <img
@@ -155,11 +154,24 @@ function SurfacesListItem(props) {
                   className="surfaces__image surfaces__image_place_slider"
                   draggable="false"
                   onClick={() => handleSlideClick(item)}
-
                 />
-                <p className="surfaces__material-description surfaces__material-description_visible">
-                  {item.description}
-                </p>
+                <div className="surfaces__description-container">
+                  <p className="surfaces__description-heading">
+                    {item.description}
+                  </p>
+                  <p className="surfaces__description-item">
+                    Фабрика:<span className="surfaces__description-accent">{item.manufacturer}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Страна:<span className="surfaces__description-accent">{item.origin}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Коллекция:<span className="surfaces__description-accent">{item.collection}</span>
+                  </p>
+                  <p className="surfaces__description-item">
+                    Поверхность:<span className="surfaces__description-accent">{item.surface}</span>
+                  </p>
+                </div>
               </div>
             ))}
           </Slider>

@@ -12,6 +12,12 @@
   min-width: 291px;
   overflow: hidden;
 }
+@media screen and (min-width: 1441px) {
+  .lead {
+    padding: 13.889% 165px 10.487%
+    165px;
+  }
+}
 
 .lead__header {
   font-weight: 800;
@@ -95,17 +101,12 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .lead {
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
+
 }
 
 @media screen and (max-width: 849px) {
   .lead {
-    background-size: cover;
     padding: 112px 14px 32px 15px;
-    background-repeat: no-repeat;
   }
   .lead__header {
     font-size: 32px;

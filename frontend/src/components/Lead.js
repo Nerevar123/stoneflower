@@ -7,14 +7,17 @@ function Lead({ content, leadBgImage }) {
       id="main"
       className="lead"
       style={{
-        background: `linear-gradient(
+        backgroundImage: `linear-gradient(
           90deg,
           rgba(255, 255, 255, 0.58) 0.73%,
           rgba(255, 255, 255, 0) 61.78%
         ), url(${
           leadBgImage && (leadBgImage.path || leadBgImage)
-        })`, backgroundSize: 'cover',   backgroundRepeat: 'no-repeat'
+        })`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: "cover, cover",
       }}
+
     >
       <h1 className="lead__header">{content.leadTitle}</h1>
       <ul className="lead__list list">

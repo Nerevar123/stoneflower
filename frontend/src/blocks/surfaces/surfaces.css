@@ -4,9 +4,39 @@
   flex-direction: column;
   max-width: 1440px;
 }
+@media screen and (min-width: 1441px) {
+  .surfaces {
+    margin: 0 165px;
+  }
+}
 
 .surfaces__link {
   margin: 8px 0 0 0;
+}
+.surfaces__description-container {
+  font-family: "FuturaBookC", Helvetica, sans-serif;
+}
+.surfaces__description-heading {
+  margin: 0 0 0 0;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  color: #001717;
+}
+.surfaces__description-item {
+  margin: 8px 0 0 0;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  color: #75978c;
+}
+.surfaces__description-accent {
+  margin: 0 0 0 8px;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  color: #001717;
 }
 
 .surfaces__list {
@@ -93,12 +123,10 @@
   height: 240px;
   width: auto;
   transition: all 0.2s ease-in-out;
-
 }
 .surfaces__example-image_type_regular {
   width: 100%;
   height: 240px;
-
 }
 
 .surfaces__item-heading {
@@ -159,11 +187,9 @@
   display: flex;
   overflow: hidden;
   transition: all 0.4s ease-in-out;
-
 }
 
 .surfaces__example-item:hover {
-
   filter: drop-shadow(0px 0px 24px rgba(180, 186, 173, 1));
 }
 
@@ -209,7 +235,11 @@
 
 @media screen and (max-width: 849px) {
   .surfaces {
-    margin: 0 14px 0 15px;
+    /* margin: 0 14px 0 15px; */
+    margin: 0;
+  }
+  .surfaces__list {
+    width: 100%;
   }
   .surfaces__slider-container {
     margin: 0;
@@ -217,10 +247,15 @@
     overflow: hidden;
     max-height: 0;
   }
+  .surfaces__description-container {
+    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 1));
+    background-color: #fff;
+    padding: 8px 0 5px 16px;
+  }
   .surfaces__slider-container_opened {
     margin: 32px 0 0 0;
     max-height: 100vh;
-    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 0.5));
+    filter: drop-shadow(0px 0px 16px rgba(180, 186, 173, 1));
   }
   .surfaces__slide {
     margin: 0 25px 0 0;
@@ -261,8 +296,10 @@
   .surfaces__list-item {
     /* margin: 16px 0 32px 0; */
     margin: 0;
-    padding: 6px 0 26px 0;
+    padding: 6px 14px 26px 15px;
     height: auto;
+    width: calc(100% - 29px);
+
   }
 
   .surfaces__list {
