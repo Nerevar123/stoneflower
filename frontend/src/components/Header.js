@@ -24,7 +24,7 @@ function Header() {
               to="main"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={0}
               duration={500}
             >
               Главная
@@ -35,7 +35,7 @@ function Header() {
               to="services"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={0}
               duration={500}
             >
               Услуги
@@ -46,7 +46,7 @@ function Header() {
               to="surfaces"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={0}
               duration={500}
             >
               Поверхности
@@ -57,7 +57,7 @@ function Header() {
               to="portfolio"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={0}
               duration={500}
             >
               Портфолио
@@ -68,7 +68,7 @@ function Header() {
               to="contacts"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={-90}
               duration={500}
             >
               Контакты
