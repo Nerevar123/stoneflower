@@ -3,7 +3,8 @@ import Modal from "./Modal";
 // import useWindowSize from "../hooks/useWindowSize";
 
 function ModalWithConfirmation({ closeModal }) {
-  function handleClose() {
+  function handleClose(evt) {
+    evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
   // const window = useWindowSize();

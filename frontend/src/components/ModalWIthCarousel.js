@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 import arrowRight from "../images/slider/ArrowRight.svg";
@@ -7,12 +7,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 function ModalWithCarousel({
   closeModal,
   initialSlide,
   content,
   isModalWithCarouselOpen,
 }) {
+
   function getFocus() {
     const el = document.querySelector(".modal__image-container");
     el.focus();
@@ -79,10 +81,11 @@ function ModalWithCarousel({
       </>
     );
   }
-
-  function handleClose() {
+  const handleClose = (evt) => {
+    evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
+
 
   return (
     <Modal

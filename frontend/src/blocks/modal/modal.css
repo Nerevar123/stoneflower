@@ -7,8 +7,12 @@
   z-index: 3;
   margin: 0;
   display: flex;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
-
+.modal_visible {
+  opacity: 1;
+}
 .modal__image-container {
   align-self: center;
   z-index: 2;

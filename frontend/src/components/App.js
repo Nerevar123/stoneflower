@@ -65,7 +65,7 @@ function App() {
   }
 
   function ShowModalWithCarousel(slideIndex, content) {
-    setModalCarouselContent(content)
+    setModalCarouselContent(content);
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
@@ -74,10 +74,12 @@ function App() {
     setModalWithConfirmationOpen(true);
   }
   function closeModal() {
-    setModalImage();
-    setModalWithImageOpen(false);
-    setModalWithCarouselOpen(false);
-    setModalWithConfirmationOpen(false);
+    setTimeout(() => {
+      setModalImage();
+      setModalWithImageOpen(false);
+      setModalWithCarouselOpen(false);
+      setModalWithConfirmationOpen(false);
+    }, 300);
   }
 
   useEffect(() => {
