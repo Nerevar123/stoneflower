@@ -83,13 +83,15 @@ function AdminLeadEditor({
   useEffect(() => {
     console.log("upl");
   }, [isUploading]);
-  const handleUploadButtonClick = () => {
+  const handleUploadButtonClick = (evt) => {
+    evt.preventDefault();
     if(imgData === null) {
       uploadInputRef.current.click();
+    } else {
+      handleImageSubmit(evt);
     }
   };
   function handleImageSubmit(e) {
-    e.preventDefault();
     setIsUploading(true);
     onSaveImage(
       {
@@ -97,7 +99,7 @@ function AdminLeadEditor({
         image: picture,
       },
       leadBgImage.id
-    );
+    )
   }
 
   return (
