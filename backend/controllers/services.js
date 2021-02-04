@@ -1,6 +1,7 @@
 const fs = require("fs");
 const Service = require("../models/service");
-const validationError = require('../errors/validation-error');
+const NotFoundError = require('../errors/not-found-error');
+const { notFoundErrorMessage } = require('../utils/constants');
 
 module.exports.getServices = (req, res, next) => {
   Service.find({})
@@ -19,12 +20,12 @@ module.exports.createService = (req, res, next) => {
 
 module.exports.deleteService = (req, res, next) => {
   Service.findById(req.params.serviceId)
-    .orFail(new Error("notFound"))
+    .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        next(new Error("notFound"));
+        next(new NotFoundError(notFoundErrorMessage));
       }
       Service.findByIdAndRemove(req.params.serviceId).then((service) =>
         res.send(service)
@@ -35,16 +36,23 @@ module.exports.deleteService = (req, res, next) => {
 
 module.exports.updateService = (req, res, next) => {
   const { heading, description } = req.body;
-  const image = req.file;
-  if (!image) throw new validationError("Необходимо прикрепить изображение");
+  let image = req.file;
+  let newFile = true;
+
+  if (!image) {
+    image = JSON.parse(req.body.image);
+    newFile = false;
+  }
 
   Service.findById(req.params.serviceId)
-    .orFail(new Error("notFound"))
+    .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
-      try {
-        fs.unlinkSync(data.image.path);
-      } catch {
-        throw new Error("notFound");
+      if (newFile) {
+        try {
+          fs.unlinkSync(data.image.path);
+        } catch {
+          throw new NotFoundError(notFoundErrorMessage);
+        }
       }
       Service.findByIdAndUpdate(
         req.params.serviceId,
@@ -54,7 +62,7 @@ module.exports.updateService = (req, res, next) => {
           runValidators: true,
         }
       )
-        .orFail(new Error("notFound"))
+        .orFail(new NotFoundError(notFoundErrorMessage))
         .then((service) => res.send(service));
     })
     .catch(next);

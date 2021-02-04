@@ -40,8 +40,7 @@ function Main({
   return (
     <main className="content">
       <Lead content={leadContent} leadBgImage={images.leadBgImage} />
-
-      <Services elements={services} />
+      {services && <Services elements={services} />}
 
       <Advantages
         textContent={advantagesText}
@@ -57,8 +56,15 @@ function Main({
       <Phases phasesIcons={phasesIcons} />
 
       <Pricing content={pricingContent} />
-      {window.width > 849 && <Surfaces content={surfacesContent} showModal={showModalWithImage}/>}
-      {window.width < 850 && <SurfacesMobile content={surfacesContent} showModal={showModalWithImage}/>}
+      {window.width > 849 && (
+        <Surfaces content={surfacesContent} showModal={showModalWithImage} />
+      )}
+      {window.width < 850 && (
+        <SurfacesMobile
+          content={surfacesContent}
+          showModal={showModalWithImage}
+        />
+      )}
       <Advices content={advicesContent} />
 
       <Portfolio
@@ -71,7 +77,10 @@ function Main({
         content={postFormContent}
         showModal={showModalWithConfirmation}
       />
-      <Contacts content={contactsContent} entranceImage={images.contactsEntranceImage}/>
+      <Contacts
+        content={contactsContent}
+        entranceImage={images.contactsEntranceImage}
+      />
     </main>
   );
 }

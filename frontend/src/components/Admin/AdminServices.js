@@ -1,72 +1,56 @@
 import React, { useState, useEffect, useRef } from "react";
-import Lead from "../Lead";
+import Services from "../Services";
 import Label from "../Label";
+import { api } from "../../utils/api";
 
-function AdminLeadEditor({
+function AdminServices({
   validation,
-  onSaveText,
-  onSaveImage,
-  leadContent,
-  leadBgImage,
+  // services,
+  onSaveService,
 }) {
   const [isUploading, setIsUploading] = useState(false);
-  const [compiledData, setCompiledData] = useState(leadContent);
-  const [picture, setPicture] = useState({name: 'имя картинки'});
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
+  const [services, setServices] = useState([]);
+  const [selectedService, setSelectedService] = useState({});
+  const [compiledData, setCompiledData] = useState(selectedService);
+  const [picture, setPicture] = useState(selectedService.image);
+  const [preview, showPreview] = useState(false);
 
-  console.log(leadContent)
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
-    resetForm(leadContent);
+    console.log(selectedService);
+    resetForm(selectedService);
     setIsValid(true);
     return () => {
       resetForm();
       setIsValid(false);
     };
-  }, [leadContent, resetForm, setIsValid]);
+  }, [selectedService, resetForm, setIsValid]);
+
+  useEffect(() => {
+    api.getServices().then((services) => {
+      setServices(services);
+      setSelectedService(services[0]);
+    });
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsUploading(true);
 
-    onSaveText(
+    onSaveService(
       {
-        title: "lead",
-        content: [
-          {
-            name: "leadTitle",
-            text: values.leadTitle,
-          },
-          {
-            name: "leadText1",
-            text: values.leadText1,
-          },
-          {
-            name: "leadText2",
-            text: values.leadText2,
-          },
-          {
-            name: "leadText3",
-            text: values.leadText3,
-          },
-        ],
+        heading: values.heading || selectedService.heading,
+        description: values.description || selectedService.description,
+        image: picture || JSON.stringify(selectedService.image),
       },
-      leadContent.id
+      selectedService._id
     );
   }
-
-  function handlePreview() {
-    setCompiledData({
-      leadTitle: values.leadTitle || leadContent.leadTitle,
-      leadText1: values.leadText1 || leadContent.leadText1,
-      leadText2: values.leadText2 || leadContent.leadText2,
-      leadText3: values.leadText3 || leadContent.leadText3,
-    });
-  }
-
 
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
@@ -80,39 +64,65 @@ function AdminLeadEditor({
     }
   };
 
-  const handleUploadButtonClick = (evt) => {
-    evt.preventDefault();
-    if(imgData === null) {
+  const handleUploadButtonClick = (e) => {
+    e.preventDefault();
+
+    if (imgData === null) {
       uploadInputRef.current.click();
     } else {
-      handleImageSubmit(evt);
+      handleSubmit(e);
     }
   };
 
-  function handleImageSubmit(e) {
-    setIsUploading(true);
-    onSaveImage(
-      {
-        name: "leadBgImage",
-        image: picture,
-      },
-      leadBgImage.id
-    )
+
+  function handlePreviewClick() {
+    setCompiledData({
+      heading: values.heading || selectedService.heading,
+      description: values.description || selectedService.description,
+      image: picture || selectedService.image,
+    });
+    showPreview(!preview);
+  }
+
+  function handleSelectClick(num) {
+    setSelectedService(services[num]);
+    showPreview(false);
   }
 
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
-        <h2 className="admin__heading">Главная</h2>
+        <h2 className="admin__heading">Услуги</h2>
+        <div className="admin__select-buttons">
+          <button
+            className="admin__select-button"
+            onClick={(_) => handleSelectClick(0)}
+          >
+            №1
+          </button>
+          <button
+            className="admin__select-button"
+            onClick={(_) => handleSelectClick(1)}
+          >
+            №2
+          </button>
+          <button
+            className="admin__select-button"
+            onClick={(_) => handleSelectClick(2)}
+          >
+            №3
+          </button>
+        </div>
         <form
           className="admin__form admin__form_type_upload admin__form_place_lead"
-          onSubmit={handleImageSubmit}
           encType="multipart/form-data"
           method="POST"
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Изображение</p>
-            <p className="admin__preview-link">Показать превью</p>
+            <p className="admin__preview-link" onClick={handlePreviewClick}>
+              Показать превью
+            </p>
           </div>
           <p className="admin_requirements-heading">Требования:</p>
           <ul className="admin__requirements-list">
@@ -128,7 +138,7 @@ function AdminLeadEditor({
               onChange={onChangePicture}
               ref={uploadInputRef}
             />
-            <p className="admin__file-name">{picture.name}</p>
+            <p className="admin__file-name">{picture ? picture.name : "название файла"}</p>
           </div>
           <div className="admin__buttons-container">
             <button
@@ -136,7 +146,9 @@ function AdminLeadEditor({
               onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
                 isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${isPictureSelected ? "admin__upload-button_state_uploaded" : ""}`}
+              } ${
+                isPictureSelected ? "admin__upload-button_state_uploaded" : ""
+              }`}
             >
               {isPictureSelected ? "Сохранить" : "Выбрать файл"}
             </button>
@@ -159,48 +171,28 @@ function AdminLeadEditor({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p onClick={handlePreviewClick} className="admin__preview-link">
               Показать превью
             </p>
           </div>
           <Label
             validation={validation}
             className="admin"
-            name="leadTitle"
+            name="heading"
             labelText="Заголовок"
             type="text"
             required
-            maxLength="45"
+            maxLength="55"
             withCount
           />
           <Label
             validation={validation}
             className="admin"
-            name="leadText1"
+            name="description"
             labelText="Пункт 1"
             type="text"
             required
-            maxLength="65"
-            withCount
-          />
-          <Label
-            validation={validation}
-            className="admin"
-            name="leadText2"
-            labelText="Пункт 2"
-            type="text"
-            required
-            maxLength="65"
-            withCount
-          />
-          <Label
-            validation={validation}
-            className="admin"
-            name="leadText3"
-            labelText="Пункт 3"
-            type="text"
-            required
-            maxLength="65"
+            maxLength="150"
             withCount
           />
           <div className="admin__buttons-container">
@@ -215,7 +207,7 @@ function AdminLeadEditor({
             </button>
             <button
               type="button"
-              onClick={(_) => resetForm(leadContent, {}, true)}
+              onClick={(_) => resetForm(selectedService, {}, true)}
               className="admin__upload-button admin__upload-button_type_cancell"
             >
               Отменить
@@ -223,14 +215,13 @@ function AdminLeadEditor({
           </div>
         </form>
       </div>
-      <div className="admin__preview-container">
-        <Lead
-          content={compiledData}
-          leadBgImage={imgData ? imgData : leadBgImage}
-        />
-      </div>
+      {preview && (
+        <div className="admin__preview-container">
+          <Services elements={compiledData} />
+        </div>
+      )}
     </div>
   );
 }
 
-export default AdminLeadEditor;
+export default AdminServices;

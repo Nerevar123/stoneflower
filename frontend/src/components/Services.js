@@ -6,7 +6,7 @@ function Services({ elements }) {
     <article id="services" className="services">
       <h2 className="content__title">Услуги</h2>
       <ul className="services__list list">
-        {elements
+        {elements.length > 1
           ? elements.map((item) => (
               <ServicesItem
                 item={item}
@@ -16,7 +16,15 @@ function Services({ elements }) {
                 description={item.description}
               />
             ))
-          : ""}
+          : (
+            <ServicesItem
+            item={elements}
+            key={elements._id}
+            image={elements.image}
+            heading={elements.heading}
+            description={elements.description}
+          />
+          )}
       </ul>
     </article>
   );

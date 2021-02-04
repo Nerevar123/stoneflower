@@ -33,7 +33,7 @@ import useFormWithValidation from "../hooks/useFormWithValidation";
 function App() {
   const history = useHistory();
   const validation = useFormWithValidation();
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState(null);
   const [images, setImages] = useState({});
   const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
@@ -169,6 +169,17 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleSaveService(data, id) {
+    console.log(data, id);
+    api
+      .patchService(data, id)
+      .then((data) => {
+        window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Router history={history} basename="/">
@@ -227,8 +238,10 @@ function App() {
               validation={validation}
               onSaveText={handleSaveText}
               onSaveImage={handleSaveImage}
+              onSaveService={handleSaveService}
               leadContent={leadContent}
               images={images}
+              services={services}
             />
             {/* </ProtectedRoute> */}
           </Route>
