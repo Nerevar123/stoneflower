@@ -110,7 +110,7 @@ function Surfaces({ content, showModal }) {
           materialListOpened ? "surfaces__materials-container_opened" : ""
         }`}
       >
-        {content &&
+        {materialListOpened && content &&
           selectedMaterial !== null &&
           content.materialsList[
             selectedMaterial
