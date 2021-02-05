@@ -155,7 +155,7 @@ function AdminServices({
             {isPictureSelected && (
               <button
                 type="button"
-                className="admin__upload-button admin__upload-button_type_cancell"
+                className="admin__upload-button admin__upload-button_type_cancel"
               >
                 Отменить
               </button>
@@ -208,7 +208,7 @@ function AdminServices({
             <button
               type="button"
               onClick={(_) => resetForm(selectedService, {}, true)}
-              className="admin__upload-button admin__upload-button_type_cancell"
+              className="admin__upload-button admin__upload-button_type_cancel"
             >
               Отменить
             </button>

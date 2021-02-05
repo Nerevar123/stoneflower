@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import arrowIcon from "../images/icons/ArrowRight.svg";
 import useWindowSize from "../hooks/useWindowSize";
 
-function Advantages({ textContent, icons, showModal, image }) {
+function Advantages({ textContent, icons, showModal, image, withIcons }) {
   const [textExpanded, setTextExpanded] = useState(false);
   // const slide = 2;
   function handleOpenEvent() {
@@ -18,7 +18,7 @@ function Advantages({ textContent, icons, showModal, image }) {
 
   return (
     <article className="advantages">
-      <h2 className="content__title">Преимущества материала</h2>
+      <h2 className="content__title">{textContent.title}</h2>
       <div className="content__info-block">
         <div className="content__text-container">
           <p className="content__text">
@@ -75,88 +75,90 @@ function Advantages({ textContent, icons, showModal, image }) {
           </button>
         )}
       </div>
-      <ul className="advantages__list list">
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_1}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Обширная область применения
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_2}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Легко наносится на старую облицовку
-          </p>
-        </li>
-        <li alt="Иконка" className="advantages__list-item">
-          <img
-            src={icons.icon_3}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Прочный и гибкий матриал
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_4}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Гарантийный срок службы 20 лет
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_5}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Сертифицирован для дет. садов и мед. учреждений
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_6}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Не содержит токсичных веществ, экологичен
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_7}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Не горит, не впитывает влагу, не изменяет цвет
-          </p>
-        </li>
-        <li className="advantages__list-item">
-          <img
-            src={icons.icon_8}
-            alt="Иконка"
-            className="advantages__icon advantages__icon_place_table"
-          />
-          <p className="content__text content__text_place_advantages">
-            Стойкий к щелочам и кислотам
-          </p>
-        </li>
-      </ul>
+      {withIcons && (
+        <ul className="advantages__list list">
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_1}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Обширная область применения
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_2}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Легко наносится на старую облицовку
+            </p>
+          </li>
+          <li alt="Иконка" className="advantages__list-item">
+            <img
+              src={icons.icon_3}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Прочный и гибкий матриал
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_4}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Гарантийный срок службы 20 лет
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_5}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Сертифицирован для дет. садов и мед. учреждений
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_6}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Не содержит токсичных веществ, экологичен
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_7}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Не горит, не впитывает влагу, не изменяет цвет
+            </p>
+          </li>
+          <li className="advantages__list-item">
+            <img
+              src={icons.icon_8}
+              alt="Иконка"
+              className="advantages__icon advantages__icon_place_table"
+            />
+            <p className="content__text content__text_place_advantages">
+              Стойкий к щелочам и кислотам
+            </p>
+          </li>
+        </ul>
+      )}
     </article>
   );
 }

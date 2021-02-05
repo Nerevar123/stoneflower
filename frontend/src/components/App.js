@@ -149,6 +149,7 @@ function App() {
   // }
 
   function handleSaveText(data, id) {
+    console.log(data, id)
     api
       .patchText(data, id)
       .then((data) => {
@@ -242,6 +243,7 @@ function App() {
               leadContent={leadContent}
               images={images}
               services={services}
+              advantagesText={advantagesText}
             />
             {/* </ProtectedRoute> */}
           </Route>

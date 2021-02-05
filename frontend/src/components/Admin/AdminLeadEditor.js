@@ -143,7 +143,7 @@ function AdminLeadEditor({
             {isPictureSelected && (
               <button
                 type="button"
-                className="admin__upload-button admin__upload-button_type_cancell"
+                className="admin__upload-button admin__upload-button_type_cancel"
               >
                 Отменить
               </button>
@@ -216,7 +216,7 @@ function AdminLeadEditor({
             <button
               type="button"
               onClick={(_) => resetForm(leadContent, {}, true)}
-              className="admin__upload-button admin__upload-button_type_cancell"
+              className="admin__upload-button admin__upload-button_type_cancel"
             >
               Отменить
             </button>

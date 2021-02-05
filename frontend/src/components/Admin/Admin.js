@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createRef } from "react";
 import AdminLeadEditor from "./AdminLeadEditor";
 import AdminServices from "./AdminServices";
+import AdminAdvantages from "./AdminAdvantages";
 
 function Admin({
   adminItems,
@@ -11,6 +12,7 @@ function Admin({
   leadContent,
   images,
   services,
+  advantagesText,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -111,6 +113,13 @@ function Admin({
             validation={validation}
             services={services}
             onSaveService={onSaveService}
+          />
+        )}
+        {selectedItem === "advantages" && (
+          <AdminAdvantages
+            validation={validation}
+            advantagesText={advantagesText}
+            onSaveText={onSaveText}
           />
         )}
       </div>

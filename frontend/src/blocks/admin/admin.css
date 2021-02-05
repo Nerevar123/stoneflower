@@ -226,13 +226,13 @@
   background: #2f80ed;
 }
 
-.admin__upload-button_type_cancell {
+.admin__upload-button_type_cancel {
   background: rgba(0, 0, 0, 0);
   color: #2e2e2e;
   border: 1px solid #dfe0eb;
 }
 
-.admin__upload-button_type_cancell:hover {
+.admin__upload-button_type_cancel:hover {
   color: #eb5757;
 }
 

@@ -47,6 +47,7 @@ function Main({
         icons={advantagesIcons}
         showModal={showModalWithImage}
         image={applicabilityTable}
+        withIcons
       />
 
       {window.width > 849 && <Applicability table={applicabilityTable} />}
