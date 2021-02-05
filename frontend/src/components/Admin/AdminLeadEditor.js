@@ -8,12 +8,17 @@ function AdminLeadEditor({
   onSaveImage,
   leadContent,
   leadBgImage,
+  menuRef
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
   const [picture, setPicture] = useState({name: 'имя картинки'});
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
+  const previewRef = useRef();
+  const scrollToPreview = () => {
+    previewRef.current.scrollIntoView({inline: "start", behavior: "smooth"})
+  }
 
   console.log(leadContent)
   const uploadInputRef = useRef();
@@ -99,6 +104,9 @@ function AdminLeadEditor({
       leadBgImage.id
     )
   }
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline:"start", behavior: "smooth" })
+  }
 
   return (
     <div className="admin__edit-wrapper">
@@ -112,7 +120,7 @@ function AdminLeadEditor({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Изображение</p>
-            <p className="admin__preview-link">Показать превью</p>
+            <p onClick={()=> {scrollToPreview(); handlePreview()}} className="admin__preview-link">Показать превью</p>
           </div>
           <p className="admin_requirements-heading">Требования:</p>
           <ul className="admin__requirements-list">
@@ -159,7 +167,7 @@ function AdminLeadEditor({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p onClick={()=> {scrollToPreview(); handlePreview()}} className="admin__preview-link">
               Показать превью
             </p>
           </div>
@@ -223,7 +231,8 @@ function AdminLeadEditor({
           </div>
         </form>
       </div>
-      <div className="admin__preview-container">
+      <div  ref={previewRef} className="admin__preview-container">
+        <button onClick={scrollToMenu} className="admin__go-back">Назад</button>
         <Lead
           content={compiledData}
           leadBgImage={imgData ? imgData : leadBgImage}

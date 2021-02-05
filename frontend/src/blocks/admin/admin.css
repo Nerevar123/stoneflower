@@ -1,3 +1,16 @@
+@keyframes pulse {
+  from {
+    transform: translateX(0px);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
 .admin {
   width: 1440px;
   margin: 0 auto 0 auto;
@@ -310,6 +323,53 @@
 }
 
 .admin__preview-container {
-  margin: 0;
+  margin: 0 0 0 88px;
   min-width: 1280px;
+  position: relative;
+}
+.admin__go-back {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  height: 34px;
+  width: 80px;
+  color: #FFF;
+  padding-left: 9px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background: #27ae60;
+  border: 1px solid #27ae60;
+  outline: none;
+  font-family: "Roboto", helvetica, sans-serif;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  cursor: pointer;
+  animation-duration: 2.5s;
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  transition: all 0.2s ease-in-out;
+}
+.admin__go-back::before {
+  position: absolute;
+  min-width: 23px;
+  min-height: 23px;
+  border-left: 1px solid inherit;
+  border-bottom: 1px solid inherit;
+  transform: rotate(45deg);
+  content: " ";
+  left: -12px;
+  top: 4px;
+  background: inherit;
+  z-index: -1;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.admin__go-back:hover {
+  background-color:#2f80ed;
+  border: 1px solid #2f80ed;
 }
