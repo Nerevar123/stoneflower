@@ -25,6 +25,19 @@ class Api {
     }).then(this._checkError);
   }
 
+  patchService(service, id) {
+    const formData = new FormData();
+    formData.append("image", service.image);
+    formData.append("heading", service.heading);
+    formData.append("description", service.description);
+
+    return fetch(`${this._baseUrl}/services/${id}`, {
+      method: "PATCH",
+      // credentials: "include",
+      body: formData,
+    }).then(this._checkError);
+  }
+
   getTexts() {
     return fetch(`${this._baseUrl}/texts`, {
       headers: this._headers,

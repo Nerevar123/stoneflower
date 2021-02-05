@@ -6,7 +6,7 @@ const adviceRouter = require("./advices");
 const imageRouter = require("./images");
 // const { register, login, logout } = require('../controllers/users');
 const auth = require('../middlewares/auth');
-const { ERROR_CODE_404, errorMessage404 } = require("../utils/errors");
+const { notFoundErrorMessage } = require('../utils/constants');
 
 // app.post('/signin', celebrate({
 //   body: Joi.object().keys({
@@ -31,8 +31,8 @@ router.use("/images", imageRouter);
 
 // router.use('/logout', logout);
 
-router.use("*", (req, res) => {
-  res.status(ERROR_CODE_404).send({ message: errorMessage404 });
+router.use('*', (req, res) => {
+  res.status(404).send({ message: notFoundErrorMessage });
 });
 
 module.exports = router;

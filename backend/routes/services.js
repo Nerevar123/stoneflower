@@ -55,19 +55,6 @@ router.delete(
   }),
   deleteService
 );
-router.patch(
-  "/:serviceId",
-  upload,
-  celebrate({
-    params: Joi.object().keys({
-      serviceId: Joi.string().alphanum().length(24),
-    }),
-    body: Joi.object().keys({
-      heading: Joi.string().min(2).required(),
-      description: Joi.string().min(2).required(),
-    }),
-  }),
-  updateService
-);
+router.patch("/:serviceId", upload, updateService);
 
 module.exports = router;
