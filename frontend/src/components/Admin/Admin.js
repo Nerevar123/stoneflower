@@ -1,7 +1,8 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, useRef } from "react";
 import AdminLeadEditor from "./AdminLeadEditor";
 import AdminServices from "./AdminServices";
 import AdminAdvantages from "./AdminAdvantages";
+import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
   adminItems,
@@ -18,6 +19,7 @@ function Admin({
   const [offset, setOffset] = useState(106);
 
   let buttonRefs = [];
+  const menuRef= useRef();
 
   adminItems.forEach(() => {
     buttonRefs.push(createRef());
@@ -72,7 +74,7 @@ function Admin({
   }
 
   return (
-    <main className="admin">
+    <main ref={menuRef} className="admin">
       <div className="admin__button-block">
         <h2 className="admin__sub-heading">
           Студия Керамогранита «Каменный цветок»
@@ -101,6 +103,7 @@ function Admin({
       <div className="admin__edit-section">
         {selectedItem === "lead" && (
           <AdminLeadEditor
+            menuRef={menuRef}
             validation={validation}
             onSaveText={onSaveText}
             leadContent={leadContent}
