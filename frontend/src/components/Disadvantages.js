@@ -1,21 +1,35 @@
 import React from "react";
-import DisadvantagesItem from "./DisadvantagesItem";
+import shieldWarning from "../images/ShieldWarning.svg";
 
-function Disadvantages({ tableItems }) {
+function Disadvantages({ disadvantagesContent }) {
   return (
     <article className="disadvantages">
-      <h2 className="content__title">
-        Недостатки популярных аналогов в сегменте столешниц и фасадов
-      </h2>
+      <h2 className="content__title">{disadvantagesContent.title}</h2>
       <ul className="disadvantages__list list">
-        {tableItems.map((item) => (
-          <DisadvantagesItem
-            item={item}
-            key={item._id}
-            image={item.image}
-            content={item.text}
+        <li className="disadvantages__list-item">
+          <img
+            className="disadvantages__list-image"
+            src={shieldWarning}
+            alt="Изображение списка"
           />
-        ))}
+          <p className="content__text">{disadvantagesContent.disadvantages1}</p>
+        </li>
+        <li className="disadvantages__list-item">
+          <img
+            className="disadvantages__list-image"
+            src={shieldWarning}
+            alt="Изображение списка"
+          />
+          <p className="content__text">{disadvantagesContent.disadvantages2}</p>
+        </li>
+        <li className="disadvantages__list-item">
+          <img
+            className="disadvantages__list-image"
+            src={shieldWarning}
+            alt="Изображение списка"
+          />
+          <p className="content__text">{disadvantagesContent.disadvantages3}</p>
+        </li>
       </ul>
     </article>
   );
