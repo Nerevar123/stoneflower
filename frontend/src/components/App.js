@@ -15,8 +15,9 @@ import {
   advantagesIconsList,
   adminItems,
   applicabilityTableImage,
-  disadvantagesContentItems,
+  // disadvantagesTextContent,
   phasesIcons,
+  // phasesTextContent,
   // pricing,
   surfaces,
   // advices,
@@ -39,11 +40,12 @@ function App() {
   const [advantagesText, setAdvantagesText] = useState({});
   const [advantagesIcons, setAdvantagesIcons] = useState({});
   const [applicabilityTable, setApplicabilityTable] = useState();
-  const [disadvantagesContent, setDisadvantagesContent] = useState([]);
+  const [disadvantagesContent, setDisadvantagesContent] = useState({});
   const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
   const [phasesIconList, setPhasesIconList] = useState({});
+  const [phasesText, setPhasesText] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
   const [advicesContent, setAdvicesContent] = useState([]);
@@ -57,6 +59,53 @@ function App() {
   const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+
+  useEffect(() => {
+    Promise.all([
+      api.getServices(),
+      api.getTexts(),
+      api.getAdvices(),
+      api.getImages(),
+    ])
+      .then(([services, texts, advices, images]) => {
+        Object.keys(images).map((key) => {
+          console.log(key);
+          images[key].path =
+            process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
+          return images;
+        });
+        setImages(images);
+        setPostFormContent(texts.postForm);
+        setPricingContent(texts.pricing);
+        setAdvantagesText(texts.advantages);
+        setContactsContent(texts.contacts);
+        setDisadvantagesContent(texts.disadvantages);
+        setPhasesText(texts.phases);
+        setLeadContent(texts.lead);
+        setServices(services);
+        setAdvicesContent(advices);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    setAdvantagesIcons(advantagesIconsList);
+    setApplicabilityTable(applicabilityTableImage);
+    // setDisadvantagesContent(disadvantagesTextContent);
+    setPhasesIconList(phasesIcons);
+    // setPhasesText(phasesTextContent);
+    setSurfacesContent(surfaces);
+    // setAdvicesContent(advices);
+    setPortfolioContent(portfolio);
+    setSuppliersContent(suppliers);
+    // setLeadContent(lead)
+    // setPostFormContent(postForm);
+    // setServices(servicesItems);
+    // setPricingContent(pricing);
+    // setAdvantagesText(advantagesTextContent);
+    // setContactsContent(contacts);
+  }, []);
 
   function showModalWithImage(image) {
     document.body.style.overflow = 'hidden';
@@ -84,49 +133,6 @@ function App() {
       setModalWithConfirmationOpen(false);
     }, 300);
   }
-
-  useEffect(() => {
-    Promise.all([
-      api.getServices(),
-      api.getTexts(),
-      api.getAdvices(),
-      api.getImages(),
-    ])
-      .then(([services, texts, advices, images]) => {
-        Object.keys(images).map((key) => {
-          console.log(key);
-          images[key].path =
-            process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
-          return images;
-        });
-        setImages(images);
-        setPostFormContent(texts.postForm);
-        setPricingContent(texts.pricing);
-        setAdvantagesText(texts.advantages);
-        setContactsContent(texts.contacts);
-        setLeadContent(texts.lead);
-        setServices(services);
-        setAdvicesContent(advices);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    setAdvantagesIcons(advantagesIconsList);
-    setApplicabilityTable(applicabilityTableImage);
-    setDisadvantagesContent(disadvantagesContentItems);
-    setPhasesIconList(phasesIcons);
-    setSurfacesContent(surfaces);
-    // setAdvicesContent(advices);
-    setPortfolioContent(portfolio);
-    setSuppliersContent(suppliers);
-    // setLeadContent(lead)
-    // setPostFormContent(postForm);
-    // setServices(servicesItems);
-    // setPricingContent(pricing);
-    // setAdvantagesText(advantagesTextContent);
-    // setContactsContent(contacts);
-  }, []);
 
   // function handleLogin(user) {
   //   setIsSaving(true);
@@ -195,6 +201,7 @@ function App() {
               disadvantagesContent={disadvantagesContent}
               showModalWithImage={showModalWithImage}
               phasesIcons={phasesIconList}
+              phasesText={phasesText}
               pricingContent={pricingContent}
               surfacesContent={surfacesContent}
               advicesContent={advicesContent}
@@ -244,6 +251,9 @@ function App() {
               images={images}
               services={services}
               advantagesText={advantagesText}
+              disadvantagesText={disadvantagesContent}
+              phasesText={phasesText}
+              phasesIcons={phasesIcons}
             />
             {/* </ProtectedRoute> */}
           </Route>

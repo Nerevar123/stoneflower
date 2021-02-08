@@ -2,6 +2,8 @@ import React, { useState, useEffect, createRef, useRef } from "react";
 import AdminLeadEditor from "./AdminLeadEditor";
 import AdminServices from "./AdminServices";
 import AdminAdvantages from "./AdminAdvantages";
+import AdminDisadvantages from "./AdminDisadvantages";
+import AdminPhases from "./AdminPhases";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -14,12 +16,15 @@ function Admin({
   images,
   services,
   advantagesText,
+  disadvantagesText,
+  phasesText,
+  phasesIcons,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
 
   let buttonRefs = [];
-  const menuRef= useRef();
+  const menuRef = useRef();
 
   adminItems.forEach(() => {
     buttonRefs.push(createRef());
@@ -123,6 +128,21 @@ function Admin({
             validation={validation}
             advantagesText={advantagesText}
             onSaveText={onSaveText}
+          />
+        )}
+        {selectedItem === "disadvantages" && (
+          <AdminDisadvantages
+            validation={validation}
+            disadvantagesText={disadvantagesText}
+            onSaveText={onSaveText}
+          />
+        )}
+        {selectedItem === "phases" && (
+          <AdminPhases
+            validation={validation}
+            phasesText={phasesText}
+            onSaveText={onSaveText}
+            phasesIcons={phasesIcons}
           />
         )}
       </div>

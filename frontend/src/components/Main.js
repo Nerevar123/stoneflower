@@ -23,6 +23,7 @@ function Main({
   disadvantagesContent,
   showModalWithImage,
   phasesIcons,
+  phasesText,
   pricingContent,
   surfacesContent,
   advicesContent,
@@ -52,9 +53,9 @@ function Main({
 
       {window.width > 849 && <Applicability table={applicabilityTable} />}
 
-      <Disadvantages tableItems={disadvantagesContent} />
+      <Disadvantages disadvantagesContent={disadvantagesContent} />
 
-      <Phases phasesIcons={phasesIcons} />
+      <Phases phasesIcons={phasesIcons} phasesText={phasesText} />
 
       <Pricing content={pricingContent} />
       {window.width > 849 && (
