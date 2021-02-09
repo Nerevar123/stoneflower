@@ -48,7 +48,7 @@ function App() {
   const [phasesText, setPhasesText] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
-  const [advicesContent, setAdvicesContent] = useState([]);
+  const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
@@ -187,6 +187,28 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleSaveAdvice(data) {
+    console.log(data);
+    api
+      .saveAdvice(data)
+      .then((data) => {
+        window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handlePatchAdvice(data, id) {
+    console.log(data, id);
+    api
+      .patchAdvice(data, id)
+      .then((data) => {
+        window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Router history={history} basename="/">
@@ -247,6 +269,8 @@ function App() {
               onSaveText={handleSaveText}
               onSaveImage={handleSaveImage}
               onSaveService={handleSaveService}
+              onSaveAdvice={handleSaveAdvice}
+              onPatchAdvice={handlePatchAdvice}
               leadContent={leadContent}
               images={images}
               services={services}
@@ -254,6 +278,9 @@ function App() {
               disadvantagesText={disadvantagesContent}
               phasesText={phasesText}
               phasesIcons={phasesIcons}
+              pricingContent={pricingContent}
+              contactsContent={contactsContent}
+              advices={advicesContent}
             />
             {/* </ProtectedRoute> */}
           </Route>

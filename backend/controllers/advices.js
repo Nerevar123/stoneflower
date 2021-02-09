@@ -1,6 +1,7 @@
 const fs = require("fs");
 const Advice = require("../models/advice");
-const validationError = require('../errors/validation-error');
+const NotFoundError = require('../errors/not-found-error');
+const { notFoundErrorMessage } = require('../utils/constants');
 
 module.exports.getAdvices = (req, res, next) => {
   Advice.find({})
@@ -19,12 +20,12 @@ module.exports.createAdvice = (req, res, next) => {
 
 module.exports.deleteAdvice = (req, res, next) => {
   Advice.findById(req.params.adviceId)
-    .orFail(new Error("notFound"))
+    .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        next(new Error("notFound"));
+        next(new NotFoundError(notFoundErrorMessage));
       }
       Advice.findByIdAndRemove(req.params.adviceId).then((advice) =>
         res.send(advice)
@@ -35,17 +36,25 @@ module.exports.deleteAdvice = (req, res, next) => {
 
 module.exports.updateAdvice = (req, res, next) => {
   const { heading, shortText, expandedText } = req.body;
-  const image = req.file;
-  if (!image) throw new validationError("Необходимо прикрепить изображение");
+  let image = req.file;
+  let newFile = true;
+
+  if (!image) {
+    image = JSON.parse(req.body.image);
+    newFile = false;
+  }
 
   Advice.findById(req.params.adviceId)
-    .orFail(new Error("notFound"))
+    .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
+      if (newFile) {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        throw new Error("notFound");
+        throw new NotFoundError(notFoundErrorMessage);
       }
+    }
+
       Advice.findByIdAndUpdate(
         req.params.adviceId,
         { heading, shortText, expandedText, image },
@@ -54,7 +63,7 @@ module.exports.updateAdvice = (req, res, next) => {
           runValidators: true,
         }
       )
-        .orFail(new Error("notFound"))
+        .orFail(new NotFoundError(notFoundErrorMessage))
         .then((advice) => res.send(advice));
     })
     .catch(next);

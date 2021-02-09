@@ -4,6 +4,9 @@ import AdminServices from "./AdminServices";
 import AdminAdvantages from "./AdminAdvantages";
 import AdminDisadvantages from "./AdminDisadvantages";
 import AdminPhases from "./AdminPhases";
+import AdminPricing from "./AdminPricing";
+import AdminAdvices from "./AdminAdvices";
+import AdminContacts from "./AdminContacts";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -19,6 +22,11 @@ function Admin({
   disadvantagesText,
   phasesText,
   phasesIcons,
+  pricingContent,
+  contactsContent,
+  onSaveAdvice,
+  onPatchAdvice,
+  advices,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -116,12 +124,16 @@ function Admin({
             onSaveImage={onSaveImage}
           />
         )}
-        {selectedItem === "services" && (
-          <AdminServices
-            validation={validation}
-            services={services}
-            onSaveService={onSaveService}
-          />
+        {services && (
+          <>
+            {selectedItem === "services" && (
+              <AdminServices
+                validation={validation}
+                services={services}
+                onSaveService={onSaveService}
+              />
+            )}
+          </>
         )}
         {selectedItem === "advantages" && (
           <AdminAdvantages
@@ -143,6 +155,32 @@ function Admin({
             phasesText={phasesText}
             onSaveText={onSaveText}
             phasesIcons={phasesIcons}
+          />
+        )}
+        {selectedItem === "pricing" && (
+          <AdminPricing
+            validation={validation}
+            pricingContent={pricingContent}
+            onSaveText={onSaveText}
+          />
+        )}
+        {advices && (
+          <>
+            {selectedItem === "advices" && (
+              <AdminAdvices
+              validation={validation}
+              advices={advices}
+              onSaveAdvice={onSaveAdvice}
+              onPatchAdvice={onPatchAdvice}
+              />
+            )}
+          </>
+        )}
+        {selectedItem === "contacts" && (
+          <AdminContacts
+            validation={validation}
+            contactsContent={contactsContent}
+            onSaveText={onSaveText}
           />
         )}
       </div>

@@ -54,20 +54,6 @@ router.delete(
   }),
   deleteAdvice
 );
-router.patch(
-  "/:adviceId",
-  upload,
-  celebrate({
-    params: Joi.object().keys({
-      adviceId: Joi.string().alphanum().length(24),
-    }),
-    body: Joi.object().keys({
-      heading: Joi.string().min(2).required(),
-      shortText: Joi.string().min(2).required(),
-      expandedText: Joi.string().min(2).required(),
-    }),
-  }),
-  updateAdvice
-);
+router.patch("/:adviceId", upload, updateAdvice);
 
 module.exports = router;

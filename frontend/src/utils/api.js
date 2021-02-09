@@ -61,6 +61,34 @@ class Api {
     }).then(this._checkError);
   }
 
+  saveAdvice(advice) {
+    const formData = new FormData();
+    formData.append("image", advice.image);
+    formData.append("heading", advice.heading);
+    formData.append("shortText", advice.shortText);
+    formData.append("expandedText", advice.expandedText);
+
+    return fetch(`${this._baseUrl}/advices`, {
+      method: "POST",
+      // credentials: "include",
+      body: formData,
+    }).then(this._checkError);
+  }
+
+  patchAdvice(advice, id) {
+    const formData = new FormData();
+    formData.append("image", advice.image);
+    formData.append("heading", advice.heading);
+    formData.append("shortText", advice.shortText);
+    formData.append("expandedText", advice.expandedText);
+
+    return fetch(`${this._baseUrl}/advices/${id}`, {
+      method: "PATCH",
+      // credentials: "include",
+      body: formData,
+    }).then(this._checkError);
+  }
+
   getImages() {
     return fetch(`${this._baseUrl}/images`, {
       headers: this._headers,

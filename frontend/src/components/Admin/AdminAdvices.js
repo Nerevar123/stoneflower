@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import Services from "../Services";
+import Advices from "../Advices";
 import Label from "../Label";
 
-function AdminServices({ validation, services, onSaveService }) {
+function AdminAdvices({ validation, advices, onSaveAdvice, onPatchAdvice }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  const [selectedService, setSelectedService] = useState({});
-  const [compiledData, setCompiledData] = useState(selectedService);
-  const [picture, setPicture] = useState(selectedService.image);
+  const [selectedAdvice, setSelectedAdvice] = useState({});
+  const [compiledData, setCompiledData] = useState(selectedAdvice);
+  const [picture, setPicture] = useState(selectedAdvice.image);
   const [preview, showPreview] = useState(false);
 
   const uploadInputRef = useRef();
@@ -16,31 +16,46 @@ function AdminServices({ validation, services, onSaveService }) {
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
-    console.log(selectedService);
-    resetForm(selectedService);
+    console.log(selectedAdvice);
+    resetForm(selectedAdvice);
     setIsValid(true);
     return () => {
       resetForm();
       setIsValid(false);
     };
-  }, [selectedService, resetForm, setIsValid, services]);
+  }, [selectedAdvice, resetForm, setIsValid, advices]);
 
   useEffect(() => {
-    setSelectedService(services[0]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    setSelectedAdvice(advices[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function handleCreateAdvice(e) {
+    e.preventDefault();
+
+    onSaveAdvice(
+      {
+        heading: "Заголовок",
+        shortText: "Описание",
+        expandedText: "Читать далее",
+        image:  JSON.stringify(selectedAdvice.image),
+      },
+      selectedAdvice._id
+    );
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsUploading(true);
 
-    onSaveService(
+    onPatchAdvice(
       {
-        heading: values.heading || selectedService.heading,
-        description: values.description || selectedService.description,
-        image: picture || JSON.stringify(selectedService.image),
+        heading: values.heading || selectedAdvice.heading,
+        shortText: values.shortText || selectedAdvice.shortText,
+        expandedText: values.expandedText || selectedAdvice.expandedText,
+        image: picture || JSON.stringify(selectedAdvice.image),
       },
-      selectedService._id
+      selectedAdvice._id
     );
   }
 
@@ -68,22 +83,23 @@ function AdminServices({ validation, services, onSaveService }) {
 
   function handlePreviewClick() {
     setCompiledData({
-      heading: values.heading || selectedService.heading,
-      description: values.description || selectedService.description,
-      image: picture || selectedService.image,
+      heading: values.heading || selectedAdvice.heading,
+      shortText: values.shortText || selectedAdvice.shortText,
+      expandedText: values.expandedText || selectedAdvice.expandedText,
+      image: picture || selectedAdvice.image,
     });
     showPreview(!preview);
   }
 
   function handleSelectClick(num) {
-    setSelectedService(services[num]);
+    setSelectedAdvice(advices[num]);
     showPreview(false);
   }
 
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
-        <h2 className="admin__heading">Услуги</h2>
+        <h2 className="admin__heading">Советы дизайнера</h2>
         <div className="admin__select-buttons">
           <button
             className="admin__select-button"
@@ -175,17 +191,27 @@ function AdminServices({ validation, services, onSaveService }) {
             labelText="Заголовок"
             type="text"
             required
-            maxLength="55"
+            maxLength="65"
             withCount
           />
           <Label
             validation={validation}
             className="admin"
-            name="description"
-            labelText="Пункт 1"
+            name="shortText"
+            labelText="Описание"
             type="text"
             required
-            maxLength="150"
+            maxLength="600"
+            withCount
+          />
+          <Label
+            validation={validation}
+            className="admin"
+            name="expandedText"
+            labelText="Читать далее"
+            type="text"
+            required
+            maxLength="600"
             withCount
           />
           <div className="admin__buttons-container">
@@ -200,7 +226,7 @@ function AdminServices({ validation, services, onSaveService }) {
             </button>
             <button
               type="button"
-              onClick={(_) => resetForm(selectedService, {}, true)}
+              onClick={(_) => resetForm(selectedAdvice, {}, true)}
               className="admin__upload-button admin__upload-button_type_cancel"
             >
               Отменить
@@ -210,11 +236,11 @@ function AdminServices({ validation, services, onSaveService }) {
       </div>
       {preview && (
         <div className="admin__preview-container">
-          <Services elements={compiledData} />
+          <Advices content={compiledData} />
         </div>
       )}
     </div>
   );
 }
 
-export default AdminServices;
+export default AdminAdvices;
