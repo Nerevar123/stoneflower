@@ -70,7 +70,7 @@ function AdminServices({ validation, services, onSaveService }) {
     setCompiledData({
       heading: values.heading || selectedService.heading,
       description: values.description || selectedService.description,
-      image: picture || selectedService.image,
+      image: imgData || selectedService.image,
     });
     showPreview(!preview);
   }

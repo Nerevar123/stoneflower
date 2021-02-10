@@ -188,7 +188,6 @@ function App() {
   }
 
   function handleSaveAdvice(data) {
-    console.log(data);
     api
       .saveAdvice(data)
       .then((data) => {
@@ -199,7 +198,6 @@ function App() {
   }
 
   function handlePatchAdvice(data, id) {
-    console.log(data, id);
     api
       .patchAdvice(data, id)
       .then((data) => {
@@ -207,6 +205,16 @@ function App() {
         console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
+  }
+
+  function handleDeleteAdvice(id) {
+    api
+    .deleteAdvice(id)
+    .then((data) => {
+      window.location.reload();
+      console.log("Удалено", data);
+    })
+    .catch((err) => console.log(err));
   }
 
   return (
@@ -271,6 +279,7 @@ function App() {
               onSaveService={handleSaveService}
               onSaveAdvice={handleSaveAdvice}
               onPatchAdvice={handlePatchAdvice}
+              onDeleteAdvice={handleDeleteAdvice}
               leadContent={leadContent}
               images={images}
               services={services}

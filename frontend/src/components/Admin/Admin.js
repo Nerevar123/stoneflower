@@ -26,6 +26,7 @@ function Admin({
   contactsContent,
   onSaveAdvice,
   onPatchAdvice,
+  onDeleteAdvice,
   advices,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
@@ -172,6 +173,7 @@ function Admin({
               advices={advices}
               onSaveAdvice={onSaveAdvice}
               onPatchAdvice={onPatchAdvice}
+              onDeleteAdvice={onDeleteAdvice}
               />
             )}
           </>

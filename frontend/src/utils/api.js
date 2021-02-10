@@ -89,6 +89,13 @@ class Api {
     }).then(this._checkError);
   }
 
+  deleteAdvice(id) {
+    return fetch(`${this._baseUrl}/advices/${id}`, {
+      method: "DELETE",
+      // credentials: "include",
+    }).then(this._checkError);
+  }
+
   getImages() {
     return fetch(`${this._baseUrl}/images`, {
       headers: this._headers,

@@ -67,7 +67,7 @@ function Main({
           showModal={showModalWithImage}
         />
       )}
-      <Advices content={advicesContent} />
+      {advicesContent && <Advices content={advicesContent} />}
 
       <Portfolio
         content={portfolioContent}

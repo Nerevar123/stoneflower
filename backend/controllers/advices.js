@@ -11,7 +11,19 @@ module.exports.getAdvices = (req, res, next) => {
 
 module.exports.createAdvice = (req, res, next) => {
   const { heading, shortText, expandedText } = req.body;
-  const image = req.file;
+  let image = req.file;
+
+  // if (!image) {
+  //   image = JSON.parse(req.body.image);
+  //   const filename = image.filename.slice(0, image.filename.length - 4) + 123 + image.filename.slice(image.filename.length - 4, image.filename.length);
+  //   const path = image.path.slice(0, image.path.length - 4) + 123 + image.path.slice(image.path.length - 4, image.path.length);
+
+  //   fs.copyFile(image.path, path, (err) => {
+  //     if (err) throw err;
+  //   });
+  //   image.path = path;
+  //   image.filename = filename;
+  // }
 
   Advice.create({ heading, shortText, expandedText, image })
     .then((advice) => res.status(201).send(advice))
@@ -25,7 +37,8 @@ module.exports.deleteAdvice = (req, res, next) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        next(new NotFoundError(notFoundErrorMessage));
+        // next(new NotFoundError(notFoundErrorMessage));
+        console.log(data.image);
       }
       Advice.findByIdAndRemove(req.params.adviceId).then((advice) =>
         res.send(advice)
@@ -48,12 +61,13 @@ module.exports.updateAdvice = (req, res, next) => {
     .orFail(new NotFoundError(notFoundErrorMessage))
     .then((data) => {
       if (newFile) {
-      try {
-        fs.unlinkSync(data.image.path);
-      } catch {
-        throw new NotFoundError(notFoundErrorMessage);
+        try {
+          fs.unlinkSync(data.image.path);
+        } catch {
+          // throw new NotFoundError(notFoundErrorMessage);
+          console.log(data.image);
+        }
       }
-    }
 
       Advice.findByIdAndUpdate(
         req.params.adviceId,
