@@ -40,7 +40,10 @@ function Main({
   const window = useWindowSize();
   return (
     <main className="content">
-      <Lead content={leadContent} leadBgImage={images.leadBgImage} />
+      {images && (
+        <Lead content={leadContent} leadBgImage={images.leadBgImage} />
+      )}
+
       {services && <Services elements={services} />}
 
       <Advantages
@@ -75,14 +78,19 @@ function Main({
         isModalWithCarouselOpen={isModalWithCarouselOpen}
       />
       <Suppliers content={suppliersContent} />
-      <PostForm
-        content={postFormContent}
-        showModal={showModalWithConfirmation}
-      />
-      <Contacts
-        content={contactsContent}
-        entranceImage={images.contactsEntranceImage}
-      />
+      {images && (
+        <PostForm
+          content={postFormContent}
+          offer={images.postFormOffer}
+          showModal={showModalWithConfirmation}
+        />
+      )}
+      {images && (
+        <Contacts
+          content={contactsContent}
+          entranceImage={images.contactsEntranceImage}
+        />
+      )}
     </main>
   );
 }

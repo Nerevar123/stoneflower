@@ -7,6 +7,7 @@ import AdminPhases from "./AdminPhases";
 import AdminPricing from "./AdminPricing";
 import AdminAdvices from "./AdminAdvices";
 import AdminContacts from "./AdminContacts";
+import AdminPostForm from "./AdminPostForm";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -28,6 +29,7 @@ function Admin({
   onPatchAdvice,
   onDeleteAdvice,
   advices,
+  postFormContent,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -169,11 +171,11 @@ function Admin({
           <>
             {selectedItem === "advices" && (
               <AdminAdvices
-              validation={validation}
-              advices={advices}
-              onSaveAdvice={onSaveAdvice}
-              onPatchAdvice={onPatchAdvice}
-              onDeleteAdvice={onDeleteAdvice}
+                validation={validation}
+                advices={advices}
+                onSaveAdvice={onSaveAdvice}
+                onPatchAdvice={onPatchAdvice}
+                onDeleteAdvice={onDeleteAdvice}
               />
             )}
           </>
@@ -183,6 +185,15 @@ function Admin({
             validation={validation}
             contactsContent={contactsContent}
             onSaveText={onSaveText}
+          />
+        )}
+        {selectedItem === "postform" && (
+          <AdminPostForm
+            validation={validation}
+            onSaveText={onSaveText}
+            postFormContent={postFormContent}
+            postFormOffer={images.postFormOffer}
+            onSaveImage={onSaveImage}
           />
         )}
       </div>

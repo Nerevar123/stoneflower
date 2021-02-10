@@ -35,7 +35,7 @@ function App() {
   const history = useHistory();
   const validation = useFormWithValidation();
   const [services, setServices] = useState(null);
-  const [images, setImages] = useState({});
+  const [images, setImages] = useState(null);
   const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
   const [advantagesIcons, setAdvantagesIcons] = useState({});
@@ -170,7 +170,7 @@ function App() {
     api
       .patchImage(data, id)
       .then((data) => {
-        // window.location.reload();
+        window.location.reload();
         console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
@@ -290,6 +290,7 @@ function App() {
               pricingContent={pricingContent}
               contactsContent={contactsContent}
               advices={advicesContent}
+              postFormContent={postFormContent}
             />
             {/* </ProtectedRoute> */}
           </Route>

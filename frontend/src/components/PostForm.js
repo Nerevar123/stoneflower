@@ -4,7 +4,7 @@ import cn from "classnames";
 import * as Yup from "yup";
 import "yup-phone";
 
-function PostForm({ content, showModal }) {
+function PostForm({ content, offer, showModal }) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const initialValues = {
     name: "",
@@ -153,7 +153,7 @@ function PostForm({ content, showModal }) {
                 Отправляя форму, вы даете согласие на обработку своих{" "}
                 <a
                   className="form__link"
-                  href={content.offerLink}
+                  href={offer.path}
                   rel="noreferrer"
                   target="_blank"
                 >
