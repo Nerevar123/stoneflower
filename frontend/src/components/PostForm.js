@@ -154,7 +154,7 @@ function PostForm({ content, offer, showModal }) {
                 Отправляя форму, вы даете согласие на обработку своих{" "}
                 <a
                   className="form__link"
-                  href={offer.path || "/"}
+                  href={offer?offer.path:"/"}
                   rel="noreferrer"
                   target="_blank"
                 >
