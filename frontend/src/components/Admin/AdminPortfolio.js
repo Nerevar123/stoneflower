@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PostForm from "../PostForm";
 import Label from "../Label";
 
-function AdminPostForm({
+function AdminPortfolio({
   validation,
   onSaveText,
   onSaveImage,
@@ -92,7 +92,7 @@ function AdminPostForm({
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
-        <h2 className="admin__heading">Оставить заявку</h2>
+        <h2 className="admin__heading">Портфолио</h2>
         <form
           className="admin__form admin__form_type_lead-text"
           name="admin-lead"
@@ -198,4 +198,4 @@ function AdminPostForm({
   );
 }
 
-export default AdminPostForm;
+export default AdminPortfolio;

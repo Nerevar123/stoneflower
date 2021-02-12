@@ -8,19 +8,19 @@ function AdminLeadEditor({
   onSaveImage,
   leadContent,
   leadBgImage,
-  menuRef
+  menuRef,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
-  const [picture, setPicture] = useState({name: 'имя картинки'});
+  const [picture, setPicture] = useState({ name: "имя картинки" });
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const previewRef = useRef();
   const scrollToPreview = () => {
-    previewRef.current.scrollIntoView({inline: "start", behavior: "smooth"})
-  }
+    previewRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
-  console.log(leadContent)
+  console.log(leadContent);
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
@@ -72,7 +72,6 @@ function AdminLeadEditor({
     });
   }
 
-
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
       setIsPictureSelected(true);
@@ -87,7 +86,7 @@ function AdminLeadEditor({
 
   const handleUploadButtonClick = (evt) => {
     evt.preventDefault();
-    if(imgData === null) {
+    if (imgData === null) {
       uploadInputRef.current.click();
     } else {
       handleImageSubmit(evt);
@@ -102,11 +101,11 @@ function AdminLeadEditor({
         image: picture,
       },
       leadBgImage.id
-    )
+    );
   }
   const scrollToMenu = () => {
-    menuRef.current.scrollIntoView({ inline:"start", behavior: "smooth" })
-  }
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   return (
     <div className="admin__edit-wrapper">
@@ -120,7 +119,15 @@ function AdminLeadEditor({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Изображение</p>
-            <p onClick={()=> {scrollToPreview(); handlePreview()}} className="admin__preview-link">Показать превью</p>
+            <p
+              onClick={() => {
+                scrollToPreview();
+                handlePreview();
+              }}
+              className="admin__preview-link"
+            >
+              Показать превью
+            </p>
           </div>
           <p className="admin_requirements-heading">Требования:</p>
           <ul className="admin__requirements-list">
@@ -144,7 +151,9 @@ function AdminLeadEditor({
               onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
                 isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${isPictureSelected ? "admin__upload-button_state_uploaded" : ""}`}
+              } ${
+                isPictureSelected ? "admin__upload-button_state_uploaded" : ""
+              }`}
             >
               {isPictureSelected ? "Сохранить" : "Выбрать файл"}
             </button>
@@ -167,7 +176,13 @@ function AdminLeadEditor({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={()=> {scrollToPreview(); handlePreview()}} className="admin__preview-link">
+            <p
+              onClick={() => {
+                scrollToPreview();
+                handlePreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -231,8 +246,10 @@ function AdminLeadEditor({
           </div>
         </form>
       </div>
-      <div  ref={previewRef} className="admin__preview-container">
-        <button onClick={scrollToMenu} className="admin__go-back">Назад</button>
+      <div ref={previewRef} className="admin__preview-container">
+        <button onClick={scrollToMenu} className="admin__go-back">
+          Назад
+        </button>
         <Lead
           content={compiledData}
           leadBgImage={imgData ? imgData : leadBgImage}
