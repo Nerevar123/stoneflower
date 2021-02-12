@@ -46,6 +46,7 @@ function PostForm({ content, offer, showModal }) {
           await sleep(500);
           handleSubmit(values)
             .then(() => {
+              console.log(values);
               alert(JSON.stringify(values, null, 2));
               actions.resetForm();
               showModal();
