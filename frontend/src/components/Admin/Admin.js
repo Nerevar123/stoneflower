@@ -8,6 +8,7 @@ import AdminPricing from "./AdminPricing";
 import AdminAdvices from "./AdminAdvices";
 import AdminContacts from "./AdminContacts";
 import AdminPostForm from "./AdminPostForm";
+import AdminPortfolio from "./AdminPortfolio";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -117,15 +118,19 @@ function Admin({
         ></div>
       </div>
       <div className="admin__edit-section">
-        {selectedItem === "lead" && (
-          <AdminLeadEditor
-            menuRef={menuRef}
-            validation={validation}
-            onSaveText={onSaveText}
-            leadContent={leadContent}
-            leadBgImage={images.leadBgImage}
-            onSaveImage={onSaveImage}
-          />
+        {images && (
+          <>
+            {selectedItem === "lead" && (
+              <AdminLeadEditor
+                menuRef={menuRef}
+                validation={validation}
+                onSaveText={onSaveText}
+                leadContent={leadContent}
+                leadBgImage={images.leadBgImage}
+                onSaveImage={onSaveImage}
+              />
+            )}
+          </>
         )}
         {services && (
           <>
@@ -187,15 +192,32 @@ function Admin({
             onSaveText={onSaveText}
           />
         )}
-        {selectedItem === "postform" && (
-          <AdminPostForm
-            validation={validation}
-            onSaveText={onSaveText}
-            postFormContent={postFormContent}
-            postFormOffer={images.postFormOffer}
-            onSaveImage={onSaveImage}
-          />
+        {images && (
+          <>
+            {selectedItem === "postform" && (
+              <AdminPostForm
+                validation={validation}
+                onSaveText={onSaveText}
+                postFormContent={postFormContent}
+                postFormOffer={images.postFormOffer}
+                onSaveImage={onSaveImage}
+              />
+            )}
+          </>
         )}
+        {/* {images && (
+          <>
+            {selectedItem === "portfolio" && (
+              <AdminPortfolio
+                validation={validation}
+                onSaveText={onSaveText}
+                postFormContent={postFormContent}
+                postFormOffer={images.postFormOffer}
+                onSaveImage={onSaveImage}
+              />
+            )}
+          </>
+        )} */}
       </div>
     </main>
   );
