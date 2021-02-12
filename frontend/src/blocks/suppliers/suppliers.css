@@ -5,7 +5,7 @@
   max-width: 1440px;
 }
 @media screen and (min-width: 1441px) {
-  .suppliers  {
+  .suppliers {
     margin: 0 auto;
     max-width: 1280px;
   }
@@ -22,16 +22,31 @@
 .suppliers__list-item {
   margin: 0;
   transition: all 0.5s ease-in-out;
+  position: relative;
 }
 .suppliers__list-item:hover {
   transform: scale(1.1);
 }
-
-
+.suppliers__confirmation-window {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.suppliers__link {
+  font-family: "FuturaBookC", helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #335E58;
+  text-decoration: underline;
+  white-space: nowrap;
+}
 
 @media screen and (max-width: 849px) {
   .suppliers {
-      margin: 0 14px 0 15px;
+    margin: 0 14px 0 15px;
   }
   .suppliers__list {
     margin-top: 0px;
