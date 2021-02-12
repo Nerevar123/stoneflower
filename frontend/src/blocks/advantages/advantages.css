@@ -7,7 +7,8 @@
 }
 @media screen and (min-width: 1441px) {
   .advantages {
-    margin: 0 165px;
+    margin: 0 auto;
+    max-width: 1280px;
   }
 }
 
@@ -73,7 +74,6 @@
 
 @media screen and (min-width: 1441px) {
   .advantages__list {
-    max-width: 1390px;
     grid-template-columns: repeat(4, minmax(255px, 1fr));
   }
 }

@@ -4,7 +4,12 @@
   flex-direction: column;
   max-width: 1440px;
 }
-
+@media screen and (min-width: 1441px) {
+  .phases {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
 .phases__scheme-container {
   position: relative;
   margin: 48px 28px 0 28px;
@@ -50,11 +55,6 @@
   white-space: pre-line;
 }
 
-@media screen and (min-width: 1441px) {
-  .phases {
-    margin: 0 165px;
-  }
-}
 
 @media screen and (max-width: 849px) {
   .phases {

@@ -18,6 +18,13 @@ class Api {
       });
   }
 
+  _checkEmailResponse(res) {
+    if (res.statusText === "Created") {
+      return res;
+    }
+    return Promise.reject(res);
+  }
+
   getServices() {
     return fetch(`${this._baseUrl}/services`, {
       headers: this._headers,
@@ -113,6 +120,20 @@ class Api {
       // credentials: "include",
       body: formData,
     }).then(this._checkError);
+  }
+  sendEmail(data) {
+    return fetch(`${this._baseURL}/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        tel: data.tel,
+        description: data.description,
+      }),
+    }).then(this._checkEmailResponse);
   }
 }
 
