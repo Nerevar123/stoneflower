@@ -5,9 +5,17 @@
   display: flex;
   flex-direction: column;
 }
+@media screen and (min-width: 1441px) {
+  .pricing {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
+
 
 @media screen and (max-width: 849px) {
   .pricing {
     margin: 0 14px 0 15px;
   }
 }
+

@@ -5,7 +5,8 @@
 }
 @media screen and (min-width: 1441px) {
   .services {
-    margin: 0 165px;
+    margin: 0 auto;
+    max-width: 1280px;
   }
 }
 
