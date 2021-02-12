@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
     callback(null, "./uploads/advices");
   },
   filename: function (req, file, callback) {
-    callback(null, new Date().toISOString().slice(0, 10) + file.originalname);
+    callback(null, Date.now() + file.originalname);
   },
 });
 
@@ -31,20 +31,7 @@ const upload = multer({
 }).single("image");
 
 router.get("/", getAdvices);
-router.post(
-  "/",
-  upload,
-  celebrate({
-    body: Joi.object()
-      .keys({
-        heading: Joi.string().min(2).required(),
-        shortText: Joi.string().min(2).required(),
-        expandedText: Joi.string().min(2).required(),
-      })
-      .unknown(true),
-  }),
-  createAdvice
-);
+router.post("/", upload, createAdvice);
 router.delete(
   "/:adviceId",
   celebrate({
@@ -54,20 +41,6 @@ router.delete(
   }),
   deleteAdvice
 );
-router.patch(
-  "/:adviceId",
-  upload,
-  celebrate({
-    params: Joi.object().keys({
-      adviceId: Joi.string().alphanum().length(24),
-    }),
-    body: Joi.object().keys({
-      heading: Joi.string().min(2).required(),
-      shortText: Joi.string().min(2).required(),
-      expandedText: Joi.string().min(2).required(),
-    }),
-  }),
-  updateAdvice
-);
+router.patch("/:adviceId", upload, updateAdvice);
 
 module.exports = router;

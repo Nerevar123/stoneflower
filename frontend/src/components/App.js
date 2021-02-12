@@ -35,7 +35,7 @@ function App() {
   const history = useHistory();
   const validation = useFormWithValidation();
   const [services, setServices] = useState(null);
-  const [images, setImages] = useState({});
+  const [images, setImages] = useState(null);
   const [leadContent, setLeadContent] = useState({});
   const [advantagesText, setAdvantagesText] = useState({});
   const [advantagesIcons, setAdvantagesIcons] = useState({});
@@ -48,7 +48,7 @@ function App() {
   const [phasesText, setPhasesText] = useState({});
   const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState({});
-  const [advicesContent, setAdvicesContent] = useState([]);
+  const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState([]);
@@ -170,7 +170,7 @@ function App() {
     api
       .patchImage(data, id)
       .then((data) => {
-        // window.location.reload();
+        window.location.reload();
         console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
@@ -185,6 +185,36 @@ function App() {
         console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
+  }
+
+  function handleSaveAdvice(data) {
+    api
+      .saveAdvice(data)
+      .then((data) => {
+        window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handlePatchAdvice(data, id) {
+    api
+      .patchAdvice(data, id)
+      .then((data) => {
+        window.location.reload();
+        console.log("Сохранено", data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteAdvice(id) {
+    api
+    .deleteAdvice(id)
+    .then((data) => {
+      window.location.reload();
+      console.log("Удалено", data);
+    })
+    .catch((err) => console.log(err));
   }
 
   return (
@@ -247,6 +277,9 @@ function App() {
               onSaveText={handleSaveText}
               onSaveImage={handleSaveImage}
               onSaveService={handleSaveService}
+              onSaveAdvice={handleSaveAdvice}
+              onPatchAdvice={handlePatchAdvice}
+              onDeleteAdvice={handleDeleteAdvice}
               leadContent={leadContent}
               images={images}
               services={services}
@@ -254,6 +287,10 @@ function App() {
               disadvantagesText={disadvantagesContent}
               phasesText={phasesText}
               phasesIcons={phasesIcons}
+              pricingContent={pricingContent}
+              contactsContent={contactsContent}
+              advices={advicesContent}
+              postFormContent={postFormContent}
             />
             {/* </ProtectedRoute> */}
           </Route>

@@ -6,7 +6,11 @@ function ServicesItem(props) {
       <img
         alt={props.heading}
         className="services__image"
-        src={process.env.REACT_APP_URL + props.image.path}
+        src={
+          props.image.path
+            ? process.env.REACT_APP_URL + props.image.path
+            : props.image
+        }
       />
       <h3 className="services__title">{props.heading}</h3>
       <p className="content__text">{props.description}</p>

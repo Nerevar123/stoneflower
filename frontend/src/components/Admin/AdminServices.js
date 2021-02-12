@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Services from "../Services";
 import Label from "../Label";
-import { api } from "../../utils/api";
 
-function AdminServices({
-  validation,
-  // services,
-  onSaveService,
-}) {
+function AdminServices({ validation, services, onSaveService }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState({});
   const [compiledData, setCompiledData] = useState(selectedService);
   const [picture, setPicture] = useState(selectedService.image);
@@ -29,13 +23,11 @@ function AdminServices({
       resetForm();
       setIsValid(false);
     };
-  }, [selectedService, resetForm, setIsValid]);
+  }, [selectedService, resetForm, setIsValid, services]);
 
   useEffect(() => {
-    api.getServices().then((services) => {
-      setServices(services);
-      setSelectedService(services[0]);
-    });
+    setSelectedService(services[0]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSubmit(e) {
@@ -74,12 +66,11 @@ function AdminServices({
     }
   };
 
-
   function handlePreviewClick() {
     setCompiledData({
       heading: values.heading || selectedService.heading,
       description: values.description || selectedService.description,
-      image: picture || selectedService.image,
+      image: imgData || selectedService.image,
     });
     showPreview(!preview);
   }
@@ -138,7 +129,9 @@ function AdminServices({
               onChange={onChangePicture}
               ref={uploadInputRef}
             />
-            <p className="admin__file-name">{picture ? picture.name : "название файла"}</p>
+            <p className="admin__file-name">
+              {picture ? picture.name : "название файла"}
+            </p>
           </div>
           <div className="admin__buttons-container">
             <button

@@ -10,14 +10,7 @@ function Contacts({ content, entranceImage }) {
   const [isFocused, setIsFocused] = useState(false);
 
   const window = useWindowSize();
-  // function enableScroll () {
-  //   console.log('hi')
-  //   setIsFocused(true);
-  // }
-  // function disableScroll() {
-  //   setIsFocused(false);
-  // }
-  console.log(entranceImage);
+
   useEffect(() => {
     if (content.phonePrimary) {
       let num = content.phonePrimary.match(/\d/g);

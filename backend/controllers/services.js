@@ -25,7 +25,8 @@ module.exports.deleteService = (req, res, next) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        next(new NotFoundError(notFoundErrorMessage));
+        // next(new NotFoundError(notFoundErrorMessage));
+        console.log(data.image);
       }
       Service.findByIdAndRemove(req.params.serviceId).then((service) =>
         res.send(service)
@@ -51,7 +52,8 @@ module.exports.updateService = (req, res, next) => {
         try {
           fs.unlinkSync(data.image.path);
         } catch {
-          throw new NotFoundError(notFoundErrorMessage);
+          // throw new NotFoundError(notFoundErrorMessage);
+          console.log(data.image);
         }
       }
       Service.findByIdAndUpdate(

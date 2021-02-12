@@ -4,6 +4,10 @@ import AdminServices from "./AdminServices";
 import AdminAdvantages from "./AdminAdvantages";
 import AdminDisadvantages from "./AdminDisadvantages";
 import AdminPhases from "./AdminPhases";
+import AdminPricing from "./AdminPricing";
+import AdminAdvices from "./AdminAdvices";
+import AdminContacts from "./AdminContacts";
+import AdminPostForm from "./AdminPostForm";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -19,6 +23,13 @@ function Admin({
   disadvantagesText,
   phasesText,
   phasesIcons,
+  pricingContent,
+  contactsContent,
+  onSaveAdvice,
+  onPatchAdvice,
+  onDeleteAdvice,
+  advices,
+  postFormContent,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -116,12 +127,16 @@ function Admin({
             onSaveImage={onSaveImage}
           />
         )}
-        {selectedItem === "services" && (
-          <AdminServices
-            validation={validation}
-            services={services}
-            onSaveService={onSaveService}
-          />
+        {services && (
+          <>
+            {selectedItem === "services" && (
+              <AdminServices
+                validation={validation}
+                services={services}
+                onSaveService={onSaveService}
+              />
+            )}
+          </>
         )}
         {selectedItem === "advantages" && (
           <AdminAdvantages
@@ -143,6 +158,42 @@ function Admin({
             phasesText={phasesText}
             onSaveText={onSaveText}
             phasesIcons={phasesIcons}
+          />
+        )}
+        {selectedItem === "pricing" && (
+          <AdminPricing
+            validation={validation}
+            pricingContent={pricingContent}
+            onSaveText={onSaveText}
+          />
+        )}
+        {advices && (
+          <>
+            {selectedItem === "advices" && (
+              <AdminAdvices
+                validation={validation}
+                advices={advices}
+                onSaveAdvice={onSaveAdvice}
+                onPatchAdvice={onPatchAdvice}
+                onDeleteAdvice={onDeleteAdvice}
+              />
+            )}
+          </>
+        )}
+        {selectedItem === "contacts" && (
+          <AdminContacts
+            validation={validation}
+            contactsContent={contactsContent}
+            onSaveText={onSaveText}
+          />
+        )}
+        {selectedItem === "postform" && (
+          <AdminPostForm
+            validation={validation}
+            onSaveText={onSaveText}
+            postFormContent={postFormContent}
+            postFormOffer={images.postFormOffer}
+            onSaveImage={onSaveImage}
           />
         )}
       </div>

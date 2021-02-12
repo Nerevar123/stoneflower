@@ -8,7 +8,7 @@ function Advices({ content }) {
         Советы дизайнера
       </h2>
       <ul className="advices__list list">
-        {content &&
+        {content.length > 1 ? (
           content.map((item) => (
             <AdvicesItem
               item={item}
@@ -20,7 +20,19 @@ function Advices({ content }) {
               linkTextExpanded="Скрыть"
               linkTextMinimized="Читать далее"
             />
-          ))}
+          ))
+        ) : (
+          <AdvicesItem
+            item={content}
+            key={content._id}
+            heading={content.heading}
+            image={content.image}
+            shortText={content.shortText}
+            expandedText={content.expandedText}
+            linkTextExpanded="Скрыть"
+            linkTextMinimized="Читать далее"
+          />
+        )}
       </ul>
     </article>
   );

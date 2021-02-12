@@ -3,6 +3,8 @@ const { duplicateErrorMessage, serverErrorMessage, validationErrorMessage } = re
 module.exports = ((err, req, res, next) => {
   const { statusCode = 500, message } = err;
 
+  console.log(err);
+
   if (err.name === 'CastError' || err.name === 'ValidationError') {
     res.status(400).send({ message: validationErrorMessage, details: err.message });
     return;
@@ -12,8 +14,6 @@ module.exports = ((err, req, res, next) => {
     res.status(409).send({ message: duplicateErrorMessage, details: err.message });
     return;
   }
-
-  console.log(err);
 
   res.status(statusCode).send({ message: statusCode === 500 ? serverErrorMessage : message, details: err.message });
 
