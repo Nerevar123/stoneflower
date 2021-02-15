@@ -21,6 +21,7 @@ function AdminAdvices({
   const [addAdvice, setAddAdvice] = useState(false);
 
   const uploadInputRef = useRef();
+  const popupUploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -96,6 +97,14 @@ function AdminAdvices({
 
     if (imgData === null) {
       uploadInputRef.current.click();
+    } else {
+      handleSubmit(e);
+    }
+  };
+  const handlePopupUploadButtonClick = (e) => {
+    e.preventDefault();
+    if (imgData === null) {
+      popupUploadInputRef.current.click();
     } else {
       handleSubmit(e);
     }
@@ -315,7 +324,7 @@ function AdminAdvices({
                     className="admin__file-input"
                     type="file"
                     onChange={onChangePicture}
-                    ref={uploadInputRef}
+                    ref={popupUploadInputRef}
                   />
                   <p className="admin__file-name">
                     {picture ? picture.name : "название файла"}
@@ -323,7 +332,7 @@ function AdminAdvices({
                 </div>
                 <button
                   type="submit"
-                  onClick={handleUploadButtonClick}
+                  onClick={handlePopupUploadButtonClick}
                   className={`admin__upload-button admin__upload-button_type_select ${
                     isUploading ? "admin__upload-button_state_uploading" : ""
                   } ${

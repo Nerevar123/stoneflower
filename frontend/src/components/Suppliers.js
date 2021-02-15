@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+import useWindowSize from "../hooks/useWindowSize";
+import SuppliersItem from "./SuppliersItem";
 // import { Link } from "react-router-dom";
 // import supplier_logo_1 from "../images/suppliers/1.png";
 
-function Suppliers({ content }) {
+function Suppliers({ content, showModal }) {
+  const window = useWindowSize();
   return (
     <article className="suppliers">
       <h2 className="content__title content__title_place_suppliers">
@@ -15,20 +18,8 @@ function Suppliers({ content }) {
       <ul className="suppliers__list list">
         {content.materialsData &&
           content.materialsData.map((item) => (
-            <li key={item._id} className="suppliers__list-item">
-              <a
-                className="suppliers__link"
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="suppliers__logo"
-                  alt="Логотип"
-                  src={item.logo}
-                />
-              </a>
-            </li>
+           <SuppliersItem item={item} id="materials" showModal={showModal}/>
+
           ))}
       </ul>
       <p className="content__text content__text_place_suppliers">
@@ -37,20 +28,7 @@ function Suppliers({ content }) {
       <ul className="suppliers__list list">
         {content.suppliersData &&
           content.suppliersData.map((item) => (
-            <li key={item._id} className="suppliers__list-item">
-              <a
-                className="suppliers__link"
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="suppliers__logo"
-                  alt="Логотип"
-                  src={item.logo}
-                />
-              </a>
-            </li>
+            <SuppliersItem item={item} id="suppliers" showModal={showModal}/>
           ))}
       </ul>
     </article>

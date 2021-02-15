@@ -7,6 +7,7 @@ import Main from "./Main";
 import Login from "./Login";
 import ModalWithImage from "./ModalWithImage";
 import PageNotFound from "./PageNotFound";
+import ModalWithLink from "./ModalWithLink";
 import { api } from "../utils/api";
 import {
   // servicesItems,
@@ -56,8 +57,10 @@ function App() {
   const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
   );
+  const [isModalWithLinkOpen, setIsModalWithLinkOpen] = useState(false);
   const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
+  const [modalLink, setModalLink] = useState();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
 
@@ -124,6 +127,11 @@ function App() {
     document.body.style.overflow = 'hidden';
     setModalWithConfirmationOpen(true);
   }
+  function showModalWithLink(link) {
+    document.body.style.overflow = 'hidden';
+    setModalLink(link);
+    setIsModalWithLinkOpen(true);
+  }
   function closeModal() {
     document.body.style.overflow = 'unset';
     setTimeout(() => {
@@ -131,6 +139,7 @@ function App() {
       setModalWithImageOpen(false);
       setModalWithCarouselOpen(false);
       setModalWithConfirmationOpen(false);
+      setIsModalWithLinkOpen(false);
     }, 300);
   }
 
@@ -244,6 +253,8 @@ function App() {
               contactsContent={contactsContent}
               leadContent={leadContent}
               images={images}
+              showModalWithLink={showModalWithLink}
+
             />
             {isModalWithImageOpen && (
               <ModalWithImage closeModal={closeModal} image={modalImage} />
@@ -255,6 +266,9 @@ function App() {
                 content={modalCarouselContent}
                 initialSlide={modalInitialSlide}
               />
+            )}
+             {isModalWithLinkOpen && (
+              <ModalWithLink closeModal={closeModal} isModalWithLinkOpen={isModalWithLinkOpen} link={modalLink} />
             )}
             {isModalWithConfirmationOpen && (
               <ModalWithConfirmation
