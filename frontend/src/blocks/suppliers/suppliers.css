@@ -18,20 +18,59 @@
   gap: 18px;
   margin-top: 20px;
 }
-
-.suppliers__list-item {
-  margin: 0;
+.suppliers__logo-container {
+  display: block;
+  max-height: 42px;
+  overflow: hidden;
+  margin-top: 20px;
   transition: all 0.5s ease-in-out;
-  position: relative;
+  cursor: pointer;
 }
-.suppliers__list-item:hover {
+.suppliers__logo-container:hover {
   transform: scale(1.1);
 }
-.suppliers__confirmation-window {
+.suppliers__logo {
+  object-position: 0px -35px;
+}
+
+
+.suppliers__list-item {
+  margin: 10px 0 0 0;
+
+  position: relative;
+
+}
+
+.suppliers__popup {
   position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  top: -40px;
+  padding: 0 16px;
+  height: 48px;
+  background: #fff;
+  box-shadow: 0px 0px 16px rgba(180, 186, 173, 0.5);
+  z-index: 10;
+  align-items: center;
+
+}
+.suppliers__close-button {
+  background-image: url("../../images/icons/suppliers-close-icon.svg");
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-position: center;
+  border: none;
+  outline: none;
+  margin: 0 0 0 16px;
+  cursor: pointer;
+}
+.suppliers__popup_visible {
+  opacity: 1;
 }
 .suppliers__link {
   font-family: "FuturaBookC", helvetica, sans-serif;
