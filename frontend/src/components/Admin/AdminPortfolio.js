@@ -116,16 +116,6 @@ function AdminPortfolio({
             maxLength="65"
             withCount
           />
-          <Label
-            validation={validation}
-            className="admin"
-            name="subHeading"
-            labelText="Описание"
-            type="text"
-            required
-            maxLength="300"
-            withCount
-          />
           <div className="admin__buttons-container">
             <button
               type="submit"

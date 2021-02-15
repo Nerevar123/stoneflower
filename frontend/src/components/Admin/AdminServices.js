@@ -10,7 +10,6 @@ function AdminServices({ validation, services, onSaveService }) {
   const [compiledData, setCompiledData] = useState(selectedService);
   const [picture, setPicture] = useState(selectedService.image);
   const [preview, showPreview] = useState(false);
-
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
