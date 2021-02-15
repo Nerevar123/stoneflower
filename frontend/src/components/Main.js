@@ -36,6 +36,7 @@ function Main({
   contactsContent,
   leadContent,
   images,
+  showModalWithLink
 }) {
   const window = useWindowSize();
   return (
@@ -77,7 +78,7 @@ function Main({
         showModal={showModalWithCarousel}
         isModalWithCarouselOpen={isModalWithCarouselOpen}
       />
-      <Suppliers content={suppliersContent} />
+      <Suppliers content={suppliersContent} showModal={showModalWithLink}/>
       {images && (
         <PostForm
           content={postFormContent}

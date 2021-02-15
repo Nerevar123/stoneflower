@@ -4,7 +4,7 @@ import SuppliersItem from "./SuppliersItem";
 // import { Link } from "react-router-dom";
 // import supplier_logo_1 from "../images/suppliers/1.png";
 
-function Suppliers({ content }) {
+function Suppliers({ content, showModal }) {
   const window = useWindowSize();
   return (
     <article className="suppliers">
@@ -18,7 +18,7 @@ function Suppliers({ content }) {
       <ul className="suppliers__list list">
         {content.materialsData &&
           content.materialsData.map((item) => (
-           <SuppliersItem item={item} id="materials"/>
+           <SuppliersItem item={item} id="materials" showModal={showModal}/>
 
           ))}
       </ul>
@@ -28,7 +28,7 @@ function Suppliers({ content }) {
       <ul className="suppliers__list list">
         {content.suppliersData &&
           content.suppliersData.map((item) => (
-            <SuppliersItem item={item} id="suppliers"/>
+            <SuppliersItem item={item} id="suppliers" showModal={showModal}/>
           ))}
       </ul>
     </article>

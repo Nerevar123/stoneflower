@@ -20,6 +20,7 @@
   margin: auto auto;
   padding: 0 0 0 0;
 }
+
 .modal__image-container_type_regular {
   margin: auto auto;
   width: 90%;
@@ -55,14 +56,14 @@
   color: #fff;
   font-size: 20px;
   line-height: 1.2;
-  font-family: 'FuturaBookC', helvetica, sans-serif;
+  font-family: "FuturaBookC", helvetica, sans-serif;
   transition: background-color 0.2s ease-in-out;
 }
 .modal__button:hover {
   background-color: #75978c;
 }
 .modal__submit-message {
-  font-family: 'FuturaBookC', helvetica, sans-serif;
+  font-family: "FuturaBookC", helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
@@ -130,6 +131,20 @@
 }
 
 @media screen and (max-width: 849px) {
+  .modal__link-container {
+    width: 100%;
+    max-width: 375px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    align-self: center;
+    justify-self: center;
+    z-index: 3;
+    margin: auto;
+    position: relative;
+  }
+
   .swiper-button {
     display: none !important;
   }
@@ -152,7 +167,40 @@
     width: 100%;
   }
   .modal__slider {
-    touch-action:  auto!important;
+    touch-action: auto !important;
+  }
+  .modal__link-text {
+    font-family: "FuturaBookC", Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 1.33;
+    color: #001717;
+    font-weight: 400;
+    max-width: 175px;
+    align-self: center;
+    margin: 48px auto 0 auto;
+    text-align: center;
+  }
+  .modal__link {
+    font-family: "FuturaBookC", Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 32px auto;
+    width: 220px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    background: #995750;
+    text-decoration: none;
+    align-self: center;
+    color: #fff;
+  }
+  .modal__close-button_place_link {
+    background-image: url("../../images/icons/suppliers-modal-close-icon.svg");
+    top: 0;
+    width: 46px;
   }
 }
 @media screen and (orientation: landscape) {
