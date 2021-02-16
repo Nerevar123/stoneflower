@@ -1,34 +1,58 @@
-import React, {useState} from "react";
-import useWindowSize from "../hooks/useWindowSize";
+import React, { useState, useEffect } from "react";
 import SuppliersItem from "./SuppliersItem";
-// import { Link } from "react-router-dom";
-// import supplier_logo_1 from "../images/suppliers/1.png";
 
-function Suppliers({ content, showModal }) {
-  const window = useWindowSize();
+function Suppliers({ content, textContent, showModal }) {
+  const [materialItems, setMaterialItems] = useState([]);
+  const [supplierItems, setSupplierItems] = useState([]);
+
+  useEffect(() => {
+    let mat = [];
+    let sup = [];
+
+    content.forEach((supplier) => {
+      if (supplier.isMaterial) {
+        mat = [...mat, supplier];
+      } else {
+        sup = [...sup, supplier];
+      }
+    });
+
+    setMaterialItems(mat);
+    setSupplierItems(sup);
+  }, [content]);
+
   return (
     <article className="suppliers">
       <h2 className="content__title content__title_place_suppliers">
-        {content.heading}
+        {textContent.heading}
       </h2>
 
       <p className="content__text content__text_place_suppliers">
-        {content.subheadingMaterials}
+        {textContent.subheadingMaterials}
       </p>
       <ul className="suppliers__list list">
-        {content.materialsData &&
-          content.materialsData.map((item) => (
-           <SuppliersItem item={item} id="materials" showModal={showModal}/>
-
+        {materialItems &&
+          materialItems.map((item) => (
+            <SuppliersItem
+              key={item._id}
+              item={item}
+              id="materials"
+              showModal={showModal}
+            />
           ))}
       </ul>
       <p className="content__text content__text_place_suppliers">
-        {content.subheadingSuppliers}
+        {textContent.subheadingSuppliers}
       </p>
       <ul className="suppliers__list list">
-        {content.suppliersData &&
-          content.suppliersData.map((item) => (
-            <SuppliersItem item={item} id="suppliers" showModal={showModal}/>
+        {supplierItems &&
+          supplierItems.map((item) => (
+            <SuppliersItem
+              key={item._id}
+              item={item}
+              id="suppliers"
+              showModal={showModal}
+            />
           ))}
       </ul>
     </article>

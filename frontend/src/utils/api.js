@@ -121,6 +121,14 @@ class Api {
       body: formData,
     }).then(this._checkError);
   }
+
+  getSuppliers() {
+    return fetch(`${this._baseUrl}/suppliers`, {
+      headers: this._headers,
+      // credentials: "include",
+    }).then(this._checkError);
+  }
+
   sendEmail(data) {
     return fetch(`${this._baseURL}/email`, {
       method: "POST",

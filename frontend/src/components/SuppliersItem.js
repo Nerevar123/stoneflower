@@ -6,12 +6,24 @@ function SuppliersItem({ item, id, showModal }) {
   const window = useWindowSize();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const showPopup = () => {
-    window.width > 849?setIsPopupVisible(true):showModal(item.link)
+    window.width > 849 ? setIsPopupVisible(true) : showModal(item.link);
   };
   return (
-    <li id={`${id}_${item._id}`} className="suppliers__list-item" onClick={showPopup}>
+    <li
+      id={`${id}_${item._id}`}
+      className="suppliers__list-item"
+      onClick={showPopup}
+    >
       <div className="suppliers__logo-container">
-        <img className="suppliers__logo" alt="Логотип" src={item.logo} />
+        <img
+          className="suppliers__logo"
+          alt="Логотип"
+          src={
+            item.image.path
+              ? process.env.REACT_APP_URL + item.image.path
+              : item.image
+          }
+        />
       </div>
       {isPopupVisible && window.width > 849 && (
         <ModalWithLink

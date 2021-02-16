@@ -31,12 +31,13 @@ function Main({
   showModalWithCarousel,
   isModalWithCarouselOpen,
   suppliersContent,
+  suppliersTextContent,
   postFormContent,
   showModalWithConfirmation,
   contactsContent,
   leadContent,
   images,
-  showModalWithLink
+  showModalWithLink,
 }) {
   const window = useWindowSize();
   return (
@@ -78,7 +79,13 @@ function Main({
         showModal={showModalWithCarousel}
         isModalWithCarouselOpen={isModalWithCarouselOpen}
       />
-      <Suppliers content={suppliersContent} showModal={showModalWithLink}/>
+      {suppliersContent && (
+        <Suppliers
+          content={suppliersContent}
+          textContent={suppliersTextContent}
+          showModal={showModalWithLink}
+        />
+      )}
       {images && (
         <PostForm
           content={postFormContent}
