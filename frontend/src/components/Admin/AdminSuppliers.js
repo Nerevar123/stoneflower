@@ -3,7 +3,12 @@ import Suppliers from "../Suppliers";
 import Label from "../Label";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
-import { saveSupplier, patchSupplier, deleteSupplier, patchText } from "../../utils/api";
+import {
+  saveSupplier,
+  patchSupplier,
+  deleteSupplier,
+  patchText,
+} from "../../utils/api";
 
 function AdminSuppliers({
   validation,
@@ -16,18 +21,18 @@ function AdminSuppliers({
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  // const [selectedAdvice, setSelectedAdvice] = useState({});
   const [compiledData, setCompiledData] = useState(suppliersTextContent);
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
-  // const [addAdvice, setAddAdvice] = useState(false);
   const [materialItems, setMaterialItems] = useState([]);
   const [supplierItems, setSupplierItems] = useState([]);
   const [addSupplier, setAddSupplier] = useState(false);
+  const [editSupplier, setEditSupplier] = useState(false);
+  const [delSupplier, setDelSupplier] = useState(false);
+  const [currentSupplier, setCurrentSupplier] = useState({});
   const [isMaterial, setIsMaterial] = useState(false);
-
-  const uploadInputRef = useRef();
-  const popupUploadInputRef = useRef();
+  const editPopupInputRef = useRef();
+  const addPopupInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -41,7 +46,6 @@ function AdminSuppliers({
   }, [resetForm, setIsValid, suppliersTextContent]);
 
   useEffect(() => {
-    console.log(suppliers);
     let mat = [];
     let sup = [];
 
@@ -57,25 +61,24 @@ function AdminSuppliers({
     setSupplierItems(sup);
   }, [suppliers]);
 
-  function handleCreateSupplier(e) {
-    e.preventDefault();
-    onSaveData(
-      {
-        link: values.link,
-        isMaterial: isMaterial,
-        image: picture,
-      },
-      saveSupplier,
-    );
-  }
-
   function handleAddClick(isMaterial) {
     setAddSupplier(true);
     setIsMaterial(isMaterial);
   }
 
-  function handleDeleteSupplier(id) {
-    onDeleteData(id, deleteSupplier);
+  function handleEditClick(data) {
+    setEditSupplier(true);
+    setCurrentSupplier(data);
+    resetForm(data, {}, true);
+  }
+
+  function handleDeleteClick(data) {
+    setDelSupplier(true);
+    setCurrentSupplier(data);
+  }
+
+  function handleDeleteSupplier() {
+    onDeleteData(currentSupplier._id, deleteSupplier);
   }
 
   function handleSubmitText(e) {
@@ -104,20 +107,34 @@ function AdminSuppliers({
     );
   }
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setIsUploading(true);
+  function handleCreateSupplier(e) {
+    e.preventDefault();
+    setIsUploading(true);
 
-  //   onPatchAdvice(
-  //     {
-  //       heading: values.heading || selectedAdvice.heading,
-  //       shortText: values.shortText || selectedAdvice.shortText,
-  //       expandedText: values.expandedText || selectedAdvice.expandedText,
-  //       image: picture || JSON.stringify(selectedAdvice.image),
-  //     },
-  //     selectedAdvice._id
-  //   );
-  // }
+    onSaveData(
+      {
+        link: values.link,
+        isMaterial: isMaterial,
+        image: picture,
+      },
+      saveSupplier
+    );
+  }
+
+  function handleEditSupplier(e) {
+    e.preventDefault();
+    setIsUploading(true);
+
+    onPatchData(
+      {
+        link: values.link || currentSupplier.link,
+        isMaterial: currentSupplier.isMaterial,
+        image: picture || JSON.stringify(currentSupplier.image),
+      },
+      currentSupplier._id,
+      patchSupplier
+    );
+  }
 
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
@@ -131,20 +148,20 @@ function AdminSuppliers({
     }
   };
 
-  // const handleUploadButtonClick = (e) => {
-  //   e.preventDefault();
+  const handleEditPopupButtonClick = (e) => {
+    e.preventDefault();
 
-  //   if (imgData === null) {
-  //     uploadInputRef.current.click();
-  //   } else {
-  //     handleSubmit(e);
-  //   }
-  // };
+    if (imgData === null) {
+      editPopupInputRef.current.click();
+    } else {
+      handleEditSupplier(e);
+    }
+  };
 
-  const handlePopupUploadButtonClick = (e) => {
+  const handleAddPopupButtonClick = (e) => {
     e.preventDefault();
     if (imgData === null) {
-      popupUploadInputRef.current.click();
+      addPopupInputRef.current.click();
     } else {
       handleCreateSupplier(e);
     }
@@ -159,6 +176,14 @@ function AdminSuppliers({
         values.subheadingSuppliers || suppliersTextContent.subheadingSuppliers,
     });
     showPreview(!preview);
+  }
+
+  function closeAllPopups() {
+    setAddSupplier(false);
+    setEditSupplier(false);
+    setDelSupplier(false);
+    resetForm(suppliersTextContent, {}, true);
+    setCurrentSupplier({});
   }
 
   return (
@@ -221,7 +246,7 @@ function AdminSuppliers({
               </button>
               <button
                 type="button"
-                onClick={(_) => resetForm(suppliersTextContent, {}, true)}
+                onClick={() => resetForm(suppliersTextContent, {}, true)}
                 className="admin__upload-button admin__upload-button_type_cancel"
               >
                 Отменить
@@ -242,8 +267,18 @@ function AdminSuppliers({
                     {item.image.originalname}
                   </span>
                   <div className="admin__table-buttons">
-                    <button className="admin__table-button">Edit</button>
-                    <button className="admin__table-button" onClick={_ => handleDeleteSupplier(item._id)}>Delete</button>
+                    <button
+                      className="admin__table-button"
+                      onClick={() => handleEditClick(item)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="admin__table-button"
+                      onClick={() => handleDeleteClick(item)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </li>
               ))}
@@ -251,7 +286,7 @@ function AdminSuppliers({
             <button
               type="button"
               className="admin__upload-button admin__upload-button_type_select"
-              onClick={_ => handleAddClick(true)}
+              onClick={() => handleAddClick(true)}
             >
               Добавить
             </button>
@@ -270,8 +305,18 @@ function AdminSuppliers({
                     {item.image.originalname}
                   </span>
                   <div className="admin__table-buttons">
-                    <button className="admin__table-button">Edit</button>
-                    <button className="admin__table-button" onClick={_ => handleDeleteSupplier(item._id)}>Delete</button>
+                    <button
+                      className="admin__table-button"
+                      onClick={() => handleEditClick(item)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="admin__table-button"
+                      onClick={() => handleDeleteClick(item)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </li>
               ))}
@@ -279,7 +324,7 @@ function AdminSuppliers({
             <button
               type="button"
               className="admin__upload-button admin__upload-button_type_select"
-              onClick={_ => handleAddClick(false)}
+              onClick={() => handleAddClick(false)}
             >
               Добавить
             </button>
@@ -294,36 +339,48 @@ function AdminSuppliers({
       {addSupplier && (
         <ClosablePopup>
           <AdminPopup
-            title="Добавить совет"
-            onClose={(_) => setAddSupplier(false)}
+            title="Добавить"
+            onClose={closeAllPopups}
             children={
               <form
                 className="admin__form admin__form_type_lead-text"
                 name="admin-lead"
                 method="GET"
                 noValidate
-                onSubmit={handleCreateSupplier}
               >
-                <div className="admin__form-heading-container">
-                  <p className="admin__form-heading">Добавить</p>
-                </div>
                 <Label
                   validation={validation}
                   className="admin"
                   name="link"
                   labelText="Введите ссылку на сайт производителя"
-                  type="text"
+                  type="url"
                   required
                   maxLength="50"
                   withCount
                 />
+                <div className="admin__form-heading-container">
+                  <p className="admin__form-heading">Логотип</p>
+                </div>
+                <p className="admin_requirements-heading">Требования:</p>
+                <ul className="admin__requirements-list">
+                  <li className="admin__requirements-item">
+                    • Размер: 100x100px
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Вес: не более 1Мб
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Формат: JPEG (на белом фоне) / PNG (на прозрачном фоне) /
+                    SVG
+                  </li>
+                </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
                   <div className="admin__progress-info admin__progress-info_completed"></div>
                   <input
                     className="admin__file-input"
                     type="file"
                     onChange={onChangePicture}
-                    ref={popupUploadInputRef}
+                    ref={addPopupInputRef}
                   />
                   <p className="admin__file-name">
                     {picture ? picture.name : "название файла"}
@@ -331,7 +388,7 @@ function AdminSuppliers({
                 </div>
                 <button
                   type="submit"
-                  onClick={handlePopupUploadButtonClick}
+                  onClick={handleAddPopupButtonClick}
                   className={`admin__upload-button admin__upload-button_type_select ${
                     isUploading ? "admin__upload-button_state_uploading" : ""
                   } ${
@@ -342,8 +399,118 @@ function AdminSuppliers({
                 >
                   {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                 </button>
-                <div className="admin__buttons-container">
+                <div className="admin__buttons-container"></div>
+              </form>
+            }
+          />
+        </ClosablePopup>
+      )}
+      {editSupplier && (
+        <ClosablePopup>
+          <AdminPopup
+            title="Редактировать"
+            onClose={closeAllPopups}
+            children={
+              <form
+                className="admin__form admin__form_type_lead-text"
+                name="admin-lead"
+                method="GET"
+                noValidate
+              >
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="link"
+                  labelText="Введите ссылку на сайт производителя"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <div className="admin__form-heading-container">
+                  <p className="admin__form-heading">Логотип</p>
                 </div>
+                <p className="admin_requirements-heading">Требования:</p>
+                <ul className="admin__requirements-list">
+                  <li className="admin__requirements-item">
+                    • Размер: 100x100px
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Вес: не более 1Мб
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Формат: JPEG (на белом фоне) / PNG (на прозрачном фоне) /
+                    SVG
+                  </li>
+                </ul>
+                <div className="admin__upload-info admin__upload-info_visible">
+                  <div className="admin__progress-info admin__progress-info_completed"></div>
+                  <input
+                    className="admin__file-input"
+                    type="file"
+                    onChange={onChangePicture}
+                    ref={editPopupInputRef}
+                  />
+                  <p className="admin__file-name">
+                    {picture ? picture.name : "название файла"}
+                  </p>
+                </div>
+                <button
+                  type="submit"
+                  onClick={handleEditPopupButtonClick}
+                  className={`admin__upload-button admin__upload-button_type_select ${
+                    isUploading ? "admin__upload-button_state_uploading" : ""
+                  } ${
+                    isPictureSelected
+                      ? "admin__upload-button_state_uploaded"
+                      : ""
+                  }`}
+                >
+                  {isPictureSelected ? "Сохранить" : "Выбрать файл"}
+                </button>
+                <button
+                  type="submit"
+                  disabled={!isValid}
+                  onClick={handleEditSupplier}
+                  className={`admin__upload-button admin__upload-button_type_select ${
+                    !isValid ? "admin__upload-button_disabled" : ""
+                  }`}
+                >
+                  Сохранить
+                </button>
+                <div className="admin__buttons-container"></div>
+              </form>
+            }
+          />
+        </ClosablePopup>
+      )}
+      {delSupplier && (
+        <ClosablePopup>
+          <AdminPopup
+            title="Удалить производителя?"
+            onClose={closeAllPopups}
+            children={
+              <form
+                className="admin__form admin__form_type_lead-text"
+                name="admin-lead"
+                method="GET"
+                noValidate
+              >
+                <button
+                  type="submit"
+                  onClick={handleDeleteSupplier}
+                  className="admin__upload-button admin__upload-button_type_select"
+                >
+                  Удалить
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDelSupplier(false)}
+                  className="admin__upload-button"
+                >
+                  Отмена
+                </button>
+                <div className="admin__buttons-container"></div>
               </form>
             }
           />

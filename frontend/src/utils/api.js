@@ -123,11 +123,11 @@ export const patchSupplier = (supplier, id) => {
   formData.append("link", supplier.link);
   formData.append("isMaterial", supplier.isMaterial);
 
-  return fetch(`${this._baseUrl}suppliers/${id}`, {
+  return fetch(`${baseUrl}suppliers/${id}`, {
     method: "PATCH",
     // credentials: "include",
     body: formData,
-  }).then(this._checkError);
+  }).then(checkError);
 };
 
 export const deleteSupplier = (id) => {

@@ -322,6 +322,21 @@ function AdminAdvices({
                   maxLength="600"
                   withCount
                 />
+                <div className="admin__form-heading-container">
+                  <p className="admin__form-heading">Изображение</p>
+                </div>
+                <p className="admin_requirements-heading">Требования:</p>
+                <ul className="admin__requirements-list">
+                  <li className="admin__requirements-item">
+                    • Размер: 350x280px
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Вес: не более 1Мб
+                  </li>
+                  <li className="admin__requirements-item">
+                    • Формат: JPEG/PNG
+                  </li>
+                </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
                   <div className="admin__progress-info admin__progress-info_completed"></div>
                   <input
