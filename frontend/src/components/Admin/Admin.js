@@ -15,9 +15,6 @@ import { findAllByPlaceholderText } from "@testing-library/react";
 function Admin({
   adminItems,
   validation,
-  onSaveText,
-  onSaveImage,
-  onSaveService,
   leadContent,
   images,
   services,
@@ -27,9 +24,6 @@ function Admin({
   phasesIcons,
   pricingContent,
   contactsContent,
-  onSaveAdvice,
-  onPatchAdvice,
-  onDeleteAdvice,
   advices,
   postFormContent,
   suppliers,
@@ -232,7 +226,6 @@ function Admin({
                 onSaveData={onSaveData}
                 onPatchData={onPatchData}
                 onDeleteData={onDeleteData}
-                onSaveText={onSaveText}
               />
             )}
           </>
