@@ -23,7 +23,7 @@ import {
   surfaces,
   // advices,
   portfolio,
-  suppliers,
+  // suppliers,
   // postForm,
   // contacts,
 } from "../utils/config";
@@ -52,7 +52,7 @@ function App() {
   const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
-  const [suppliersContent, setSuppliersContent] = useState([]);
+  const [suppliersContent, setSuppliersContent] = useState(null);
   const [postFormContent, setPostFormContent] = useState({});
   const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
     false
@@ -60,6 +60,7 @@ function App() {
   const [isModalWithLinkOpen, setIsModalWithLinkOpen] = useState(false);
   const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
+  const [suppliersTextContent, setSuppliersTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -70,10 +71,10 @@ function App() {
       api.getTexts(),
       api.getAdvices(),
       api.getImages(),
+      api.getSuppliers(),
     ])
-      .then(([services, texts, advices, images]) => {
+      .then(([services, texts, advices, images, suppliers]) => {
         Object.keys(images).map((key) => {
-          console.log(key);
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
           return images;
@@ -86,8 +87,10 @@ function App() {
         setDisadvantagesContent(texts.disadvantages);
         setPhasesText(texts.phases);
         setLeadContent(texts.lead);
+        setSuppliersTextContent(texts.suppliers);
         setServices(services);
         setAdvicesContent(advices);
+        setSuppliersContent(suppliers);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -101,7 +104,7 @@ function App() {
     setSurfacesContent(surfaces);
     // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
-    setSuppliersContent(suppliers);
+    // setSuppliersContent(suppliers);
     // setLeadContent(lead)
     // setPostFormContent(postForm);
     // setServices(servicesItems);
@@ -127,6 +130,7 @@ function App() {
     document.body.style.overflow = 'hidden';
     setModalWithConfirmationOpen(true);
   }
+
   function showModalWithLink(link) {
     document.body.style.overflow = 'hidden';
     setModalLink(link);
@@ -248,6 +252,7 @@ function App() {
               showModalWithCarousel={ShowModalWithCarousel}
               isModalWithCarouselOpen={isModalWithCarouselOpen}
               suppliersContent={suppliersContent}
+              suppliersTextContent={suppliersTextContent}
               postFormContent={postFormContent}
               showModalWithConfirmation={showModalWithConfirmation}
               contactsContent={contactsContent}
@@ -305,6 +310,8 @@ function App() {
               contactsContent={contactsContent}
               advices={advicesContent}
               postFormContent={postFormContent}
+              suppliers={suppliersContent}
+              suppliersTextContent={suppliersTextContent}
             />
             {/* </ProtectedRoute> */}
           </Route>

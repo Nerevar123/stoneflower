@@ -9,6 +9,7 @@ import AdminAdvices from "./AdminAdvices";
 import AdminContacts from "./AdminContacts";
 import AdminPostForm from "./AdminPostForm";
 import AdminPortfolio from "./AdminPortfolio";
+import AdminSuppliers from "./AdminSuppliers";
 import { findAllByPlaceholderText } from "@testing-library/react";
 
 function Admin({
@@ -31,6 +32,11 @@ function Admin({
   onDeleteAdvice,
   advices,
   postFormContent,
+  suppliers,
+  onSaveSupplier,
+  onPatchSupplier,
+  onDeleteSupplier,
+  suppliersTextContent,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -218,6 +224,21 @@ function Admin({
             )}
           </>
         )} */}
+        {suppliers && (
+          <>
+            {selectedItem === "suppliers" && (
+              <AdminSuppliers
+                validation={validation}
+                suppliers={suppliers}
+                suppliersTextContent={suppliersTextContent}
+                onSaveSupplier={onSaveSupplier}
+                onPatchSupplier={onPatchSupplier}
+                onDeleteSupplier={onDeleteSupplier}
+                onSaveText={onSaveText}
+              />
+            )}
+          </>
+        )}
       </div>
     </main>
   );
