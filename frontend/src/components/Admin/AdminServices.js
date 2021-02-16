@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Services from "../Services";
 import Label from "../Label";
+import { patchService } from "../../utils/api";
 
-function AdminServices({ validation, services, onSaveService }) {
+function AdminServices({ validation, services, onPatchData }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
@@ -26,20 +27,21 @@ function AdminServices({ validation, services, onSaveService }) {
 
   useEffect(() => {
     setSelectedService(services[0]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsUploading(true);
 
-    onSaveService(
+    onPatchData(
       {
         heading: values.heading || selectedService.heading,
         description: values.description || selectedService.description,
         image: picture || JSON.stringify(selectedService.image),
       },
-      selectedService._id
+      selectedService._id,
+      patchService
     );
   }
 

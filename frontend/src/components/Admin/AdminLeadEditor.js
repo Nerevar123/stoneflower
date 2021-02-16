@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Lead from "../Lead";
 import Label from "../Label";
+import { patchText, patchImage } from "../../utils/api";
 
 function AdminLeadEditor({
   validation,
-  onSaveText,
-  onSaveImage,
+  onPatchData,
   leadContent,
   leadBgImage,
   menuRef,
@@ -37,7 +37,7 @@ function AdminLeadEditor({
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "lead",
         content: [
@@ -59,7 +59,8 @@ function AdminLeadEditor({
           },
         ],
       },
-      leadContent.id
+      leadContent.id,
+      patchText
     );
   }
 
@@ -95,12 +96,13 @@ function AdminLeadEditor({
 
   function handleImageSubmit(e) {
     setIsUploading(true);
-    onSaveImage(
+    onPatchData(
       {
         name: "leadBgImage",
         image: picture,
       },
-      leadBgImage.id
+      leadBgImage.id,
+      patchImage
     );
   }
   const scrollToMenu = () => {

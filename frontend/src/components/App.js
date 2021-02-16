@@ -8,7 +8,13 @@ import Login from "./Login";
 import ModalWithImage from "./ModalWithImage";
 import PageNotFound from "./PageNotFound";
 import ModalWithLink from "./ModalWithLink";
-import { api } from "../utils/api";
+import {
+  getServices,
+  getTexts,
+  getAdvices,
+  getImages,
+  getSuppliers,
+} from "../utils/api";
 import {
   // servicesItems,
   // advantagesTextContent,
@@ -64,14 +70,13 @@ function App() {
   const [modalLink, setModalLink] = useState();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
-
   useEffect(() => {
     Promise.all([
-      api.getServices(),
-      api.getTexts(),
-      api.getAdvices(),
-      api.getImages(),
-      api.getSuppliers(),
+      getServices(),
+      getTexts(),
+      getAdvices(),
+      getImages(),
+      getSuppliers(),
     ])
       .then(([services, texts, advices, images, suppliers]) => {
         Object.keys(images).map((key) => {
@@ -114,30 +119,30 @@ function App() {
   }, []);
 
   function showModalWithImage(image) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setModalImage(image);
     setModalWithImageOpen(true);
   }
 
   function ShowModalWithCarousel(slideIndex, content) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setModalCarouselContent(content);
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
 
   function showModalWithConfirmation() {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setModalWithConfirmationOpen(true);
   }
 
   function showModalWithLink(link) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setModalLink(link);
     setIsModalWithLinkOpen(true);
   }
   function closeModal() {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
     setTimeout(() => {
       setModalImage();
       setModalWithImageOpen(false);
@@ -167,10 +172,8 @@ function App() {
   //     });
   // }
 
-  function handleSaveText(data, id) {
-    console.log(data, id)
-    api
-      .patchText(data, id)
+  function handleSaveData(data, handler) {
+    handler(data)
       .then((data) => {
         window.location.reload();
         console.log("Сохранено", data);
@@ -178,10 +181,8 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleSaveImage(data, id) {
-    console.log(data, id);
-    api
-      .patchImage(data, id)
+  function handlePatchData(data, id, handler) {
+    handler(data, id)
       .then((data) => {
         window.location.reload();
         console.log("Сохранено", data);
@@ -189,45 +190,14 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleSaveService(data, id) {
-    console.log(data, id);
-    api
-      .patchService(data, id)
+  function handleDeleteData(id, handler) {
+    console.log(id);
+    handler(id)
       .then((data) => {
         window.location.reload();
-        console.log("Сохранено", data);
+        console.log("Удалено", data);
       })
       .catch((err) => console.log(err));
-  }
-
-  function handleSaveAdvice(data) {
-    api
-      .saveAdvice(data)
-      .then((data) => {
-        window.location.reload();
-        console.log("Сохранено", data);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function handlePatchAdvice(data, id) {
-    api
-      .patchAdvice(data, id)
-      .then((data) => {
-        window.location.reload();
-        console.log("Сохранено", data);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function handleDeleteAdvice(id) {
-    api
-    .deleteAdvice(id)
-    .then((data) => {
-      window.location.reload();
-      console.log("Удалено", data);
-    })
-    .catch((err) => console.log(err));
   }
 
   return (
@@ -259,7 +229,6 @@ function App() {
               leadContent={leadContent}
               images={images}
               showModalWithLink={showModalWithLink}
-
             />
             {isModalWithImageOpen && (
               <ModalWithImage closeModal={closeModal} image={modalImage} />
@@ -272,8 +241,12 @@ function App() {
                 initialSlide={modalInitialSlide}
               />
             )}
-             {isModalWithLinkOpen && (
-              <ModalWithLink closeModal={closeModal} isModalWithLinkOpen={isModalWithLinkOpen} link={modalLink} />
+            {isModalWithLinkOpen && (
+              <ModalWithLink
+                closeModal={closeModal}
+                isModalWithLinkOpen={isModalWithLinkOpen}
+                link={modalLink}
+              />
             )}
             {isModalWithConfirmationOpen && (
               <ModalWithConfirmation
@@ -293,12 +266,9 @@ function App() {
             <Admin
               adminItems={adminItems}
               validation={validation}
-              onSaveText={handleSaveText}
-              onSaveImage={handleSaveImage}
-              onSaveService={handleSaveService}
-              onSaveAdvice={handleSaveAdvice}
-              onPatchAdvice={handlePatchAdvice}
-              onDeleteAdvice={handleDeleteAdvice}
+              onSaveData={handleSaveData}
+              onPatchData={handlePatchData}
+              onDeleteData={handleDeleteData}
               leadContent={leadContent}
               images={images}
               services={services}

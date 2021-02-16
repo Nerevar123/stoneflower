@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Contacts from "../Contacts";
 import Label from "../Label";
+import { patchText } from "../../utils/api";
 
-function AdminContacts({ validation, contactsContent, onSaveText }) {
+function AdminContacts({ validation, contactsContent, onPatchData }) {
   const [compiledData, setCompiledData] = useState(contactsContent);
   const [preview, showPreview] = useState(false);
 
@@ -20,7 +21,7 @@ function AdminContacts({ validation, contactsContent, onSaveText }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "contacts",
         content: [
@@ -66,7 +67,8 @@ function AdminContacts({ validation, contactsContent, onSaveText }) {
           },
         ],
       },
-      contactsContent.id
+      contactsContent.id,
+      patchText
     );
   }
 
@@ -75,13 +77,15 @@ function AdminContacts({ validation, contactsContent, onSaveText }) {
       heading: values.heading || contactsContent.heading,
       address: values.address || contactsContent.address,
       phonePrimary: values.phonePrimary || contactsContent.phonePrimary,
-      phoneAdditional: values.phoneAdditional || contactsContent.phoneAdditional,
+      phoneAdditional:
+        values.phoneAdditional || contactsContent.phoneAdditional,
       emailAddress: values.emailAddress || contactsContent.emailAddress,
       howToGetText: values.howToGetText || contactsContent.howToGetText,
       byBusText: values.byBusText || contactsContent.byBusText,
       byTrainText: values.byTrainText || contactsContent.byTrainText,
       byVehicleText: values.byVehicleText || contactsContent.byVehicleText,
-      landmarksDescription: values.landmarksDescription || contactsContent.landmarksDescription,
+      landmarksDescription:
+        values.landmarksDescription || contactsContent.landmarksDescription,
     });
     showPreview(!preview);
   }
@@ -153,7 +157,7 @@ function AdminContacts({ validation, contactsContent, onSaveText }) {
             maxLength="40"
             withCount
           />
-                    <Label
+          <Label
             validation={validation}
             className="admin"
             name="howToGetText"

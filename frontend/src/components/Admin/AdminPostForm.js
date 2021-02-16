@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import PostForm from "../PostForm";
 import Label from "../Label";
+import { patchImage, patchText } from "../../utils/api";
 
 function AdminPostForm({
   validation,
-  onSaveText,
-  onSaveImage,
+  onPatchData,
   postFormContent,
   postFormOffer,
 }) {
@@ -31,7 +31,7 @@ function AdminPostForm({
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "postForm",
         content: [
@@ -45,7 +45,8 @@ function AdminPostForm({
           },
         ],
       },
-      postFormContent.id
+      postFormContent.id,
+      patchText
     );
   }
 
@@ -80,12 +81,13 @@ function AdminPostForm({
 
   function handleImageSubmit(e) {
     setIsUploading(true);
-    onSaveImage(
+    onPatchData(
       {
         name: "postFormOffer",
         image: offer,
       },
-      postFormOffer.id
+      postFormOffer.id,
+      patchImage
     );
   }
 

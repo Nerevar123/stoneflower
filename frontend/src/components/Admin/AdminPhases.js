@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Phases from "../Phases";
 import Label from "../Label";
+import { patchText } from "../../utils/api";
 
-function AdminPhases({ validation, phasesText, onSaveText, phasesIcons }) {
+function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
   const [compiledData, setCompiledData] = useState(phasesText);
   const [preview, showPreview] = useState(false);
 
@@ -20,7 +21,7 @@ function AdminPhases({ validation, phasesText, onSaveText, phasesIcons }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "phases",
         content: [
@@ -46,7 +47,8 @@ function AdminPhases({ validation, phasesText, onSaveText, phasesIcons }) {
           },
         ],
       },
-      phasesText.id
+      phasesText.id,
+      patchText
     );
   }
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Disadvantages from "../Disadvantages";
 import Label from "../Label";
+import { patchText } from "../../utils/api";
 
-function AdminDisadvantages({ validation, disadvantagesText, onSaveText }) {
+function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
   const [compiledData, setCompiledData] = useState(disadvantagesText);
   const [preview, showPreview] = useState(false);
 
@@ -20,7 +21,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onSaveText }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "disadvantages",
         content: [
@@ -42,7 +43,8 @@ function AdminDisadvantages({ validation, disadvantagesText, onSaveText }) {
           },
         ],
       },
-      disadvantagesText.id
+      disadvantagesText.id,
+      patchText
     );
   }
 

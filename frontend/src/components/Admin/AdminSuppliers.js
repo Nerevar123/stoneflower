@@ -3,15 +3,15 @@ import Suppliers from "../Suppliers";
 import Label from "../Label";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
+import { saveSupplier, patchSupplier, deleteSupplier, patchText } from "../../utils/api";
 
 function AdminSuppliers({
   validation,
   suppliers,
   suppliersTextContent,
-  onSaveSupplier,
-  onPatchSupplier,
-  onDeleteSupplier,
-  onSaveText,
+  onSaveData,
+  onPatchData,
+  onDeleteData,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
@@ -23,6 +23,8 @@ function AdminSuppliers({
   // const [addAdvice, setAddAdvice] = useState(false);
   const [materialItems, setMaterialItems] = useState([]);
   const [supplierItems, setSupplierItems] = useState([]);
+  const [addSupplier, setAddSupplier] = useState(false);
+  const [isMaterial, setIsMaterial] = useState(false);
 
   const uploadInputRef = useRef();
   const popupUploadInputRef = useRef();
@@ -55,32 +57,31 @@ function AdminSuppliers({
     setSupplierItems(sup);
   }, [suppliers]);
 
-  // function handleCreateAdvice(e) {
-  //   e.preventDefault();
-  //   onSaveAdvice(
-  //     {
-  //       heading: values.heading,
-  //       shortText: values.shortText,
-  //       expandedText: values.expandedText,
-  //       image: picture,
-  //     },
-  //     selectedAdvice._id
-  //   );
-  // }
+  function handleCreateSupplier(e) {
+    e.preventDefault();
+    onSaveData(
+      {
+        link: values.link,
+        isMaterial: isMaterial,
+        image: picture,
+      },
+      saveSupplier,
+    );
+  }
 
-  // function handleAddClick() {
-  //   setAddAdvice(true);
-  //   resetForm();
-  // }
+  function handleAddClick(isMaterial) {
+    setAddSupplier(true);
+    setIsMaterial(isMaterial);
+  }
 
-  // function handleDeleteAdvice() {
-  //   onDeleteAdvice(selectedAdvice._id);
-  // }
+  function handleDeleteSupplier(id) {
+    onDeleteData(id, deleteSupplier);
+  }
 
   function handleSubmitText(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "suppliers",
         content: [
@@ -98,7 +99,8 @@ function AdminSuppliers({
           },
         ],
       },
-      suppliersTextContent.id
+      suppliersTextContent.id,
+      patchText
     );
   }
 
@@ -117,17 +119,17 @@ function AdminSuppliers({
   //   );
   // }
 
-  // const onChangePicture = (e) => {
-  //   if (e.target.files[0]) {
-  //     setIsPictureSelected(true);
-  //     setPicture(e.target.files[0]);
-  //     const reader = new FileReader();
-  //     reader.addEventListener("load", () => {
-  //       setImgData(reader.result);
-  //     });
-  //     reader.readAsDataURL(e.target.files[0]);
-  //   }
-  // };
+  const onChangePicture = (e) => {
+    if (e.target.files[0]) {
+      setIsPictureSelected(true);
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
   // const handleUploadButtonClick = (e) => {
   //   e.preventDefault();
@@ -138,14 +140,15 @@ function AdminSuppliers({
   //     handleSubmit(e);
   //   }
   // };
-  // const handlePopupUploadButtonClick = (e) => {
-  //   e.preventDefault();
-  //   if (imgData === null) {
-  //     popupUploadInputRef.current.click();
-  //   } else {
-  //     handleSubmit(e);
-  //   }
-  // };
+
+  const handlePopupUploadButtonClick = (e) => {
+    e.preventDefault();
+    if (imgData === null) {
+      popupUploadInputRef.current.click();
+    } else {
+      handleCreateSupplier(e);
+    }
+  };
 
   function handlePreviewClick() {
     setCompiledData({
@@ -157,11 +160,6 @@ function AdminSuppliers({
     });
     showPreview(!preview);
   }
-
-  // function handleSelectClick(num) {
-  //   setSelectedAdvice(advices[num]);
-  //   showPreview(false);
-  // }
 
   return (
     <>
@@ -245,11 +243,18 @@ function AdminSuppliers({
                   </span>
                   <div className="admin__table-buttons">
                     <button className="admin__table-button">Edit</button>
-                    <button className="admin__table-button">Delete</button>
+                    <button className="admin__table-button" onClick={_ => handleDeleteSupplier(item._id)}>Delete</button>
                   </div>
                 </li>
               ))}
             </ul>
+            <button
+              type="button"
+              className="admin__upload-button admin__upload-button_type_select"
+              onClick={_ => handleAddClick(true)}
+            >
+              Добавить
+            </button>
           </div>
           <div className="admin__form">
             <p className="admin__form-heading">Логотипы 2</p>
@@ -266,11 +271,18 @@ function AdminSuppliers({
                   </span>
                   <div className="admin__table-buttons">
                     <button className="admin__table-button">Edit</button>
-                    <button className="admin__table-button">Delete</button>
+                    <button className="admin__table-button" onClick={_ => handleDeleteSupplier(item._id)}>Delete</button>
                   </div>
                 </li>
               ))}
             </ul>
+            <button
+              type="button"
+              className="admin__upload-button admin__upload-button_type_select"
+              onClick={_ => handleAddClick(false)}
+            >
+              Добавить
+            </button>
           </div>
         </div>
         {preview && (
@@ -279,50 +291,30 @@ function AdminSuppliers({
           </div>
         )}
       </div>
-      {/* {addAdvice && (
+      {addSupplier && (
         <ClosablePopup>
           <AdminPopup
             title="Добавить совет"
-            onClose={(_) => setAddAdvice(false)}
+            onClose={(_) => setAddSupplier(false)}
             children={
               <form
                 className="admin__form admin__form_type_lead-text"
                 name="admin-lead"
                 method="GET"
                 noValidate
-                onSubmit={handleCreateAdvice}
+                onSubmit={handleCreateSupplier}
               >
                 <div className="admin__form-heading-container">
-                  <p className="admin__form-heading">Текст</p>
+                  <p className="admin__form-heading">Добавить</p>
                 </div>
                 <Label
                   validation={validation}
                   className="admin"
-                  name="heading"
-                  labelText="Заголовок"
+                  name="link"
+                  labelText="Введите ссылку на сайт производителя"
                   type="text"
                   required
-                  maxLength="65"
-                  withCount
-                />
-                <Label
-                  validation={validation}
-                  className="admin"
-                  name="shortText"
-                  labelText="Описание"
-                  type="text"
-                  required
-                  maxLength="600"
-                  withCount
-                />
-                <Label
-                  validation={validation}
-                  className="admin"
-                  name="expandedText"
-                  labelText="Читать далее"
-                  type="text"
-                  required
-                  maxLength="600"
+                  maxLength="50"
                   withCount
                 />
                 <div className="admin__upload-info admin__upload-info_visible">
@@ -351,21 +343,12 @@ function AdminSuppliers({
                   {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                 </button>
                 <div className="admin__buttons-container">
-                  <button
-                    type="submit"
-                    disabled={!isValid}
-                    className={`admin__upload-button admin__upload-button_type_select ${
-                      !isValid ? "admin__upload-button_disabled" : ""
-                    }`}
-                  >
-                    Сохранить
-                  </button>
                 </div>
               </form>
             }
           />
         </ClosablePopup>
-      )} */}
+      )}
     </>
   );
 }
