@@ -26,7 +26,7 @@ class Api {
   }
 
   getServices() {
-    return fetch(`${this._baseUrl}/services`, {
+    return fetch(`${this._baseUrl}services`, {
       headers: this._headers,
       // credentials: "include",
     }).then(this._checkError);
@@ -38,7 +38,7 @@ class Api {
     formData.append("heading", service.heading);
     formData.append("description", service.description);
 
-    return fetch(`${this._baseUrl}/services/${id}`, {
+    return fetch(`${this._baseUrl}services/${id}`, {
       method: "PATCH",
       // credentials: "include",
       body: formData,
@@ -46,14 +46,14 @@ class Api {
   }
 
   getTexts() {
-    return fetch(`${this._baseUrl}/texts`, {
+    return fetch(`${this._baseUrl}texts`, {
       headers: this._headers,
       // credentials: "include",
     }).then(this._checkError);
   }
 
   patchText(text, id) {
-    return fetch(`${this._baseUrl}/texts/${id}`, {
+    return fetch(`${this._baseUrl}texts/${id}`, {
       method: "PATCH",
       headers: this._headers,
       // credentials: "include",
@@ -62,7 +62,7 @@ class Api {
   }
 
   getAdvices() {
-    return fetch(`${this._baseUrl}/advices`, {
+    return fetch(`${this._baseUrl}advices`, {
       headers: this._headers,
       // credentials: "include",
     }).then(this._checkError);
@@ -75,7 +75,7 @@ class Api {
     formData.append("shortText", advice.shortText);
     formData.append("expandedText", advice.expandedText);
 
-    return fetch(`${this._baseUrl}/advices`, {
+    return fetch(`${this._baseUrl}advices`, {
       method: "POST",
       // credentials: "include",
       body: formData,
@@ -89,7 +89,7 @@ class Api {
     formData.append("shortText", advice.shortText);
     formData.append("expandedText", advice.expandedText);
 
-    return fetch(`${this._baseUrl}/advices/${id}`, {
+    return fetch(`${this._baseUrl}advices/${id}`, {
       method: "PATCH",
       // credentials: "include",
       body: formData,
@@ -97,14 +97,14 @@ class Api {
   }
 
   deleteAdvice(id) {
-    return fetch(`${this._baseUrl}/advices/${id}`, {
+    return fetch(`${this._baseUrl}advices/${id}`, {
       method: "DELETE",
       // credentials: "include",
     }).then(this._checkError);
   }
 
   getImages() {
-    return fetch(`${this._baseUrl}/images`, {
+    return fetch(`${this._baseUrl}images`, {
       headers: this._headers,
       // credentials: "include",
     }).then(this._checkError);
@@ -115,7 +115,7 @@ class Api {
     formData.append("image", image.image);
     formData.append("name", image.name);
 
-    return fetch(`${this._baseUrl}/images/${id}`, {
+    return fetch(`${this._baseUrl}images/${id}`, {
       method: "PATCH",
       // credentials: "include",
       body: formData,
@@ -123,14 +123,14 @@ class Api {
   }
 
   getSuppliers() {
-    return fetch(`${this._baseUrl}/suppliers`, {
+    return fetch(`${this._baseUrl}suppliers`, {
       headers: this._headers,
       // credentials: "include",
     }).then(this._checkError);
   }
 
   sendEmail(data) {
-    return fetch(`${this._baseURL}/email`, {
+    return fetch(`${this._baseURL}email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
