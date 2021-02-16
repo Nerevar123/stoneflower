@@ -1,148 +1,153 @@
-import { apiOptions } from "./utils";
+import { baseUrl, checkError, checkEmailResponse, headers } from "./utils";
 
-class Api {
-  constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
-  }
+export const getTexts = () => {
+  return fetch(`${baseUrl}texts`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
 
-  async _checkError(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    await res
-      .text()
-      .then((text) => JSON.parse(text))
-      .then((text) => {
-        return Promise.reject(text.message || text.error);
-      });
-  }
+export const getImages = () => {
+  return fetch(`${baseUrl}images`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
 
-  _checkEmailResponse(res) {
-    if (res.statusText === "Created") {
-      return res;
-    }
-    return Promise.reject(res);
-  }
+export const getServices = () => {
+  return fetch(`${baseUrl}services`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
 
-  getServices() {
-    return fetch(`${this._baseUrl}services`, {
-      headers: this._headers,
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+export const getAdvices = () => {
+  return fetch(`${baseUrl}advices`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
 
-  patchService(service, id) {
-    const formData = new FormData();
-    formData.append("image", service.image);
-    formData.append("heading", service.heading);
-    formData.append("description", service.description);
+export const getSuppliers = () => {
+  return fetch(`${baseUrl}suppliers`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
 
-    return fetch(`${this._baseUrl}services/${id}`, {
-      method: "PATCH",
-      // credentials: "include",
-      body: formData,
-    }).then(this._checkError);
-  }
+export const patchText = (text, id) => {
+  return fetch(`${baseUrl}texts/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    // credentials: "include",
+    body: JSON.stringify(text),
+  }).then(checkError);
+};
 
-  getTexts() {
-    return fetch(`${this._baseUrl}texts`, {
-      headers: this._headers,
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+export const patchImage = (image, id) => {
+  const formData = new FormData();
+  formData.append("image", image.image);
+  formData.append("name", image.name);
 
-  patchText(text, id) {
-    return fetch(`${this._baseUrl}texts/${id}`, {
-      method: "PATCH",
-      headers: this._headers,
-      // credentials: "include",
-      body: JSON.stringify(text),
-    }).then(this._checkError);
-  }
+  return fetch(`${baseUrl}images/${id}`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
 
-  getAdvices() {
-    return fetch(`${this._baseUrl}advices`, {
-      headers: this._headers,
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+export const patchService = (service, id) => {
+  const formData = new FormData();
+  formData.append("image", service.image);
+  formData.append("heading", service.heading);
+  formData.append("description", service.description);
 
-  saveAdvice(advice) {
-    const formData = new FormData();
-    formData.append("image", advice.image);
-    formData.append("heading", advice.heading);
-    formData.append("shortText", advice.shortText);
-    formData.append("expandedText", advice.expandedText);
+  return fetch(`${baseUrl}services/${id}`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
 
-    return fetch(`${this._baseUrl}advices`, {
-      method: "POST",
-      // credentials: "include",
-      body: formData,
-    }).then(this._checkError);
-  }
+export const saveAdvice = (advice) => {
+  const formData = new FormData();
+  formData.append("image", advice.image);
+  formData.append("heading", advice.heading);
+  formData.append("shortText", advice.shortText);
+  formData.append("expandedText", advice.expandedText);
 
-  patchAdvice(advice, id) {
-    const formData = new FormData();
-    formData.append("image", advice.image);
-    formData.append("heading", advice.heading);
-    formData.append("shortText", advice.shortText);
-    formData.append("expandedText", advice.expandedText);
+  return fetch(`${baseUrl}advices`, {
+    method: "POST",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
 
-    return fetch(`${this._baseUrl}advices/${id}`, {
-      method: "PATCH",
-      // credentials: "include",
-      body: formData,
-    }).then(this._checkError);
-  }
+export const patchAdvice = (advice, id) => {
+  const formData = new FormData();
+  formData.append("image", advice.image);
+  formData.append("heading", advice.heading);
+  formData.append("shortText", advice.shortText);
+  formData.append("expandedText", advice.expandedText);
 
-  deleteAdvice(id) {
-    return fetch(`${this._baseUrl}advices/${id}`, {
-      method: "DELETE",
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+  return fetch(`${baseUrl}advices/${id}`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
 
-  getImages() {
-    return fetch(`${this._baseUrl}images`, {
-      headers: this._headers,
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+export const deleteAdvice = (id) => {
+  return fetch(`${baseUrl}advices/${id}`, {
+    method: "DELETE",
+    // credentials: "include",
+  }).then(checkError);
+};
 
-  patchImage(image, id) {
-    const formData = new FormData();
-    formData.append("image", image.image);
-    formData.append("name", image.name);
+export const saveSupplier = (supplier) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("link", supplier.link);
+  formData.append("isMaterial", supplier.isMaterial);
 
-    return fetch(`${this._baseUrl}images/${id}`, {
-      method: "PATCH",
-      // credentials: "include",
-      body: formData,
-    }).then(this._checkError);
-  }
+  return fetch(`${baseUrl}suppliers`, {
+    method: "POST",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
 
-  getSuppliers() {
-    return fetch(`${this._baseUrl}suppliers`, {
-      headers: this._headers,
-      // credentials: "include",
-    }).then(this._checkError);
-  }
+export const patchSupplier = (supplier, id) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("link", supplier.link);
+  formData.append("isMaterial", supplier.isMaterial);
 
-  sendEmail(data) {
-    return fetch(`${this._baseURL}email`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        tel: data.tel,
-        description: data.description,
-      }),
-    }).then(this._checkEmailResponse);
-  }
-}
+  return fetch(`${this._baseUrl}suppliers/${id}`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(this._checkError);
+};
 
-export const api = new Api(apiOptions);
+export const deleteSupplier = (id) => {
+  return fetch(`${baseUrl}suppliers/${id}`, {
+    method: "DELETE",
+    // credentials: "include",
+  }).then(checkError);
+};
+
+export const sendEmail = (data) => {
+  return fetch(`${baseUrl}email`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      tel: data.tel,
+      description: data.description,
+    }),
+  }).then(checkEmailResponse);
+};

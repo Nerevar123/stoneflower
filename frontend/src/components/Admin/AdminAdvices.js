@@ -3,13 +3,14 @@ import Advices from "../Advices";
 import Label from "../Label";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
+import { saveAdvice, patchAdvice, deleteAdvice } from "../../utils/api";
 
 function AdminAdvices({
   validation,
   advices,
-  onSaveAdvice,
-  onPatchAdvice,
-  onDeleteAdvice,
+  onSaveData,
+  onPatchData,
+  onDeleteData,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
@@ -44,15 +45,16 @@ function AdminAdvices({
   }, []);
 
   function handleCreateAdvice(e) {
+    console.log("123");
     e.preventDefault();
-    onSaveAdvice(
+    onSaveData(
       {
         heading: values.heading,
         shortText: values.shortText,
         expandedText: values.expandedText,
         image: picture,
       },
-      selectedAdvice._id
+      saveAdvice
     );
   }
 
@@ -62,21 +64,22 @@ function AdminAdvices({
   }
 
   function handleDeleteAdvice() {
-    onDeleteAdvice(selectedAdvice._id);
+    onDeleteData(selectedAdvice._id, deleteAdvice);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsUploading(true);
 
-    onPatchAdvice(
+    onPatchData(
       {
         heading: values.heading || selectedAdvice.heading,
         shortText: values.shortText || selectedAdvice.shortText,
         expandedText: values.expandedText || selectedAdvice.expandedText,
         image: picture || JSON.stringify(selectedAdvice.image),
       },
-      selectedAdvice._id
+      selectedAdvice._id,
+      patchAdvice
     );
   }
 
@@ -101,12 +104,13 @@ function AdminAdvices({
       handleSubmit(e);
     }
   };
+
   const handlePopupUploadButtonClick = (e) => {
     e.preventDefault();
     if (imgData === null) {
       popupUploadInputRef.current.click();
     } else {
-      handleSubmit(e);
+      handleCreateAdvice(e);
     }
   };
 
@@ -343,17 +347,6 @@ function AdminAdvices({
                 >
                   {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                 </button>
-                <div className="admin__buttons-container">
-                  <button
-                    type="submit"
-                    disabled={!isValid}
-                    className={`admin__upload-button admin__upload-button_type_select ${
-                      !isValid ? "admin__upload-button_disabled" : ""
-                    }`}
-                  >
-                    Сохранить
-                  </button>
-                </div>
               </form>
             }
           />

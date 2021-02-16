@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Pricing from "../Pricing";
 import Label from "../Label";
+import { patchText } from "../../utils/api";
 
-function AdminPricing({ validation, pricingContent, onSaveText }) {
+function AdminPricing({ validation, pricingContent, onPatchData }) {
   const [compiledData, setCompiledData] = useState(pricingContent);
   const [preview, showPreview] = useState(false);
 
@@ -20,7 +21,7 @@ function AdminPricing({ validation, pricingContent, onSaveText }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    onSaveText(
+    onPatchData(
       {
         title: "pricing",
         content: [
@@ -42,7 +43,8 @@ function AdminPricing({ validation, pricingContent, onSaveText }) {
           },
         ],
       },
-      pricingContent.id
+      pricingContent.id,
+      patchText
     );
   }
 

@@ -33,9 +33,9 @@ function Admin({
   advices,
   postFormContent,
   suppliers,
-  onSaveSupplier,
-  onPatchSupplier,
-  onDeleteSupplier,
+  onSaveData,
+  onPatchData,
+  onDeleteData,
   suppliersTextContent,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
@@ -130,10 +130,9 @@ function Admin({
               <AdminLeadEditor
                 menuRef={menuRef}
                 validation={validation}
-                onSaveText={onSaveText}
+                onPatchData={onPatchData}
                 leadContent={leadContent}
                 leadBgImage={images.leadBgImage}
-                onSaveImage={onSaveImage}
               />
             )}
           </>
@@ -144,7 +143,7 @@ function Admin({
               <AdminServices
                 validation={validation}
                 services={services}
-                onSaveService={onSaveService}
+                onPatchData={onPatchData}
               />
             )}
           </>
@@ -153,21 +152,21 @@ function Admin({
           <AdminAdvantages
             validation={validation}
             advantagesText={advantagesText}
-            onSaveText={onSaveText}
+            onPatchData={onPatchData}
           />
         )}
         {selectedItem === "disadvantages" && (
           <AdminDisadvantages
             validation={validation}
             disadvantagesText={disadvantagesText}
-            onSaveText={onSaveText}
+            onPatchData={onPatchData}
           />
         )}
         {selectedItem === "phases" && (
           <AdminPhases
             validation={validation}
             phasesText={phasesText}
-            onSaveText={onSaveText}
+            onPatchData={onPatchData}
             phasesIcons={phasesIcons}
           />
         )}
@@ -175,7 +174,7 @@ function Admin({
           <AdminPricing
             validation={validation}
             pricingContent={pricingContent}
-            onSaveText={onSaveText}
+            onPatchData={onPatchData}
           />
         )}
         {advices && (
@@ -184,9 +183,9 @@ function Admin({
               <AdminAdvices
                 validation={validation}
                 advices={advices}
-                onSaveAdvice={onSaveAdvice}
-                onPatchAdvice={onPatchAdvice}
-                onDeleteAdvice={onDeleteAdvice}
+                onSaveData={onSaveData}
+                onPatchData={onPatchData}
+                onDeleteData={onDeleteData}
               />
             )}
           </>
@@ -195,7 +194,7 @@ function Admin({
           <AdminContacts
             validation={validation}
             contactsContent={contactsContent}
-            onSaveText={onSaveText}
+            onPatchData={onPatchData}
           />
         )}
         {images && (
@@ -203,10 +202,9 @@ function Admin({
             {selectedItem === "postform" && (
               <AdminPostForm
                 validation={validation}
-                onSaveText={onSaveText}
+                onPatchData={onPatchData}
                 postFormContent={postFormContent}
                 postFormOffer={images.postFormOffer}
-                onSaveImage={onSaveImage}
               />
             )}
           </>
@@ -231,9 +229,9 @@ function Admin({
                 validation={validation}
                 suppliers={suppliers}
                 suppliersTextContent={suppliersTextContent}
-                onSaveSupplier={onSaveSupplier}
-                onPatchSupplier={onPatchSupplier}
-                onDeleteSupplier={onDeleteSupplier}
+                onSaveData={onSaveData}
+                onPatchData={onPatchData}
+                onDeleteData={onDeleteData}
                 onSaveText={onSaveText}
               />
             )}
