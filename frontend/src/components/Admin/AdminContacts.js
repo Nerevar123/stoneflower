@@ -371,7 +371,7 @@ function AdminContacts({
       <div
         ref={previewRef}
         className="admin__preview-container"
-        style={{ minWidth: `${preview ? "1100px" : "0"}` }}
+        style={{ minWidth: `${preview ? "1280px" : "0"}` }}
       >
         {preview && (
           <button onClick={scrollToMenu} className="admin__go-back">
