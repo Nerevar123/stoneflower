@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function AdminPopup({
   title,
+  popupVisible,
+  setPopupVisible,
   // name,
   // buttonText = "Сохранить",
   // onClose,
@@ -10,9 +12,17 @@ function AdminPopup({
   children,
   // isDisabled,
 }) {
+  useEffect(() => {
+    setPopupVisible(true);
+  }, []);
   return (
-    <div className="popup admin__popup">
+    <div
+      className={`popup admin__popup ${
+        popupVisible ? "admin__popup_visible" : ""
+      }`}
+    >
       <div className="admin__popup-container">
+        <button className="admin__close-button button"></button>
         <h3 className="admin__popup-title">{title}</h3>
         {children}
         {/* <Form

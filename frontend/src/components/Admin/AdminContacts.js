@@ -116,6 +116,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -126,6 +127,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -136,6 +138,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -146,6 +149,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -156,6 +160,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -166,6 +171,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -176,6 +182,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="60px"
           />
           <Label
             validation={validation}
@@ -186,6 +193,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="60px"
           />
           <Label
             validation={validation}
@@ -196,6 +204,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="60px"
           />
           <Label
             validation={validation}
@@ -206,6 +215,7 @@ function AdminContacts({ validation, contactsContent, onPatchData }) {
             required
             maxLength="40"
             withCount
+            height="60px"
           />
           <div className="admin__buttons-container">
             <button

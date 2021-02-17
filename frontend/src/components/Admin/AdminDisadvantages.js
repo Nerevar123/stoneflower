@@ -1,13 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Disadvantages from "../Disadvantages";
 import Label from "../Label";
 import { patchText } from "../../utils/api";
 
-function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
+function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRef }) {
   const [compiledData, setCompiledData] = useState(disadvantagesText);
   const [preview, showPreview] = useState(false);
+  const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   useEffect(() => {
     resetForm(disadvantagesText);
@@ -55,7 +68,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
       disadvantages2: values.disadvantages2 || disadvantagesText.disadvantages2,
       disadvantages3: values.disadvantages3 || disadvantagesText.disadvantages3,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   return (
@@ -71,7 +84,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p onClick={() =>{handlePreview(); scrollToPreview()}} className="admin__preview-link">
               Показать превью
             </p>
           </div>
@@ -84,6 +97,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -94,6 +108,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
             required
             maxLength="260"
             withCount
+            height="80px"
           />
           <Label
             validation={validation}
@@ -104,6 +119,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
             required
             maxLength="260"
             withCount
+            height="80px"
           />
           <Label
             validation={validation}
@@ -114,6 +130,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
             required
             maxLength="260"
             withCount
+            height="60px"
           />
           <div className="admin__buttons-container">
             <button
@@ -135,11 +152,16 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData }) {
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
+
+      <div ref={previewRef} style={{minWidth: preview?'1180px':'0'}}className="admin__preview-container">
+        {preview && (<button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>)}
+        {preview && (
           <Disadvantages disadvantagesContent={compiledData} />
+          )}
         </div>
-      )}
+
     </div>
   );
 }

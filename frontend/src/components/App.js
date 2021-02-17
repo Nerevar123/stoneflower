@@ -27,7 +27,7 @@ import {
   // phasesTextContent,
   // pricing,
   surfaces,
-  // advices,
+  // advices
   portfolio,
   // suppliers,
   // postForm,

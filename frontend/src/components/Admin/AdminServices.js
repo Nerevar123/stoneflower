@@ -3,7 +3,7 @@ import Services from "../Services";
 import Label from "../Label";
 import { patchService } from "../../utils/api";
 
-function AdminServices({ validation, services, onPatchData }) {
+function AdminServices({ validation, services, onPatchData, menuRef }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
@@ -12,6 +12,8 @@ function AdminServices({ validation, services, onPatchData }) {
   const [picture, setPicture] = useState(selectedService.image);
   const [preview, showPreview] = useState(false);
   const uploadInputRef = useRef();
+  const previewRef = useRef();
+  const [selectedButton, setSelectedButton] = useState(0);
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -73,33 +75,51 @@ function AdminServices({ validation, services, onPatchData }) {
       description: values.description || selectedService.description,
       image: imgData || selectedService.image,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   function handleSelectClick(num) {
+    setSelectedButton(num);
     setSelectedService(services[num]);
     showPreview(false);
   }
-
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
         <h2 className="admin__heading">Услуги</h2>
+
         <div className="admin__select-buttons">
           <button
-            className="admin__select-button"
+            className={`admin__select-button ${
+              selectedButton === 0 ? "admin__select-button_active" : ""
+            }`}
             onClick={(_) => handleSelectClick(0)}
           >
             №1
           </button>
           <button
-            className="admin__select-button"
+            className={`admin__select-button ${
+              selectedButton === 1 ? "admin__select-button_active" : ""
+            }`}
             onClick={(_) => handleSelectClick(1)}
           >
             №2
           </button>
           <button
-            className="admin__select-button"
+            className={`admin__select-button ${
+              selectedButton === 2 ? "admin__select-button_active" : ""
+            }`}
             onClick={(_) => handleSelectClick(2)}
           >
             №3
@@ -112,7 +132,13 @@ function AdminServices({ validation, services, onPatchData }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Изображение</p>
-            <p className="admin__preview-link" onClick={handlePreviewClick}>
+            <p
+              className="admin__preview-link"
+              onClick={() => {
+                handlePreviewClick();
+                scrollToPreview();
+              }}
+            >
               Показать превью
             </p>
           </div>
@@ -123,16 +149,17 @@ function AdminServices({ validation, services, onPatchData }) {
             <li className="admin__requirements-item">• Формат: JPEG/PNG</li>
           </ul>
           <div className="admin__upload-info admin__upload-info_visible">
-            <div className="admin__progress-info admin__progress-info_completed"></div>
+            <div
+              style={{ opacity: `${picture ? "1" : "0"}` }}
+              className="admin__progress-info admin__progress-info_completed"
+            ></div>
             <input
               className="admin__file-input"
               type="file"
               onChange={onChangePicture}
               ref={uploadInputRef}
             />
-            <p className="admin__file-name">
-              {picture ? picture.name : "название файла"}
-            </p>
+            <p className="admin__file-name">{picture ? picture.name : ""}</p>
           </div>
           <div className="admin__buttons-container">
             <button
@@ -165,7 +192,13 @@ function AdminServices({ validation, services, onPatchData }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreviewClick} className="admin__preview-link">
+            <p
+              onClick={() => {
+                handlePreviewClick();
+                scrollToPreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -178,6 +211,7 @@ function AdminServices({ validation, services, onPatchData }) {
             required
             maxLength="55"
             withCount
+            height="40px"
           />
           <Label
             validation={validation}
@@ -188,6 +222,7 @@ function AdminServices({ validation, services, onPatchData }) {
             required
             maxLength="150"
             withCount
+            height="60px"
           />
           <div className="admin__buttons-container">
             <button
@@ -209,11 +244,19 @@ function AdminServices({ validation, services, onPatchData }) {
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
-          <Services elements={compiledData} />
-        </div>
-      )}
+
+      <div
+        ref={previewRef}
+        style={{ minWidth: preview ? "400px" : "0" }}
+        className="admin__preview-container"
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && <Services elements={compiledData} />}
+      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ function AdminAdvices({
   onSaveData,
   onPatchData,
   onDeleteData,
+  menuRef,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
@@ -20,15 +21,19 @@ function AdminAdvices({
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
   const [addAdvice, setAddAdvice] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(true);
+  const [selectedButton, setSelectedButton] = useState(0);
 
   const uploadInputRef = useRef();
   const popupUploadInputRef = useRef();
+  const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     console.log(selectedAdvice);
     resetForm(selectedAdvice);
+
     setIsValid(true);
     return () => {
       resetForm();
@@ -60,6 +65,9 @@ function AdminAdvices({
 
   function handleAddClick() {
     setAddAdvice(true);
+    setPicture(null);
+    setImgData(null);
+    setIsPictureSelected(false);
     resetForm();
   }
 
@@ -121,40 +129,55 @@ function AdminAdvices({
       expandedText: values.expandedText || selectedAdvice.expandedText,
       image: imgData || selectedAdvice.image,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   function handleSelectClick(num) {
+    setSelectedButton(num);
     setSelectedAdvice(advices[num]);
     showPreview(false);
   }
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   return (
     <>
       <div className="admin__edit-wrapper">
         <div className="admin__form-area">
           <h2 className="admin__heading">Советы дизайнера</h2>
-          <div className="admin__select-buttons">
-            {advices.map((advice, i) => (
+          <div className="admin__buttons-container">
+            <div className="admin__select-buttons">
+              {advices.map((advice, i) => (
+                <button
+                  key={advice._id}
+                  className={`admin__select-button ${
+                    selectedButton === i ? "admin__select-button_active" : ""
+                  }`}
+                  onClick={(_) => handleSelectClick(i)}
+                >
+                  №{i + 1}
+                </button>
+              ))}
+            </div>
+            <div className="admin__control-buttons">
               <button
-                key={advice._id}
-                className="admin__select-button"
-                onClick={(_) => handleSelectClick(i)}
-              >
-                №{i + 1}
-              </button>
-            ))}
-          </div>
-          <div className="admin__control-buttons">
-            <button className="admin__control-button" onClick={handleAddClick}>
-              Add
-            </button>
-            <button
-              className="admin__control-button"
-              onClick={handleDeleteAdvice}
-            >
-              Delete
-            </button>
+                className="admin__table-button admin__table-button_type_add"
+                onClick={handleAddClick}
+              ></button>
+              <button
+                className="admin__table-button admin__table-button_type_delete"
+                onClick={handleDeleteAdvice}
+              ></button>
+            </div>
           </div>
           <form
             className="admin__form admin__form_type_upload admin__form_place_lead"
@@ -163,7 +186,13 @@ function AdminAdvices({
           >
             <div className="admin__form-heading-container">
               <p className="admin__form-heading">Изображение</p>
-              <p className="admin__preview-link" onClick={handlePreviewClick}>
+              <p
+                className="admin__preview-link"
+                onClick={() => {
+                  scrollToPreview();
+                  handlePreviewClick();
+                }}
+              >
                 Показать превью
               </p>
             </div>
@@ -174,16 +203,17 @@ function AdminAdvices({
               <li className="admin__requirements-item">• Формат: JPEG/PNG</li>
             </ul>
             <div className="admin__upload-info admin__upload-info_visible">
-              <div className="admin__progress-info admin__progress-info_completed"></div>
+              <div
+                style={{ opacity: `${picture ? "1" : "0"}` }}
+                className="admin__progress-info admin__progress-info_completed"
+              ></div>
               <input
                 className="admin__file-input"
                 type="file"
                 onChange={onChangePicture}
                 ref={uploadInputRef}
               />
-              <p className="admin__file-name">
-                {picture ? picture.name : "название файла"}
-              </p>
+              <p className="admin__file-name">{picture ? picture.name : ""}</p>
             </div>
             <div className="admin__buttons-container">
               <button
@@ -216,7 +246,13 @@ function AdminAdvices({
           >
             <div className="admin__form-heading-container">
               <p className="admin__form-heading">Текст</p>
-              <p onClick={handlePreviewClick} className="admin__preview-link">
+              <p
+                className="admin__preview-link"
+                onClick={() => {
+                  scrollToPreview();
+                  handlePreviewClick();
+                }}
+              >
                 Показать превью
               </p>
             </div>
@@ -229,6 +265,7 @@ function AdminAdvices({
               required
               maxLength="65"
               withCount
+              height="20px"
             />
             <Label
               validation={validation}
@@ -239,6 +276,7 @@ function AdminAdvices({
               required
               maxLength="600"
               withCount
+              height="100px"
             />
             <Label
               validation={validation}
@@ -249,6 +287,7 @@ function AdminAdvices({
               required
               maxLength="600"
               withCount
+              height="100px"
             />
             <div className="admin__buttons-container">
               <button
@@ -270,17 +309,35 @@ function AdminAdvices({
             </div>
           </form>
         </div>
-        {preview && (
-          <div className="admin__preview-container">
-            <Advices content={compiledData} />
-          </div>
-        )}
+
+        <div
+          ref={previewRef}
+          className="admin__preview-container"
+          style={{ minWidth: `${preview ? "1100px" : "0"}` }}
+        >
+          {preview && (
+            <button onClick={scrollToMenu} className="admin__go-back">
+              Назад
+            </button>
+          )}
+          {preview && <Advices content={compiledData} />}
+        </div>
       </div>
       {addAdvice && (
         <ClosablePopup>
           <AdminPopup
             title="Добавить совет"
-            onClose={(_) => setAddAdvice(false)}
+            onClose={(_) => {
+              setPopupVisible(false);
+              setPicture(null);
+              setImgData(null);
+              setIsPictureSelected(false);
+              setTimeout(() => {
+                setAddAdvice(false);
+              }, 300);
+            }}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
             children={
               <form
                 className="admin__form admin__form_type_lead-text"
@@ -301,6 +358,7 @@ function AdminAdvices({
                   required
                   maxLength="65"
                   withCount
+                  height="20px"
                 />
                 <Label
                   validation={validation}
@@ -311,6 +369,7 @@ function AdminAdvices({
                   required
                   maxLength="600"
                   withCount
+                  height="100px"
                 />
                 <Label
                   validation={validation}
@@ -321,6 +380,7 @@ function AdminAdvices({
                   required
                   maxLength="600"
                   withCount
+                  height="100px"
                 />
                 <div className="admin__form-heading-container">
                   <p className="admin__form-heading">Изображение</p>
@@ -338,7 +398,10 @@ function AdminAdvices({
                   </li>
                 </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
-                  <div className="admin__progress-info admin__progress-info_completed"></div>
+                  <div
+                    style={{ opacity: `${picture ? "1" : "0"}` }}
+                    className="admin__progress-info admin__progress-info_completed"
+                  ></div>{" "}
                   <input
                     className="admin__file-input"
                     type="file"
@@ -346,7 +409,7 @@ function AdminAdvices({
                     ref={popupUploadInputRef}
                   />
                   <p className="admin__file-name">
-                    {picture ? picture.name : "название файла"}
+                    {picture ? picture.name : ""}
                   </p>
                 </div>
                 <button

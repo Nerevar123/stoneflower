@@ -135,6 +135,7 @@ function Admin({
           <>
             {selectedItem === "services" && (
               <AdminServices
+                menuRef={menuRef}
                 validation={validation}
                 services={services}
                 onPatchData={onPatchData}
@@ -144,6 +145,7 @@ function Admin({
         )}
         {selectedItem === "advantages" && (
           <AdminAdvantages
+            menuRef={menuRef}
             validation={validation}
             advantagesText={advantagesText}
             onPatchData={onPatchData}
@@ -151,6 +153,7 @@ function Admin({
         )}
         {selectedItem === "disadvantages" && (
           <AdminDisadvantages
+            menuRef={menuRef}
             validation={validation}
             disadvantagesText={disadvantagesText}
             onPatchData={onPatchData}
@@ -158,6 +161,7 @@ function Admin({
         )}
         {selectedItem === "phases" && (
           <AdminPhases
+            menuRef={menuRef}
             validation={validation}
             phasesText={phasesText}
             onPatchData={onPatchData}
@@ -166,6 +170,7 @@ function Admin({
         )}
         {selectedItem === "pricing" && (
           <AdminPricing
+            menuRef={menuRef}
             validation={validation}
             pricingContent={pricingContent}
             onPatchData={onPatchData}
@@ -175,6 +180,7 @@ function Admin({
           <>
             {selectedItem === "advices" && (
               <AdminAdvices
+                menuRef={menuRef}
                 validation={validation}
                 advices={advices}
                 onSaveData={onSaveData}
@@ -186,6 +192,7 @@ function Admin({
         )}
         {selectedItem === "contacts" && (
           <AdminContacts
+            menuRef={menuRef}
             validation={validation}
             contactsContent={contactsContent}
             onPatchData={onPatchData}
@@ -195,6 +202,7 @@ function Admin({
           <>
             {selectedItem === "postform" && (
               <AdminPostForm
+                menuRef={menuRef}
                 validation={validation}
                 onPatchData={onPatchData}
                 postFormContent={postFormContent}
@@ -220,6 +228,7 @@ function Admin({
           <>
             {selectedItem === "suppliers" && (
               <AdminSuppliers
+                menuRef={menuRef}
                 validation={validation}
                 suppliers={suppliers}
                 suppliersTextContent={suppliersTextContent}

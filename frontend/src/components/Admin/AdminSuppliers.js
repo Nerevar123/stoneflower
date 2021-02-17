@@ -17,6 +17,7 @@ function AdminSuppliers({
   onSaveData,
   onPatchData,
   onDeleteData,
+  menuRef,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
@@ -33,6 +34,8 @@ function AdminSuppliers({
   const [isMaterial, setIsMaterial] = useState(false);
   const editPopupInputRef = useRef();
   const addPopupInputRef = useRef();
+  const [popupVisible, setPopupVisible] = useState(true);
+  const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -175,16 +178,34 @@ function AdminSuppliers({
       subheadingSuppliers:
         values.subheadingSuppliers || suppliersTextContent.subheadingSuppliers,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   function closeAllPopups() {
-    setAddSupplier(false);
-    setEditSupplier(false);
-    setDelSupplier(false);
-    resetForm(suppliersTextContent, {}, true);
-    setCurrentSupplier({});
+    setPopupVisible(false);
+    setTimeout(() => {
+      setAddSupplier(false);
+      setEditSupplier(false);
+      setDelSupplier(false);
+      setPopupVisible(false);
+      setPicture(null);
+      setImgData(null);
+      setIsPictureSelected(false);
+      resetForm(suppliersTextContent, {}, true);
+      setCurrentSupplier({});
+    }, 300);
   }
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   return (
     <>
@@ -200,7 +221,13 @@ function AdminSuppliers({
           >
             <div className="admin__form-heading-container">
               <p className="admin__form-heading">Текст</p>
-              <p onClick={handlePreviewClick} className="admin__preview-link">
+              <p
+                onClick={() => {
+                  handlePreviewClick();
+                  scrollToPreview();
+                }}
+                className="admin__preview-link"
+              >
                 Показать превью
               </p>
             </div>
@@ -213,6 +240,7 @@ function AdminSuppliers({
               required
               maxLength="65"
               withCount
+              height="20px"
             />
             <Label
               validation={validation}
@@ -223,6 +251,7 @@ function AdminSuppliers({
               required
               maxLength="300"
               withCount
+              height="20px"
             />
             <Label
               validation={validation}
@@ -233,6 +262,7 @@ function AdminSuppliers({
               required
               maxLength="300"
               withCount
+              height="20px"
             />
             <div className="admin__buttons-container">
               <button
@@ -254,7 +284,9 @@ function AdminSuppliers({
             </div>
           </form>
           <div className="admin__form">
-            <p className="admin__form-heading">Логотипы 1</p>
+            <div className="admin__form-heading-container">
+              <p className="admin__form-heading">Логотипы материалов</p>
+            </div>
             <div className="admin__table-titles">
               <p className="admin__table-title">Ссылка</p>
               <p className="admin__table-title">Изображение</p>
@@ -268,17 +300,13 @@ function AdminSuppliers({
                   </span>
                   <div className="admin__table-buttons">
                     <button
-                      className="admin__table-button"
+                      className="admin__table-button admin__table-button_type_edit"
                       onClick={() => handleEditClick(item)}
-                    >
-                      Edit
-                    </button>
+                    ></button>
                     <button
-                      className="admin__table-button"
+                      className="admin__table-button admin__table-button_type_delete"
                       onClick={() => handleDeleteClick(item)}
-                    >
-                      Delete
-                    </button>
+                    ></button>
                   </div>
                 </li>
               ))}
@@ -292,7 +320,9 @@ function AdminSuppliers({
             </button>
           </div>
           <div className="admin__form">
-            <p className="admin__form-heading">Логотипы 2</p>
+            <div className="admin__form-heading-container">
+              <p className="admin__form-heading">Логотипы производителей</p>
+            </div>
             <div className="admin__table-titles">
               <p className="admin__table-title">Ссылка</p>
               <p className="admin__table-title">Изображение</p>
@@ -306,17 +336,13 @@ function AdminSuppliers({
                   </span>
                   <div className="admin__table-buttons">
                     <button
-                      className="admin__table-button"
+                      className="admin__table-button admin__table-button_type_edit"
                       onClick={() => handleEditClick(item)}
-                    >
-                      Edit
-                    </button>
+                    ></button>
                     <button
-                      className="admin__table-button"
+                      className="admin__table-button admin__table-button_type_delete"
                       onClick={() => handleDeleteClick(item)}
-                    >
-                      Delete
-                    </button>
+                    ></button>
                   </div>
                 </li>
               ))}
@@ -330,17 +356,28 @@ function AdminSuppliers({
             </button>
           </div>
         </div>
-        {preview && (
-          <div className="admin__preview-container">
+
+        <div
+          ref={previewRef}
+          className="admin__preview-container"
+          style={{ minWidth: `${preview ? "1100px" : "0"}` }}
+        >
+           {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button> )}
+          {preview && (
             <Suppliers content={suppliers} textContent={compiledData} />
-          </div>
-        )}
+          )}
+        </div>
       </div>
       {addSupplier && (
         <ClosablePopup>
           <AdminPopup
-            title="Добавить"
+            title="Добавить элемент"
             onClose={closeAllPopups}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
             children={
               <form
                 className="admin__form admin__form_type_lead-text"
@@ -375,7 +412,10 @@ function AdminSuppliers({
                   </li>
                 </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
-                  <div className="admin__progress-info admin__progress-info_completed"></div>
+                  <div
+                    style={{ opacity: `${picture ? "1" : "0"}` }}
+                    className="admin__progress-info admin__progress-info_completed"
+                  ></div>
                   <input
                     className="admin__file-input"
                     type="file"
@@ -383,7 +423,7 @@ function AdminSuppliers({
                     ref={addPopupInputRef}
                   />
                   <p className="admin__file-name">
-                    {picture ? picture.name : "название файла"}
+                    {picture ? picture.name : ""}
                   </p>
                 </div>
                 <button
@@ -410,6 +450,8 @@ function AdminSuppliers({
           <AdminPopup
             title="Редактировать"
             onClose={closeAllPopups}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
             children={
               <form
                 className="admin__form admin__form_type_lead-text"
@@ -444,7 +486,10 @@ function AdminSuppliers({
                   </li>
                 </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
-                  <div className="admin__progress-info admin__progress-info_completed"></div>
+                  <div
+                    style={{ opacity: `${picture ? "1" : "0"}` }}
+                    className="admin__progress-info admin__progress-info_completed"
+                  ></div>
                   <input
                     className="admin__file-input"
                     type="file"
@@ -452,32 +497,36 @@ function AdminSuppliers({
                     ref={editPopupInputRef}
                   />
                   <p className="admin__file-name">
-                    {picture ? picture.name : "название файла"}
+                    {picture ? picture.name : ""}
                   </p>
                 </div>
-                <button
-                  type="submit"
-                  onClick={handleEditPopupButtonClick}
-                  className={`admin__upload-button admin__upload-button_type_select ${
-                    isUploading ? "admin__upload-button_state_uploading" : ""
-                  } ${
-                    isPictureSelected
-                      ? "admin__upload-button_state_uploaded"
-                      : ""
-                  }`}
-                >
-                  {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                </button>
-                <button
-                  type="submit"
-                  disabled={!isValid}
-                  onClick={handleEditSupplier}
-                  className={`admin__upload-button admin__upload-button_type_select ${
-                    !isValid ? "admin__upload-button_disabled" : ""
-                  }`}
-                >
-                  Сохранить
-                </button>
+                {!isPictureSelected && (
+                  <button
+                    type="submit"
+                    onClick={handleEditPopupButtonClick}
+                    className={`admin__upload-button admin__upload-button_type_select ${
+                      isUploading ? "admin__upload-button_state_uploading" : ""
+                    } ${
+                      isPictureSelected
+                        ? "admin__upload-button_state_uploaded"
+                        : ""
+                    }`}
+                  >
+                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
+                  </button>
+                )}
+                {isPictureSelected && (
+                  <button
+                    type="submit"
+                    disabled={!isValid}
+                    onClick={handleEditSupplier}
+                    className={`admin__upload-button admin__upload-button_type_select ${
+                      !isValid ? "admin__upload-button_disabled" : ""
+                    }`}
+                  >
+                    Сохранить
+                  </button>
+                )}
                 <div className="admin__buttons-container"></div>
               </form>
             }

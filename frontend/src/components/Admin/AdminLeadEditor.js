@@ -12,13 +12,11 @@ function AdminLeadEditor({
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
-  const [picture, setPicture] = useState({ name: "имя картинки" });
+  const [picture, setPicture] = useState(null);
+  const [preview, showPreview] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const previewRef = useRef();
-  const scrollToPreview = () => {
-    previewRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
-  };
 
   console.log(leadContent);
   const uploadInputRef = useRef();
@@ -71,6 +69,7 @@ function AdminLeadEditor({
       leadText2: values.leadText2 || leadContent.leadText2,
       leadText3: values.leadText3 || leadContent.leadText3,
     });
+    showPreview(true);
   }
 
   const onChangePicture = (e) => {
@@ -105,6 +104,14 @@ function AdminLeadEditor({
       patchImage
     );
   }
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
@@ -138,14 +145,17 @@ function AdminLeadEditor({
             <li className="admin__requirements-item">• Формат: JPEG/PNG</li>
           </ul>
           <div className="admin__upload-info admin__upload-info_visible">
-            <div className="admin__progress-info admin__progress-info_completed"></div>
+            <div
+              style={{ opacity: `${picture ? "1" : "0"}` }}
+              className="admin__progress-info admin__progress-info_completed"
+            ></div>
             <input
               className="admin__file-input"
               type="file"
               onChange={onChangePicture}
               ref={uploadInputRef}
             />
-            <p className="admin__file-name">{picture.name}</p>
+            <p className="admin__file-name">{picture ? picture.name : ""}</p>
           </div>
           <div className="admin__buttons-container">
             <button
@@ -197,6 +207,7 @@ function AdminLeadEditor({
             required
             maxLength="45"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -207,6 +218,7 @@ function AdminLeadEditor({
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -217,6 +229,7 @@ function AdminLeadEditor({
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -227,6 +240,7 @@ function AdminLeadEditor({
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <div className="admin__buttons-container">
             <button
@@ -248,14 +262,22 @@ function AdminLeadEditor({
           </div>
         </form>
       </div>
-      <div ref={previewRef} className="admin__preview-container">
-        <button onClick={scrollToMenu} className="admin__go-back">
-          Назад
-        </button>
-        <Lead
-          content={compiledData}
-          leadBgImage={imgData ? imgData : leadBgImage}
-        />
+      <div
+        ref={previewRef}
+        className="admin__preview-container"
+        style={{ minWidth: `${preview ? "1100px" : "0"}` }}
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && (
+          <Lead
+            content={compiledData}
+            leadBgImage={imgData ? imgData : leadBgImage}
+          />
+        )}
       </div>
     </div>
   );

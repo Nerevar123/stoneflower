@@ -117,6 +117,7 @@ function AdminPostForm({
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -127,6 +128,7 @@ function AdminPostForm({
             required
             maxLength="300"
             withCount
+            height="20px"
           />
           <div className="admin__buttons-container">
             <button

@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Advantages from "../Advantages";
 import Label from "../Label";
 import { patchText } from "../../utils/api";
 
-function AdminAdvantages({ validation, advantagesText, onPatchData }) {
+function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
   const [compiledData, setCompiledData] = useState(advantagesText);
   const [preview, showPreview] = useState(false);
   const [description, setDescription] = useState("");
-
+  const previewRef = useRef();
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
   const { values, isValid, resetForm, setIsValid } = validation;
-
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
   useEffect(() => {
     setDescription(
       advantagesText.shortTextBeforeAccent +
@@ -78,7 +88,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
       linkText: values.linkText || advantagesText.linkText,
       expandedText: values.expandedText || advantagesText.expandedText,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   return (
@@ -94,7 +104,13 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p
+              onClick={() => {
+                scrollToPreview();
+                handlePreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -107,6 +123,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -117,6 +134,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
             required
             maxLength="400"
             withCount
+            height="100px"
           />
           <Label
             validation={validation}
@@ -127,6 +145,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
             required
             maxLength="60"
             withCount
+            height="100px"
           />
           <Label
             validation={validation}
@@ -137,6 +156,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
             required
             maxLength="950"
             withCount
+            height="100px"
           />
           <div className="admin__buttons-container">
             <button
@@ -169,11 +189,19 @@ function AdminAdvantages({ validation, advantagesText, onPatchData }) {
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
+
+        <div ref={previewRef} style={{minWidth: preview?'1180px':'0'}}className="admin__preview-container">
+        {preview && (<button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>)}
+        {preview && (
+          <>
+
           <Advantages textContent={compiledData} />
+          </>
+          )}
         </div>
-      )}
+
     </div>
   );
 }
