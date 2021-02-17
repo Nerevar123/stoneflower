@@ -32,6 +32,13 @@ function AdminLeadEditor({
     };
   }, [leadContent, resetForm, setIsValid]);
 
+  const handleReset = () => {
+    setPicture(null);
+    setImgData(null);
+    setIsPictureSelected(false);
+    uploadInputRef.current.value = "";
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -171,6 +178,7 @@ function AdminLeadEditor({
             </button>
             {isPictureSelected && (
               <button
+                onClick={handleReset}
                 type="button"
                 className="admin__upload-button admin__upload-button_type_cancel"
               >

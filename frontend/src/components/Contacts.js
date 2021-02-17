@@ -8,6 +8,7 @@ function Contacts({ content, entranceImage }) {
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  console.log(content);
 
   const window = useWindowSize();
 

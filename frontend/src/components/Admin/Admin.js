@@ -190,13 +190,18 @@ function Admin({
             )}
           </>
         )}
-        {selectedItem === "contacts" && (
-          <AdminContacts
-            menuRef={menuRef}
-            validation={validation}
-            contactsContent={contactsContent}
-            onPatchData={onPatchData}
-          />
+        {images && (
+          <>
+            {selectedItem === "contacts" && (
+              <AdminContacts
+                menuRef={menuRef}
+                validation={validation}
+                contactsContent={contactsContent}
+                onPatchData={onPatchData}
+                entranceImage={images.contactsEntranceImage}
+              />
+            )}
+          </>
         )}
         {images && (
           <>
