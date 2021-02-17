@@ -1,13 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Phases from "../Phases";
 import Label from "../Label";
 import { patchText } from "../../utils/api";
 
-function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
+function AdminPhases({
+  validation,
+  phasesText,
+  onPatchData,
+  phasesIcons,
+  menuRef,
+}) {
   const [compiledData, setCompiledData] = useState(phasesText);
   const [preview, showPreview] = useState(false);
+  const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   useEffect(() => {
     resetForm(phasesText);
@@ -60,7 +79,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
       phases3: values.phases3 || phasesText.phases3,
       phases4: values.phases4 || phasesText.phases4,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   return (
@@ -76,7 +95,13 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p
+              onClick={() => {
+                handlePreview();
+                scrollToPreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -89,6 +114,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -99,6 +125,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
             required
             maxLength="40"
             withCount
+            height="40px"
           />
           <Label
             validation={validation}
@@ -109,6 +136,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
             required
             maxLength="40"
             withCount
+            height="40px"
           />
           <Label
             validation={validation}
@@ -119,6 +147,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
             required
             maxLength="40"
             withCount
+            height="40px"
           />
           <Label
             validation={validation}
@@ -129,6 +158,7 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
             required
             maxLength="40"
             withCount
+            height="40px"
           />
           <div className="admin__buttons-container">
             <button
@@ -150,11 +180,21 @@ function AdminPhases({ validation, phasesText, onPatchData, phasesIcons }) {
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
+
+      <div
+        ref={previewRef}
+        style={{ minWidth: preview ? "1180px" : "0" }}
+        className="admin__preview-container"
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && (
           <Phases phasesText={compiledData} phasesIcons={phasesIcons} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

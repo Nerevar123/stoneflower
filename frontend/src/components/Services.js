@@ -1,9 +1,10 @@
 import React from "react";
 import ServicesItem from "./ServicesItem";
 
-function Services({ elements }) {
+function Services({ elements, inPreview }) {
+  console.log(inPreview);
   return (
-    <article id="services" className="services">
+    <article id="services" style={{margin: inPreview?'0':''}}className="services">
       <h2 className="content__title">Услуги</h2>
       <ul className="services__list list">
         {elements.length > 1

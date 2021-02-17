@@ -8,6 +8,7 @@ function AdminPostForm({
   onPatchData,
   postFormContent,
   postFormOffer,
+  menuRef,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(postFormContent);
@@ -15,7 +16,10 @@ function AdminPostForm({
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [preview, showPreview] = useState(false);
+  const [newOffer, setNewOffer] = useState(null);
   const uploadInputRef = useRef();
+  const previewRef = useRef();
+  console.log(postFormOffer);
 
   const { values, isValid, resetForm, setIsValid } = validation;
 
@@ -49,19 +53,27 @@ function AdminPostForm({
       patchText
     );
   }
+  const handleReset = () => {
+    setOffer(postFormOffer);
+    setNewOffer(null);
+    setImgData(null);
+    setIsPictureSelected(false);
+    uploadInputRef.current.value = "";
+  };
 
   function handlePreviewClick() {
     setCompiledData({
       heading: values.heading || postFormContent.heading,
       subHeading: values.subHeading || postFormContent.subHeading,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
       setIsPictureSelected(true);
       setOffer(e.target.files[0]);
+      setNewOffer(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         setImgData(reader.result);
@@ -90,6 +102,17 @@ function AdminPostForm({
       patchImage
     );
   }
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   return (
     <div className="admin__edit-wrapper">
@@ -104,7 +127,13 @@ function AdminPostForm({
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreviewClick} className="admin__preview-link">
+            <p
+              className="admin__preview-link"
+              onClick={() => {
+                scrollToPreview();
+                handlePreviewClick();
+              }}
+            >
               Показать превью
             </p>
           </div>
@@ -117,6 +146,7 @@ function AdminPostForm({
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -127,6 +157,7 @@ function AdminPostForm({
             required
             maxLength="300"
             withCount
+            height="20px"
           />
           <div className="admin__buttons-container">
             <button
@@ -161,12 +192,17 @@ function AdminPostForm({
             <li className="admin__requirements-item">• Формат: PDF</li>
           </ul>
           <div className="admin__upload-info admin__upload-info_visible">
+            <div
+              style={{ opacity: `${newOffer? "1" : "0"}` }}
+              className="admin__progress-info admin__progress-info_completed"
+            ></div>
             <input
               className="admin__file-input"
               type="file"
               onChange={onChangePicture}
               ref={uploadInputRef}
             />
+            <p className="admin__file-name">{newOffer ? newOffer.name : ""}</p>
           </div>
           <div className="admin__buttons-container">
             <button
@@ -182,6 +218,7 @@ function AdminPostForm({
             </button>
             {isPictureSelected && (
               <button
+                onClick={handleReset}
                 type="button"
                 className="admin__upload-button admin__upload-button_type_cancel"
               >
@@ -191,11 +228,19 @@ function AdminPostForm({
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
-          <PostForm content={compiledData} />
-        </div>
-      )}
+
+      <div
+        ref={previewRef}
+        className="admin__preview-container"
+        style={{ minWidth: `${preview ? "1100px" : "0"}` }}
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && <PostForm content={compiledData} />}
+      </div>
     </div>
   );
 }

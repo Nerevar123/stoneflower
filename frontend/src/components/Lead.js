@@ -4,6 +4,7 @@ import useWindowSize from "../hooks/useWindowSize";
 
 function Lead({ content, leadBgImage }) {
   const window = useWindowSize();
+
   return (
     <article
       id="main"

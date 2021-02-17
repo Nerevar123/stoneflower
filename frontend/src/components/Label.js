@@ -8,6 +8,7 @@ function Label({
   maxLength,
   placeholder = "Введите текст",
   withCount,
+  height,
   ...props
 }) {
   const { values, errors, handleChange, resetInput } = validation;
@@ -16,7 +17,7 @@ function Label({
     <div className={`${className}__input-container`}>
       <label className={`${className}__input-label`}>{labelText}</label>
       <div className="admin__input-wrapper">
-        <input
+        <textarea
           name={name}
           className={`input ${className}__input ${
             errors[name] ? `${className}__input_invalid` : ""
@@ -25,6 +26,7 @@ function Label({
           onChange={handleChange}
           placeholder={placeholder}
           maxLength={maxLength}
+          style={{height: `${height}`}}
           {...props}
         />
         {withCount && (

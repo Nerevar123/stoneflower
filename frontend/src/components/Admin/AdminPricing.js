@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Pricing from "../Pricing";
 import Label from "../Label";
 import { patchText } from "../../utils/api";
 
-function AdminPricing({ validation, pricingContent, onPatchData }) {
+function AdminPricing({ validation, pricingContent, onPatchData, menuRef }) {
   const [compiledData, setCompiledData] = useState(pricingContent);
   const [preview, showPreview] = useState(false);
-
+  const previewRef = useRef();
   const { values, isValid, resetForm, setIsValid } = validation;
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   useEffect(() => {
     resetForm(pricingContent);
@@ -55,7 +67,7 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
       textMinor: values.textMinor || pricingContent.textMinor,
       buttonText: values.buttonText || pricingContent.buttonText,
     });
-    showPreview(!preview);
+    showPreview(true);
   }
 
   return (
@@ -71,7 +83,13 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={handlePreview} className="admin__preview-link">
+            <p
+              onClick={() => {
+                handlePreview();
+                scrollToPreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -84,6 +102,7 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
             required
             maxLength="65"
             withCount
+            height="20px"
           />
           <Label
             validation={validation}
@@ -94,6 +113,7 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
             required
             maxLength="300"
             withCount
+            height="75px"
           />
           <Label
             validation={validation}
@@ -104,6 +124,7 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
             required
             maxLength="200"
             withCount
+            height="40px"
           />
           <Label
             validation={validation}
@@ -114,6 +135,7 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
             required
             maxLength="20"
             withCount
+            height="20px"
           />
           <div className="admin__buttons-container">
             <button
@@ -135,11 +157,18 @@ function AdminPricing({ validation, pricingContent, onPatchData }) {
           </div>
         </form>
       </div>
-      {preview && (
-        <div className="admin__preview-container">
-          <Pricing content={compiledData} />
-        </div>
-      )}
+      <div
+        ref={previewRef}
+        style={{ minWidth: preview ? "1180px" : "0" }}
+        className="admin__preview-container"
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && <Pricing content={compiledData} />}
+      </div>
     </div>
   );
 }

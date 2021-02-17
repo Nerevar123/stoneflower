@@ -14,7 +14,6 @@
 .admin {
   width: 1440px;
   margin: 0 auto 0 auto;
-  height: 1024px;
   display: flex;
   flex-direction: row;
 }
@@ -243,6 +242,7 @@
   background: rgba(0, 0, 0, 0);
   color: #2e2e2e;
   border: 1px solid #dfe0eb;
+  margin-right: 24px;
 }
 
 .admin__upload-button_type_cancel:hover {
@@ -293,6 +293,8 @@
   width: calc(100% - 20px);
   margin: 8px 0 0 0;
   padding: 10px;
+  max-width: 524px;
+  min-width: 524px;
   height: 20px;
   border: 1px solid #dfe0eb;
   border-radius: 8px;
@@ -324,8 +326,8 @@
 
 .admin__preview-container {
   margin: 0 0 0 88px;
-  min-width: 1280px;
   position: relative;
+  padding: 0 0 0 20px;
 }
 .admin__go-back {
   position: absolute;
@@ -333,7 +335,7 @@
   top: 50px;
   height: 34px;
   width: 80px;
-  color: #FFF;
+  color: #fff;
   padding-left: 9px;
   z-index: 10;
   display: flex;
@@ -370,12 +372,12 @@
   border-top-left-radius: 2px;
 }
 .admin__go-back:hover {
-  background-color:#2f80ed;
+  background-color: #2f80ed;
   border: 1px solid #2f80ed;
 }
 
 .admin__popup {
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   background-color: rgb(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -384,6 +386,11 @@
   height: 100vh;
   z-index: 10;
   display: flex;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.admin__popup_visible {
+  opacity: 1;
 }
 
 .admin__popup-container {
@@ -399,4 +406,134 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   position: relative;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+.admin__popup-title {
+  font-family: "Roboto", helvetica, sans-serif;
+  font-weight: 700;
+  margin: 0 0 0 88px;
+}
+.admin__close-button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+}
+.admin__close-button::before {
+  position: absolute;
+  content: " ";
+  width: 30px;
+  height: 2px;
+  left: 2px;
+  transform: rotate(45deg);
+  background-color: #000;
+}
+.admin__close-button::after {
+  position: absolute;
+  content: " ";
+  width: 30px;
+  height: 2px;
+  left: 2px;
+  transform: rotate(-45deg);
+  background-color: #000;
+}
+.admin__table-titles {
+  margin: 0 0 0 24px;
+  display: flex;
+  width: 389px;
+  justify-content: space-between;
+}
+.admin__table-title {
+  font-family: "Roboto", helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c4c4c4;
+}
+.admin__table {
+  list-style-type: none;
+  padding: 0 24px 0 24px;
+  margin: 0 0 10px 0;
+}
+.admin__table-item {
+  display: flex;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  height: 28px;
+  padding: 11px 0;
+  align-items: center;
+}
+.admin__table-text {
+  font-family: "Roboto", helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2e2e2e;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 150px;
+}
+.admin__table-text:first-child {
+  width: 285px;
+  margin: 0 10px 0 0;
+}
+.admin__table-buttons {
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin: 0 0 0 auto;
+}
+.admin__table-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+.admin__table-button_type_edit {
+  background-image: url("../../images/icons/admin-edit-icon.svg");
+  background-repeat: no-repeat;
+}
+.admin__table-button_type_add {
+  background-image: url("../../images/icons/admin-add-icon.svg");
+  background-repeat: no-repeat;
+}
+.admin__table-button_type_delete {
+  background-image: url("../../images/icons/admin-delete-icon.svg");
+  background-repeat: no-repeat;
+  margin: 0 0 0 24px;
+}
+.admin__select-buttons {
+  display: flex;
+  width: 245px;
+  justify-content: space-between;
+  margin: 24px 0 0 63px;
+}
+
+.admin__select-button {
+  font-family: "Roboto", helvetica, sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  color: #c4c4c4;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.1s ease-in-out;
+}
+.admin__select-button_active {
+  color: #27ae60;
+}
+.admin__buttons-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.admin__control-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 0 63px;
 }

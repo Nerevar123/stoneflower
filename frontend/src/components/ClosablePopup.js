@@ -11,7 +11,7 @@ function ClosablePopup(props) {
     }
 
     function closeModalWithClick(e) {
-      if (e.target.classList.contains("popup")) {
+      if ((e.target.classList.contains("popup")) || (e.target.classList.contains("admin__close-button"))) {
         children.props.onClose();
       }
     }
