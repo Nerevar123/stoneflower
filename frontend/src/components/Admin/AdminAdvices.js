@@ -32,9 +32,7 @@ function AdminAdvices({
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
-    console.log(selectedAdvice);
     resetForm(selectedAdvice);
-
     setIsValid(true);
     return () => {
       resetForm();
@@ -44,6 +42,7 @@ function AdminAdvices({
 
   useEffect(() => {
     setSelectedAdvice(advices[0]);
+    setSelectedButton(0);
     if (selectedAdvice) {
       setPicture(selectedAdvice.picture);
     }
@@ -374,7 +373,7 @@ function AdminAdvices({
                   required
                   maxLength="600"
                   withCount
-                  height="100px"
+                  height="140px"
                 />
                 <Label
                   validation={validation}
@@ -385,7 +384,7 @@ function AdminAdvices({
                   required
                   maxLength="600"
                   withCount
-                  height="100px"
+                  height="140px"
                 />
                 <div className="admin__form-heading-container">
                   <p className="admin__form-heading">Изображение</p>

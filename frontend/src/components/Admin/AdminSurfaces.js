@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import Suppliers from "../Suppliers";
+import Surfaces from "../Surfaces";
 import Label from "../Label";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
 import {
-  saveSupplier,
-  patchSupplier,
-  deleteSupplier,
+  putSurfaceExample,
+  patchSurfaceExample,
+  deleteSurfaceExamples,
   patchText,
 } from "../../utils/api";
 
@@ -14,9 +14,7 @@ function AdminSurfaces({
   validation,
   surfaces,
   surfacesTextContent,
-  onSaveData,
   onPatchData,
-  onDeleteData,
   menuRef,
 }) {
   const [isUploading, setIsUploading] = useState(false);
@@ -25,14 +23,15 @@ function AdminSurfaces({
   const [compiledData, setCompiledData] = useState(surfacesTextContent);
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
-  const [addSupplier, setAddSupplier] = useState(false);
-  const [editSupplier, setEditSupplier] = useState(false);
-  const [delSupplier, setDelSupplier] = useState(false);
-  const [currentSupplier, setCurrentSupplier] = useState({});
-  const [isMaterial, setIsMaterial] = useState(false);
+  const [addSurface, setAddSurface] = useState(false);
+  const [editSurface, setEditSurface] = useState(false);
+  const [delSurface, setDelSurface] = useState(false);
+  const [selectedSurface, setSelectedSurface] = useState(null);
+  const [currentExample, setCurrentExample] = useState({});
   const editPopupInputRef = useRef();
   const addPopupInputRef = useRef();
   const [popupVisible, setPopupVisible] = useState(true);
+  const [selectedButton, setSelectedButton] = useState(0);
   const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
@@ -46,24 +45,39 @@ function AdminSurfaces({
     };
   }, [resetForm, setIsValid, surfacesTextContent]);
 
-  function handleAddClick(isMaterial) {
-    setAddSupplier(true);
-    setIsMaterial(isMaterial);
+  useEffect(() => {
+    setSelectedSurface(surfaces[0]);
+    setSelectedButton(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function handleSelectClick(num) {
+    setSelectedButton(num);
+    setSelectedSurface(surfaces[num]);
+    showPreview(false);
+  }
+
+  function handleAddClick() {
+    setAddSurface(true);
   }
 
   function handleEditClick(data) {
-    setEditSupplier(true);
-    setCurrentSupplier(data);
+    setEditSurface(true);
+    setCurrentExample(data);
     resetForm(data, {}, true);
   }
 
   function handleDeleteClick(data) {
-    setDelSupplier(true);
-    setCurrentSupplier(data);
+    setDelSurface(true);
+    setCurrentExample(data);
   }
 
-  function handleDeleteSupplier() {
-    onDeleteData(currentSupplier._id, deleteSupplier);
+  function handleDeleteSurface() {
+    onPatchData(
+      { example: currentExample._id, image: currentExample.image },
+      selectedSurface._id,
+      deleteSurfaceExamples
+    );
   }
 
   function handleSubmitText(e) {
@@ -92,32 +106,40 @@ function AdminSurfaces({
     );
   }
 
-  function handleCreateSupplier(e) {
-    e.preventDefault();
-    setIsUploading(true);
-
-    onSaveData(
-      {
-        link: values.link,
-        isMaterial: isMaterial,
-        image: picture,
-      },
-      saveSupplier
-    );
-  }
-
-  function handleEditSupplier(e) {
+  function handleCreateSurface(e) {
     e.preventDefault();
     setIsUploading(true);
 
     onPatchData(
       {
-        link: values.link || currentSupplier.link,
-        isMaterial: currentSupplier.isMaterial,
-        image: picture || JSON.stringify(currentSupplier.image),
+        description: values.description,
+        manufacturer: values.manufacturer,
+        origin: values.origin,
+        style: values.style,
+        surface: values.surface,
+        image: picture,
       },
-      currentSupplier._id,
-      patchSupplier
+      selectedSurface._id,
+      putSurfaceExample
+    );
+  }
+
+  function handleEditSurface(e) {
+    e.preventDefault();
+    setIsUploading(true);
+
+    onPatchData(
+      {
+        id: currentExample._id,
+        description: values.description || currentExample.description,
+        manufacturer: values.manufacturer || currentExample.manufacturer,
+        origin: values.origin || currentExample.origin,
+        style: values.style || currentExample.style,
+        surface: values.surface || currentExample.surface,
+        image: picture || JSON.stringify(currentExample.image),
+      },
+      selectedSurface._id,
+      patchSurfaceExample
     );
   }
 
@@ -139,7 +161,7 @@ function AdminSurfaces({
     if (imgData === null) {
       editPopupInputRef.current.click();
     } else {
-      handleEditSupplier(e);
+      handleEditSurface(e);
     }
   };
 
@@ -148,17 +170,15 @@ function AdminSurfaces({
     if (imgData === null) {
       addPopupInputRef.current.click();
     } else {
-      handleCreateSupplier(e);
+      handleCreateSurface(e);
     }
   };
 
   function handlePreviewClick() {
     setCompiledData({
       heading: values.heading || surfacesTextContent.heading,
-      subheadingMaterials:
-        values.subheadingMaterials || surfacesTextContent.subheadingMaterials,
-      subheadingSuppliers:
-        values.subheadingSuppliers || surfacesTextContent.subheadingSuppliers,
+      shortText: values.shortText || surfacesTextContent.shortText,
+      expandedText: values.expandedText || surfacesTextContent.expandedText,
     });
     showPreview(true);
   }
@@ -166,17 +186,18 @@ function AdminSurfaces({
   function closeAllPopups() {
     setPopupVisible(false);
     setTimeout(() => {
-      setAddSupplier(false);
-      setEditSupplier(false);
-      setDelSupplier(false);
+      setAddSurface(false);
+      setEditSurface(false);
+      setDelSurface(false);
       setPopupVisible(false);
       setPicture(null);
       setImgData(null);
       setIsPictureSelected(false);
       resetForm(surfacesTextContent, {}, true);
-      setCurrentSupplier({});
+      setCurrentExample({});
     }, 300);
   }
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -185,6 +206,7 @@ function AdminSurfaces({
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
@@ -193,7 +215,7 @@ function AdminSurfaces({
     <>
       <div className="admin__edit-wrapper">
         <div className="admin__form-area">
-          <h2 className="admin__heading">Производители</h2>
+          <h2 className="admin__heading">Варианты поверхностей</h2>
           <form
             className="admin__form admin__form_type_lead-text"
             name="admin-lead"
@@ -227,24 +249,24 @@ function AdminSurfaces({
             <Label
               validation={validation}
               className="admin"
-              name="subheadingMaterials"
-              labelText="Описание, материалы"
+              name="shortText"
+              labelText="Описание"
               type="text"
               required
               maxLength="300"
               withCount
-              height="20px"
+              height="120px"
             />
             <Label
               validation={validation}
               className="admin"
-              name="subheadingSuppliers"
-              labelText="Описание, поставщики"
+              name="expandedText"
+              labelText="Читать далее"
               type="text"
               required
-              maxLength="300"
+              maxLength="500"
               withCount
-              height="20px"
+              height="190px"
             />
             <div className="admin__buttons-container">
               <button
@@ -266,73 +288,71 @@ function AdminSurfaces({
             </div>
           </form>
           <div className="admin__form">
-            <div className="admin__form-heading-container">
-              <p className="admin__form-heading">Логотипы материалов</p>
+            <div className="admin__select-buttons">
+              <button
+                className={`admin__select-button ${
+                  selectedButton === 0 ? "admin__select-button_active" : ""
+                }`}
+                onClick={(_) => handleSelectClick(0)}
+              >
+                №1
+              </button>
+              <button
+                className={`admin__select-button ${
+                  selectedButton === 1 ? "admin__select-button_active" : ""
+                }`}
+                onClick={(_) => handleSelectClick(1)}
+              >
+                №2
+              </button>
+              <button
+                className={`admin__select-button ${
+                  selectedButton === 2 ? "admin__select-button_active" : ""
+                }`}
+                onClick={(_) => handleSelectClick(2)}
+              >
+                №3
+              </button>
+              <button
+                className={`admin__select-button ${
+                  selectedButton === 3 ? "admin__select-button_active" : ""
+                }`}
+                onClick={(_) => handleSelectClick(3)}
+              >
+                №4
+              </button>
             </div>
             <div className="admin__table-titles">
               <p className="admin__table-title">Ссылка</p>
               <p className="admin__table-title">Изображение</p>
             </div>
             <ul className="admin__table">
-              {surfaces.map((item) => (
-                <li className="admin__table-item" key={item._id}>
-                  <span className="admin__table-text">{item.link}</span>
-                  <span className="admin__table-text">
-                    {item.image.originalname}
-                  </span>
-                  <div className="admin__table-buttons">
-                    <button
-                      className="admin__table-button admin__table-button_type_edit"
-                      onClick={() => handleEditClick(item)}
-                    ></button>
-                    <button
-                      className="admin__table-button admin__table-button_type_delete"
-                      onClick={() => handleDeleteClick(item)}
-                    ></button>
-                  </div>
-                </li>
-              ))}
+              {selectedSurface &&
+                selectedSurface.examples.map((item) => (
+                  <li className="admin__table-item" key={item._id}>
+                    <span className="admin__table-text">
+                      {item.description}
+                    </span>
+                    <span className="admin__table-text">
+                      {item.image.originalname}
+                    </span>
+                    <div className="admin__table-buttons">
+                      <button
+                        className="admin__table-button admin__table-button_type_edit"
+                        onClick={() => handleEditClick(item)}
+                      ></button>
+                      <button
+                        className="admin__table-button admin__table-button_type_delete"
+                        onClick={() => handleDeleteClick(item)}
+                      ></button>
+                    </div>
+                  </li>
+                ))}
             </ul>
             <button
               type="button"
               className="admin__upload-button admin__upload-button_type_select"
-              onClick={() => handleAddClick(true)}
-            >
-              Добавить
-            </button>
-          </div>
-          <div className="admin__form">
-            <div className="admin__form-heading-container">
-              <p className="admin__form-heading">Логотипы производителей</p>
-            </div>
-            <div className="admin__table-titles">
-              <p className="admin__table-title">Ссылка</p>
-              <p className="admin__table-title">Изображение</p>
-            </div>
-            <ul className="admin__table">
-              {surfaces.map((item) => (
-                <li className="admin__table-item" key={item._id}>
-                  <span className="admin__table-text">{item.link}</span>
-                  <span className="admin__table-text">
-                    {item.image.originalname}
-                  </span>
-                  <div className="admin__table-buttons">
-                    <button
-                      className="admin__table-button admin__table-button_type_edit"
-                      onClick={() => handleEditClick(item)}
-                    ></button>
-                    <button
-                      className="admin__table-button admin__table-button_type_delete"
-                      onClick={() => handleDeleteClick(item)}
-                    ></button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <button
-              type="button"
-              className="admin__upload-button admin__upload-button_type_select"
-              onClick={() => handleAddClick(false)}
+              onClick={handleAddClick}
             >
               Добавить
             </button>
@@ -344,16 +364,17 @@ function AdminSurfaces({
           className="admin__preview-container"
           style={{ minWidth: `${preview ? "1100px" : "0"}` }}
         >
-           {preview && (
-          <button onClick={scrollToMenu} className="admin__go-back">
-            Назад
-          </button> )}
           {preview && (
-            <Suppliers content={surfaces} textContent={compiledData} />
+            <button onClick={scrollToMenu} className="admin__go-back">
+              Назад
+            </button>
+          )}
+          {preview && (
+            <Surfaces content={surfaces} textContent={compiledData} />
           )}
         </div>
       </div>
-      {addSupplier && (
+      {addSurface && (
         <ClosablePopup>
           <AdminPopup
             title="Добавить элемент"
@@ -370,8 +391,48 @@ function AdminSurfaces({
                 <Label
                   validation={validation}
                   className="admin"
-                  name="link"
-                  labelText="Введите ссылку на сайт производителя"
+                  name="description"
+                  labelText="Название материала"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="manufacturer"
+                  labelText="Фабрика"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="origin"
+                  labelText="Страна"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="style"
+                  labelText="Коллекция"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="surface"
+                  labelText="Поверхность"
                   type="url"
                   required
                   maxLength="50"
@@ -427,7 +488,7 @@ function AdminSurfaces({
           />
         </ClosablePopup>
       )}
-      {editSupplier && (
+      {editSurface && (
         <ClosablePopup>
           <AdminPopup
             title="Редактировать"
@@ -444,8 +505,48 @@ function AdminSurfaces({
                 <Label
                   validation={validation}
                   className="admin"
-                  name="link"
-                  labelText="Введите ссылку на сайт производителя"
+                  name="description"
+                  labelText="Название материала"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="manufacturer"
+                  labelText="Фабрика"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="origin"
+                  labelText="Страна"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="style"
+                  labelText="Коллекция"
+                  type="url"
+                  required
+                  maxLength="50"
+                  withCount
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="surface"
+                  labelText="Поверхность"
                   type="url"
                   required
                   maxLength="50"
@@ -501,7 +602,7 @@ function AdminSurfaces({
                   <button
                     type="submit"
                     disabled={!isValid}
-                    onClick={handleEditSupplier}
+                    onClick={handleEditSurface}
                     className={`admin__upload-button admin__upload-button_type_select ${
                       !isValid ? "admin__upload-button_disabled" : ""
                     }`}
@@ -515,7 +616,7 @@ function AdminSurfaces({
           />
         </ClosablePopup>
       )}
-      {delSupplier && (
+      {delSurface && (
         <ClosablePopup>
           <AdminPopup
             title="Удалить производителя?"
@@ -531,14 +632,14 @@ function AdminSurfaces({
               >
                 <button
                   type="submit"
-                  onClick={handleDeleteSupplier}
+                  onClick={handleDeleteSurface}
                   className="admin__upload-button admin__upload-button_type_select"
                 >
                   Удалить
                 </button>
                 <button
                   type="button"
-                  onClick={() => setDelSupplier(false)}
+                  onClick={() => setDelSurface(false)}
                   className="admin__upload-button"
                 >
                   Отмена

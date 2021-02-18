@@ -37,6 +37,7 @@ function Admin({
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   let buttonRefs = [];
   const menuRef = useRef();
 
@@ -48,7 +49,6 @@ function Admin({
   }
 
   useEffect(() => {
-    console.log("123")
     const index = adminItems.findIndex((item) => item.id === selectedItem);
     index !== -1
       ? setSelectedItem(adminItems[index].id)
@@ -59,7 +59,8 @@ function Admin({
         ? item.current.classList.add("admin__button_selected")
         : item.current.classList.remove("admin__button_selected");
     });
-  }, [selectedItem, adminItems, buttonRefs]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItem, adminItems]);
 
   function handleButtonClick(ref) {
     changeUrl(`edit=${ref.current.id}`);
@@ -256,9 +257,7 @@ function Admin({
                 validation={validation}
                 surfaces={surfaces}
                 surfacesTextContent={surfacesTextContent}
-                onSaveData={onSaveData}
                 onPatchData={onPatchData}
-                onDeleteData={onDeleteData}
               />
             )}
           </>

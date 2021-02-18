@@ -2,20 +2,26 @@ import React from "react";
 
 function SurfacesExampleItem({
   item,
+  id,
   forwardRef,
-  selectedExample,
-  setSelectedExample,
   showModal,
 }) {
   const handleClickEvent = () => {
-    showModal(item.image);
+    if (showModal) {
+      showModal(
+        item.image.path ? process.env.REACT_APP_URL + item.image.path : item.image
+      );
+    }
   };
+
   const handleMouseIn = () => {
     forwardRef.current.classList.add("selected");
   };
+
   const handleMouseOut = () => {
     forwardRef.current.classList.remove("selected");
   };
+
   return (
     <div
       className="surfaces__example-item"
@@ -23,13 +29,17 @@ function SurfacesExampleItem({
       onMouseLeave={handleMouseOut}
       key={item._id}
       ref={forwardRef}
-      id={`example_${item._id}`}
+      id={`example_${id}`}
       onClick={handleClickEvent}
     >
       <img
         id={item._id}
         className="surfaces__example-image surfaces__example-image_type_regular"
-        src={item.image}
+        src={
+          item.image.path
+            ? process.env.REACT_APP_URL + item.image.path
+            : item.image
+        }
         alt="Пример материала"
       />
 
@@ -47,9 +57,7 @@ function SurfacesExampleItem({
         </p>
         <p className="surfaces__description-item">
           Коллекция:
-          <span className="surfaces__description-accent">
-            {item.collection}
-          </span>
+          <span className="surfaces__description-accent">{item.style}</span>
         </p>
         <p className="surfaces__description-item">
           Поверхность:

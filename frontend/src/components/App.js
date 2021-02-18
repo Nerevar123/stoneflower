@@ -14,6 +14,7 @@ import {
   getAdvices,
   getImages,
   getSuppliers,
+  getSurfaces,
 } from "../utils/api";
 import {
   // servicesItems,
@@ -26,7 +27,7 @@ import {
   phasesIcons,
   // phasesTextContent,
   // pricing,
-  surfaces,
+  // surfaces,
   // advices
   portfolio,
   // suppliers,
@@ -54,7 +55,7 @@ function App() {
   const [phasesIconList, setPhasesIconList] = useState({});
   const [phasesText, setPhasesText] = useState({});
   const [pricingContent, setPricingContent] = useState({});
-  const [surfacesContent, setSurfacesContent] = useState({});
+  const [surfacesContent, setSurfacesContent] = useState(null);
   const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
@@ -78,8 +79,9 @@ function App() {
       getAdvices(),
       getImages(),
       getSuppliers(),
+      getSurfaces(),
     ])
-      .then(([services, texts, advices, images, suppliers]) => {
+      .then(([services, texts, advices, images, suppliers, surfaces]) => {
         Object.keys(images).map((key) => {
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
@@ -98,6 +100,7 @@ function App() {
         setServices(services);
         setAdvicesContent(advices);
         setSuppliersContent(suppliers);
+        setSurfacesContent(surfaces);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -108,7 +111,7 @@ function App() {
     // setDisadvantagesContent(disadvantagesTextContent);
     setPhasesIconList(phasesIcons);
     // setPhasesText(phasesTextContent);
-    setSurfacesContent(surfaces);
+    // setSurfacesContent(surfaces);
     // setAdvicesContent(advices);
     setPortfolioContent(portfolio);
     // setSuppliersContent(suppliers);

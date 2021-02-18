@@ -19,25 +19,15 @@ function Surfaces({ content, showModal, textContent }) {
       const refArray = [];
       for (
         let i = 0;
-        i < content.materialsList[selectedMaterial].materialExamples.length;
+        i < content[selectedMaterial].examples.length;
         i++
       ) {
         refArray.push(createRef());
       }
       setExampleRefs(refArray);
     }
-  }, [content.materialsList, selectedMaterial]);
+  }, [content, selectedMaterial]);
 
-  const handleElementClick = (evt) => {
-    if (evt.target.closest("li").id !== selectedMaterial) {
-      setMaterialListOpened(false);
-      setSelectedMaterial(evt.target.closest("li").id);
-      setSelectedExample(-1);
-    } else {
-      setSelectedMaterial(null);
-      setSelectedExample(-1);
-    }
-  };
   useEffect(() => {
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
@@ -47,15 +37,28 @@ function Surfaces({ content, showModal, textContent }) {
     }
   }, [selectedMaterial]);
 
-  function handleTextExpand() {
-    setTextExpanded(!textExpanded);
-  }
   useEffect(() => {
     if (selectedExample === -1 && materialListOpened) {
       const el = document.getElementById("example_0");
       setSelectedExample(el);
     }
   }, [selectedExample, selectedMaterial, materialListOpened]);
+
+  const handleElementClick = (evt) => {
+    const foundIndex = content.findIndex((x) => x._id === evt.target.closest("li").id);
+    if (evt.target.closest("li").id !== foundIndex) {
+      setMaterialListOpened(false);
+      setSelectedMaterial(foundIndex);
+      setSelectedExample(-1);
+    } else {
+      setSelectedMaterial(null);
+      setSelectedExample(-1);
+    }
+  };
+
+  function handleTextExpand() {
+    setTextExpanded(!textExpanded);
+  }
 
   return (
     <article id="surfaces" className="surfaces">
@@ -81,8 +84,8 @@ function Surfaces({ content, showModal, textContent }) {
         </button>
       </div>
       <ul className="surfaces__list list">
-        {content.materialsList
-          ? content.materialsList.map((item) => (
+        {content
+          ? content.map((item) => (
               <li
                 id={item._id}
                 onClick={handleElementClick}
@@ -94,8 +97,8 @@ function Surfaces({ content, showModal, textContent }) {
                   isMobile={false}
                   item={item}
                   key={item._id}
-                  image={item.image}
-                  heading={item.heading}
+                  image={item.examples[0].image}
+                  title={item.title}
                 />
               </li>
             ))
@@ -111,15 +114,14 @@ function Surfaces({ content, showModal, textContent }) {
         {materialListOpened &&
           content &&
           selectedMaterial !== null &&
-          content.materialsList[
+          content[
             selectedMaterial
-          ].materialExamples.map((item) => (
+          ].examples.map((item, i) => (
             <SurfacesExampleItem
               item={item}
+              id={i}
               key={item._id}
-              forwardRef={exampleRefs[item._id]}
-              selectedExample={selectedExample}
-              setSelectedExample={setSelectedExample}
+              forwardRef={exampleRefs[i]}
               showModal={showModal}
             />
           ))}

@@ -33,7 +33,7 @@ function SurfacesListItem(props) {
   function toggleSliderOpen(evt) {
     if (window.width < 849) {
       setIsSliderOpen(!isSliderOpen);
-      evt.target.closest('li').classList.toggle('surfaces__list-item_expanded');
+      evt.target.closest("li").classList.toggle("surfaces__list-item_expanded");
     }
   }
   function handleHoverEvent() {
@@ -112,7 +112,11 @@ function SurfacesListItem(props) {
       >
         <div className="surfaces__image-container">
           <img
-            src={props.image}
+            src={
+              props.image.path
+                ? process.env.REACT_APP_URL + props.image.path
+                : props.image
+            }
             alt="Картинка"
             className="surfaces__image surfaces__image_main"
           />
@@ -121,7 +125,7 @@ function SurfacesListItem(props) {
               mouseIn ? "surfaces__overlay_visible" : ""
             }`}
           >
-            {props.heading}
+            {props.title}
           </div>
         </div>
         <p
@@ -134,7 +138,7 @@ function SurfacesListItem(props) {
             ? isSelected
               ? "скрыть каталог"
               : "посмотреть каталог"
-            : props.heading}
+            : props.title}
         </p>
       </div>
       {props.isMobile && props.content && (
@@ -160,16 +164,28 @@ function SurfacesListItem(props) {
                     {item.description}
                   </p>
                   <p className="surfaces__description-item">
-                    Фабрика:<span className="surfaces__description-accent">{item.manufacturer}</span>
+                    Фабрика:
+                    <span className="surfaces__description-accent">
+                      {item.manufacturer}
+                    </span>
                   </p>
                   <p className="surfaces__description-item">
-                    Страна:<span className="surfaces__description-accent">{item.origin}</span>
+                    Страна:
+                    <span className="surfaces__description-accent">
+                      {item.origin}
+                    </span>
                   </p>
                   <p className="surfaces__description-item">
-                    Коллекция:<span className="surfaces__description-accent">{item.collection}</span>
+                    Коллекция:
+                    <span className="surfaces__description-accent">
+                      {item.collection}
+                    </span>
                   </p>
                   <p className="surfaces__description-item">
-                    Поверхность:<span className="surfaces__description-accent">{item.surface}</span>
+                    Поверхность:
+                    <span className="surfaces__description-accent">
+                      {item.surface}
+                    </span>
                   </p>
                 </div>
               </div>
