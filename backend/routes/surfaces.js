@@ -1,44 +1,44 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
-  getTexts,
-  saveText,
-  deleteText,
-  updateText,
-} = require('../controllers/texts');
+  getSurfaces,
+  saveSurface,
+  deleteSurface,
+  updateSurface,
+} = require('../controllers/surfaces');
 
-router.get('/', getTexts);
+router.get('/', getSurfaces);
 router.post(
   '/',
   celebrate({
     body: Joi.object().keys({
       title: Joi.string().min(2).required(),
-      content: Joi.array().required(),
+      examples: Joi.array().required(),
     }),
   }),
-  saveText,
+  saveSurface,
 );
 router.delete(
-  '/:textId',
+  '/:surfaceId',
   celebrate({
     params: Joi.object().keys({
-      textId: Joi.string().alphanum().length(24),
+      surfaceId: Joi.string().alphanum().length(24),
     }),
   }),
-  deleteText,
+  deleteSurface,
 );
 router.patch(
-  '/:textId',
+  '/:surfaceId',
   celebrate({
     params: Joi.object().keys({
-      textId: Joi.string().alphanum().length(24),
+      surfaceId: Joi.string().alphanum().length(24),
     }),
     body: Joi.object().keys({
       title: Joi.string().min(2).required(),
-      content: Joi.array().required(),
+      examples: Joi.array().required(),
     }),
   }),
-  updateText,
+  updateSurface,
 );
 
 module.exports = router;

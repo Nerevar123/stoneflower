@@ -19,6 +19,7 @@
 
 // const checkError = (err, res) => {
 //   console.log(err.name, err.message);
+// eslint-disable-next-line max-len
 //   if (err.name === 'MulterError' || err.message === 'please upload png,jpeg or jpg' || err.name === 'ValidationError') {
 //     res.status(ERROR_CODE_400).send({ message: errorMessage400, details: err.message });
 //   } else if (err.message.startsWith('Invalid login')) {

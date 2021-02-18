@@ -1,40 +1,40 @@
-const router = require("express").Router();
+const router = require('express').Router();
 // const path = require('path');
-const { celebrate, Joi } = require("celebrate");
-const multer = require("multer");
+const { celebrate, Joi } = require('celebrate');
+const multer = require('multer');
 const {
   getServices,
   createService,
   deleteService,
   updateService,
-} = require("../controllers/services");
+} = require('../controllers/services');
 
-var storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, "./uploads/services");
+const storage = multer.diskStorage({
+  destination(req, file, callback) {
+    callback(null, './uploads/services');
   },
-  filename: function (req, file, callback) {
+  filename(req, file, callback) {
     callback(null, Date.now() + file.originalname);
   },
 });
 
 const upload = multer({
   // dest: 'uploads/',
-  storage: storage,
+  storage,
   limits: {
     fileSize: 2 * 1024 * 1024,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error("please upload png,jpeg or jpg"));
+      return cb(new Error('please upload png,jpeg or jpg'));
     }
-    cb(undefined, true);
+    return cb(undefined, true);
   },
-}).single("image");
+}).single('image');
 
-router.get("/", getServices);
+router.get('/', getServices);
 router.post(
-  "/",
+  '/',
   upload,
   celebrate({
     body: Joi.object()
@@ -44,17 +44,17 @@ router.post(
       })
       .unknown(true),
   }),
-  createService
+  createService,
 );
 router.delete(
-  "/:serviceId",
+  '/:serviceId',
   celebrate({
     params: Joi.object().keys({
       serviceId: Joi.string().alphanum().length(24),
     }),
   }),
-  deleteService
+  deleteService,
 );
-router.patch("/:serviceId", upload, updateService);
+router.patch('/:serviceId', upload, updateService);
 
 module.exports = router;

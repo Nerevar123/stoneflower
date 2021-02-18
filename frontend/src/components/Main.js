@@ -16,28 +16,29 @@ import PostForm from "./PostForm";
 import Contacts from "./Contacts";
 
 function Main({
+  showModalWithImage,
+  showModalWithCarousel,
+  showModalWithConfirmation,
+  showModalWithLink,
   services,
   advantagesText,
   advantagesIcons,
   applicabilityTable,
   disadvantagesContent,
-  showModalWithImage,
   phasesIcons,
   phasesText,
   pricingContent,
   surfacesContent,
+  surfacesTextContent,
   advicesContent,
   portfolioContent,
-  showModalWithCarousel,
   isModalWithCarouselOpen,
   suppliersContent,
   suppliersTextContent,
   postFormContent,
-  showModalWithConfirmation,
   contactsContent,
   leadContent,
   images,
-  showModalWithLink,
 }) {
   const window = useWindowSize();
   return (
@@ -63,15 +64,26 @@ function Main({
       <Phases phasesIcons={phasesIcons} phasesText={phasesText} />
 
       <Pricing content={pricingContent} />
-      {window.width > 849 && (
-        <Surfaces content={surfacesContent} showModal={showModalWithImage} />
+
+      {surfacesContent && (
+        <>
+          {window.width > 849 && (
+            <Surfaces
+              content={surfacesContent}
+              showModal={showModalWithImage}
+              textContent={surfacesTextContent}
+            />
+          )}
+          {window.width < 850 && (
+            <SurfacesMobile
+              content={surfacesContent}
+              showModal={showModalWithImage}
+              textContent={surfacesTextContent}
+            />
+          )}
+        </>
       )}
-      {window.width < 850 && (
-        <SurfacesMobile
-          content={surfacesContent}
-          showModal={showModalWithImage}
-        />
-      )}
+
       {advicesContent && <Advices content={advicesContent} />}
 
       <Portfolio
@@ -79,6 +91,7 @@ function Main({
         showModal={showModalWithCarousel}
         isModalWithCarouselOpen={isModalWithCarouselOpen}
       />
+
       {suppliersContent && (
         <Suppliers
           content={suppliersContent}
@@ -86,6 +99,7 @@ function Main({
           showModal={showModalWithLink}
         />
       )}
+
       {images && (
         <PostForm
           content={postFormContent}
@@ -93,6 +107,7 @@ function Main({
           showModal={showModalWithConfirmation}
         />
       )}
+
       {images && (
         <Contacts
           content={contactsContent}

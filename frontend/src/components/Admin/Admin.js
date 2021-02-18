@@ -8,9 +8,9 @@ import AdminPricing from "./AdminPricing";
 import AdminAdvices from "./AdminAdvices";
 import AdminContacts from "./AdminContacts";
 import AdminPostForm from "./AdminPostForm";
-import AdminPortfolio from "./AdminPortfolio";
+// import AdminPortfolio from "./AdminPortfolio";
 import AdminSuppliers from "./AdminSuppliers";
-import { findAllByPlaceholderText } from "@testing-library/react";
+import AdminSurfaces from "./AdminSurfaces";
 
 function Admin({
   adminItems,
@@ -31,6 +31,8 @@ function Admin({
   onPatchData,
   onDeleteData,
   suppliersTextContent,
+  surfaces,
+  surfacesTextContent,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -46,6 +48,7 @@ function Admin({
   }
 
   useEffect(() => {
+    console.log("123")
     const index = adminItems.findIndex((item) => item.id === selectedItem);
     index !== -1
       ? setSelectedItem(adminItems[index].id)
@@ -56,7 +59,7 @@ function Admin({
         ? item.current.classList.add("admin__button_selected")
         : item.current.classList.remove("admin__button_selected");
     });
-  }, [selectedItem, adminItems]);
+  }, [selectedItem, adminItems, buttonRefs]);
 
   function handleButtonClick(ref) {
     changeUrl(`edit=${ref.current.id}`);
@@ -66,6 +69,7 @@ function Admin({
 
   useEffect(() => {
     handlePageLoad();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handlePageLoad() {
@@ -237,6 +241,21 @@ function Admin({
                 validation={validation}
                 suppliers={suppliers}
                 suppliersTextContent={suppliersTextContent}
+                onSaveData={onSaveData}
+                onPatchData={onPatchData}
+                onDeleteData={onDeleteData}
+              />
+            )}
+          </>
+        )}
+        {surfaces && (
+          <>
+            {selectedItem === "surfaces" && (
+              <AdminSurfaces
+                menuRef={menuRef}
+                validation={validation}
+                surfaces={surfaces}
+                surfacesTextContent={surfacesTextContent}
                 onSaveData={onSaveData}
                 onPatchData={onPatchData}
                 onDeleteData={onDeleteData}

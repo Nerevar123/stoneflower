@@ -1,6 +1,6 @@
-const Text = require("../models/text");
-const NotFoundError = require("../errors/not-found-error");
-const { notFoundErrorMessage } = require("../utils/constants");
+const Text = require('../models/text');
+const NotFoundError = require('../errors/not-found-error');
+const { notFoundErrorMessage } = require('../utils/constants');
 
 module.exports.getTexts = (req, res, next) => {
   Text.find({})
@@ -10,8 +10,10 @@ module.exports.getTexts = (req, res, next) => {
         let content = {};
         text.content.map((item) => {
           content = { ...content, ...{ [item.name]: item.text, id: text._id } };
+          return content;
         });
         result = { ...result, ...{ [text.title]: content } };
+        return result;
       });
       res.send(result);
     })
@@ -27,10 +29,10 @@ module.exports.saveText = (req, res, next) => {
 };
 
 module.exports.deleteText = (req, res, next) => {
-  Text.findById(req.params.id)
+  Text.findById(req.params.textId)
     .orFail(new NotFoundError(notFoundErrorMessage))
-    .then((data) => {
-      Text.findByIdAndRemove(req.params.id).then((text) => res.send(text));
+    .then(() => {
+      Text.findByIdAndRemove(req.params.textId).then((text) => res.send(text));
     })
     .catch(next);
 };
@@ -44,15 +46,16 @@ module.exports.updateText = (req, res, next) => {
     {
       new: true,
       runValidators: true,
-    }
+    },
   )
     .orFail(new NotFoundError(notFoundErrorMessage))
     .then((text) => {
-      let content = {};
+      let contentSingle = {};
       text.content.map((item) => {
-        content = { ...content, ...{ [item.name]: item.text, id: text._id } };
+        contentSingle = { ...contentSingle, ...{ [item.name]: item.text, id: text._id } };
+        return contentSingle;
       });
-      res.send(content);
+      res.send(contentSingle);
     })
     .catch(next);
 };

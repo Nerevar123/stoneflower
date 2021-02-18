@@ -1,16 +1,14 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 import SurfacesExampleItem from "./SurfacesExampleItem";
-// import useWindowSize from "../hooks/useWindowSize";
 
-function Surfaces({ content, showModal }) {
+function Surfaces({ content, showModal, textContent }) {
   const [textExpanded, setTextExpanded] = useState(false);
   const [exampleRefs, setExampleRefs] = useState([]);
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [selectedExample, setSelectedExample] = useState(-1);
   const examples = useRef();
-  // const window = useWindowSize();
 
   function handleExampleSelection(evt) {
     setSelectedExample(evt.target.closest(".surfaces__example-item"));
@@ -62,16 +60,16 @@ function Surfaces({ content, showModal }) {
   return (
     <article id="surfaces" className="surfaces">
       <h2 className="content__title content__title_place_surfaces">
-        Варианты поверностей
+        {textContent.heading}
       </h2>
       <div className="content__text-container content__text-container_place_surfaces">
-        <p className="content__text">{content.shortText}</p>
+        <p className="content__text">{textContent.shortText}</p>
         <div
           className={`content__expand-container ${
             textExpanded ? "content__expand-container_opened" : ""
           }`}
         >
-          <p className="content__text">{content.expandedText}</p>
+          <p className="content__text">{textContent.expandedText}</p>
         </div>
         <button
           onClick={handleTextExpand}
@@ -79,7 +77,7 @@ function Surfaces({ content, showModal }) {
             textExpanded ? "open" : ""
           }`}
         >
-          {textExpanded ? content.linkTextExpanded : content.linkTextMinimized}
+          {textExpanded ? "Скрыть" : "Читать далее"}
         </button>
       </div>
       <ul className="surfaces__list list">
@@ -110,7 +108,8 @@ function Surfaces({ content, showModal }) {
           materialListOpened ? "surfaces__materials-container_opened" : ""
         }`}
       >
-        {materialListOpened && content &&
+        {materialListOpened &&
+          content &&
           selectedMaterial !== null &&
           content.materialsList[
             selectedMaterial

@@ -65,17 +65,17 @@ import material_design_12 from "../images/surfaces/design/12.jpg";
 import portfolio_1 from "../images/portfolio/portfolio_1.jpg";
 import portfolio_2 from "../images/portfolio/portfolio_2.jpg";
 import portfolio_3 from "../images/portfolio/portfolio_3.jpg";
-import material_logo_1 from "../images/suppliers/1.png";
-import material_logo_2 from "../images/suppliers/2.png";
-import material_logo_3 from "../images/suppliers/3.png";
-import material_logo_4 from "../images/suppliers/4.png";
-import material_logo_5 from "../images/suppliers/5.png";
-import supplier_logo_1 from "../images/suppliers/materials/1.png";
-import supplier_logo_2 from "../images/suppliers/materials/2.png";
-import supplier_logo_3 from "../images/suppliers/materials/3.png";
-import supplier_logo_4 from "../images/suppliers/materials/4.png";
-import supplier_logo_5 from "../images/suppliers/materials/5.png";
-import supplier_logo_6 from "../images/suppliers/materials/6.png";
+// import material_logo_1 from "../images/suppliers/1.png";
+// import material_logo_2 from "../images/suppliers/2.png";
+// import material_logo_3 from "../images/suppliers/3.png";
+// import material_logo_4 from "../images/suppliers/4.png";
+// import material_logo_5 from "../images/suppliers/5.png";
+// import supplier_logo_1 from "../images/suppliers/materials/1.png";
+// import supplier_logo_2 from "../images/suppliers/materials/2.png";
+// import supplier_logo_3 from "../images/suppliers/materials/3.png";
+// import supplier_logo_4 from "../images/suppliers/materials/4.png";
+// import supplier_logo_5 from "../images/suppliers/materials/5.png";
+// import supplier_logo_6 from "../images/suppliers/materials/6.png";
 
 // export const lead = {
 //   leadTitle: "Студия Керамогранита «Каменный цветок»",
@@ -181,8 +181,6 @@ export const surfaces = {
   объекта замерщиком с образцами материала вы оцените не только расцветку,
   но и поведение материала в месте его установки: блики, тактильность,
   сочетание с мебелью, освещением и другими компонентами вашего интерьера.`,
-  linkTextMinimized: "Читать далее",
-  linkTextExpanded: "Скрыть",
   materialsList: [
     {
       heading: "Дерево",
@@ -634,71 +632,71 @@ export const portfolio = [
   },
 ];
 
-export const suppliers = {
-  heading: "Производители",
-  subheadingMaterials: "Мы работаем с лучшими материалами:",
-  materialsData: [
-    {
-      link: "https://www.laminam.com/en/",
-      logo: material_logo_1,
-      _id: 0,
-    },
-    {
-      link: "https://www.thesize.es/en/",
-      logo: material_logo_2,
-      _id: 1,
-    },
-    {
-      link: "https://www.cottodeste.it/",
-      logo: material_logo_3,
-      _id: 2,
-    },
-    {
-      link: "https://www.ariostea.it/",
-      logo: material_logo_4,
-      _id: 3,
-    },
-    {
-      link: "https://www.florim.com/",
-      logo: material_logo_5,
-      _id: 4,
-    },
-  ],
-  subheadingSuppliers:
-    "От крупнейших производителей листового керамического проката:",
-  suppliersData: [
-    {
-      link: "https://www.laminam.com/en/",
-      logo: supplier_logo_1,
-      _id: 0,
-    },
-    {
-      link: "https://www.thesize.es/en/",
-      logo: supplier_logo_2,
-      _id: 1,
-    },
-    {
-      link: "https://www.cottodeste.it/",
-      logo: supplier_logo_3,
-      _id: 2,
-    },
-    {
-      link: "https://www.ariostea.it/",
-      logo: supplier_logo_4,
-      _id: 3,
-    },
-    {
-      link: "https://www.florim.com/",
-      logo: supplier_logo_5,
-      _id: 4,
-    },
-    {
-      link: "https://www.panaria.it/collezione/zero3-eternity",
-      logo: supplier_logo_6,
-      _id: 5,
-    },
-  ],
-};
+// export const suppliers = {
+//   heading: "Производители",
+//   subheadingMaterials: "Мы работаем с лучшими материалами:",
+//   materialsData: [
+//     {
+//       link: "https://www.laminam.com/en/",
+//       logo: material_logo_1,
+//       _id: 0,
+//     },
+//     {
+//       link: "https://www.thesize.es/en/",
+//       logo: material_logo_2,
+//       _id: 1,
+//     },
+//     {
+//       link: "https://www.cottodeste.it/",
+//       logo: material_logo_3,
+//       _id: 2,
+//     },
+//     {
+//       link: "https://www.ariostea.it/",
+//       logo: material_logo_4,
+//       _id: 3,
+//     },
+//     {
+//       link: "https://www.florim.com/",
+//       logo: material_logo_5,
+//       _id: 4,
+//     },
+//   ],
+//   subheadingSuppliers:
+//     "От крупнейших производителей листового керамического проката:",
+//   suppliersData: [
+//     {
+//       link: "https://www.laminam.com/en/",
+//       logo: supplier_logo_1,
+//       _id: 0,
+//     },
+//     {
+//       link: "https://www.thesize.es/en/",
+//       logo: supplier_logo_2,
+//       _id: 1,
+//     },
+//     {
+//       link: "https://www.cottodeste.it/",
+//       logo: supplier_logo_3,
+//       _id: 2,
+//     },
+//     {
+//       link: "https://www.ariostea.it/",
+//       logo: supplier_logo_4,
+//       _id: 3,
+//     },
+//     {
+//       link: "https://www.florim.com/",
+//       logo: supplier_logo_5,
+//       _id: 4,
+//     },
+//     {
+//       link: "https://www.panaria.it/collezione/zero3-eternity",
+//       logo: supplier_logo_6,
+//       _id: 5,
+//     },
+//   ],
+// };
 
 export const adminItems = [
   { id: "requests", content: "Заявки" },

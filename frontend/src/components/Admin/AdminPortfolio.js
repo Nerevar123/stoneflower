@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PostForm from "../PostForm";
 import Label from "../Label";
-import { patchText, patchImage } from "../../utils/api";
+// import { patchText, patchImage } from "../../utils/api";
 //не сделано
 function AdminPortfolio({
   validation,
