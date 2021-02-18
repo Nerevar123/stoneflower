@@ -21,6 +21,7 @@ function AdminAdvices({
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
   const [addAdvice, setAddAdvice] = useState(false);
+  const [delAdvice, setDelAdvice] = useState(false);
   const [popupVisible, setPopupVisible] = useState(true);
   const [selectedButton, setSelectedButton] = useState(0);
 
@@ -69,6 +70,10 @@ function AdminAdvices({
     setImgData(null);
     setIsPictureSelected(false);
     resetForm();
+  }
+
+  function handleDeleteClick() {
+    setDelAdvice(true);
   }
 
   function handleDeleteAdvice() {
@@ -175,7 +180,7 @@ function AdminAdvices({
               ></button>
               <button
                 className="admin__table-button admin__table-button_type_delete"
-                onClick={handleDeleteAdvice}
+                onClick={handleDeleteClick}
               ></button>
             </div>
           </div>
@@ -327,7 +332,7 @@ function AdminAdvices({
         <ClosablePopup>
           <AdminPopup
             title="Добавить совет"
-            onClose={(_) => {
+            onClose={() => {
               setPopupVisible(false);
               setPicture(null);
               setImgData(null);
@@ -425,6 +430,45 @@ function AdminAdvices({
                 >
                   {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                 </button>
+              </form>
+            }
+          />
+        </ClosablePopup>
+      )}
+            {delAdvice && (
+        <ClosablePopup>
+          <AdminPopup
+            title="Удалить производителя?"
+            onClose={() => {
+              setPopupVisible(false);
+              setTimeout(() => {
+                setDelAdvice(false);
+              }, 300);
+            }}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
+            children={
+              <form
+                className="admin__form admin__form_type_lead-text"
+                name="admin-lead"
+                method="GET"
+                noValidate
+              >
+                <button
+                  type="submit"
+                  onClick={handleDeleteAdvice}
+                  className="admin__upload-button admin__upload-button_type_select"
+                >
+                  Удалить
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDelAdvice(false)}
+                  className="admin__upload-button"
+                >
+                  Отмена
+                </button>
+                <div className="admin__buttons-container"></div>
               </form>
             }
           />

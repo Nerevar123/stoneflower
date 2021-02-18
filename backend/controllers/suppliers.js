@@ -1,7 +1,7 @@
-const fs = require("fs");
-const Supplier = require("../models/supplier");
+const fs = require('fs');
+const Supplier = require('../models/supplier');
 const NotFoundError = require('../errors/not-found-error');
-const validationError = require("../errors/validation-error");
+const ValidationError = require('../errors/validation-error');
 const { notFoundErrorMessage } = require('../utils/constants');
 const { validationErrorMessage } = require('../utils/constants');
 
@@ -13,7 +13,7 @@ module.exports.getSuppliers = (req, res, next) => {
 
 module.exports.createSupplier = (req, res, next) => {
   const { link, isMaterial } = req.body;
-  let image = req.file;
+  const image = req.file;
 
   Supplier.create({ link, isMaterial, image })
     .then((supplier) => res.status(201).send(supplier))
@@ -29,9 +29,7 @@ module.exports.deleteSupplier = (req, res, next) => {
       } catch {
         console.log(data.image);
       }
-      Supplier.findByIdAndRemove(req.params.supplierId).then((supplier) =>
-        res.send(supplier)
-      );
+      Supplier.findByIdAndRemove(req.params.supplierId).then((supplier) => res.send(supplier));
     })
     .catch(next);
 };
@@ -45,7 +43,7 @@ module.exports.updateSupplier = (req, res, next) => {
     try {
       image = JSON.parse(req.body.image);
     } catch {
-      throw new validationError(validationErrorMessage);
+      throw new ValidationError(validationErrorMessage);
     }
     newFile = false;
   }
@@ -67,7 +65,7 @@ module.exports.updateSupplier = (req, res, next) => {
         {
           new: true,
           runValidators: true,
-        }
+        },
       )
         .orFail(new NotFoundError(notFoundErrorMessage))
         .then((supplier) => res.send(supplier));

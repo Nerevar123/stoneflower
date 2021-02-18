@@ -67,6 +67,7 @@ function App() {
   const [modalCarouselContent, setModalCarouselContent] = useState();
   const [contactsContent, setContactsContent] = useState({});
   const [suppliersTextContent, setSuppliersTextContent] = useState({});
+  const [surfacesTextContent, setSurfacesTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -93,6 +94,7 @@ function App() {
         setPhasesText(texts.phases);
         setLeadContent(texts.lead);
         setSuppliersTextContent(texts.suppliers);
+        setSurfacesTextContent(texts.surfaces);
         setServices(services);
         setAdvicesContent(advices);
         setSuppliersContent(suppliers);
@@ -207,28 +209,29 @@ function App() {
           <Route exact path="/stoneflower">
             <Header />
             <Main
+              showModalWithImage={showModalWithImage}
+              showModalWithCarousel={ShowModalWithCarousel}
+              showModalWithConfirmation={showModalWithConfirmation}
+              showModalWithLink={showModalWithLink}
               services={services}
               advantagesText={advantagesText}
               advantagesIcons={advantagesIcons}
               applicabilityTable={applicabilityTable}
               disadvantagesContent={disadvantagesContent}
-              showModalWithImage={showModalWithImage}
               phasesIcons={phasesIconList}
               phasesText={phasesText}
               pricingContent={pricingContent}
               surfacesContent={surfacesContent}
               advicesContent={advicesContent}
               portfolioContent={portfolioContent}
-              showModalWithCarousel={ShowModalWithCarousel}
               isModalWithCarouselOpen={isModalWithCarouselOpen}
               suppliersContent={suppliersContent}
               suppliersTextContent={suppliersTextContent}
               postFormContent={postFormContent}
-              showModalWithConfirmation={showModalWithConfirmation}
               contactsContent={contactsContent}
               leadContent={leadContent}
               images={images}
-              showModalWithLink={showModalWithLink}
+              surfacesTextContent={surfacesTextContent}
             />
             {isModalWithImageOpen && (
               <ModalWithImage closeModal={closeModal} image={modalImage} />
@@ -282,6 +285,8 @@ function App() {
               postFormContent={postFormContent}
               suppliers={suppliersContent}
               suppliersTextContent={suppliersTextContent}
+              surfacesTextContent={surfacesTextContent}
+              surfaces={surfacesContent}
             />
             {/* </ProtectedRoute> */}
           </Route>

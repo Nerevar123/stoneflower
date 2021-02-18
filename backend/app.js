@@ -1,16 +1,16 @@
-require("dotenv-flow").config();
-const cors = require("cors");
-const express = require("express");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const routes = require("./routes");
-const { errors } = require("celebrate");
+require('dotenv-flow').config();
+const cors = require('cors');
+const express = require('express');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const { errors } = require('celebrate');
+const routes = require('./routes');
 
 const errorHandler = require('./middlewares/errorHandler');
-const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const {
   PORT, MONGO_URL, rateLimitConfig, corsConfig,

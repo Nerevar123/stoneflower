@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 
-function SurfacesMobile({ content, showModal }) {
+function SurfacesMobile({ content, showModal, textContent }) {
   const [textExpanded, setTextExpanded] = useState(false);
 
   function handleTextExpand() {
@@ -11,22 +11,22 @@ function SurfacesMobile({ content, showModal }) {
   return (
     <article id="surfaces" className="surfaces">
       <h2 className="content__title content__title_place_surfaces">
-        Варианты поверностей
+        {textContent.heading}
       </h2>
       <div className="content__text-container content__text-container_place_surfaces">
-        <p className="content__text">{content.shortText}</p>
+        <p className="content__text">{textContent.shortText}</p>
         <div
           className={`content__expand-container ${
             textExpanded ? "content__expand-container_opened" : ""
           }`}
         >
-          <p className="content__text">{content.expandedText}</p>
+          <p className="content__text">{textContent.expandedText}</p>
         </div>
         <button
           onClick={handleTextExpand}
           className={`surfaces__link link ${textExpanded ? "open" : ""}`}
         >
-          {textExpanded ? content.linkTextExpanded : content.linkTextMinimized}
+          {textExpanded ? "Скрыть" : "Читать далее"}
         </button>
       </div>
       <ul className="surfaces__list list">

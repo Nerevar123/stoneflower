@@ -1,46 +1,46 @@
-const router = require("express").Router();
-const { celebrate, Joi } = require("celebrate");
-const multer = require("multer");
+const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
+const multer = require('multer');
 const {
   getAdvices,
   createAdvice,
   deleteAdvice,
   updateAdvice,
-} = require("../controllers/advices");
+} = require('../controllers/advices');
 
-var storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, "./uploads/advices");
+const storage = multer.diskStorage({
+  destination(req, file, callback) {
+    callback(null, './uploads/advices');
   },
-  filename: function (req, file, callback) {
+  filename(req, file, callback) {
     callback(null, Date.now() + file.originalname);
   },
 });
 
 const upload = multer({
-  storage: storage,
+  storage,
   limits: {
     fileSize: 2 * 1024 * 1024,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error("please upload png,jpeg or jpg"));
+      return cb(new Error('please upload png,jpeg or jpg'));
     }
-    cb(undefined, true);
+    return cb(undefined, true);
   },
-}).single("image");
+}).single('image');
 
-router.get("/", getAdvices);
-router.post("/", upload, createAdvice);
+router.get('/', getAdvices);
+router.post('/', upload, createAdvice);
 router.delete(
-  "/:adviceId",
+  '/:adviceId',
   celebrate({
     params: Joi.object().keys({
       adviceId: Joi.string().alphanum().length(24),
     }),
   }),
-  deleteAdvice
+  deleteAdvice,
 );
-router.patch("/:adviceId", upload, updateAdvice);
+router.patch('/:adviceId', upload, updateAdvice);
 
 module.exports = router;

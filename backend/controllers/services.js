@@ -1,5 +1,5 @@
-const fs = require("fs");
-const Service = require("../models/service");
+const fs = require('fs');
+const Service = require('../models/service');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
 
@@ -28,9 +28,7 @@ module.exports.deleteService = (req, res, next) => {
         // next(new NotFoundError(notFoundErrorMessage));
         console.log(data.image);
       }
-      Service.findByIdAndRemove(req.params.serviceId).then((service) =>
-        res.send(service)
-      );
+      Service.findByIdAndRemove(req.params.serviceId).then((service) => res.send(service));
     })
     .catch(next);
 };
@@ -62,7 +60,7 @@ module.exports.updateService = (req, res, next) => {
         {
           new: true,
           runValidators: true,
-        }
+        },
       )
         .orFail(new NotFoundError(notFoundErrorMessage))
         .then((service) => res.send(service));

@@ -10,10 +10,10 @@ import {
   patchText,
 } from "../../utils/api";
 
-function AdminSuppliers({
+function AdminSurfaces({
   validation,
-  suppliers,
-  suppliersTextContent,
+  surfaces,
+  surfacesTextContent,
   onSaveData,
   onPatchData,
   onDeleteData,
@@ -22,11 +22,9 @@ function AdminSuppliers({
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  const [compiledData, setCompiledData] = useState(suppliersTextContent);
+  const [compiledData, setCompiledData] = useState(surfacesTextContent);
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
-  const [materialItems, setMaterialItems] = useState([]);
-  const [supplierItems, setSupplierItems] = useState([]);
   const [addSupplier, setAddSupplier] = useState(false);
   const [editSupplier, setEditSupplier] = useState(false);
   const [delSupplier, setDelSupplier] = useState(false);
@@ -40,29 +38,13 @@ function AdminSuppliers({
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
-    resetForm(suppliersTextContent);
+    resetForm(surfacesTextContent);
     setIsValid(true);
     return () => {
       resetForm();
       setIsValid(false);
     };
-  }, [resetForm, setIsValid, suppliersTextContent]);
-
-  useEffect(() => {
-    let mat = [];
-    let sup = [];
-
-    suppliers.forEach((supplier) => {
-      if (supplier.isMaterial) {
-        mat = [...mat, supplier];
-      } else {
-        sup = [...sup, supplier];
-      }
-    });
-
-    setMaterialItems(mat);
-    setSupplierItems(sup);
-  }, [suppliers]);
+  }, [resetForm, setIsValid, surfacesTextContent]);
 
   function handleAddClick(isMaterial) {
     setAddSupplier(true);
@@ -89,23 +71,23 @@ function AdminSuppliers({
 
     onPatchData(
       {
-        title: "suppliers",
+        title: "surfaces",
         content: [
           {
             name: "heading",
             text: values.heading,
           },
           {
-            name: "subheadingMaterials",
-            text: values.subheadingMaterials,
+            name: "shortText",
+            text: values.shortText,
           },
           {
-            name: "subheadingSuppliers",
-            text: values.subheadingSuppliers,
+            name: "expandedText",
+            text: values.expandedText,
           },
         ],
       },
-      suppliersTextContent.id,
+      surfacesTextContent.id,
       patchText
     );
   }
@@ -172,11 +154,11 @@ function AdminSuppliers({
 
   function handlePreviewClick() {
     setCompiledData({
-      heading: values.heading || suppliersTextContent.heading,
+      heading: values.heading || surfacesTextContent.heading,
       subheadingMaterials:
-        values.subheadingMaterials || suppliersTextContent.subheadingMaterials,
+        values.subheadingMaterials || surfacesTextContent.subheadingMaterials,
       subheadingSuppliers:
-        values.subheadingSuppliers || suppliersTextContent.subheadingSuppliers,
+        values.subheadingSuppliers || surfacesTextContent.subheadingSuppliers,
     });
     showPreview(true);
   }
@@ -191,7 +173,7 @@ function AdminSuppliers({
       setPicture(null);
       setImgData(null);
       setIsPictureSelected(false);
-      resetForm(suppliersTextContent, {}, true);
+      resetForm(surfacesTextContent, {}, true);
       setCurrentSupplier({});
     }, 300);
   }
@@ -276,7 +258,7 @@ function AdminSuppliers({
               </button>
               <button
                 type="button"
-                onClick={() => resetForm(suppliersTextContent, {}, true)}
+                onClick={() => resetForm(surfacesTextContent, {}, true)}
                 className="admin__upload-button admin__upload-button_type_cancel"
               >
                 Отменить
@@ -292,7 +274,7 @@ function AdminSuppliers({
               <p className="admin__table-title">Изображение</p>
             </div>
             <ul className="admin__table">
-              {materialItems.map((item) => (
+              {surfaces.map((item) => (
                 <li className="admin__table-item" key={item._id}>
                   <span className="admin__table-text">{item.link}</span>
                   <span className="admin__table-text">
@@ -328,7 +310,7 @@ function AdminSuppliers({
               <p className="admin__table-title">Изображение</p>
             </div>
             <ul className="admin__table">
-              {supplierItems.map((item) => (
+              {surfaces.map((item) => (
                 <li className="admin__table-item" key={item._id}>
                   <span className="admin__table-text">{item.link}</span>
                   <span className="admin__table-text">
@@ -367,7 +349,7 @@ function AdminSuppliers({
             Назад
           </button> )}
           {preview && (
-            <Suppliers content={suppliers} textContent={compiledData} />
+            <Suppliers content={surfaces} textContent={compiledData} />
           )}
         </div>
       </div>
@@ -571,4 +553,4 @@ function AdminSuppliers({
   );
 }
 
-export default AdminSuppliers;
+export default AdminSurfaces;

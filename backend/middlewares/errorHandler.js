@@ -15,6 +15,7 @@ module.exports = ((err, req, res, next) => {
     return;
   }
 
+  // eslint-disable-next-line max-len
   res.status(statusCode).send({ message: statusCode === 500 ? serverErrorMessage : message, details: err.message });
 
   next();
