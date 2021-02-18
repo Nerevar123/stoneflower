@@ -35,6 +35,13 @@ export const getSuppliers = () => {
   }).then(checkError);
 };
 
+export const getSurfaces = () => {
+  return fetch(`${baseUrl}surfaces`, {
+    headers: headers,
+    // credentials: "include",
+  }).then(checkError);
+};
+
 export const patchText = (text, id) => {
   return fetch(`${baseUrl}texts/${id}`, {
     method: "PATCH",
@@ -134,6 +141,82 @@ export const deleteSupplier = (id) => {
   return fetch(`${baseUrl}suppliers/${id}`, {
     method: "DELETE",
     // credentials: "include",
+  }).then(checkError);
+};
+
+
+export const saveSurface = (supplier) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("link", supplier.link);
+  formData.append("isMaterial", supplier.isMaterial);
+
+  return fetch(`${baseUrl}suppliers`, {
+    method: "POST",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const patchSurface = (supplier, id) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("link", supplier.link);
+  formData.append("isMaterial", supplier.isMaterial);
+
+  return fetch(`${baseUrl}suppliers/${id}`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const deleteSurface = (id) => {
+  return fetch(`${baseUrl}suppliers/${id}`, {
+    method: "DELETE",
+    // credentials: "include",
+  }).then(checkError);
+};
+
+export const putSurfaceExample = (supplier, id) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("description", supplier.description);
+  formData.append("manufacturer", supplier.manufacturer);
+  formData.append("origin", supplier.origin);
+  formData.append("style", supplier.style);
+  formData.append("surface", supplier.surface);
+
+  return fetch(`${baseUrl}surfaces/${id}/examples`, {
+    method: "PUT",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const patchSurfaceExample = (supplier, id) => {
+  const formData = new FormData();
+  formData.append("image", supplier.image);
+  formData.append("description", supplier.description);
+  formData.append("manufacturer", supplier.manufacturer);
+  formData.append("origin", supplier.origin);
+  formData.append("style", supplier.style);
+  formData.append("surface", supplier.surface);
+  formData.append("id", supplier.id);
+
+  return fetch(`${baseUrl}surfaces/${id}/examples`, {
+    method: "PATCH",
+    // credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const deleteSurfaceExamples = (example, id) => {
+  return fetch(`${baseUrl}surfaces/${id}/examples`, {
+    method: "DELETE",
+    headers: headers,
+    // credentials: "include",
+    body: JSON.stringify(example),
   }).then(checkError);
 };
 

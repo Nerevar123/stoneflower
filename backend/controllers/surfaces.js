@@ -1,33 +1,11 @@
+const fs = require('fs');
 const Surface = require('../models/surface');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
 
 module.exports.getSurfaces = (req, res, next) => {
   Surface.find({})
-    .then((surfaces) => {
-      let result = {};
-      surfaces.map((surface) => {
-        let examples = {};
-        surface.examples.map((item) => {
-          examples = {
-            ...examples,
-            ...{
-              id: item._id,
-              description: item.description,
-              manufacturer: item.manufacturer,
-              origin: item.origin,
-              style: item.style,
-              surface: item.surface,
-              image: item.image,
-            },
-          };
-          return examples;
-        });
-        result = { ...result, ...{ [surface.title]: examples } };
-        return result;
-      });
-      res.send(result);
-    })
+    .then((surfaces) => res.send(surfaces))
     .catch(next);
 };
 
@@ -48,36 +26,98 @@ module.exports.deleteSurface = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.updateSurface = (req, res, next) => {
-  const { title, examples } = req.body;
+module.exports.updateSurfaceExample = async (req, res, next) => {
+  const {
+    id,
+    description,
+    manufacturer,
+    origin,
+    style,
+    surface,
+  } = req.body;
+  let image = req.file;
+  let newFile = true;
+
+  if (!image) {
+    image = JSON.parse(req.body.image);
+    newFile = false;
+  }
+
+  try {
+    const selected = await Surface.findById(req.params.surfaceId);
+    const foundIndex = selected.examples.findIndex((x) => x._id.toString() === id);
+    if (foundIndex === -1) throw new NotFoundError(notFoundErrorMessage);
+    if (newFile) {
+      try {
+        fs.unlinkSync(selected.examples[foundIndex].image.path);
+      } catch {
+        console.log(selected.examples[foundIndex].image);
+      }
+    }
+
+    selected.examples[foundIndex] = {
+      _id: id,
+      description,
+      manufacturer,
+      origin,
+      style,
+      surface,
+      image,
+    };
+    const updated = await selected.save();
+
+    res.send(updated);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.putSurfaceExamples = (req, res, next) => {
+  const {
+    description, manufacturer, origin, style, surface,
+  } = req.body;
+  const image = req.file;
 
   Surface.findByIdAndUpdate(
     req.params.surfaceId,
-    { title, examples },
     {
-      new: true,
-      runValidators: true,
+      $addToSet: {
+        examples: {
+          description,
+          manufacturer,
+          origin,
+          style,
+          surface,
+          image,
+        },
+      },
     },
+    { new: true },
   )
     .orFail(new NotFoundError(notFoundErrorMessage))
-    .then((surface) => {
-      let content = {};
-      surface.examples.map((item) => {
-        content = {
-          ...content,
-          ...{
-            id: item._id,
-            description: item.description,
-            manufacturer: item.manufacturer,
-            origin: item.origin,
-            style: item.style,
-            surface: item.surface,
-            image: item.image,
-          },
-        };
-        return content;
-      });
-      res.send(content);
-    })
+    .then((examples) => res.send(examples))
+    .catch(next);
+};
+
+module.exports.deleteSurfaceExamples = (req, res, next) => {
+  const { example, image } = req.body;
+
+  try {
+    fs.unlinkSync(image.path);
+  } catch {
+    console.log(image);
+  }
+
+  Surface.findByIdAndUpdate(
+    req.params.surfaceId,
+    {
+      $pull: {
+        examples: { _id: example },
+      },
+    },
+    { new: true },
+  )
+    .orFail(new NotFoundError(notFoundErrorMessage))
+    .then((examples) => res.send(examples))
     .catch(next);
 };

@@ -18,7 +18,6 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
   const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
-    console.log(selectedService);
     resetForm(selectedService);
     setIsValid(true);
     return () => {
@@ -29,6 +28,7 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
 
   useEffect(() => {
     setSelectedService(services[0]);
+    setSelectedButton(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -83,6 +83,7 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
     setSelectedService(services[num]);
     showPreview(false);
   }
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -91,9 +92,11 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
+
   return (
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">

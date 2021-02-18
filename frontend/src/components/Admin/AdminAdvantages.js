@@ -134,7 +134,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
             required
             maxLength="400"
             withCount
-            height="100px"
+            height="120px"
           />
           <Label
             validation={validation}
@@ -156,7 +156,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
             required
             maxLength="950"
             withCount
-            height="100px"
+            height="120px"
           />
           <div className="admin__buttons-container">
             <button
