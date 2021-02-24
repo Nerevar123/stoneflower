@@ -16,7 +16,7 @@ import "swiper/swiper-bundle.min.css";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Keyboard]);
 
 function ModalWithCarousel({ closeModal, initialSlide, content }) {
-  const window = useWindowSize();
+  const size = useWindowSize();
 
   function handleClose() {
     closeModal();
@@ -32,7 +32,7 @@ function ModalWithCarousel({ closeModal, initialSlide, content }) {
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-            {window.width > 849 && (
+            {size.width > 849 && (
               <button
                 onClick={handleClose}
                 className="modal__close-button button modal__close-button_place_carousel"

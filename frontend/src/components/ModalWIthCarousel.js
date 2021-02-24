@@ -20,7 +20,7 @@ function ModalWithCarousel({
     el.focus();
   }
 
-  const window = useWindowSize();
+  const size = useWindowSize();
 
   const numSlide = parseInt(initialSlide);
   const settings = {
@@ -45,7 +45,7 @@ function ModalWithCarousel({
     return (
 
       <>
-      {window.width > 849?
+      {size.width > 849?
         <img
           className={className}
           src={arrowRight}
@@ -68,7 +68,7 @@ function ModalWithCarousel({
     const { className, style, onClick } = props;
     return (
       <>
-      {window.width > 849?
+      {size.width > 849?
         <img
           className={className}
           src={arrowLeft}
@@ -100,7 +100,7 @@ function ModalWithCarousel({
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-            {window.width > 849 && (
+            {size.width > 849 && (
               <button
                 onClick={handleClose}
                 className="modal__close-button button modal__close-button_place_carousel"

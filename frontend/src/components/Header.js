@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
-// as scroll говорит, что дальше будет использоваться scroll, а если используется сам Link то наверн это лишнее
-import { Link } from "react-scroll";
+// import { Link } from "react-scroll";
+import { NavLink, Link } from "react-router-dom";
 
 function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -11,85 +11,63 @@ function Header() {
     setMenuOpened(!menuOpened);
   }
 
-  const window = useWindowSize();
+  const size = useWindowSize();
   return (
     <header className={`header ${menuOpened ? "open" : ""}`}>
       <img className="header__logo logo" src={header__logo} alt="Логотип" />
-      {window.width > 849 && (
+      {size.width > 849 && (
         <>
           <nav className="header__links">
-            <Link
+            <NavLink
               className="header__link link"
-              activeClass="header__link_active"
-              to="main"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
+              activeClassName="header__link_active"
+              exact
+              to="/"
             >
               Главная
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className="header__link link"
-              activeClass="header__link_active"
-              to="services"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-            >
-              Услуги
-            </Link>
-            <Link
-              className="header__link link"
-              activeClass="header__link_active"
-              to="surfaces"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
+              activeClassName="header__link_active"
+              exact
+              to="/surfaces"
             >
               Поверхности
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className="header__link link"
-              activeClass="header__link_active"
-              to="portfolio"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
+              activeClassName="header__link_active"
+              exact
+              to="/portfolio"
             >
               Портфолио
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className="header__link link"
-              activeClass="header__link_active"
-              to="contacts"
-              spy={true}
-              smooth={true}
-              offset={-90}
-              duration={500}
+              activeClassName="header__link_active"
+              exact
+              to="/advices"
+            >
+              Советы дизайнера
+            </NavLink>
+            <NavLink
+              className="header__link link"
+              activeClassName="header__link_active"
+              exact
+              to="/contacts"
             >
               Контакты
-            </Link>
+            </NavLink>
           </nav>
 
           <button className="header__order-button button">
-            <Link
-              className="header__order-link"
-              to="form"
-              spy={false}
-              smooth={true}
-              offset={-200}
-              duration={500}
-            >
+            <Link className="header__order-link" to="/">
               Оставить заявку
             </Link>
           </button>
         </>
       )}
-      {window.width < 850 && (
+      {size.width < 850 && (
         <>
           <button
             className="header__menu-button button"
@@ -101,66 +79,51 @@ function Header() {
           </button>
           <div className="header__sidebar">
             <nav className="header__links">
-              <Link
+              <NavLink
                 className="header__link link"
-                activeClass="header__link_active"
-                to="main"
-                spy={false}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                activeClassName="header__link_active"
+                exact
+                to="/"
                 onClick={toggleMenuOpen}
               >
                 Главная
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className="header__link link"
-                activeClass="header__link_active"
-                to="services"
-                spy={false}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                onClick={toggleMenuOpen}
-              >
-                Услуги
-              </Link>
-              <Link
-                className="header__link link"
-                activeClass="header__link_active"
-                to="surfaces"
-                spy={false}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                activeClassName="header__link_active"
+                exact
+                to="/surfaces"
                 onClick={toggleMenuOpen}
               >
                 Поверхности
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className="header__link link"
-                activeClass="header__link_active"
-                to="portfolio"
-                spy={false}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                activeClassName="header__link_active"
+                exact
+                to="/portfolio"
                 onClick={toggleMenuOpen}
               >
                 Портфолио
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className="header__link link"
-                activeClass="header__link_active"
-                to="contacts"
-                spy={false}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                activeClassName="header__link_active"
+                exact
+                to="/advices"
+                onClick={toggleMenuOpen}
+              >
+                Советы дизайнера
+              </NavLink>
+              <NavLink
+                className="header__link link"
+                activeClassName="header__link_active"
+                exact
+                to="/contacts"
                 onClick={toggleMenuOpen}
               >
                 Контакты
-              </Link>
+              </NavLink>
             </nav>
             <button
               className="header__order-button button"
@@ -169,11 +132,7 @@ function Header() {
               <Link
                 onClick={toggleMenuOpen}
                 className="header__order-link"
-                to="form"
-                spy={false}
-                smooth={true}
-                offset={-200}
-                duration={500}
+                to="/"
               >
                 Оставить заявку
               </Link>

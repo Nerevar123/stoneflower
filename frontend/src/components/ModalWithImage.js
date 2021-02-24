@@ -7,7 +7,7 @@ function ModalWithImage({ image, closeModal }) {
     evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
-  const window = useWindowSize();
+  const size = useWindowSize();
   return (
     <Modal
       closeModal={closeModal}
@@ -16,7 +16,7 @@ function ModalWithImage({ image, closeModal }) {
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__image-container modal__image-container_type_regular">
-            {window.width > 849 && (
+            {size.width > 849 && (
               <button
                 onClick={handleClose}
                 className="modal__close-button button"

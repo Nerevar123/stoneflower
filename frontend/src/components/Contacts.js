@@ -8,7 +8,7 @@ function Contacts({ content, entranceImage }) {
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
 
-  const window = useWindowSize();
+  const size = useWindowSize();
 
   useEffect(() => {
     if (content.phonePrimary) {
@@ -134,7 +134,7 @@ function Contacts({ content, entranceImage }) {
           </div>
         </div>
         <div className="contacts__map-wrapper">
-        {window.width < 850 &&
+        {size.width < 850 &&
           <div className="contacts__landmarks">
              <p className="content__text content__text_place_landmarks">
               {content.landmarksDescription}
@@ -147,7 +147,7 @@ function Contacts({ content, entranceImage }) {
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
             frameBorder="0"
           ></iframe>
-          {window.width > 849 &&
+          {size.width > 849 &&
           <div className="contacts__landmarks">
            {entranceImage && <img className="contacts__image" src={entranceImage.path} alt="Изображение входа"/>}
             <p className="content__text content__text_place_landmarks">

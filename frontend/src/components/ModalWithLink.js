@@ -3,15 +3,23 @@ import React from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import Modal from "./Modal";
 
-function ModalWithLink({ link, setIsPopupVisible, _id, closeModal, isModalWithLinkOpen }) {
+function ModalWithLink({
+  link,
+  setIsPopupVisible,
+  _id,
+  closeModal,
+  isModalWithLinkOpen,
+}) {
   const windowSize = useWindowSize();
   const popupRef = useRef();
   const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    if(isModalWithLinkOpen && windowSize.width >= 849) {
+    if (isModalWithLinkOpen && windowSize.width >= 849) {
       closeModal();
     }
-  },[windowSize, isModalWithLinkOpen, closeModal])
+  }, [windowSize, isModalWithLinkOpen, closeModal]);
+
   useEffect(() => {
     const closePopup = () => {
       setIsMounted(false);
@@ -19,6 +27,7 @@ function ModalWithLink({ link, setIsPopupVisible, _id, closeModal, isModalWithLi
         setIsPopupVisible(false);
       }, 500);
     };
+
     const handleClickEvent = (e) => {
       if (!e.target.id) {
         closePopup();
@@ -27,6 +36,7 @@ function ModalWithLink({ link, setIsPopupVisible, _id, closeModal, isModalWithLi
         closePopup();
       }
     };
+
     if (windowSize.width > 849) {
       window.addEventListener("click", handleClickEvent);
     }
@@ -36,13 +46,16 @@ function ModalWithLink({ link, setIsPopupVisible, _id, closeModal, isModalWithLi
       }
     };
   });
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
   const handleClose = (evt) => {
     evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
   };
+
   return (
     <>
       {windowSize.width > 849 && (
@@ -77,11 +90,18 @@ function ModalWithLink({ link, setIsPopupVisible, _id, closeModal, isModalWithLi
                 <p className="modal__link-text">
                   Перейти на сайт производителя?
                 </p>
-                <a className="modal__link" href={link} target="_blank" rel="noreferrer">Перейти</a>
+                <a
+                  className="modal__link"
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Перейти
+                </a>
                 <button
-                onClick={handleClose}
-                className="modal__close-button button modal__close-button_place_link"
-              ></button>
+                  onClick={handleClose}
+                  className="modal__close-button button modal__close-button_place_link"
+                ></button>
               </div>
             </>
           }

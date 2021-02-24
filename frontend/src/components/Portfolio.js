@@ -7,7 +7,7 @@ import arrowLeft from "../images/slider/ArrowLeft.svg";
 import useWindowSize from "../hooks/useWindowSize";
 
 function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
-  const window = useWindowSize();
+  const size = useWindowSize();
 
   function handleImageClick(evt) {
     showModal(evt.target.id, content);
@@ -16,7 +16,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     const { className, style, onClick } = props;
     return (
       <>
-        {!isModalWithCarouselOpen && window.width > 849 && (
+        {!isModalWithCarouselOpen && size.width > 849 && (
           <img
             className={className}
             src={arrowRight}
@@ -33,7 +33,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     const { className, style, onClick } = props;
     return (
       <>
-        {!isModalWithCarouselOpen && window.width > 849 && (
+        {!isModalWithCarouselOpen && size.width > 849 && (
           <img
             className={className}
             src={arrowLeft}
@@ -53,7 +53,7 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen }) {
     initialSlide: 0,
     speed: 500,
     slidesToShow: 1,
-    centerMode: window.width > 849 ? true : false,
+    centerMode: size.width > 849 ? true : false,
     variableWidth: true,
     adaptiveHeight: true,
     slidesToScroll: 1,

@@ -14,7 +14,7 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
     setTextExpanded(!textExpanded);
   }
 
-  const window = useWindowSize();
+  const size = useWindowSize();
 
   return (
     <article className="advantages">
@@ -43,7 +43,7 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
             <p className="content__text">{textContent.expandedText}</p>
           </div>
         </div>
-        {window.width > 849 && (
+        {size.width > 849 && (
           <Link
             to="applicability"
             spy={false}
@@ -61,7 +61,7 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
             />
           </Link>
         )}
-        {window.width < 849 && (
+        {size.width < 849 && (
           <button
             onClick={handleOpenEvent}
             className="link_type_navigation link"

@@ -52,13 +52,7 @@
   border: 1px solid #67b5a9;
   max-width: 216px;
   max-height: 48px;
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  line-height: 24px;
-  color: #ffffff;
   grid-area: order-button;
-  transition: all 0.2s ease-in-out;
 }
 
 .header__order-link {
@@ -67,9 +61,16 @@
   align-items: center;
   min-width: 100%;
   min-height: 100%;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  line-height: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 
-.header__order-button:hover {
+.header__order-link:hover {
   background: #ffffff;
   color: #335e58;
 }

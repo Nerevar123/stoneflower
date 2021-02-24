@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
+import { Link } from "react-router-dom";
 import AdminLeadEditor from "./AdminLeadEditor";
 import AdminServices from "./AdminServices";
 import AdminAdvantages from "./AdminAdvantages";
@@ -59,7 +60,7 @@ function Admin({
         ? item.current.classList.add("admin__button_selected")
         : item.current.classList.remove("admin__button_selected");
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItem, adminItems]);
 
   function handleButtonClick(ref) {
@@ -70,7 +71,7 @@ function Admin({
 
   useEffect(() => {
     handlePageLoad();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handlePageLoad() {
@@ -98,9 +99,9 @@ function Admin({
   return (
     <main ref={menuRef} className="admin">
       <div className="admin__button-block">
-        <h2 className="admin__sub-heading">
+        <Link className="admin__sub-heading" to="/">
           Студия Керамогранита «Каменный цветок»
-        </h2>
+        </Link>
         {adminItems.map((item, index) => (
           <button
             key={index}
