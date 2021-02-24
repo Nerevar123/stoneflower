@@ -5,9 +5,15 @@ import Footer from "./Footer";
 import Admin from "./Admin/Admin";
 import Main from "./Main";
 import Login from "./Login";
+import Surfaces from "./Surfaces";
+import SurfacesMobile from "./SurfacesMobile";
+import Advices from "./Advices";
+import Portfolio from "./Portfolio";
+import Contacts from "./Contacts";
 import ModalWithImage from "./ModalWithImage";
 import PageNotFound from "./PageNotFound";
 import ModalWithLink from "./ModalWithLink";
+import useWindowSize from "../hooks/useWindowSize";
 import {
   getServices,
   getTexts,
@@ -70,6 +76,7 @@ function App() {
   const [suppliersTextContent, setSuppliersTextContent] = useState({});
   const [surfacesTextContent, setSurfacesTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
+  const size = useWindowSize();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   useEffect(() => {
@@ -209,11 +216,10 @@ function App() {
     <>
       <Router history={history} basename="/">
         <Switch>
-          <Route exact path="/stoneflower">
+          <Route exact path="/">
             <Header />
             <Main
               showModalWithImage={showModalWithImage}
-              showModalWithCarousel={ShowModalWithCarousel}
               showModalWithConfirmation={showModalWithConfirmation}
               showModalWithLink={showModalWithLink}
               services={services}
@@ -224,45 +230,54 @@ function App() {
               phasesIcons={phasesIconList}
               phasesText={phasesText}
               pricingContent={pricingContent}
-              surfacesContent={surfacesContent}
-              advicesContent={advicesContent}
-              portfolioContent={portfolioContent}
-              isModalWithCarouselOpen={isModalWithCarouselOpen}
               suppliersContent={suppliersContent}
               suppliersTextContent={suppliersTextContent}
               postFormContent={postFormContent}
-              contactsContent={contactsContent}
               leadContent={leadContent}
               images={images}
-              surfacesTextContent={surfacesTextContent}
             />
-            {isModalWithImageOpen && (
-              <ModalWithImage closeModal={closeModal} image={modalImage} />
+          </Route>
+          <Route exact path="/surfaces">
+            <Header />
+            {surfacesContent && (
+              <>
+                {size.width > 849 && (
+                  <Surfaces
+                    content={surfacesContent}
+                    showModal={showModalWithImage}
+                    textContent={surfacesTextContent}
+                  />
+                )}
+                {size.width < 850 && (
+                  <SurfacesMobile
+                    content={surfacesContent}
+                    showModal={showModalWithImage}
+                    textContent={surfacesTextContent}
+                  />
+                )}
+              </>
             )}
-            {isModalWithCarouselOpen && (
-              <ModalWithCarousel
-                isModalWithCarouselOpen={isModalWithCarouselOpen}
-                closeModal={closeModal}
-                content={modalCarouselContent}
-                initialSlide={modalInitialSlide}
+          </Route>
+          <Route exact path="/portfolio">
+            <Header />
+            <Portfolio
+              content={portfolioContent}
+              showModal={ShowModalWithCarousel}
+              isModalWithCarouselOpen={isModalWithCarouselOpen}
+            />
+          </Route>
+          <Route exact path="/advices">
+            <Header />
+            {advicesContent && <Advices content={advicesContent} />}
+          </Route>
+          <Route exact path="/contacts">
+            <Header />
+            {images && (
+              <Contacts
+                content={contactsContent}
+                entranceImage={images.contactsEntranceImage}
               />
             )}
-            {isModalWithLinkOpen && (
-              <ModalWithLink
-                closeModal={closeModal}
-                isModalWithLinkOpen={isModalWithLinkOpen}
-                link={modalLink}
-              />
-            )}
-            {isModalWithConfirmationOpen && (
-              <ModalWithConfirmation
-                isModalWithCarouselOpen={isModalWithCarouselOpen}
-                closeModal={closeModal}
-                content={portfolioContent}
-                initialSlide={modalInitialSlide}
-              />
-            )}
-            <Footer content={contactsContent} />
           </Route>
           <Route exact path="/login">
             <Login validation={validation} />
@@ -298,6 +313,33 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Footer content={contactsContent} />
+      {isModalWithImageOpen && (
+        <ModalWithImage closeModal={closeModal} image={modalImage} />
+      )}
+      {isModalWithCarouselOpen && (
+        <ModalWithCarousel
+          isModalWithCarouselOpen={isModalWithCarouselOpen}
+          closeModal={closeModal}
+          content={modalCarouselContent}
+          initialSlide={modalInitialSlide}
+        />
+      )}
+      {isModalWithLinkOpen && (
+        <ModalWithLink
+          closeModal={closeModal}
+          isModalWithLinkOpen={isModalWithLinkOpen}
+          link={modalLink}
+        />
+      )}
+      {isModalWithConfirmationOpen && (
+        <ModalWithConfirmation
+          isModalWithCarouselOpen={isModalWithCarouselOpen}
+          closeModal={closeModal}
+          content={portfolioContent}
+          initialSlide={modalInitialSlide}
+        />
+      )}
     </>
   );
 }

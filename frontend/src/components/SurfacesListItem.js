@@ -8,7 +8,7 @@ import useWindowSize from "../hooks/useWindowSize";
 // import { Link } from "react-scroll";
 
 function SurfacesListItem(props) {
-  const window = useWindowSize();
+  const size = useWindowSize();
   const [mouseIn, setMouseIn] = useState(false);
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
@@ -20,7 +20,7 @@ function SurfacesListItem(props) {
 
   useEffect(() => {
     if (
-      window.width > 849 &&
+      size.width > 849 &&
       props.selectedMaterial &&
       props.selectedMaterial === itemId
     ) {
@@ -28,16 +28,16 @@ function SurfacesListItem(props) {
     } else {
       setIsSelected(false);
     }
-  }, [itemId, props.selectedMaterial, window.width]);
+  }, [itemId, props.selectedMaterial, size.width]);
 
   function toggleSliderOpen(evt) {
-    if (window.width < 849) {
+    if (size.width < 849) {
       setIsSliderOpen(!isSliderOpen);
       evt.target.closest("li").classList.toggle("surfaces__list-item_expanded");
     }
   }
   function handleHoverEvent() {
-    if (window.width > 849) {
+    if (size.width > 849) {
       setMouseIn(!mouseIn);
     }
   }

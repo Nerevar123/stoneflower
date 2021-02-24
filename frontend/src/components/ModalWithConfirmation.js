@@ -1,13 +1,11 @@
 import React from "react";
 import Modal from "./Modal";
-// import useWindowSize from "../hooks/useWindowSize";
 
 function ModalWithConfirmation({ closeModal }) {
   function handleClose(evt) {
     evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
-  // const window = useWindowSize();
   return (
     <Modal
       closeModal={closeModal}

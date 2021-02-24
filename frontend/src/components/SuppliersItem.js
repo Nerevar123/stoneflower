@@ -3,10 +3,10 @@ import useWindowSize from "../hooks/useWindowSize";
 import ModalWithLink from "./ModalWithLink";
 
 function SuppliersItem({ item, id, showModal }) {
-  const window = useWindowSize();
+  const size = useWindowSize();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const showPopup = () => {
-    window.width > 849 ? setIsPopupVisible(true) : showModal(item.link);
+    size.width > 849 ? setIsPopupVisible(true) : showModal(item.link);
   };
   return (
     <li
@@ -25,7 +25,7 @@ function SuppliersItem({ item, id, showModal }) {
           }
         />
       </div>
-      {isPopupVisible && window.width > 849 && (
+      {isPopupVisible && size.width > 849 && (
         <ModalWithLink
           _id={`${id}_${item._id}`}
           setIsPopupVisible={setIsPopupVisible}
