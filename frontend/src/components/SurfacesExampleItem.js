@@ -6,6 +6,7 @@ function SurfacesExampleItem({
   forwardRef,
   showModal,
 }) {
+
   const handleClickEvent = () => {
     if (showModal) {
       showModal(

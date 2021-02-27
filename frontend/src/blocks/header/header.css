@@ -146,6 +146,22 @@
     padding: 8px calc(165px - 0.262711864 * (1440px - 100vw));
   }
 }
+@media screen and (max-width: 1240px) {
+  .header__link {
+    font-size: 16px;
+    margin-right: 2.4%;
+  }
+}
+@media screen and (max-width: 1060px) {
+  .header__link {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 930px) {
+  .header__link {
+    font-size: 12px;
+  }
+}
 
 @media screen and (max-width: 849px) {
   .header {

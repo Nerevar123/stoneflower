@@ -34,7 +34,7 @@
   .footer {
     width: calc(100% - 30px);
     padding: 8px 15px;
-    margin: 0;
+    margin: auto 0 0 0;
   }
   .footer__text {
     max-width: 193px;

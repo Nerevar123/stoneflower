@@ -14,8 +14,12 @@ function SurfacesListItem(props) {
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
 
+
   const handleSlideClick = (item) => {
-    props.showModal(item.image);
+
+    props.showModal(
+      item.image.path ? process.env.REACT_APP_URL + item.image.path : item.image
+    );
   };
 
   useEffect(() => {
@@ -113,8 +117,8 @@ function SurfacesListItem(props) {
         <div className="surfaces__image-container">
           <img
             src={
-              props.image.path
-                ? process.env.REACT_APP_URL + props.image.path
+              props.content[0].image.path
+                ? process.env.REACT_APP_URL + props.content[0].image.path
                 : props.image
             }
             alt="Картинка"
@@ -154,7 +158,7 @@ function SurfacesListItem(props) {
                   key={item._id}
                   alt="Пример материала"
                   id={item._id}
-                  src={item.image}
+                  src={process.env.REACT_APP_URL + item.image.path}
                   className="surfaces__image surfaces__image_place_slider"
                   draggable="false"
                   onClick={() => handleSlideClick(item)}

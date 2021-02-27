@@ -7,21 +7,12 @@ function Surfaces({ content, showModal, textContent }) {
   const [exampleRefs, setExampleRefs] = useState([]);
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
-  const [selectedExample, setSelectedExample] = useState(-1);
   const examples = useRef();
-
-  function handleExampleSelection(evt) {
-    setSelectedExample(evt.target.closest(".surfaces__example-item"));
-  }
 
   useEffect(() => {
     if (selectedMaterial !== null) {
       const refArray = [];
-      for (
-        let i = 0;
-        i < content[selectedMaterial].examples.length;
-        i++
-      ) {
+      for (let i = 0; i < content[parseInt(selectedMaterial)].examples.length; i++) {
         refArray.push(createRef());
       }
       setExampleRefs(refArray);
@@ -31,34 +22,40 @@ function Surfaces({ content, showModal, textContent }) {
   useEffect(() => {
     if (selectedMaterial !== null) {
       setMaterialListOpened(true);
-      examples.current.scrollIntoView({ block: "center", behavior: "smooth" });
+      setTimeout(() => {
+        const offset = -80;
+        const yCoordinate =
+          examples.current.getBoundingClientRect().top +
+          window.pageYOffset +
+          offset;
+        window.scrollTo({ top: yCoordinate, behavior: "smooth" });
+      }, 200);
     } else {
       setMaterialListOpened(false);
     }
   }, [selectedMaterial]);
 
-  useEffect(() => {
-    if (selectedExample === -1 && materialListOpened) {
-      const el = document.getElementById("example_0");
-      setSelectedExample(el);
-    }
-  }, [selectedExample, selectedMaterial, materialListOpened]);
-
   const handleElementClick = (evt) => {
-    const foundIndex = content.findIndex((x) => x._id === evt.target.closest("li").id);
-    if (evt.target.closest("li").id !== foundIndex) {
+    const foundIndex = content.findIndex(
+      (x) => x._id === evt.target.closest("li").id
+    );
+    if (
+      !selectedMaterial ||
+      evt.target.closest("li").id !== content[parseInt(selectedMaterial)]._id
+    ) {
       setMaterialListOpened(false);
-      setSelectedMaterial(foundIndex);
-      setSelectedExample(-1);
+      setSelectedMaterial(foundIndex.toString());
     } else {
       setSelectedMaterial(null);
-      setSelectedExample(-1);
     }
   };
 
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return (
     <article id="surfaces" className="surfaces">
@@ -93,6 +90,7 @@ function Surfaces({ content, showModal, textContent }) {
                 className="surfaces__list-item"
               >
                 <SurfacesListItem
+                  content={item.examples}
                   selectedMaterial={selectedMaterial}
                   isMobile={false}
                   item={item}
@@ -106,7 +104,6 @@ function Surfaces({ content, showModal, textContent }) {
       </ul>
       <div
         ref={examples}
-        onClick={handleExampleSelection}
         className={`surfaces__materials-container ${
           materialListOpened ? "surfaces__materials-container_opened" : ""
         }`}
@@ -114,9 +111,7 @@ function Surfaces({ content, showModal, textContent }) {
         {materialListOpened &&
           content &&
           selectedMaterial !== null &&
-          content[
-            selectedMaterial
-          ].examples.map((item, i) => (
+          content[parseInt(selectedMaterial)].examples.map((item, i) => (
             <SurfacesExampleItem
               item={item}
               id={i}
