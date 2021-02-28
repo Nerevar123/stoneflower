@@ -14,6 +14,8 @@ import ModalWithImage from "./ModalWithImage";
 import PageNotFound from "./PageNotFound";
 import ModalWithLink from "./ModalWithLink";
 import useWindowSize from "../hooks/useWindowSize";
+import Breadcrumbs from './Breadcrumbs';
+
 import {
   getServices,
   getTexts,
@@ -44,6 +46,8 @@ import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
 import useFormWithValidation from "../hooks/useFormWithValidation";
 // import ProtectedRoute from "./ProtectedRoute";
+//safari compatibility;
+import smoothscroll from "smoothscroll-polyfill";
 
 function App() {
   const history = useHistory();
@@ -78,6 +82,8 @@ function App() {
   const [modalLink, setModalLink] = useState();
   const size = useWindowSize();
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
+  //safari compatibility;
+  smoothscroll.polyfill();
 
   useEffect(() => {
     Promise.all([
@@ -239,45 +245,56 @@ function App() {
           </Route>
           <Route exact path="/surfaces">
             <Header />
-            {surfacesContent && (
-              <>
-                {size.width > 849 && (
-                  <Surfaces
-                    content={surfacesContent}
-                    showModal={showModalWithImage}
-                    textContent={surfacesTextContent}
-                  />
-                )}
-                {size.width < 850 && (
-                  <SurfacesMobile
-                    content={surfacesContent}
-                    showModal={showModalWithImage}
-                    textContent={surfacesTextContent}
-                  />
-                )}
-              </>
-            )}
+            <main className="content">
+              <Breadcrumbs link="/surfaces" name="Поверхности" />
+              {surfacesContent && (
+                <>
+                  {size.width > 849 && (
+                    <Surfaces
+                      content={surfacesContent}
+                      showModal={showModalWithImage}
+                      textContent={surfacesTextContent}
+                    />
+                  )}
+                  {size.width < 850 && (
+                    <SurfacesMobile
+                      content={surfacesContent}
+                      showModal={showModalWithImage}
+                      textContent={surfacesTextContent}
+                    />
+                  )}
+                </>
+              )}
+            </main>
           </Route>
           <Route exact path="/portfolio">
             <Header />
-            <Portfolio
-              content={portfolioContent}
-              showModal={ShowModalWithCarousel}
-              isModalWithCarouselOpen={isModalWithCarouselOpen}
-            />
+            <main className="content">
+              <Portfolio
+                content={portfolioContent}
+                showModal={ShowModalWithCarousel}
+                isModalWithCarouselOpen={isModalWithCarouselOpen}
+              />
+            </main>
           </Route>
           <Route exact path="/advices">
             <Header />
-            {advicesContent && <Advices content={advicesContent} />}
+            <main className="content">
+            <Breadcrumbs link="/advices" name="Советы дизайнера" />
+              {advicesContent && <Advices content={advicesContent} />}
+            </main>
           </Route>
           <Route exact path="/contacts">
             <Header />
-            {images && (
-              <Contacts
-                content={contactsContent}
-                entranceImage={images.contactsEntranceImage}
-              />
-            )}
+            <main className="content">
+            <Breadcrumbs link="/contacts" name="Контакты" />
+              {images && (
+                <Contacts
+                  content={contactsContent}
+                  entranceImage={images.contactsEntranceImage}
+                />
+              )}
+            </main>
           </Route>
           <Route exact path="/login">
             <Login validation={validation} />

@@ -12,7 +12,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #335e58;
-  margin: 105px 0 0 0;
+  margin: 35px 0 0 0;
   width: 100%;
   max-width: 740px;
 }
@@ -160,7 +160,7 @@
     margin: 32px 0 0 0;
   }
   .content__title_place_surfaces {
-    margin: 32px 14px 8px 15px;
+    margin: 20px 14px 8px 15px;
     width: calc(100% - 29px);
   }
   .content__text_place_suppliers {

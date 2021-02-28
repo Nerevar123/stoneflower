@@ -1,0 +1,40 @@
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  margin: 115px calc(165px - 0.253807107 * (1440px - 100vw)) 0
+    calc(165px - 0.253807107 * (1440px - 100vw));
+  width: 100%;
+  font-family: "FuturaBookC", Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  color: #335e58;
+}
+@media screen and (min-width: 1441px) {
+  .breadcrumbs {
+    margin: 115px auto 0 auto;
+    max-width: 1280px;
+  }
+}
+
+.breadcrumbs__link {
+  margin: 0 8px 0 8px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumbs__link:first-of-type {
+  margin-left: 0;
+}
+@media screen and (max-width: 849px) {
+  .breadcrumbs {
+    /* margin: 0 14px 0 15px; */
+    margin: 100px 14px 0 15px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}

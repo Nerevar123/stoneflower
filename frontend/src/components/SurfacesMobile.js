@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SurfacesListItem from "./SurfacesListItem";
 
 function SurfacesMobile({ content, showModal, textContent }) {
@@ -7,6 +7,9 @@ function SurfacesMobile({ content, showModal, textContent }) {
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
+  useEffect(() => {
+    window.scrollTo({top: 0})
+  }, []);
 
   return (
     <article id="surfaces" className="surfaces">
@@ -30,17 +33,17 @@ function SurfacesMobile({ content, showModal, textContent }) {
         </button>
       </div>
       <ul className="surfaces__list list">
-        {content.materialsList
-          ? content.materialsList.map((item) => (
+        {content
+          ? content.map((item) => (
               <li id={item._id} key={item._id} className="surfaces__list-item">
                 <SurfacesListItem
-                  content={item.materialExamples}
+                  content={item.examples}
                   isMobile={true}
                   item={item}
                   key={item._id}
                   image={item.image}
-                  heading={item.heading}
                   showModal={showModal}
+                  title={item.title}
                 />
               </li>
             ))
