@@ -145,11 +145,16 @@
     width: calc(100% - (2 * calc(165px - 0.262711864 * (1440px - 100vw))));
     padding: 8px calc(165px - 0.262711864 * (1440px - 100vw));
   }
+  .header__link {
+    font-size: 16px;
+    margin-right: 3.4%;
+  }
+
 }
 @media screen and (max-width: 1240px) {
   .header__link {
     font-size: 16px;
-    margin-right: 2.4%;
+    margin-right: 1.4%;
   }
 }
 @media screen and (max-width: 1060px) {
