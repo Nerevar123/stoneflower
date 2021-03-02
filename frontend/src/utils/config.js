@@ -753,17 +753,17 @@ export const portfolioContentRaw = [
       {
         _id: "602ef5ccd33788f4aa6f5aa8",
         description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
+        image: {path:'http://ya.ru', image:portfolio_1},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa7",
         description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
+        image: {path:'http://ya.ru', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa6",
         description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
+        image: {path:'http://ya.ru', image:portfolio_3},
       },
     ],
   },
@@ -783,17 +783,17 @@ export const portfolioContentRaw = [
       {
         _id: "602ef5ccd33788f4aa6f5aa8",
         description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa7",
         description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa6",
         description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
+        image: {path:'', image:portfolio_3},
       },
     ],
   },
@@ -813,17 +813,17 @@ export const portfolioContentRaw = [
       {
         _id: "602ef5ccd33788f4aa6f5aa8",
         description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
+        image: {path:'', image:portfolio_1},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa7",
         description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa6",
         description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
+        image: {path:'', image:portfolio_3},
       },
     ],
   },
@@ -843,17 +843,17 @@ export const portfolioContentRaw = [
       {
         _id: "602ef5ccd33788f4aa6f5aa8",
         description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
+        image: {path:'', image:portfolio_3},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa7",
         description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa6",
         description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
+        image: {path:'', image:portfolio_3},
       },
     ],
   },
@@ -873,47 +873,17 @@ export const portfolioContentRaw = [
       {
         _id: "602ef5ccd33788f4aa6f5aa8",
         description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa7",
         description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
+        image: {path:'', image:portfolio_2},
       },
       {
         _id: "602ef5ccd33788f4aa6f5aa6",
         description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
-      },
-    ],
-  },
-  {
-    _id: "602ef490d33788f4aa6f5aa5",
-    title: "Стол обеденный 5",
-    category: "Мебель",
-    text: `Стол обеденный 140х90х75 см (под заказ размер до 310х110 см):
-    – Поверхность Oxide Moro 3,5 mm (Laminam,Италия),
-    – Дизайн "Каменный цветок"
-    – Подстолье массив ясеня, инкрустация шпоном ценных пород (Woodstock, г. Москва)
-    – Окраска натуральными маслами с твердым воском (Osmo, Германия)
-    – Столярные работы С. Калинин (г. Пушкино)
-    – Стоимость от 120 000 руб. (в зависимости от размера столешницы, сорта древесины)
-    – Фотоснимок В. Перегуда (г. Ивантеевка)`,
-    photos: [
-      {
-        _id: "602ef5ccd33788f4aa6f5aa8",
-        description: "primer 1",
-        image: {path:'', image:{portfolio_1}},
-      },
-      {
-        _id: "602ef5ccd33788f4aa6f5aa7",
-        description: "primer 2",
-        image: {path:'', image:{portfolio_2}},
-      },
-      {
-        _id: "602ef5ccd33788f4aa6f5aa6",
-        description: "primer 3",
-        image: {path:'', image:{portfolio_3}},
+        image: {path:'', image:portfolio_3},
       },
     ],
   },

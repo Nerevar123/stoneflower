@@ -134,7 +134,7 @@
     margin-top: 24px;
     row-gap: 8px;
     column-gap: 8px;
-    grid-template-columns: repeat(2, minmax(158px, 255px));
+    grid-template-columns: repeat(2, minmax(155px, 255px));
     grid-template-rows: repeat(4, minmax(128px, 1fr));
   }
   .advantages__list-item {

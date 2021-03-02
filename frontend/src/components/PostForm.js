@@ -33,7 +33,7 @@ function PostForm({ content, offer, showModal }) {
   });
 
   return (
-    <article className="contact__form">
+    <article className="contact-form">
       <h2 className="content__title content__title_place_form">
         {content.heading}
       </h2>
@@ -162,7 +162,7 @@ function PostForm({ content, offer, showModal }) {
                 </a>
               </p>
             </fieldset>
-            <div className="form__button-field">
+            <div className="form__button-container">
               <button
                 type="submit"
                 disabled={isSubmitting || !isValid || !dirty}

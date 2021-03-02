@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-function Breadcrumbs({ link, name, portFolioItem }) {
+function Breadcrumbs({ link, name, portfolioItem }) {
+
+  useEffect(()=>{
+    console.log(portfolioItem);
+  },[portfolioItem])
   return (
     <section className="breadcrumbs">
       <NavLink className="breadcrumbs__link" to="/">
@@ -11,11 +15,11 @@ function Breadcrumbs({ link, name, portFolioItem }) {
       <NavLink className="breadcrumbs__link" to={link}>
         {name}
       </NavLink>
-      {portFolioItem && (
+      {portfolioItem && (
         <>
           {` / `}
-          <NavLink className="breadcrumbs__link" to={portFolioItem.link}>
-            {portFolioItem.name}
+          <NavLink className="breadcrumbs__link" to={portfolioItem.link}>
+            {portfolioItem.name}
           </NavLink>
         </>
       )}

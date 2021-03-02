@@ -84,7 +84,7 @@ function App() {
   const [surfacesTextContent, setSurfacesTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
   const size = useWindowSize();
-  const [portfolioItem, setPortfolioItem] = useState({})
+  const [portfolioItem, setPortfolioItem] = useState(null);
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
   //safari compatibility;
   smoothscroll.polyfill();
@@ -147,9 +147,9 @@ function App() {
     setModalWithImageOpen(true);
   }
 
-  function ShowModalWithCarousel(slideIndex, content) {
+  function ShowModalWithCarousel(slideIndex, item) {
     document.body.style.overflow = "hidden";
-    setModalCarouselContent(content);
+    setModalCarouselContent(item);
     setModalInitialSlide(slideIndex);
     setModalWithCarouselOpen(true);
   }
@@ -275,18 +275,22 @@ function App() {
           <Route path="/portfolio">
             <Header />
             <main className="content">
+              <Breadcrumbs
+                link="/portfolio"
+                name="Портфолио"
+                portfolioItem={portfolioItem}
+              />
               <Route exact path="/portfolio">
                 <Portfolio
                   content={portfolioContent}
                   showModal={ShowModalWithCarousel}
                   isModalWithCarouselOpen={isModalWithCarouselOpen}
                   portfolioContentNew={portfolioContentNew}
+                  setPortfolioItem={setPortfolioItem}
                 />
               </Route>
               <Route exact path="/portfolio/:itemId">
-              <PortfolioItem content={portfolioContentNew}>
-
-              </PortfolioItem>
+                <PortfolioItem content={portfolioContentNew} showModal={ShowModalWithCarousel} isModalWithCarouselOpen={isModalWithCarouselOpen}></PortfolioItem>
               </Route>
             </main>
           </Route>

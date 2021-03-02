@@ -8,21 +8,25 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
+
 function ModalWithCarousel({
   closeModal,
   initialSlide,
   content,
   isModalWithCarouselOpen,
 }) {
+  console.log(content.photos[0].image);
 
   function getFocus() {
     const el = document.querySelector(".modal__image-container");
     el.focus();
   }
-
+  const numSlide = content.photos.findIndex((item) => {
+    return item._id === initialSlide;
+  });
+  console.log(numSlide);
   const size = useWindowSize();
 
-  const numSlide = parseInt(initialSlide);
   const settings = {
     dots: false,
     infinite: true,
@@ -37,29 +41,29 @@ function ModalWithCarousel({
     accessibility: true,
     draggable: true,
     initialSlide: numSlide,
-
   };
 
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
-
       <>
-      {size.width > 849?
-        <img
-          className={className}
-          src={arrowRight}
-          alt="Иконка"
-          style={{
-            ...style,
-            width: "65px",
-            height: "56px",
-            right: "-75px",
-            filter: "brightness(0) invert(1)",
-          }}
-          onClick={onClick}
-        />
-      :<></>}
+        {size.width > 849 ? (
+          <img
+            className={className}
+            src={arrowRight}
+            alt="Иконка"
+            style={{
+              ...style,
+              width: "65px",
+              height: "56px",
+              right: "-75px",
+              filter: "brightness(0) invert(1)",
+            }}
+            onClick={onClick}
+          />
+        ) : (
+          <></>
+        )}
       </>
     );
   }
@@ -68,28 +72,30 @@ function ModalWithCarousel({
     const { className, style, onClick } = props;
     return (
       <>
-      {size.width > 849?
-        <img
-          className={className}
-          src={arrowLeft}
-          alt="Иконка"
-          style={{
-            ...style,
-            width: "65px",
-            height: "56px",
-            left: "-75px",
-            filter: "brightness(0) invert(1)",
-          }}
-          onClick={onClick}
-          />:<></>}
-          </>
+        {size.width > 849 ? (
+          <img
+            className={className}
+            src={arrowLeft}
+            alt="Иконка"
+            style={{
+              ...style,
+              width: "65px",
+              height: "56px",
+              left: "-75px",
+              filter: "brightness(0) invert(1)",
+            }}
+            onClick={onClick}
+          />
+        ) : (
+          <></>
+        )}
+      </>
     );
   }
   const handleClose = (evt) => {
-    evt.target.closest('.modal').classList.remove('modal_visible');
+    evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
-  }
-
+  };
 
   return (
     <Modal
@@ -108,17 +114,17 @@ function ModalWithCarousel({
             )}
             <Slider {...settings} className="modal__slider">
               {content &&
-                content.map((item) => (
+                content.photos.map((item) => (
                   <div
                     key={item._id}
                     className="modal__image-container"
-                    onLoad={getFocus}
+                    onLoad={()=>{getFocus(); console.log(item.image.image)}}
                   >
                     <img
                       key={item._id}
-                      alt="img"
+                      alt="Слайд портфолио"
                       id={item._id}
-                      src={item.image}
+                      src={item.image.image}
                       className="modal__image"
                       draggable="false"
                     />
