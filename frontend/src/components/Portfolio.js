@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,12 +10,21 @@ import {
   Link,
   Route,
   useRouteMatch,
-  useParams
-} from 'react-router-dom'
+  useParams,
+} from "react-router-dom";
 import PortfolioItem from "./PortfolioItem";
 
-function Portfolio({ content, showModal, isModalWithCarouselOpen, portfolioContentNew }) {
+function Portfolio({
+  content,
+  showModal,
+  isModalWithCarouselOpen,
+  portfolioContentNew,
+  setPortfolioItem,
+}) {
   console.log(portfolioContentNew);
+  useEffect(() => {
+    setPortfolioItem(null);
+  }, []);
   // const size = useWindowSize();
 
   // function handleImageClick(evt) {
@@ -71,23 +80,40 @@ function Portfolio({ content, showModal, isModalWithCarouselOpen, portfolioConte
   //   accessibility: false,
   //   draggable: false,
   // };
-  const { url, path } = useRouteMatch()
-  console.log(url, path);
-  const [item, setItem] = useState({});
-  const params = useParams();
-  console.log('params',params.itemId)
   return (
     <article className="portfolio">
       <h2 className="content__title content__title_place_portfolio">
         Портфолио
       </h2>
-        <ul className="portfolio__items">
-          {portfolioContentNew && portfolioContentNew.map((portfolioItem) =>(
-            <li key={portfolioItem._id}>
-              <Link onClick={()=>{console.log(portfolioItem._id)}}to={`/portfolio/${portfolioItem._id}`}>{portfolioItem.title}</Link>
+      <ul className="portfolio__items">
+        {portfolioContentNew &&
+          portfolioContentNew.map((portfolioItem) => (
+            <li className="portfolio__item" key={portfolioItem._id}>
+              <Link
+                className="portfolio__link"
+                onClick={() => {
+                  setPortfolioItem({
+                    name: portfolioItem.title,
+                    link: `${portfolioItem._id}`,
+                  });
+                }}
+                to={`/portfolio/${portfolioItem._id}`}
+              >
+                <div className="portfolio__item-description">
+                  <p className="portfolio__item-title">{portfolioItem.title}</p>
+                  <p className="portfolio__item-subtitle">
+                    {portfolioItem.category}
+                  </p>
+                </div>
+              </Link>
+              <img
+                className="portfolio__item-image"
+                src={portfolioItem.photos[0].image.image}
+                alt="Изображение портфолио"
+              />
             </li>
           ))}
-        </ul>
+      </ul>
       {/* <Route path={`${url}/:itemId`}>
         <PortfolioItem content={portfolioContentNew}></PortfolioItem>
       </Route> */}

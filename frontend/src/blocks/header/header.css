@@ -150,21 +150,32 @@
     margin-right: 3.4%;
   }
 
+
 }
 @media screen and (max-width: 1240px) {
   .header__link {
     font-size: 16px;
-    margin-right: 1.4%;
+    margin-right: 2.4%;
+  }
+  .header__links {
+    padding: 0 30px 0 21px;
   }
 }
 @media screen and (max-width: 1060px) {
   .header__link {
     font-size: 14px;
   }
+  .header__links {
+    padding: 0 20px 0 11px;
+  }
 }
 @media screen and (max-width: 930px) {
   .header__link {
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+  }
+  .header__links {
+    padding: 0 5px 0 5px;
   }
 }
 
@@ -194,8 +205,8 @@
   .header__sidebar {
     position: absolute;
     top: 0px;
-    right: 0px;
-    width: 0;
+    right: -267px;
+    width: 266px;
     height: 100vh;
     min-height: 344px;
     background-color: #75978c;
@@ -208,7 +219,7 @@
   }
 
   .open .header__sidebar {
-    width: 266px;
+    right: 0px;
     padding: 0 0 0 30px;
   }
 

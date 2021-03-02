@@ -3,17 +3,18 @@
   flex-direction: row;
   margin: 115px calc(165px - 0.253807107 * (1440px - 100vw)) 0
     calc(165px - 0.253807107 * (1440px - 100vw));
-  width: 100%;
   font-family: "FuturaBookC", Helvetica, sans-serif;
   font-size: 20px;
   line-height: 1.3;
   letter-spacing: 0.04em;
   color: #335e58;
+
 }
 @media screen and (min-width: 1441px) {
   .breadcrumbs {
     margin: 115px auto 0 auto;
     max-width: 1280px;
+
   }
 }
 
@@ -25,6 +26,15 @@
   letter-spacing: inherit;
   color: inherit;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.breadcrumbs__link:hover {
+  text-decoration: underline;
+}
+.breadcrumbs__link:last-of-type {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
 }
 
 .breadcrumbs__link:first-of-type {
@@ -32,9 +42,13 @@
 }
 @media screen and (max-width: 849px) {
   .breadcrumbs {
-    /* margin: 0 14px 0 15px; */
-    margin: 100px 14px 0 15px;
+    margin: 100px 0 0 15px;
     font-size: 18px;
     line-height: 1.33;
+  }
+}
+@media screen and (max-width: 380px) {
+  .breadcrumbs {
+    font-size: 14px;
   }
 }
