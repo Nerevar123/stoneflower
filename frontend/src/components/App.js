@@ -14,7 +14,8 @@ import ModalWithImage from "./ModalWithImage";
 import PageNotFound from "./PageNotFound";
 import ModalWithLink from "./ModalWithLink";
 import useWindowSize from "../hooks/useWindowSize";
-import Breadcrumbs from './Breadcrumbs';
+import Breadcrumbs from "./Breadcrumbs";
+import PortfolioItem from "./PortfolioItem";
 
 import {
   getServices,
@@ -41,6 +42,7 @@ import {
   // suppliers,
   // postForm,
   // contacts,
+  portfolioContentRaw,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
@@ -68,6 +70,7 @@ function App() {
   const [surfacesContent, setSurfacesContent] = useState(null);
   const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
+  const [portfolioContentNew, setPortfolioContentNew] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState(null);
   const [postFormContent, setPostFormContent] = useState({});
@@ -81,6 +84,7 @@ function App() {
   const [surfacesTextContent, setSurfacesTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
   const size = useWindowSize();
+  const [portfolioItem, setPortfolioItem] = useState({})
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
   //safari compatibility;
   smoothscroll.polyfill();
@@ -134,6 +138,7 @@ function App() {
     // setPricingContent(pricing);
     // setAdvantagesText(advantagesTextContent);
     // setContactsContent(contacts);
+    setPortfolioContentNew(portfolioContentRaw);
   }, []);
 
   function showModalWithImage(image) {
@@ -267,27 +272,35 @@ function App() {
               )}
             </main>
           </Route>
-          <Route exact path="/portfolio">
+          <Route path="/portfolio">
             <Header />
             <main className="content">
-              <Portfolio
-                content={portfolioContent}
-                showModal={ShowModalWithCarousel}
-                isModalWithCarouselOpen={isModalWithCarouselOpen}
-              />
+              <Route exact path="/portfolio">
+                <Portfolio
+                  content={portfolioContent}
+                  showModal={ShowModalWithCarousel}
+                  isModalWithCarouselOpen={isModalWithCarouselOpen}
+                  portfolioContentNew={portfolioContentNew}
+                />
+              </Route>
+              <Route exact path="/portfolio/:itemId">
+              <PortfolioItem content={portfolioContentNew}>
+
+              </PortfolioItem>
+              </Route>
             </main>
           </Route>
           <Route exact path="/advices">
             <Header />
             <main className="content">
-            <Breadcrumbs link="/advices" name="Советы дизайнера" />
+              <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
           </Route>
           <Route exact path="/contacts">
             <Header />
             <main className="content">
-            <Breadcrumbs link="/contacts" name="Контакты" />
+              <Breadcrumbs link="/contacts" name="Контакты" />
               {images && (
                 <Contacts
                   content={contactsContent}
