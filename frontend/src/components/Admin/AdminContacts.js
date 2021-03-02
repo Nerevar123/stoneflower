@@ -16,7 +16,6 @@ function AdminContacts({
   const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  console.log(entranceImage);
   const { values, isValid, resetForm, setIsValid } = validation;
   const [isUploading, setIsUploading] = useState(false);
   const uploadInputRef = useRef();

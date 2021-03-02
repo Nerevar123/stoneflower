@@ -15,7 +15,6 @@ function PostForm({ content, offer, showModal, formRef }) {
 
   const handleSubmit = (values) =>
     new Promise((resolve, reject) => {
-      console.log("sended", values);
       resolve(true);
     });
 
@@ -46,7 +45,6 @@ function PostForm({ content, offer, showModal, formRef }) {
           await sleep(500);
           handleSubmit(values)
             .then(() => {
-              console.log(values);
               alert(JSON.stringify(values, null, 2));
               actions.resetForm();
               showModal();

@@ -15,7 +15,6 @@ function ModalWithCarousel({
   content,
   isModalWithCarouselOpen,
 }) {
-  console.log(content.photos[0].image);
 
   function getFocus() {
     const el = document.querySelector(".modal__image-container");
@@ -24,7 +23,6 @@ function ModalWithCarousel({
   const numSlide = content.photos.findIndex((item) => {
     return item._id === initialSlide;
   });
-  console.log(numSlide);
   const size = useWindowSize();
 
   const settings = {
@@ -118,7 +116,7 @@ function ModalWithCarousel({
                   <div
                     key={item._id}
                     className="modal__image-container"
-                    onLoad={()=>{getFocus(); console.log(item.image.image)}}
+                    onLoad={()=>{getFocus()}}
                   >
                     <img
                       key={item._id}

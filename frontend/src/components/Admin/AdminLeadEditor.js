@@ -18,7 +18,6 @@ function AdminLeadEditor({
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const previewRef = useRef();
 
-  console.log(leadContent);
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;

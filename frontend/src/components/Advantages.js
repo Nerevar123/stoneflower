@@ -7,7 +7,6 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
   const [textExpanded, setTextExpanded] = useState(false);
   // const slide = 2;
   function handleOpenEvent() {
-    console.log(image);
     showModal(image);
   }
   function handleTextExpand() {
