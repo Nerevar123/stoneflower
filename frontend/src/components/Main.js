@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lead from "./Lead";
 import Advantages from "./Advantages";
 import Services from "./Services";
@@ -27,8 +27,12 @@ function Main({
   postFormContent,
   leadContent,
   images,
+  formRef,
 }) {
   const size = useWindowSize();
+  useEffect(() => {
+    window.scrollTo({ top: 0})
+  }, [])
   return (
     <main className="content">
       {images && (
@@ -58,6 +62,7 @@ function Main({
           content={postFormContent}
           offer={images.postFormOffer}
           showModal={showModalWithConfirmation}
+          formRef={formRef}
         />
       )}
     </main>

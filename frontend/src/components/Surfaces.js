@@ -8,6 +8,10 @@ function Surfaces({ content, showModal, textContent }) {
   const [materialListOpened, setMaterialListOpened] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const examples = useRef();
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0})
+  }, [])
 
   useEffect(() => {
     if (selectedMaterial !== null) {

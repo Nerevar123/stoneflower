@@ -4,7 +4,7 @@ import cn from "classnames";
 import * as Yup from "yup";
 import "yup-phone";
 
-function PostForm({ content, offer, showModal }) {
+function PostForm({ content, offer, showModal, formRef }) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const initialValues = {
     name: "",
@@ -33,7 +33,7 @@ function PostForm({ content, offer, showModal }) {
   });
 
   return (
-    <article className="contact-form">
+    <article className="contact-form" ref={formRef}>
       <h2 className="content__title content__title_place_form">
         {content.heading}
       </h2>
