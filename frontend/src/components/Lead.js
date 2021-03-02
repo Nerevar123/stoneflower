@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-scroll";
 import useWindowSize from "../hooks/useWindowSize";
 
-function Lead({ content, leadBgImage }) {
+function Lead({ content, leadBgImage, mainRef }) {
   const size = useWindowSize();
 
   return (
     <article
       id="main"
       className="lead"
+      ref={mainRef}
       style={{
         backgroundImage: `linear-gradient(
           90deg,
