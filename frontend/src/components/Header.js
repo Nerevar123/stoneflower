@@ -4,7 +4,7 @@ import useWindowSize from "../hooks/useWindowSize";
 // import { Link } from "react-scroll";
 import { NavLink, Link } from "react-router-dom";
 
-function Header() {
+function Header({ handleRequestButtonClick }) {
   const [menuOpened, setMenuOpened] = useState(false);
 
   function toggleMenuOpen() {
@@ -61,7 +61,11 @@ function Header() {
           </nav>
 
           <button className="header__order-button button">
-            <Link className="header__order-link" to="/">
+            <Link
+              className="header__order-link"
+              to="/"
+              onClick={handleRequestButtonClick}
+            >
               Оставить заявку
             </Link>
           </button>
@@ -130,7 +134,10 @@ function Header() {
               onClick={toggleMenuOpen}
             >
               <Link
-                onClick={toggleMenuOpen}
+                onClick={() => {
+                  toggleMenuOpen();
+                  handleRequestButtonClick();
+                }}
                 className="header__order-link"
                 to="/"
               >

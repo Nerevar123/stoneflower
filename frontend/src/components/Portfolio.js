@@ -24,6 +24,7 @@ function Portfolio({
   console.log(portfolioContentNew);
   useEffect(() => {
     setPortfolioItem(null);
+    window.scrollTo({ top: 0})
   }, []);
   // const size = useWindowSize();
 

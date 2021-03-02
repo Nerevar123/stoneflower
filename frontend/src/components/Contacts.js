@@ -9,6 +9,10 @@ function Contacts({ content, entranceImage }) {
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
 
   const size = useWindowSize();
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0})
+  }, [])
 
   useEffect(() => {
     if (content.phonePrimary) {

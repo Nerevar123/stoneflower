@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -88,7 +88,7 @@ function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
   //safari compatibility;
   smoothscroll.polyfill();
-
+  const formRef = useRef();
   useEffect(() => {
     Promise.all([
       getServices(),
@@ -222,13 +222,23 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+  const handleRequestButtonClick = () => {
+    setTimeout(() => {
+      const offset = -80;
+      const yCoordinate =
+        formRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        offset;
+      window.scrollTo({ top: yCoordinate, behavior: "smooth" });
+    }, 200);
+  }
 
   return (
     <>
       <Router history={history} basename="/">
         <Switch>
           <Route exact path="/">
-            <Header />
+            <Header handleRequestButtonClick={handleRequestButtonClick}/>
             <Main
               showModalWithImage={showModalWithImage}
               showModalWithConfirmation={showModalWithConfirmation}
@@ -246,10 +256,11 @@ function App() {
               postFormContent={postFormContent}
               leadContent={leadContent}
               images={images}
+              formRef={formRef}
             />
           </Route>
           <Route exact path="/surfaces">
-            <Header />
+            <Header handleRequestButtonClick={handleRequestButtonClick}/>
             <main className="content">
               <Breadcrumbs link="/surfaces" name="Поверхности" />
               {surfacesContent && (
@@ -273,7 +284,7 @@ function App() {
             </main>
           </Route>
           <Route path="/portfolio">
-            <Header />
+            <Header handleRequestButtonClick={handleRequestButtonClick}/>
             <main className="content">
               <Breadcrumbs
                 link="/portfolio"
@@ -295,14 +306,14 @@ function App() {
             </main>
           </Route>
           <Route exact path="/advices">
-            <Header />
+            <Header handleRequestButtonClick={handleRequestButtonClick}/>
             <main className="content">
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
           </Route>
           <Route exact path="/contacts">
-            <Header />
+            <Header handleRequestButtonClick={handleRequestButtonClick}/>
             <main className="content">
               <Breadcrumbs link="/contacts" name="Контакты" />
               {images && (
