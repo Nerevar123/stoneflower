@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Breadcrumbs({ link, name, portfolioItem }) {
 
-  useEffect(()=>{
-    console.log(portfolioItem);
-  },[portfolioItem])
   return (
     <section className="breadcrumbs">
       <NavLink className="breadcrumbs__link" to="/">

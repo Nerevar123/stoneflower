@@ -28,6 +28,7 @@ function Main({
   leadContent,
   images,
   formRef,
+  mainRef
 }) {
   const size = useWindowSize();
   useEffect(() => {
@@ -36,7 +37,7 @@ function Main({
   return (
     <main className="content">
       {images && (
-        <Lead content={leadContent} leadBgImage={images.leadBgImage} />
+        <Lead mainRef={mainRef} content={leadContent} leadBgImage={images.leadBgImage} />
       )}
       {services && <Services elements={services} />}
       <Advantages
