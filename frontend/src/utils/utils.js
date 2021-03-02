@@ -2,7 +2,6 @@
 // export const baseUrl = "https://api.stone.ner.works/";
 
 export const baseUrl = process.env.REACT_APP_URL;
-console.log(process.env.REACT_APP_URL);
 export const headers = {
   "Content-Type": "application/json",
 };

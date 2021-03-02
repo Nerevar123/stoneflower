@@ -19,7 +19,6 @@ function AdminPostForm({
   const [newOffer, setNewOffer] = useState(null);
   const uploadInputRef = useRef();
   const previewRef = useRef();
-  console.log(postFormOffer);
 
   const { values, isValid, resetForm, setIsValid } = validation;
 

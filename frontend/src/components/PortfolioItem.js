@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function PortfolioItem({ content, showModal, isModalWithCarouselOpen }) {
-  console.log(content);
 const size = useWindowSize();
   const [textExpanded, setTextExpanded] = useState(false);
   function handleTextExpand() {

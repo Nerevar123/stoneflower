@@ -54,7 +54,6 @@ function Admin({
     index !== -1
       ? setSelectedItem(adminItems[index].id)
       : setSelectedItem("requests");
-    console.log(selectedItem);
     buttonRefs.forEach((item) => {
       item.current.id === selectedItem
         ? item.current.classList.add("admin__button_selected")

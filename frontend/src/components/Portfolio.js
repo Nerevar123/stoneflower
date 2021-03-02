@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
+import React, { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import arrowRight from "../images/slider/ArrowRight.svg";
-import arrowLeft from "../images/slider/ArrowLeft.svg";
-import useWindowSize from "../hooks/useWindowSize";
 import {
-  BrowserRouter as Router,
   Link,
-  Route,
-  useRouteMatch,
-  useParams,
 } from "react-router-dom";
-import PortfolioItem from "./PortfolioItem";
 
 function Portfolio({
-  content,
-  showModal,
-  isModalWithCarouselOpen,
   portfolioContentNew,
   setPortfolioItem,
 }) {
-  console.log(portfolioContentNew);
   useEffect(() => {
     setPortfolioItem(null);
     window.scrollTo({ top: 0})

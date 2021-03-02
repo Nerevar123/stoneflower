@@ -50,7 +50,6 @@ function AdminAdvices({
   }, []);
 
   function handleCreateAdvice(e) {
-    console.log("123");
     e.preventDefault();
     onSaveData(
       {
