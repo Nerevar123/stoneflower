@@ -12,7 +12,7 @@ import AdminPostForm from "./AdminPostForm";
 // import AdminPortfolio from "./AdminPortfolio";
 import AdminSuppliers from "./AdminSuppliers";
 import AdminSurfaces from "./AdminSurfaces";
-import AdminRequests from './AdminRequests';
+import AdminRequests from "./AdminRequests";
 
 function Admin({
   adminItems,
@@ -36,7 +36,7 @@ function Admin({
   surfaces,
   surfacesTextContent,
   onLogout,
-  requests
+  requests,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -129,10 +129,12 @@ function Admin({
         ></div>
       </div>
       <div className="admin__edit-section">
-      {selectedItem === "requests" && (
-              <AdminRequests
-                requests={requests}
-              />
+        {requests && (
+          <>
+            {selectedItem === "requests" && (
+              <AdminRequests requests={requests} />
+            )}
+          </>
         )}
         {images && (
           <>

@@ -34,9 +34,9 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.checkCookies = (req, res) => {
-  res.send({ message: 'ok' });
-};
+// module.exports.checkCookies = (req, res) => {
+//   res.send({ message: 'ok' });
+// };
 
 module.exports.logout = (req, res, next) => {
   try {

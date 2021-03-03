@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
 
@@ -14,6 +14,16 @@ function AdminRequests({ requests }) {
     document.body.style.overflow = "hidden";
   };
 
+  function isValidDate(date) {
+    const dateWrapper = new Date(date);
+    return !isNaN(dateWrapper.getDate());
+  }
+
+  function formatDate(date) {
+    if (!isValidDate(date)) return null;
+
+    return date.toString().slice(0, 16).replace(/T/, " ");
+  }
 
   return (
     <div className="admin__edit-wrapper">
@@ -37,7 +47,7 @@ function AdminRequests({ requests }) {
                 id={item._id}
               >
                 <span className="admin__table-text admin__table-text_place_requests">
-                  {item.createdAt.toString().slice(0, 16).replace(/\T/, " ")}
+                  {formatDate(item.createdAt)}
                 </span>
                 <span className="admin__table-text admin__table-text_place_requests">
                   {item.tel}
@@ -76,9 +86,10 @@ function AdminRequests({ requests }) {
                       {" "}
                       Почта: {selectedMessage.email}
                     </p>
-                    <textarea className="admin__request-message" defaultValue={selectedMessage.description}>
-
-                    </textarea>
+                    <textarea
+                      className="admin__request-message"
+                      defaultValue={selectedMessage.description}
+                    ></textarea>
                   </div>
                 }
               />
