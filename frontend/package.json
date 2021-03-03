@@ -50,7 +50,7 @@
   "devDependencies": {
     "gh-pages": "^3.1.0"
   },
-  "homepage": ".",
+  "homepage": "https://stone.ner.works/",
   "description": "Stone Flower project",
   "main": "index.js",
   "repository": {

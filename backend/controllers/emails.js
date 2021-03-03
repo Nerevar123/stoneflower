@@ -66,6 +66,12 @@ module.exports.sendMail = (req, res, next) => {
   // .catch(next);
 };
 
+module.exports.getEmails = (req, res, next) => {
+  Email.find({})
+    .then((emails) => res.send(emails))
+    .catch(next);
+};
+
 module.exports.deleteEmail = (req, res, next) => {
   Email.findByIdAndRemove(req.params.cardId)
     .then((email) => res.send(email))

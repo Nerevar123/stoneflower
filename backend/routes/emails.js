@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { sendMail, deleteEmail } = require('../controllers/emails');
+const { sendMail, deleteEmail, getEmails } = require('../controllers/emails');
 const auth = require('../middlewares/auth');
 
 router.post(
@@ -8,7 +8,7 @@ router.post(
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().min(2).required(),
-      tel: Joi.string().min(9).pattern(/^[0-9]+$/).required(),
+      tel: Joi.string().min(9).required(),
       email: Joi.string().email().required(),
       description: Joi.string().min(2).required(),
     }),
@@ -17,6 +17,8 @@ router.post(
 );
 
 router.use(auth);
+
+router.get('/', getEmails);
 
 router.delete(
   '/:emailId',
