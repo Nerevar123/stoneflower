@@ -47,6 +47,7 @@ import {
   // postForm,
   // contacts,
   portfolioContentRaw,
+  requests,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
@@ -90,6 +91,7 @@ function App() {
   const size = useWindowSize();
   const [portfolioItem, setPortfolioItem] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [requestsItems, setRequestsItems] = useState(null);
   //safari compatibility;
   smoothscroll.polyfill();
 
@@ -155,6 +157,7 @@ function App() {
     // setAdvantagesText(advantagesTextContent);
     // setContactsContent(contacts);
     setPortfolioContentNew(portfolioContentRaw);
+    setRequestsItems(requests);
   }, []);
 
   function showModalWithImage(image) {
@@ -271,7 +274,7 @@ function App() {
   if (isLoggedIn === null) {
     return <Preloader />;
   }
-  
+
   return (
     <>
       <Router history={history} basename="/">
@@ -410,6 +413,7 @@ function App() {
                   suppliersTextContent={suppliersTextContent}
                   surfacesTextContent={surfacesTextContent}
                   surfaces={surfacesContent}
+                  requests={requestsItems}
                 />
               </ProtectedRoute>
             </>
