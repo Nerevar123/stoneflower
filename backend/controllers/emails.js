@@ -39,31 +39,6 @@ module.exports.sendMail = (req, res, next) => {
         .catch(next);
     })
     .catch(next);
-
-  // transporter.sendMail(mailOptions)
-  //   .then((info) => {
-  //     console.log('Email sent: ' + info.response);
-
-  //     Email.create({ name, tel, email, description })
-  //       .then((email) => res.status(201).send(email))
-  //       .catch(next);
-  //   })
-  //   .catch(next);
-  // if (error) {
-  // console.log(error);
-  // } else {
-  //   console.log('Email sent: ' + info.response);
-  // }
-  // })
-  // .then((email) => res.send(email))
-  // .catch(next);
-  // console.log(nodemailer)
-  // const { heading, description } = req.body;
-  // const image = req.file;
-
-  // Service.create({ heading, description, image })
-  //   .then((service) => res.status(201).send(service))
-  // .catch(next);
 };
 
 module.exports.getEmails = (req, res, next) => {
