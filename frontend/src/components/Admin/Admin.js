@@ -132,7 +132,7 @@ function Admin({
         {requests && (
           <>
             {selectedItem === "requests" && (
-              <AdminRequests requests={requests} />
+              <AdminRequests  onDeleteData={onDeleteData} requests={requests} />
             )}
           </>
         )}

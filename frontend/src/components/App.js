@@ -344,6 +344,7 @@ function App() {
               <Breadcrumbs
                 link="/portfolio"
                 name="Портфолио"
+                portfolioItem={portfolioItem}
               />
               <Route exact path="/portfolio">
                 <Portfolio

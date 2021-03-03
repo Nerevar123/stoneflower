@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
+import { deleteEmail } from "../../utils/api";
 
-function AdminRequests({ requests }) {
+function AdminRequests({ requests, onDeleteData }) {
   const [selectedMessage, setSelectedMessage] = useState(null);
+  const [selectedForDeleteMessage, setSelectedForDeleteMessage] = useState(
+    null
+  );
   const [popupVisible, setPopupVisible] = useState(true);
+  const [delMessage, setDelMessage] = useState(false);
 
-  const handleRequestItemClick = (evt) => {
-    const message = requests.find(
-      (item) => item._id === evt.target.closest("li").id
-    );
+  const getSelectedMessage = (evt) => {
+    return requests.find((item) => item._id === evt.target.closest("li").id);
+  };
+
+  const handleMessageItemClick = (evt) => {
+    const message = getSelectedMessage(evt);
     setSelectedMessage(message);
     document.body.style.overflow = "hidden";
   };
@@ -18,11 +25,29 @@ function AdminRequests({ requests }) {
     const dateWrapper = new Date(date);
     return !isNaN(dateWrapper.getDate());
   }
+  function handleDeleteClick(evt) {
+    setDelMessage(true);
+    const message = getSelectedMessage(evt);
+    setSelectedForDeleteMessage(message);
+  }
+
+  function handleDeleteMessage() {
+    console.log(selectedForDeleteMessage);
+    onDeleteData(selectedForDeleteMessage._id, deleteEmail);
+  }
 
   function formatDate(date) {
     if (!isValidDate(date)) return null;
 
     return date.toString().slice(0, 16).replace(/T/, " ");
+  }
+  function closeAllPopups() {
+    setPopupVisible(false);
+    setTimeout(() => {
+      setDelMessage(false);
+      setSelectedMessage(null);
+      setSelectedForDeleteMessage(null);
+    }, 300);
   }
 
   return (
@@ -40,23 +65,26 @@ function AdminRequests({ requests }) {
           </div>
           <ul className="admin__table admin__table_place_requests">
             {requests.map((item) => (
-              <li
-                className="admin__table-item"
-                onClick={handleRequestItemClick}
-                key={item._id}
-                id={item._id}
-              >
-                <span className="admin__table-text admin__table-text_place_requests">
-                  {formatDate(item.createdAt)}
-                </span>
-                <span className="admin__table-text admin__table-text_place_requests">
-                  {item.tel}
-                </span>
-                <span className="admin__table-text admin__table-text_place_requests">
-                  {item.name}
-                </span>
-                <div className="admin__table-buttons">
-                  <button className="admin__table-button admin__table-button_type_delete"></button>
+              <li className="admin__table-item admin__table-item_place_requests" key={item._id} id={item._id}>
+                <div
+                  className="admin__table-text-container"
+                  onClick={handleMessageItemClick}
+                >
+                  <span className="admin__table-text admin__table-text_place_requests">
+                    {formatDate(item.createdAt)}
+                  </span>
+                  <span className="admin__table-text admin__table-text_place_requests">
+                    {item.tel}
+                  </span>
+                  <span className="admin__table-text admin__table-text_place_requests">
+                    {item.name}
+                  </span>
+                </div>
+                <div className="admin__table-buttons admin__table-buttons_place_requests">
+                  <button
+                    onClick={handleDeleteClick}
+                    className="admin__table-button admin__table-button_type_delete"
+                  ></button>
                 </div>
               </li>
             ))}
@@ -91,6 +119,41 @@ function AdminRequests({ requests }) {
                       defaultValue={selectedMessage.description}
                     ></textarea>
                   </div>
+                }
+              />
+            </ClosablePopup>
+          )}
+          {delMessage && (
+            <ClosablePopup>
+              <AdminPopup
+                title="Удалить производителя?"
+                onClose={closeAllPopups}
+                popupVisible={popupVisible}
+                setPopupVisible={setPopupVisible}
+                children={
+                  <form
+                    className="admin__form admin__form_type_lead-text"
+                    name="admin-lead"
+                    method="GET"
+                    noValidate
+                  >
+                    <div className="admin__buttons-container">
+                      <button
+                        type="submit"
+                        onClick={handleDeleteMessage}
+                        className="admin__upload-button admin__upload-button_type_select"
+                      >
+                        Удалить
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDelMessage(false)}
+                        className="admin__upload-button admin__upload-button_type_select"
+                      >
+                        Отмена
+                      </button>
+                    </div>
+                  </form>
                 }
               />
             </ClosablePopup>

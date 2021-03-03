@@ -491,6 +491,26 @@
   width: auto;
   margin-right: 20px;
 }
+.admin__table-text-container {
+  display: flex;
+  cursor: pointer;
+  height: 100%;
+  align-items: center;
+}
+.admin__table-item_place_requests {
+  padding: 0;
+  height: 45px;
+  transition: all 0.2s ease-in-out;
+}
+.admin__table-buttons_place_requests {
+  align-self: center!important;
+  padding-top: 5px;
+}
+
+.admin__table-item_place_requests:hover {
+  border-top: 1px solid #27ae60;
+  border-bottom: 1px solid #27ae60;
+}
 .admin__table-buttons {
   justify-self: flex-end;
   align-self: flex-end;

@@ -115,7 +115,7 @@
 
 @media screen and (max-width: 1024px) {
   .portfolio__slider-container {
-    margin: 0 40px;
+    margin: 40px;
   }
 }
 
