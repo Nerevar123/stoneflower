@@ -3,42 +3,36 @@ import { baseUrl, checkError, checkEmailResponse, headers } from "./utils";
 export const getTexts = () => {
   return fetch(`${baseUrl}texts`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
 export const getImages = () => {
   return fetch(`${baseUrl}images`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
 export const getServices = () => {
   return fetch(`${baseUrl}services`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
 export const getAdvices = () => {
   return fetch(`${baseUrl}advices`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
 export const getSuppliers = () => {
   return fetch(`${baseUrl}suppliers`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
 export const getSurfaces = () => {
   return fetch(`${baseUrl}surfaces`, {
     headers: headers,
-    // credentials: "include",
   }).then(checkError);
 };
 
@@ -46,7 +40,7 @@ export const patchText = (text, id) => {
   return fetch(`${baseUrl}texts/${id}`, {
     method: "PATCH",
     headers: headers,
-    // credentials: "include",
+    credentials: "include",
     body: JSON.stringify(text),
   }).then(checkError);
 };
@@ -58,7 +52,7 @@ export const patchImage = (image, id) => {
 
   return fetch(`${baseUrl}images/${id}`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -71,7 +65,7 @@ export const patchService = (service, id) => {
 
   return fetch(`${baseUrl}services/${id}`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -85,7 +79,7 @@ export const saveAdvice = (advice) => {
 
   return fetch(`${baseUrl}advices`, {
     method: "POST",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -99,7 +93,7 @@ export const patchAdvice = (advice, id) => {
 
   return fetch(`${baseUrl}advices/${id}`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -107,7 +101,7 @@ export const patchAdvice = (advice, id) => {
 export const deleteAdvice = (id) => {
   return fetch(`${baseUrl}advices/${id}`, {
     method: "DELETE",
-    // credentials: "include",
+    credentials: "include",
   }).then(checkError);
 };
 
@@ -119,7 +113,7 @@ export const saveSupplier = (supplier) => {
 
   return fetch(`${baseUrl}suppliers`, {
     method: "POST",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -132,7 +126,7 @@ export const patchSupplier = (supplier, id) => {
 
   return fetch(`${baseUrl}suppliers/${id}`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -140,7 +134,7 @@ export const patchSupplier = (supplier, id) => {
 export const deleteSupplier = (id) => {
   return fetch(`${baseUrl}suppliers/${id}`, {
     method: "DELETE",
-    // credentials: "include",
+    credentials: "include",
   }).then(checkError);
 };
 
@@ -153,7 +147,7 @@ export const saveSurface = (supplier) => {
 
   return fetch(`${baseUrl}suppliers`, {
     method: "POST",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -166,7 +160,7 @@ export const patchSurface = (supplier, id) => {
 
   return fetch(`${baseUrl}suppliers/${id}`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -174,7 +168,7 @@ export const patchSurface = (supplier, id) => {
 export const deleteSurface = (id) => {
   return fetch(`${baseUrl}suppliers/${id}`, {
     method: "DELETE",
-    // credentials: "include",
+    credentials: "include",
   }).then(checkError);
 };
 
@@ -189,7 +183,7 @@ export const putSurfaceExample = (supplier, id) => {
 
   return fetch(`${baseUrl}surfaces/${id}/examples`, {
     method: "PUT",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -206,7 +200,7 @@ export const patchSurfaceExample = (supplier, id) => {
 
   return fetch(`${baseUrl}surfaces/${id}/examples`, {
     method: "PATCH",
-    // credentials: "include",
+    credentials: "include",
     body: formData,
   }).then(checkError);
 };
@@ -215,7 +209,7 @@ export const deleteSurfaceExamples = (example, id) => {
   return fetch(`${baseUrl}surfaces/${id}/examples`, {
     method: "DELETE",
     headers: headers,
-    // credentials: "include",
+    credentials: "include",
     body: JSON.stringify(example),
   }).then(checkError);
 };
@@ -223,9 +217,7 @@ export const deleteSurfaceExamples = (example, id) => {
 export const sendEmail = (data) => {
   return fetch(`${baseUrl}email`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: JSON.stringify({
       name: data.name,
       email: data.email,
@@ -234,3 +226,26 @@ export const sendEmail = (data) => {
     }),
   }).then(checkEmailResponse);
 };
+
+export const login = (user) => {
+  return fetch(`${baseUrl}signin`, {
+    method: "POST",
+    headers: headers,
+    credentials: "include",
+    body: JSON.stringify(user),
+  }).then(checkError);
+}
+
+export const checkCookies = () => {
+  return fetch(`${baseUrl}check`, {
+    headers: headers,
+    credentials: "include",
+  }).then(checkError);
+}
+
+export const logout = () => {
+  return fetch(`${baseUrl}logout`, {
+    headers: headers,
+    credentials: "include",
+  }).then(checkError);
+}

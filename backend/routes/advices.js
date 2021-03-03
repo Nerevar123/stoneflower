@@ -7,6 +7,7 @@ const {
   deleteAdvice,
   updateAdvice,
 } = require('../controllers/advices');
+const auth = require('../middlewares/auth');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -31,6 +32,9 @@ const upload = multer({
 }).single('image');
 
 router.get('/', getAdvices);
+
+router.use(auth);
+
 router.post('/', upload, createAdvice);
 router.delete(
   '/:adviceId',

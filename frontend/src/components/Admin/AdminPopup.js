@@ -1,19 +1,9 @@
 import React, { useEffect } from "react";
 
-function AdminPopup({
-  title,
-  popupVisible,
-  setPopupVisible,
-  // name,
-  // buttonText = "Сохранить",
-  // onClose,
-  // onSubmit,
-  // isSaving,
-  children,
-  // isDisabled,
-}) {
+function AdminPopup({ title, popupVisible, setPopupVisible, children }) {
   useEffect(() => {
     setPopupVisible(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div
@@ -25,14 +15,6 @@ function AdminPopup({
         <button className="admin__close-button button"></button>
         <h3 className="admin__popup-title">{title}</h3>
         {children}
-        {/* <Form
-          name={name}
-          onSubmit={onSubmit}
-          isDisabled={isDisabled}
-          isSaving={isSaving}
-          buttonText={buttonText}
-          children={children}
-        /> */}
       </div>
     </div>
   );

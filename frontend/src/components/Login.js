@@ -1,7 +1,7 @@
 import React from "react";
 import Label from "./Label";
 
-function Login({ validation, isSaving, onAuthorize }) {
+function Login({ validation, onAuthorize }) {
   const { values, errors, isValid, resetForm } = validation;
 
   React.useEffect(() => {
@@ -30,7 +30,7 @@ function Login({ validation, isSaving, onAuthorize }) {
             validation={validation}
             className="login"
             name="email"
-            labelText="Заголовок"
+            labelText="Логин"
             placeholder="Email"
             type="email"
             required
@@ -40,7 +40,7 @@ function Login({ validation, isSaving, onAuthorize }) {
             validation={validation}
             className="login"
             name="password"
-            labelText="Заголовок"
+            labelText="Пароль"
             placeholder="Пароль"
             type="password"
             required
@@ -62,7 +62,7 @@ function Login({ validation, isSaving, onAuthorize }) {
             !isValid ? "login__save-button_disabled" : ""
           }`}
         >
-          Сохранить
+          Войти
         </button>
       </form>
     </section>

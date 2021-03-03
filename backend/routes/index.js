@@ -7,24 +7,14 @@ const imageRouter = require('./images');
 const supplierRouter = require('./suppliers');
 const surfaceRouter = require('./surfaces');
 
-// const { register, login, logout } = require('../controllers/users');
-// const auth = require('../middlewares/auth');
+const {
+  register, login, logout, checkCookies,
+} = require('../controllers/users');
+const auth = require('../middlewares/auth');
 const { notFoundErrorMessage } = require('../utils/constants');
 
-// app.post('/signin', celebrate({
-//   body: Joi.object().keys({
-//     email: Joi.string().email().required(),
-//     password: Joi.string().min(4).required().pattern(/^\S+$/),
-//   }),
-// }), login);
-// app.post('/signup', celebrate({
-//   body: Joi.object().keys({
-//     email: Joi.string().email().required(),
-//     password: Joi.string().min(4).required().pattern(/^\S+$/),
-//   }).unknown(true),
-// }), createUser);
-
-// router.use(auth);
+router.post('/signin', login);
+router.post('/signup', register);
 
 router.use('/email', emailRouter);
 router.use('/services', serviceRouter);
@@ -34,7 +24,10 @@ router.use('/images', imageRouter);
 router.use('/suppliers', supplierRouter);
 router.use('/surfaces', surfaceRouter);
 
-// router.use('/logout', logout);
+router.use(auth);
+
+router.get('/check', checkCookies);
+router.get('/logout', logout);
 
 router.use('*', (req, res) => {
   res.status(404).send({ message: notFoundErrorMessage });

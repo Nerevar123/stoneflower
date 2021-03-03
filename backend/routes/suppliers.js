@@ -7,6 +7,7 @@ const {
   deleteSupplier,
   updateSupplier,
 } = require('../controllers/suppliers');
+const auth = require('../middlewares/auth');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -31,6 +32,9 @@ const upload = multer({
 }).single('image');
 
 router.get('/', getSuppliers);
+
+router.use(auth);
+
 router.post('/', upload, createSupplier);
 router.delete(
   '/:supplierId',

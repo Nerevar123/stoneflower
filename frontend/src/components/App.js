@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Router, Route, useHistory, Switch } from "react-router-dom";
+import { Router, Route, useHistory, Switch, Redirect } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Admin from "./Admin/Admin";
@@ -11,11 +11,12 @@ import Advices from "./Advices";
 import Portfolio from "./Portfolio";
 import Contacts from "./Contacts";
 import ModalWithImage from "./ModalWithImage";
-import PageNotFound from "./PageNotFound";
 import ModalWithLink from "./ModalWithLink";
 import useWindowSize from "../hooks/useWindowSize";
 import Breadcrumbs from "./Breadcrumbs";
 import PortfolioItem from "./PortfolioItem";
+import ProtectedRoute from "./ProtectedRoute";
+import Preloader from "./Preloader";
 
 import {
   getServices,
@@ -24,6 +25,9 @@ import {
   getImages,
   getSuppliers,
   getSurfaces,
+  login,
+  logout,
+  checkCookies,
 } from "../utils/api";
 import {
   // servicesItems,
@@ -85,7 +89,7 @@ function App() {
   const [modalLink, setModalLink] = useState();
   const size = useWindowSize();
   const [portfolioItem, setPortfolioItem] = useState(null);
-  // const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   //safari compatibility;
   smoothscroll.polyfill();
 
@@ -121,6 +125,15 @@ function App() {
         setAdvicesContent(advices);
         setSuppliersContent(suppliers);
         setSurfacesContent(surfaces);
+      })
+      .then(() => {
+        checkCookies()
+          .then(() => {
+            setIsLoggedIn(true);
+          })
+          .catch((err) => {
+            setIsLoggedIn(false);
+          });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -178,25 +191,33 @@ function App() {
     }, 300);
   }
 
-  // function handleLogin(user) {
-  //   setIsSaving(true);
-  //   api
-  //     .login(user)
-  //     .then((user) => {
-  //       setIsLoggedIn(true);
-  //     })
-  //     .catch((err) => {
-  //       if (typeof err === "object") {
-  //         validation.setErrors({ submit: "Ошибка сервера" });
-  //       } else {
-  //         validation.setErrors({ submit: err });
-  //       }
-  //       console.log(err);
-  //     })
-  //     .finally(() => {
-  //       setIsSaving(false);
-  //     });
-  // }
+  function handleLogin(user) {
+    login(user)
+      .then(() => {
+        setIsLoggedIn(true);
+        history.push("/admin");
+      })
+      .catch((err) => {
+        if (typeof err === "object") {
+          validation.setErrors({ submit: "Ошибка сервера" });
+        } else {
+          validation.setErrors({ submit: err });
+        }
+        console.log(err);
+      })
+      .finally(() => {});
+  }
+
+  function handleLogout() {
+    logout()
+      .then(() => {
+        setIsLoggedIn(false);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleSaveData(data, handler) {
     handler(data)
@@ -225,6 +246,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
   const handleRequestButtonClick = () => {
     setTimeout(() => {
       const offset = -80;
@@ -234,7 +256,8 @@ function App() {
         offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
-  }
+  };
+
   const handleMainLinkClick = () => {
     setTimeout(() => {
       const offset = 0;
@@ -244,6 +267,10 @@ function App() {
         offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
+  };
+
+  if (isLoggedIn === null) {
+    return <Preloader />;
   }
 
   return (
@@ -251,7 +278,10 @@ function App() {
       <Router history={history} basename="/">
         <Switch>
           <Route exact path="/">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <Main
               showModalWithImage={showModalWithImage}
               showModalWithConfirmation={showModalWithConfirmation}
@@ -274,7 +304,10 @@ function App() {
             />
           </Route>
           <Route exact path="/surfaces">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/surfaces" name="Поверхности" />
               {surfacesContent && (
@@ -298,7 +331,10 @@ function App() {
             </main>
           </Route>
           <Route path="/portfolio">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs
                 link="/portfolio"
@@ -315,19 +351,29 @@ function App() {
                 />
               </Route>
               <Route exact path="/portfolio/:itemId">
-                <PortfolioItem content={portfolioContentNew} showModal={ShowModalWithCarousel} isModalWithCarouselOpen={isModalWithCarouselOpen}></PortfolioItem>
+                <PortfolioItem
+                  content={portfolioContentNew}
+                  showModal={ShowModalWithCarousel}
+                  isModalWithCarouselOpen={isModalWithCarouselOpen}
+                ></PortfolioItem>
               </Route>
             </main>
           </Route>
           <Route exact path="/advices">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
           </Route>
           <Route exact path="/contacts">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/contacts" name="Контакты" />
               {images && (
@@ -339,37 +385,40 @@ function App() {
             </main>
           </Route>
           <Route exact path="/login">
-            <Login validation={validation} />
+            <Login validation={validation} onAuthorize={handleLogin} />
           </Route>
-          <Route exact path="/admin">
-            {/* <ProtectedRoute exact path="/admin" loggedIn={isLoggedIn}> */}
-            <Admin
-              adminItems={adminItems}
-              validation={validation}
-              onSaveData={handleSaveData}
-              onPatchData={handlePatchData}
-              onDeleteData={handleDeleteData}
-              leadContent={leadContent}
-              images={images}
-              services={services}
-              advantagesText={advantagesText}
-              disadvantagesText={disadvantagesContent}
-              phasesText={phasesText}
-              phasesIcons={phasesIcons}
-              pricingContent={pricingContent}
-              contactsContent={contactsContent}
-              advices={advicesContent}
-              postFormContent={postFormContent}
-              suppliers={suppliersContent}
-              suppliersTextContent={suppliersTextContent}
-              surfacesTextContent={surfacesTextContent}
-              surfaces={surfacesContent}
-            />
-            {/* </ProtectedRoute> */}
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
+          {isLoggedIn === true && (
+            <>
+              <ProtectedRoute path="/admin" loggedIn={isLoggedIn}>
+                <Admin
+                  adminItems={adminItems}
+                  validation={validation}
+                  onSaveData={handleSaveData}
+                  onPatchData={handlePatchData}
+                  onDeleteData={handleDeleteData}
+                  onLogout={handleLogout}
+                  leadContent={leadContent}
+                  images={images}
+                  services={services}
+                  advantagesText={advantagesText}
+                  disadvantagesText={disadvantagesContent}
+                  phasesText={phasesText}
+                  phasesIcons={phasesIcons}
+                  pricingContent={pricingContent}
+                  contactsContent={contactsContent}
+                  advices={advicesContent}
+                  postFormContent={postFormContent}
+                  suppliers={suppliersContent}
+                  suppliersTextContent={suppliersTextContent}
+                  surfacesTextContent={surfacesTextContent}
+                  surfaces={surfacesContent}
+                />
+              </ProtectedRoute>
+            </>
+          )}
+          {isLoggedIn === false && (
+            <Route>{isLoggedIn ? "" : <Redirect to="/" />}</Route>
+          )}
         </Switch>
       </Router>
       <Footer content={contactsContent} />
