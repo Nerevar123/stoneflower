@@ -28,6 +28,7 @@ import {
   login,
   logout,
   checkCookies,
+  getEmails,
 } from "../utils/api";
 import {
   // servicesItems,
@@ -106,13 +107,15 @@ function App() {
       getImages(),
       getSuppliers(),
       getSurfaces(),
+      getEmails(),
     ])
-      .then(([services, texts, advices, images, suppliers, surfaces]) => {
+      .then(([services, texts, advices, images, suppliers, surfaces, emails]) => {
         Object.keys(images).map((key) => {
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
           return images;
         });
+        setRequestsItems(emails)
         setImages(images);
         setPostFormContent(texts.postForm);
         setPricingContent(texts.pricing);
