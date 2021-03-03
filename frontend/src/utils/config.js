@@ -888,3 +888,32 @@ export const portfolioContentRaw = [
     ],
   },
 ];
+export const requests = [
+  {
+    _id: "602ef5ccd33788f4aa6f5aa6",
+    name: "John Doe",
+    phone: "+79001002030",
+    email: "john@doe.ru",
+    text:
+      "Привет как дела, нужен подоконник побрацки, шоб прочный и красивый жи есть",
+    date:'2020-12-31 16:21'
+  },
+  {
+    _id: "602ef5ccd33788f4aa6f5aa4",
+    name: "Jane Doe",
+    phone: "+79001002031",
+    email: "jane@doe.ru",
+    text:
+      "Сделайте красиво",
+      date:'2020-12-32 16:77',
+  },
+  {
+    _id: "602ef5ccd33788f4aa6f5aa3",
+    name: "Mark Epstein",
+    phone: "+79001002032",
+    email: "mark@freedomains.com",
+    text: "אני רוצה אדן חלון זול, אני לא רוצה לשלם",
+    date:'2020-12-31 17:05'
+  },
+];
+
