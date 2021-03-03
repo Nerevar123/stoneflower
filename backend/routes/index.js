@@ -8,7 +8,7 @@ const supplierRouter = require('./suppliers');
 const surfaceRouter = require('./surfaces');
 
 const {
-  register, login, logout, checkCookies,
+  register, login, logout,
 } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const { notFoundErrorMessage } = require('../utils/constants');
@@ -26,7 +26,7 @@ router.use('/surfaces', surfaceRouter);
 
 router.use(auth);
 
-router.get('/check', checkCookies);
+// router.get('/check', checkCookies);
 router.get('/logout', logout);
 
 router.use('*', (req, res) => {

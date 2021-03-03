@@ -27,7 +27,7 @@ import {
   getSurfaces,
   login,
   logout,
-  checkCookies,
+  // checkCookies,
   getEmails,
 } from "../utils/api";
 import {
@@ -107,15 +107,13 @@ function App() {
       getImages(),
       getSuppliers(),
       getSurfaces(),
-      getEmails(),
     ])
-      .then(([services, texts, advices, images, suppliers, surfaces, emails]) => {
+      .then(([services, texts, advices, images, suppliers, surfaces]) => {
         Object.keys(images).map((key) => {
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
           return images;
         });
-        setRequestsItems(emails)
         setImages(images);
         setPostFormContent(texts.postForm);
         setPricingContent(texts.pricing);
@@ -132,9 +130,10 @@ function App() {
         setSurfacesContent(surfaces);
       })
       .then(() => {
-        checkCookies()
-          .then(() => {
+        getEmails()
+          .then((emails) => {
             setIsLoggedIn(true);
+            setRequestsItems(emails);
           })
           .catch((err) => {
             setIsLoggedIn(false);
@@ -263,6 +262,7 @@ function App() {
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
   };
+
   const handleMainLinkClick = () => {
     setTimeout(() => {
       const offset = 0;
