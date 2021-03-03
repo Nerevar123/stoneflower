@@ -257,7 +257,6 @@ function App() {
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
   };
-
   const handleMainLinkClick = () => {
     setTimeout(() => {
       const offset = 0;
@@ -272,7 +271,7 @@ function App() {
   if (isLoggedIn === null) {
     return <Preloader />;
   }
-
+  
   return (
     <>
       <Router history={history} basename="/">
@@ -339,7 +338,6 @@ function App() {
               <Breadcrumbs
                 link="/portfolio"
                 name="Портфолио"
-                portfolioItem={portfolioItem}
               />
               <Route exact path="/portfolio">
                 <Portfolio
@@ -350,7 +348,7 @@ function App() {
                   setPortfolioItem={setPortfolioItem}
                 />
               </Route>
-              <Route exact path="/portfolio/:itemId">
+              <Route path="/portfolio/items/:itemId">
                 <PortfolioItem
                   content={portfolioContentNew}
                   showModal={ShowModalWithCarousel}

@@ -738,7 +738,7 @@ export const adminItems = [
 
 export const portfolioContentRaw = [
   {
-    _id: "602ef490d33788f4aa6f5aa0",
+    _id: "602ef490d33788f4aa6f5aa9",
     title: "Стол обеденный",
     category: "Мебель",
     text: `Стол обеденный 140х90х75 см (под заказ размер до 310х110 см):
