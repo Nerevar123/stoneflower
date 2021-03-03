@@ -2,18 +2,12 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 function ProtectedRoute(props) {
-  const { children, path, ...rest } = props;
-
-  React.useEffect(() => {
-    if (!props.loggedIn) {
-      props.setLoginClick(true);
-    }
-  }, [props]);
+  const { children, path, loggedIn, ...rest } = props;
 
   return (
     <Route path={path}>
       {() =>
-        props.loggedIn ? (
+        loggedIn ? (
           <>{React.cloneElement(children, { ...rest })}</>
         ) : (
           <Redirect to="/" />

@@ -9,6 +9,7 @@ const {
   putSurfaceExamples,
   deleteSurfaceExamples,
 } = require('../controllers/surfaces');
+const auth = require('../middlewares/auth');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -33,6 +34,9 @@ const upload = multer({
 }).single('image');
 
 router.get('/', getSurfaces);
+
+router.use(auth);
+
 router.post(
   '/',
   celebrate({

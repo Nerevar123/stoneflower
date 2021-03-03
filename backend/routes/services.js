@@ -8,6 +8,7 @@ const {
   deleteService,
   updateService,
 } = require('../controllers/services');
+const auth = require('../middlewares/auth');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -33,6 +34,9 @@ const upload = multer({
 }).single('image');
 
 router.get('/', getServices);
+
+router.use(auth);
+
 router.post(
   '/',
   upload,

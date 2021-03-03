@@ -6,8 +6,12 @@ const {
   deleteText,
   updateText,
 } = require('../controllers/texts');
+const auth = require('../middlewares/auth');
 
 router.get('/', getTexts);
+
+router.use(auth);
+
 router.post(
   '/',
   celebrate({

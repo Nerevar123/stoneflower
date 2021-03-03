@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 function Portfolio({ portfolioContentNew, setPortfolioItem }) {
   useEffect(() => {
     setPortfolioItem(null);
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

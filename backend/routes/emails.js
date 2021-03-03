@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { sendMail, deleteEmail } = require('../controllers/emails');
+const auth = require('../middlewares/auth');
 
 router.post(
   '/',
@@ -14,6 +15,9 @@ router.post(
   }),
   sendMail,
 );
+
+router.use(auth);
+
 router.delete(
   '/:emailId',
   celebrate({

@@ -27,7 +27,8 @@
     "nodemailer": "^6.4.17",
     "validator": "^13.5.2",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.0"
+    "winston-daily-rotate-file": "^4.5.0",
+    "yn": "^4.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
