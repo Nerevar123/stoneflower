@@ -21,10 +21,10 @@ router.use(auth);
 router.get('/', getEmails);
 
 router.delete(
-  '/:emailId',
+  '/:mailId',
   celebrate({
     params: Joi.object().keys({
-      emailId: Joi.string().alphanum().length(24),
+      mailId: Joi.string().alphanum().length(24),
     }),
   }),
   deleteEmail,
