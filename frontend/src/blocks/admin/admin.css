@@ -524,6 +524,9 @@
   max-width: 100%;
   min-width: 100%;
 }
+.admin__table-text-container {
+  cursor: pointer;
+}
 
 .admin__table-button_type_edit {
   background-image: url("../../images/icons/admin-edit-icon.svg");

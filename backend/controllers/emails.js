@@ -73,7 +73,7 @@ module.exports.getEmails = (req, res, next) => {
 };
 
 module.exports.deleteEmail = (req, res, next) => {
-  Email.findByIdAndRemove(req.params.cardId)
+  Email.findByIdAndRemove(req.params.mailId)
     .then((email) => res.send(email))
     .catch(next);
 };
