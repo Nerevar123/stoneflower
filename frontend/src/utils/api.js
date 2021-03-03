@@ -227,6 +227,20 @@ export const sendEmail = (data) => {
   }).then(checkEmailResponse);
 };
 
+export const getEmails = () => {
+  return fetch(`${baseUrl}email`, {
+    headers: headers,
+    credentials: "include",
+  }).then(checkError);
+};
+
+export const deleteEmail = (id) => {
+  return fetch(`${baseUrl}email/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  }).then(checkError);
+};
+
 export const login = (user) => {
   return fetch(`${baseUrl}signin`, {
     method: "POST",
