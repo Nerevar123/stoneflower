@@ -65,7 +65,7 @@ function AdminRequests({ requests, onDeleteData }) {
           </div>
           <ul className="admin__table admin__table_place_requests">
             {requests.map((item) => (
-              <li className="admin__table-item" key={item._id} id={item._id}>
+              <li className="admin__table-item admin__table-item_place_requests" key={item._id} id={item._id}>
                 <div
                   className="admin__table-text-container"
                   onClick={handleMessageItemClick}
@@ -80,7 +80,7 @@ function AdminRequests({ requests, onDeleteData }) {
                     {item.name}
                   </span>
                 </div>
-                <div className="admin__table-buttons">
+                <div className="admin__table-buttons admin__table-buttons_place_requests">
                   <button
                     onClick={handleDeleteClick}
                     className="admin__table-button admin__table-button_type_delete"
