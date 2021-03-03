@@ -8,8 +8,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function PortfolioItem({ content, showModal, isModalWithCarouselOpen }) {
-const size = useWindowSize();
+  const size = useWindowSize();
+  const [item, setItem] = useState(null);
+  const [photos, setPhotos] = useState(null);
   const [textExpanded, setTextExpanded] = useState(false);
+
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
@@ -68,34 +71,44 @@ const size = useWindowSize();
   };
 
   const params = useParams();
-  const [item, setItem] = useState();
+
+
   useEffect(() => {
-    const selectedElement = content.find((el) => el._id === params.itemId);
+    if(content && params.itemId) {
+     const selectedElement = content.find((el) => el._id === params.itemId);
+
     setItem(selectedElement);
+    }
   }, [content, params]);
+  useEffect(() => {
+    if (item) {
+      setPhotos(item.photos);
+    }
+  }, [item]);
   return (
     <article className="portfolio">
-      {item && (
+      {item && params && (
         <>
           <h2 className="content__title content__title_place_portfolio">
             {item.title}
           </h2>
           <div className="portfolio__slider-container">
             <Slider {...settings}>
-              {item.photos.map((element) => (
-                <div key={element._id} className="portfolio__slide">
-                  <img
-                    alt="Слайд портфолио"
-                    id={element._id}
-                    src={element.image.image}
-                    className="portfolio__image"
-                    draggable="false"
-                    onClick={(evt) => {
-                      handleImageClick(evt, item);
-                    }}
-                  />
-                </div>
-              ))}
+              {photos &&
+                photos.map((element) => (
+                  <div key={element._id} className="portfolio__slide">
+                    <img
+                      alt="Слайд портфолио"
+                      id={element._id}
+                      src={element.image.image}
+                      className="portfolio__image"
+                      draggable="false"
+                      onClick={(evt) => {
+                        handleImageClick(evt, item);
+                      }}
+                    />
+                  </div>
+                ))}
             </Slider>
           </div>
           <div className="content__text-container content__text-container_place_advices">
@@ -111,7 +124,9 @@ const size = useWindowSize();
                 textExpanded ? "content__expand-container_opened" : ""
               }`}
             >
-              <p className="content__text content__text_place_portfolio">{item.text}</p>
+              <p className="content__text content__text_place_portfolio">
+                {item.text}
+              </p>
             </div>
           </div>
         </>

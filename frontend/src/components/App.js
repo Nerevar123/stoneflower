@@ -234,7 +234,7 @@ function App() {
         offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
-  }
+  };
   const handleMainLinkClick = () => {
     setTimeout(() => {
       const offset = 0;
@@ -244,14 +244,17 @@ function App() {
         offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
-  }
+  };
 
   return (
     <>
       <Router history={history} basename="/">
         <Switch>
           <Route exact path="/">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <Main
               showModalWithImage={showModalWithImage}
               showModalWithConfirmation={showModalWithConfirmation}
@@ -274,7 +277,10 @@ function App() {
             />
           </Route>
           <Route exact path="/surfaces">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/surfaces" name="Поверхности" />
               {surfacesContent && (
@@ -298,12 +304,14 @@ function App() {
             </main>
           </Route>
           <Route path="/portfolio">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs
                 link="/portfolio"
                 name="Портфолио"
-                portfolioItem={portfolioItem}
               />
               <Route exact path="/portfolio">
                 <Portfolio
@@ -314,20 +322,30 @@ function App() {
                   setPortfolioItem={setPortfolioItem}
                 />
               </Route>
-              <Route exact path="/portfolio/:itemId">
-                <PortfolioItem content={portfolioContentNew} showModal={ShowModalWithCarousel} isModalWithCarouselOpen={isModalWithCarouselOpen}></PortfolioItem>
+              <Route path="/portfolio/items/:itemId">
+                <PortfolioItem
+                  content={portfolioContentNew}
+                  showModal={ShowModalWithCarousel}
+                  isModalWithCarouselOpen={isModalWithCarouselOpen}
+                ></PortfolioItem>
               </Route>
             </main>
           </Route>
           <Route exact path="/advices">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
           </Route>
           <Route exact path="/contacts">
-            <Header handleRequestButtonClick={handleRequestButtonClick} handleMainLinkClick={handleMainLinkClick}/>
+            <Header
+              handleRequestButtonClick={handleRequestButtonClick}
+              handleMainLinkClick={handleMainLinkClick}
+            />
             <main className="content">
               <Breadcrumbs link="/contacts" name="Контакты" />
               {images && (
