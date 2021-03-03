@@ -8,6 +8,7 @@ const {
   deleteImage,
   updateImage,
 } = require('../controllers/images');
+const auth = require('../middlewares/auth');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -32,6 +33,9 @@ const upload = multer({
 }).single('image');
 
 router.get('/', getImages);
+
+router.use(auth);
+
 router.post('/', upload, saveImage);
 router.delete(
   '/:imageId',

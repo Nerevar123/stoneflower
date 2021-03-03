@@ -14,7 +14,10 @@ function Header({ handleRequestButtonClick, handleMainLinkClick }) {
   const size = useWindowSize();
   return (
     <header className={`header ${menuOpened ? "open" : ""}`}>
-      <img className="header__logo logo" src={header__logo} alt="Логотип" />
+      <Link to="/" onClick={handleMainLinkClick}>
+        <img className="header__logo logo" src={header__logo} alt="Логотип" />
+      </Link>
+
       {size.width > 849 && (
         <>
           <nav className="header__links">

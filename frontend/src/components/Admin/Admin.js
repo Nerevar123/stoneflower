@@ -34,6 +34,7 @@ function Admin({
   suppliersTextContent,
   surfaces,
   surfacesTextContent,
+  onLogout,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -114,7 +115,10 @@ function Admin({
             {item.content}
           </button>
         ))}
-        <button className="admin__button admin__button_type_logout">
+        <button
+          className="admin__button admin__button_type_logout"
+          onClick={onLogout}
+        >
           Выйти
         </button>
         <div
