@@ -126,7 +126,7 @@ function AdminRequests({ requests, onDeleteData }) {
           {delMessage && (
             <ClosablePopup>
               <AdminPopup
-                title="Удалить производителя?"
+                title="Удалить заявку?"
                 onClose={closeAllPopups}
                 popupVisible={popupVisible}
                 setPopupVisible={setPopupVisible}
