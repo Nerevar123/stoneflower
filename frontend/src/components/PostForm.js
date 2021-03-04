@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import cn from "classnames";
 import * as Yup from "yup";
 import "yup-phone";
+import sendEmail from '../utils/api';
 
 function PostForm({ content, offer, showModal, formRef }) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -13,10 +14,13 @@ function PostForm({ content, offer, showModal, formRef }) {
     description: "",
   };
 
-  const handleSubmit = (values) =>
+  const handleSubmit = (values) =>{
+      console.log(values);
     new Promise((resolve, reject) => {
-      resolve(true);
+
+      // sendEmail()
     });
+  }
 
   const validationSchema = Yup.object({
     name: Yup.string()

@@ -141,7 +141,7 @@ function App() {
           });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
@@ -307,6 +307,7 @@ function App() {
               formRef={formRef}
               mainRef={mainRef}
             />
+          <Footer content={contactsContent} />
           </Route>
           <Route exact path="/surfaces">
             <Header
@@ -334,6 +335,7 @@ function App() {
                 </>
               )}
             </main>
+            <Footer content={contactsContent} />
           </Route>
           <Route path="/portfolio">
             <Header
@@ -360,6 +362,7 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
+            <Footer content={contactsContent} />
           </Route>
           <Route exact path="/advices">
             <Header
@@ -370,6 +373,7 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
+            <Footer content={contactsContent} />
           </Route>
           <Route exact path="/contacts">
             <Header
@@ -385,6 +389,7 @@ function App() {
                 />
               )}
             </main>
+            <Footer content={contactsContent} />
           </Route>
           <Route exact path="/login">
             <Login validation={validation} onAuthorize={handleLogin} />
@@ -425,7 +430,7 @@ function App() {
           )}
         </Switch>
       </Router>
-      <Footer content={contactsContent} />
+
       {isModalWithImageOpen && (
         <ModalWithImage closeModal={closeModal} image={modalImage} />
       )}
