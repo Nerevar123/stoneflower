@@ -469,20 +469,35 @@ function AdminSurfaces({
                     {picture ? picture.name : ""}
                   </p>
                 </div>
-                <button
-                  type="submit"
-                  onClick={handleAddPopupButtonClick}
-                  className={`admin__upload-button admin__upload-button_type_select ${
-                    isUploading ? "admin__upload-button_state_uploading" : ""
-                  } ${
-                    isPictureSelected
-                      ? "admin__upload-button_state_uploaded"
-                      : ""
-                  }`}
-                >
-                  {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                </button>
-                <div className="admin__buttons-container"></div>
+                <div className="admin__buttons-container">
+                  {!isPictureSelected && (
+                    <button
+                      type="submit"
+                      onClick={handleAddPopupButtonClick}
+                      className={`admin__upload-button admin__upload-button_type_select ${
+                        isUploading
+                          ? "admin__upload-button_state_uploading"
+                          : ""
+                      } ${
+                        isPictureSelected
+                          ? "admin__upload-button_state_uploaded"
+                          : ""
+                      }`}
+                    >
+                      {isPictureSelected ? "Сохранить" : "Выбрать файл"}
+                    </button>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={!isValid}
+                    onClick={handleEditSurface}
+                    className={`admin__upload-button admin__upload-button_type_select ${
+                      !isValid ? "admin__upload-button_disabled" : ""
+                    }`}
+                  >
+                    Сохранить
+                  </button>
+                </div>
               </form>
             }
           />
@@ -583,6 +598,7 @@ function AdminSurfaces({
                     {picture ? picture.name : ""}
                   </p>
                 </div>
+                <div className="admin__buttons-container">
                 {!isPictureSelected && (
                   <button
                     type="submit"
@@ -598,7 +614,6 @@ function AdminSurfaces({
                     {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                   </button>
                 )}
-                {isPictureSelected && (
                   <button
                     type="submit"
                     disabled={!isValid}
@@ -609,8 +624,7 @@ function AdminSurfaces({
                   >
                     Сохранить
                   </button>
-                )}
-                <div className="admin__buttons-container"></div>
+                </div>
               </form>
             }
           />

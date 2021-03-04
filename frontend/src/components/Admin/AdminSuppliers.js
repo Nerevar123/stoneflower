@@ -362,10 +362,11 @@ function AdminSuppliers({
           className="admin__preview-container"
           style={{ minWidth: `${preview ? "1100px" : "0"}` }}
         >
-           {preview && (
-          <button onClick={scrollToMenu} className="admin__go-back">
-            Назад
-          </button> )}
+          {preview && (
+            <button onClick={scrollToMenu} className="admin__go-back">
+              Назад
+            </button>
+          )}
           {preview && (
             <Suppliers content={suppliers} textContent={compiledData} />
           )}
@@ -500,22 +501,24 @@ function AdminSuppliers({
                     {picture ? picture.name : ""}
                   </p>
                 </div>
-                {!isPictureSelected && (
-                  <button
-                    type="submit"
-                    onClick={handleEditPopupButtonClick}
-                    className={`admin__upload-button admin__upload-button_type_select ${
-                      isUploading ? "admin__upload-button_state_uploading" : ""
-                    } ${
-                      isPictureSelected
-                        ? "admin__upload-button_state_uploaded"
-                        : ""
-                    }`}
-                  >
-                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                  </button>
-                )}
-                {isPictureSelected && (
+                <div className="admin__buttons-container">
+                  {!isPictureSelected && (
+                    <button
+                      type="submit"
+                      onClick={handleEditPopupButtonClick}
+                      className={`admin__upload-button admin__upload-button_type_select ${
+                        isUploading
+                          ? "admin__upload-button_state_uploading"
+                          : ""
+                      } ${
+                        isPictureSelected
+                          ? "admin__upload-button_state_uploaded"
+                          : ""
+                      }`}
+                    >
+                      Выбрать файл
+                    </button>
+                  )}
                   <button
                     type="submit"
                     disabled={!isValid}
@@ -526,8 +529,8 @@ function AdminSuppliers({
                   >
                     Сохранить
                   </button>
-                )}
-                <div className="admin__buttons-container"></div>
+
+                </div>
               </form>
             }
           />
