@@ -25,9 +25,9 @@ import {
   getImages,
   getSuppliers,
   getSurfaces,
+  getPortfolio,
   login,
   logout,
-  // checkCookies,
   getEmails,
 } from "../utils/api";
 import {
@@ -43,12 +43,12 @@ import {
   // pricing,
   // surfaces,
   // advices
-  portfolio,
+  // portfolio,
   // suppliers,
   // postForm,
   // contacts,
-  portfolioContentRaw,
-  requests,
+  // portfolioContentRaw,
+  // requests,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
@@ -76,7 +76,6 @@ function App() {
   const [surfacesContent, setSurfacesContent] = useState(null);
   const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
-  const [portfolioContentNew, setPortfolioContentNew] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState(null);
   const [postFormContent, setPostFormContent] = useState({});
@@ -107,8 +106,9 @@ function App() {
       getImages(),
       getSuppliers(),
       getSurfaces(),
+      getPortfolio(),
     ])
-      .then(([services, texts, advices, images, suppliers, surfaces]) => {
+      .then(([services, texts, advices, images, suppliers, surfaces, portfolio]) => {
         Object.keys(images).map((key) => {
           images[key].path =
             process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
@@ -128,6 +128,7 @@ function App() {
         setAdvicesContent(advices);
         setSuppliersContent(suppliers);
         setSurfacesContent(surfaces);
+        setPortfolioContent(portfolio);
       })
       .then(() => {
         getEmails()
@@ -150,7 +151,7 @@ function App() {
     // setPhasesText(phasesTextContent);
     // setSurfacesContent(surfaces);
     // setAdvicesContent(advices);
-    setPortfolioContent(portfolio);
+    // setPortfolioContent(portfolioContentRaw);
     // setSuppliersContent(suppliers);
     // setLeadContent(lead)
     // setPostFormContent(postForm);
@@ -158,8 +159,7 @@ function App() {
     // setPricingContent(pricing);
     // setAdvantagesText(advantagesTextContent);
     // setContactsContent(contacts);
-    setPortfolioContentNew(portfolioContentRaw);
-    setRequestsItems(requests);
+    // setRequestsItems(requests);
   }, []);
 
   function showModalWithImage(image) {
@@ -349,15 +349,12 @@ function App() {
               <Route exact path="/portfolio">
                 <Portfolio
                   content={portfolioContent}
-                  showModal={ShowModalWithCarousel}
-                  isModalWithCarouselOpen={isModalWithCarouselOpen}
-                  portfolioContentNew={portfolioContentNew}
                   setPortfolioItem={setPortfolioItem}
                 />
               </Route>
               <Route path="/portfolio/items/:itemId">
                 <PortfolioItem
-                  content={portfolioContentNew}
+                  content={portfolioContent}
                   showModal={ShowModalWithCarousel}
                   isModalWithCarouselOpen={isModalWithCarouselOpen}
                 ></PortfolioItem>
@@ -418,6 +415,7 @@ function App() {
                   surfacesTextContent={surfacesTextContent}
                   surfaces={surfacesContent}
                   requests={requestsItems}
+                  portfolio={portfolioContent}
                 />
               </ProtectedRoute>
             </>
@@ -447,12 +445,7 @@ function App() {
         />
       )}
       {isModalWithConfirmationOpen && (
-        <ModalWithConfirmation
-          isModalWithCarouselOpen={isModalWithCarouselOpen}
-          closeModal={closeModal}
-          content={portfolioContent}
-          initialSlide={modalInitialSlide}
-        />
+        <ModalWithConfirmation closeModal={closeModal} />
       )}
     </>
   );

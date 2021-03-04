@@ -617,21 +617,6 @@ export const surfaces = {
 //   },
 // ];
 
-export const portfolio = [
-  {
-    image: portfolio_1,
-    _id: 0,
-  },
-  {
-    image: portfolio_2,
-    _id: 1,
-  },
-  {
-    image: portfolio_3,
-    _id: 2,
-  },
-];
-
 // export const suppliers = {
 //   heading: "Производители",
 //   subheadingMaterials: "Мы работаем с лучшими материалами:",

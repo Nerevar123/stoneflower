@@ -3,11 +3,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-function Portfolio({ portfolioContentNew, setPortfolioItem }) {
+function Portfolio({ content, setPortfolioItem }) {
   useEffect(() => {
     setPortfolioItem(null);
-    window.scrollTo({ top: 0})
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.scrollTo({ top: 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -16,8 +16,8 @@ function Portfolio({ portfolioContentNew, setPortfolioItem }) {
         Портфолио
       </h2>
       <ul className="portfolio__items">
-        {portfolioContentNew &&
-          portfolioContentNew.map((portfolioItem) => (
+        {content &&
+          content.map((portfolioItem) => (
             <li className="portfolio__item" key={portfolioItem._id}>
               <Link
                 className="portfolio__link"
@@ -38,7 +38,12 @@ function Portfolio({ portfolioContentNew, setPortfolioItem }) {
               </Link>
               <img
                 className="portfolio__item-image"
-                src={portfolioItem.photos[0].image.image}
+                src={
+                  portfolioItem.photos[0].image.path
+                    ? process.env.REACT_APP_URL +
+                      portfolioItem.photos[0].image.path
+                    : portfolioItem.photos[0].image
+                }
                 alt="Изображение портфолио"
               />
             </li>

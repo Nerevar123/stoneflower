@@ -9,7 +9,7 @@ import AdminPricing from "./AdminPricing";
 import AdminAdvices from "./AdminAdvices";
 import AdminContacts from "./AdminContacts";
 import AdminPostForm from "./AdminPostForm";
-// import AdminPortfolio from "./AdminPortfolio";
+import AdminPortfolio from "./AdminPortfolio";
 import AdminSuppliers from "./AdminSuppliers";
 import AdminSurfaces from "./AdminSurfaces";
 import AdminRequests from "./AdminRequests";
@@ -37,6 +37,7 @@ function Admin({
   surfacesTextContent,
   onLogout,
   requests,
+  portfolio,
 }) {
   const [selectedItem, setSelectedItem] = useState("requests");
   const [offset, setOffset] = useState(106);
@@ -128,11 +129,17 @@ function Admin({
           style={{ transform: `translateY(${offset}px)` }}
         ></div>
       </div>
-      <div className="admin__edit-section">
+      <div
+        className={`admin__edit-section ${
+          selectedItem === "requests"
+            ? "admin__edit-section_type_fullscreen"
+            : ""
+        }`}
+      >
         {requests && (
           <>
             {selectedItem === "requests" && (
-              <AdminRequests  onDeleteData={onDeleteData} requests={requests} />
+              <AdminRequests onDeleteData={onDeleteData} requests={requests} />
             )}
           </>
         )}
@@ -234,19 +241,18 @@ function Admin({
             )}
           </>
         )}
-        {/* {images && (
+        {portfolio && (
           <>
             {selectedItem === "portfolio" && (
               <AdminPortfolio
+                menuRef={menuRef}
                 validation={validation}
-                onSaveText={onSaveText}
-                postFormContent={postFormContent}
-                postFormOffer={images.postFormOffer}
-                onSaveImage={onSaveImage}
+                portfolio={portfolio}
+                onPatchData={onPatchData}
               />
             )}
           </>
-        )} */}
+        )}
         {suppliers && (
           <>
             {selectedItem === "suppliers" && (

@@ -36,6 +36,12 @@ export const getSurfaces = () => {
   }).then(checkError);
 };
 
+export const getPortfolio = () => {
+  return fetch(`${baseUrl}works`, {
+    headers: headers,
+  }).then(checkError);
+};
+
 export const patchText = (text, id) => {
   return fetch(`${baseUrl}texts/${id}`, {
     method: "PATCH",
@@ -138,40 +144,6 @@ export const deleteSupplier = (id) => {
   }).then(checkError);
 };
 
-
-export const saveSurface = (supplier) => {
-  const formData = new FormData();
-  formData.append("image", supplier.image);
-  formData.append("link", supplier.link);
-  formData.append("isMaterial", supplier.isMaterial);
-
-  return fetch(`${baseUrl}suppliers`, {
-    method: "POST",
-    credentials: "include",
-    body: formData,
-  }).then(checkError);
-};
-
-export const patchSurface = (supplier, id) => {
-  const formData = new FormData();
-  formData.append("image", supplier.image);
-  formData.append("link", supplier.link);
-  formData.append("isMaterial", supplier.isMaterial);
-
-  return fetch(`${baseUrl}suppliers/${id}`, {
-    method: "PATCH",
-    credentials: "include",
-    body: formData,
-  }).then(checkError);
-};
-
-export const deleteSurface = (id) => {
-  return fetch(`${baseUrl}suppliers/${id}`, {
-    method: "DELETE",
-    credentials: "include",
-  }).then(checkError);
-};
-
 export const putSurfaceExample = (supplier, id) => {
   const formData = new FormData();
   formData.append("image", supplier.image);
@@ -214,6 +186,40 @@ export const deleteSurfaceExamples = (example, id) => {
   }).then(checkError);
 };
 
+export const putWorkPhoto = (work, id) => {
+  const formData = new FormData();
+  formData.append("image", work.image);
+  formData.append("description", work.description);
+
+  return fetch(`${baseUrl}works/${id}/photos`, {
+    method: "PUT",
+    credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const patchWorkPhoto = (work, id) => {
+  const formData = new FormData();
+  formData.append("image", work.image);
+  formData.append("description", work.description);
+  formData.append("id", work.id);
+
+  return fetch(`${baseUrl}works/${id}/photos`, {
+    method: "PATCH",
+    credentials: "include",
+    body: formData,
+  }).then(checkError);
+};
+
+export const deleteWorkPhoto = (photo, id) => {
+  return fetch(`${baseUrl}works/${id}/photos`, {
+    method: "DELETE",
+    headers: headers,
+    credentials: "include",
+    body: JSON.stringify(photo),
+  }).then(checkError);
+};
+
 export const sendEmail = (data) => {
   return fetch(`${baseUrl}email`, {
     method: "POST",
@@ -248,18 +254,11 @@ export const login = (user) => {
     credentials: "include",
     body: JSON.stringify(user),
   }).then(checkError);
-}
-
-export const checkCookies = () => {
-  return fetch(`${baseUrl}check`, {
-    headers: headers,
-    credentials: "include",
-  }).then(checkError);
-}
+};
 
 export const logout = () => {
   return fetch(`${baseUrl}logout`, {
     headers: headers,
     credentials: "include",
   }).then(checkError);
-}
+};
