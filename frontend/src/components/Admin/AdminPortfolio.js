@@ -460,22 +460,25 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
                     {picture ? picture.name : ""}
                   </p>
                 </div>
-                {!isPictureSelected && (
-                  <button
-                    type="submit"
-                    onClick={handleEditPopupButtonClick}
-                    className={`admin__upload-button admin__upload-button_type_select ${
-                      isUploading ? "admin__upload-button_state_uploading" : ""
-                    } ${
-                      isPictureSelected
-                        ? "admin__upload-button_state_uploaded"
-                        : ""
-                    }`}
-                  >
-                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                  </button>
-                )}
-                {isPictureSelected && (
+                <div className="admin__buttons-container">
+                  {!isPictureSelected && (
+                    <button
+                      type="submit"
+                      onClick={handleEditPopupButtonClick}
+                      className={`admin__upload-button admin__upload-button_type_select ${
+                        isUploading
+                          ? "admin__upload-button_state_uploading"
+                          : ""
+                      } ${
+                        isPictureSelected
+                          ? "admin__upload-button_state_uploaded"
+                          : ""
+                      }`}
+                    >
+                      Выбрать файл
+                    </button>
+                  )}
+
                   <button
                     type="submit"
                     disabled={!isValid}
@@ -486,8 +489,7 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
                   >
                     Сохранить
                   </button>
-                )}
-                <div className="admin__buttons-container"></div>
+                </div>
               </form>
             }
           />
