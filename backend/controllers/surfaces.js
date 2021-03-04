@@ -51,7 +51,7 @@ module.exports.updateSurfaceExample = async (req, res, next) => {
       try {
         fs.unlinkSync(selected.examples[foundIndex].image.path);
       } catch {
-        console.log(selected.examples[foundIndex].image);
+        console.log(`Изображение не найдено: ${selected.examples[foundIndex].image}`);
       }
     }
 
@@ -105,7 +105,7 @@ module.exports.deleteSurfaceExamples = (req, res, next) => {
   try {
     fs.unlinkSync(image.path);
   } catch {
-    console.log(image);
+    console.log(`Изображение не найдено: ${image}`);
   }
 
   Surface.findByIdAndUpdate(

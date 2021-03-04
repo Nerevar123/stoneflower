@@ -7,18 +7,40 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function PortfolioItem({ content, showModal, isModalWithCarouselOpen }) {
+function PortfolioItem({
+  content,
+  previewContent,
+  showModal,
+  isModalWithCarouselOpen,
+}) {
   const size = useWindowSize();
   const [item, setItem] = useState(null);
   const [photos, setPhotos] = useState(null);
   const [textExpanded, setTextExpanded] = useState(false);
+  const params = useParams();
+
+  useEffect(() => {
+    if (content && params.itemId) {
+      const selectedElement = content.find((el) => el._id === params.itemId);
+
+      setItem(selectedElement);
+    } else if (previewContent) setItem(previewContent);
+  }, [content, params, previewContent]);
+
+  useEffect(() => {
+    if (item) {
+      setPhotos(item.photos);
+    }
+  }, [item]);
 
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
+
   function handleImageClick(evt, item) {
     showModal(evt.target.id, item);
   }
+
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -70,24 +92,9 @@ function PortfolioItem({ content, showModal, isModalWithCarouselOpen }) {
     draggable: false,
   };
 
-  const params = useParams();
-
-
-  useEffect(() => {
-    if(content && params.itemId) {
-     const selectedElement = content.find((el) => el._id === params.itemId);
-
-    setItem(selectedElement);
-    }
-  }, [content, params]);
-  useEffect(() => {
-    if (item) {
-      setPhotos(item.photos);
-    }
-  }, [item]);
   return (
     <article className="portfolio">
-      {item && params && (
+      {item && (
         <>
           <h2 className="content__title content__title_place_portfolio">
             {item.title}
@@ -100,7 +107,11 @@ function PortfolioItem({ content, showModal, isModalWithCarouselOpen }) {
                     <img
                       alt="Слайд портфолио"
                       id={element._id}
-                      src={element.image.image}
+                      src={
+                        element.image.path
+                          ? process.env.REACT_APP_URL + element.image.path
+                          : element.image
+                      }
                       className="portfolio__image"
                       draggable="false"
                       onClick={(evt) => {

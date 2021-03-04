@@ -6,6 +6,7 @@ const adviceRouter = require('./advices');
 const imageRouter = require('./images');
 const supplierRouter = require('./suppliers');
 const surfaceRouter = require('./surfaces');
+const worksRouter = require('./works');
 
 const {
   register, login, logout,
@@ -23,10 +24,10 @@ router.use('/advices', adviceRouter);
 router.use('/images', imageRouter);
 router.use('/suppliers', supplierRouter);
 router.use('/surfaces', surfaceRouter);
+router.use('/works', worksRouter);
 
 router.use(auth);
 
-// router.get('/check', checkCookies);
 router.get('/logout', logout);
 
 router.use('*', (req, res) => {
