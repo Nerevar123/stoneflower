@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import cn from "classnames";
 import * as Yup from "yup";
 import "yup-phone";
-import sendEmail from '../utils/api';
+import { sendEmail } from "../utils/api";
 
 function PostForm({ content, offer, showModal, formRef }) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -13,14 +13,6 @@ function PostForm({ content, offer, showModal, formRef }) {
     email: "",
     description: "",
   };
-
-  const handleSubmit = (values) =>{
-      console.log(values);
-    new Promise((resolve, reject) => {
-
-      // sendEmail()
-    });
-  }
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -46,10 +38,10 @@ function PostForm({ content, offer, showModal, formRef }) {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, actions) => {
+          actions.setSubmitting(true);
           await sleep(500);
-          handleSubmit(values)
+          sendEmail(values)
             .then(() => {
-              alert(JSON.stringify(values, null, 2));
               actions.resetForm();
               showModal();
             })
@@ -67,9 +59,6 @@ function PostForm({ content, offer, showModal, formRef }) {
           isValid,
           errors,
           touched,
-          values,
-          setFieldValue,
-          setFieldTouched,
         }) => (
           <Form className="form" noValidate>
             <fieldset className="form__fieldset">
@@ -156,7 +145,7 @@ function PostForm({ content, offer, showModal, formRef }) {
                 Отправляя форму, вы даете согласие на обработку своих{" "}
                 <a
                   className="form__link"
-                  href={offer?offer.path:"/"}
+                  href={offer ? offer.path : "/"}
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -171,7 +160,6 @@ function PostForm({ content, offer, showModal, formRef }) {
                 className={cn("form__button", "button", {
                   form__button_disabled: !isValid || !dirty,
                 })}
-                text={"123"}
               >
                 {isSubmitting ? "Подождите..." : "ОТПРАВИТЬ"}
               </button>

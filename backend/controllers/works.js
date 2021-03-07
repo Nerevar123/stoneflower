@@ -21,6 +21,28 @@ module.exports.saveWork = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.patchWork = (req, res, next) => {
+  const {
+    title, category, text, photos,
+  } = req.body;
+
+  console.log(title, category, text, photos);
+
+  Work.findByIdAndUpdate(
+    req.params.workId,
+    {
+      title, category, text, photos,
+    },
+    {
+      new: true,
+      runValidators: true,
+    },
+  )
+    .orFail(new NotFoundError(notFoundErrorMessage))
+    .then((work) => res.send(work))
+    .catch(next);
+};
+
 module.exports.deleteWork = (req, res, next) => {
   Work.findById(req.params.workId)
     .orFail(new NotFoundError(notFoundErrorMessage))

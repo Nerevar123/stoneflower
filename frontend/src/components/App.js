@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Router, Route, useHistory, Switch, Redirect } from "react-router-dom";
+import { Router, Route, useHistory, Switch } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Admin from "./Admin/Admin";
@@ -17,6 +17,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import PortfolioItem from "./PortfolioItem";
 import ProtectedRoute from "./ProtectedRoute";
 import Preloader from "./Preloader";
+import PageNotFound from "./PageNotFound";
 
 import {
   getServices,
@@ -31,29 +32,20 @@ import {
   getEmails,
 } from "../utils/api";
 import {
-  // servicesItems,
-  // advantagesTextContent,
-  // lead,
-  advantagesIconsList,
   adminItems,
-  applicabilityTableImage,
-  // disadvantagesTextContent,
   phasesIcons,
-  // phasesTextContent,
-  // pricing,
-  // surfaces,
-  // advices
-  // portfolio,
-  // suppliers,
-  // postForm,
-  // contacts,
-  // portfolioContentRaw,
-  // requests,
+  servicesItems,
+  advantagesIconsList,
+  textContent,
+  surfacesItems,
+  advicesItems,
+  suppliersItems,
+  imagesItems,
+  portfolioItems,
 } from "../utils/config";
 import ModalWithCarousel from "./ModalWIthCarousel";
 import ModalWithConfirmation from "./ModalWithConfirmation";
 import useFormWithValidation from "../hooks/useFormWithValidation";
-// import ProtectedRoute from "./ProtectedRoute";
 //safari compatibility;
 import smoothscroll from "smoothscroll-polyfill";
 
@@ -62,31 +54,20 @@ function App() {
   const validation = useFormWithValidation();
   const [services, setServices] = useState(null);
   const [images, setImages] = useState(null);
-  const [leadContent, setLeadContent] = useState({});
-  const [advantagesText, setAdvantagesText] = useState({});
+  const [texts, setTexts] = useState(null);
   const [advantagesIcons, setAdvantagesIcons] = useState({});
-  const [applicabilityTable, setApplicabilityTable] = useState();
-  const [disadvantagesContent, setDisadvantagesContent] = useState({});
   const [isModalWithImageOpen, setModalWithImageOpen] = useState(false);
   const [modalImage, setModalImage] = useState();
   const [isModalWithCarouselOpen, setModalWithCarouselOpen] = useState(false);
   const [phasesIconList, setPhasesIconList] = useState({});
-  const [phasesText, setPhasesText] = useState({});
-  const [pricingContent, setPricingContent] = useState({});
   const [surfacesContent, setSurfacesContent] = useState(null);
   const [advicesContent, setAdvicesContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState([]);
   const [modalInitialSlide, setModalInitialSlide] = useState(0);
   const [suppliersContent, setSuppliersContent] = useState(null);
-  const [postFormContent, setPostFormContent] = useState({});
-  const [isModalWithConfirmationOpen, setModalWithConfirmationOpen] = useState(
-    false
-  );
+  const [isModalWithConfirmOpen, setModalWithConfirmOpen] = useState(false);
   const [isModalWithLinkOpen, setIsModalWithLinkOpen] = useState(false);
   const [modalCarouselContent, setModalCarouselContent] = useState();
-  const [contactsContent, setContactsContent] = useState({});
-  const [suppliersTextContent, setSuppliersTextContent] = useState({});
-  const [surfacesTextContent, setSurfacesTextContent] = useState({});
   const [modalLink, setModalLink] = useState();
   const size = useWindowSize();
   const [portfolioItem, setPortfolioItem] = useState(null);
@@ -99,6 +80,9 @@ function App() {
   const mainRef = useRef();
 
   useEffect(() => {
+    setAdvantagesIcons(advantagesIconsList);
+    setPhasesIconList(phasesIcons);
+
     Promise.all([
       getServices(),
       getTexts(),
@@ -108,59 +92,52 @@ function App() {
       getSurfaces(),
       getPortfolio(),
     ])
-      .then(([services, texts, advices, images, suppliers, surfaces, portfolio]) => {
-        Object.keys(images).map((key) => {
-          images[key].path =
-            process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
-          return images;
-        });
-        setImages(images);
-        setPostFormContent(texts.postForm);
-        setPricingContent(texts.pricing);
-        setAdvantagesText(texts.advantages);
-        setContactsContent(texts.contacts);
-        setDisadvantagesContent(texts.disadvantages);
-        setPhasesText(texts.phases);
-        setLeadContent(texts.lead);
-        setSuppliersTextContent(texts.suppliers);
-        setSurfacesTextContent(texts.surfaces);
-        setServices(services);
-        setAdvicesContent(advices);
-        setSuppliersContent(suppliers);
-        setSurfacesContent(surfaces);
-        setPortfolioContent(portfolio);
-      })
+      .then(
+        ([
+          services,
+          texts,
+          advices,
+          images,
+          suppliers,
+          surfaces,
+          portfolio,
+        ]) => {
+          Object.keys(images).map((key) => {
+            images[key].path =
+              process.env.REACT_APP_URL + images[key].path.replace(/\\/g, "/");
+            return images;
+          });
+          setImages(images);
+          setTexts(texts);
+          setServices(services);
+          setAdvicesContent(advices);
+          setSuppliersContent(suppliers);
+          setSurfacesContent(surfaces);
+          setPortfolioContent(portfolio);
+        }
+      )
       .then(() => {
         getEmails()
           .then((emails) => {
             setIsLoggedIn(true);
             setRequestsItems(emails);
           })
-          .catch((err) => {
+          .catch(() => {
             setIsLoggedIn(false);
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsLoggedIn(false);
+        setImages(imagesItems);
+        setServices(servicesItems);
+        setTexts(textContent);
+        setSurfacesContent(surfacesItems);
+        setAdvicesContent(advicesItems);
+        setPortfolioContent(portfolioItems);
+        setSuppliersContent(suppliersItems);
+      });
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    setAdvantagesIcons(advantagesIconsList);
-    setApplicabilityTable(applicabilityTableImage);
-    // setDisadvantagesContent(disadvantagesTextContent);
-    setPhasesIconList(phasesIcons);
-    // setPhasesText(phasesTextContent);
-    // setSurfacesContent(surfaces);
-    // setAdvicesContent(advices);
-    // setPortfolioContent(portfolioContentRaw);
-    // setSuppliersContent(suppliers);
-    // setLeadContent(lead)
-    // setPostFormContent(postForm);
-    // setServices(servicesItems);
-    // setPricingContent(pricing);
-    // setAdvantagesText(advantagesTextContent);
-    // setContactsContent(contacts);
-    // setRequestsItems(requests);
-  }, []);
 
   function showModalWithImage(image) {
     document.body.style.overflow = "hidden";
@@ -177,7 +154,7 @@ function App() {
 
   function showModalWithConfirmation() {
     document.body.style.overflow = "hidden";
-    setModalWithConfirmationOpen(true);
+    setModalWithConfirmOpen(true);
   }
 
   function showModalWithLink(link) {
@@ -191,7 +168,7 @@ function App() {
       setModalImage();
       setModalWithImageOpen(false);
       setModalWithCarouselOpen(false);
-      setModalWithConfirmationOpen(false);
+      setModalWithConfirmOpen(false);
       setIsModalWithLinkOpen(false);
     }, 300);
   }
@@ -291,23 +268,16 @@ function App() {
               showModalWithImage={showModalWithImage}
               showModalWithConfirmation={showModalWithConfirmation}
               showModalWithLink={showModalWithLink}
+              texts={texts}
               services={services}
-              advantagesText={advantagesText}
               advantagesIcons={advantagesIcons}
-              applicabilityTable={applicabilityTable}
-              disadvantagesContent={disadvantagesContent}
               phasesIcons={phasesIconList}
-              phasesText={phasesText}
-              pricingContent={pricingContent}
               suppliersContent={suppliersContent}
-              suppliersTextContent={suppliersTextContent}
-              postFormContent={postFormContent}
-              leadContent={leadContent}
               images={images}
               formRef={formRef}
               mainRef={mainRef}
             />
-          <Footer content={contactsContent} />
+            {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route exact path="/surfaces">
             <Header
@@ -322,20 +292,20 @@ function App() {
                     <Surfaces
                       content={surfacesContent}
                       showModal={showModalWithImage}
-                      textContent={surfacesTextContent}
+                      textContent={texts.surfaces}
                     />
                   )}
                   {size.width < 850 && (
                     <SurfacesMobile
                       content={surfacesContent}
                       showModal={showModalWithImage}
-                      textContent={surfacesTextContent}
+                      textContent={texts.surfaces}
                     />
                   )}
                 </>
               )}
             </main>
-            <Footer content={contactsContent} />
+            {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route path="/portfolio">
             <Header
@@ -362,7 +332,7 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            <Footer content={contactsContent} />
+            {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route exact path="/advices">
             <Header
@@ -373,7 +343,7 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            <Footer content={contactsContent} />
+            {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route exact path="/contacts">
             <Header
@@ -382,21 +352,21 @@ function App() {
             />
             <main className="content">
               <Breadcrumbs link="/contacts" name="Контакты" />
-              {images && (
+              {images && texts && (
                 <Contacts
-                  content={contactsContent}
+                  content={texts.contacts}
                   entranceImage={images.contactsEntranceImage}
                 />
               )}
             </main>
-            <Footer content={contactsContent} />
+            {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route exact path="/login">
             <Login validation={validation} onAuthorize={handleLogin} />
           </Route>
-          {isLoggedIn === true && (
-            <>
-              <ProtectedRoute path="/admin" loggedIn={isLoggedIn}>
+          <ProtectedRoute exact path="/admin" loggedIn={isLoggedIn}>
+            {isLoggedIn === true && (
+              <>
                 <Admin
                   adminItems={adminItems}
                   validation={validation}
@@ -404,33 +374,24 @@ function App() {
                   onPatchData={handlePatchData}
                   onDeleteData={handleDeleteData}
                   onLogout={handleLogout}
-                  leadContent={leadContent}
+                  texts={texts}
                   images={images}
                   services={services}
-                  advantagesText={advantagesText}
-                  disadvantagesText={disadvantagesContent}
-                  phasesText={phasesText}
                   phasesIcons={phasesIcons}
-                  pricingContent={pricingContent}
-                  contactsContent={contactsContent}
                   advices={advicesContent}
-                  postFormContent={postFormContent}
                   suppliers={suppliersContent}
-                  suppliersTextContent={suppliersTextContent}
-                  surfacesTextContent={surfacesTextContent}
                   surfaces={surfacesContent}
                   requests={requestsItems}
                   portfolio={portfolioContent}
                 />
-              </ProtectedRoute>
-            </>
-          )}
-          {isLoggedIn === false && (
-            <Route>{isLoggedIn ? "" : <Redirect to="/" />}</Route>
-          )}
+              </>
+            )}
+          </ProtectedRoute>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
       </Router>
-
       {isModalWithImageOpen && (
         <ModalWithImage closeModal={closeModal} image={modalImage} />
       )}
@@ -449,7 +410,7 @@ function App() {
           link={modalLink}
         />
       )}
-      {isModalWithConfirmationOpen && (
+      {isModalWithConfirmOpen && (
         <ModalWithConfirmation closeModal={closeModal} />
       )}
     </>

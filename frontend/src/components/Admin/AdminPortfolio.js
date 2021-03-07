@@ -3,9 +3,23 @@ import PortfolioItem from "../PortfolioItem";
 import Label from "../Label";
 import AdminPopup from "./AdminPopup";
 import ClosablePopup from "../ClosablePopup";
-import { putWorkPhoto, patchWorkPhoto, deleteWorkPhoto } from "../../utils/api";
+import {
+  putWorkPhoto,
+  patchWorkPhoto,
+  deleteWorkPhoto,
+  saveWork,
+  patchWork,
+  deleteWork,
+} from "../../utils/api";
 
-function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
+function AdminPortfolio({
+  validation,
+  portfolio,
+  onSaveData,
+  onPatchData,
+  onDeleteData,
+  menuRef,
+}) {
   const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
@@ -16,6 +30,8 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
   const [addPhoto, setAddPhoto] = useState(false);
   const [editPhoto, setEditPhoto] = useState(false);
   const [delPhoto, setDelPhoto] = useState(false);
+  const [addWork, setAddWork] = useState(false);
+  const [delWork, setDelWork] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState({});
   const editPopupInputRef = useRef();
   const addPopupInputRef = useRef();
@@ -47,18 +63,43 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
   }
 
   function handleAddWorkClick() {
-    // setAddWork(true);
+    resetForm();
+    setAddWork(true);
   }
 
-  function handleEditWorkClick() {
-    // setEditWork(true);
-    // setCurrentPhoto(data);
-    // resetForm(data, {}, true);
+  function handleEditWork(e) {
+    e.preventDefault();
+    onPatchData(
+      {
+        title: values.title || selectedWork.title,
+        category: values.category || selectedWork.category,
+        text: values.text || selectedWork.text,
+        photos: selectedWork.photos,
+      },
+      selectedWork._id,
+      patchWork
+    );
   }
 
   function handleDeleteWorkClick() {
-    // setDelWork(true);
-    // setCurrentPhoto(data);
+    setDelWork(true);
+  }
+
+  function handleAddWork(e) {
+    e.preventDefault();
+    onSaveData(
+      {
+        title: values.title,
+        category: values.category,
+        text: values.text,
+        photos: [],
+      },
+      saveWork
+    );
+  }
+
+  function handleDeleteWork() {
+    onDeleteData(selectedWork._id, deleteWork);
   }
 
   function handleAddPhotoClick() {
@@ -78,7 +119,7 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
 
   function handleDeletePhoto() {
     onPatchData(
-      { Photo: currentPhoto._id, image: currentPhoto.image },
+      { photo: currentPhoto._id, image: currentPhoto.image },
       selectedWork._id,
       deleteWorkPhoto
     );
@@ -159,6 +200,8 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
       setAddPhoto(false);
       setEditPhoto(false);
       setDelPhoto(false);
+      setAddWork(false);
+      setDelWork(false);
       setPopupVisible(false);
       setPicture(null);
       setImgData(null);
@@ -216,7 +259,7 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
             name="admin-lead"
             method="GET"
             noValidate
-            onSubmit={handleEditWorkClick}
+            onSubmit={handleEditWork}
           >
             <div className="admin__form-heading-container">
               <p className="admin__form-heading">Текст</p>
@@ -498,7 +541,7 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
       {delPhoto && (
         <ClosablePopup>
           <AdminPopup
-            title="Удалить производителя?"
+            title="Удалить изображение?"
             onClose={closeAllPopups}
             popupVisible={popupVisible}
             setPopupVisible={setPopupVisible}
@@ -509,21 +552,118 @@ function AdminPortfolio({ validation, portfolio, onPatchData, menuRef }) {
                 method="GET"
                 noValidate
               >
-                <button
-                  type="submit"
-                  onClick={handleDeletePhoto}
-                  className="admin__upload-button admin__upload-button_type_select"
-                >
-                  Удалить
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setDelPhoto(false)}
-                  className="admin__upload-button"
-                >
-                  Отмена
-                </button>
-                <div className="admin__buttons-container"></div>
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleDeletePhoto}
+                    className="admin__upload-button admin__upload-button_type_select"
+                  >
+                    Удалить
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDelPhoto(false)}
+                    className="admin__upload-button"
+                  >
+                    Отмена
+                  </button>
+                </div>
+              </form>
+            }
+          />
+        </ClosablePopup>
+      )}
+      {addWork && (
+        <ClosablePopup>
+          <AdminPopup
+            title="Добавить работу"
+            onClose={closeAllPopups}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
+            children={
+              <form
+                className="admin__form admin__form_type_lead-text"
+                name="admin-lead"
+                method="GET"
+                noValidate
+              >
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="title"
+                  labelText="Заголовок"
+                  type="text"
+                  required
+                  maxLength="65"
+                  withCount
+                  height="20px"
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="category"
+                  labelText="Категория"
+                  type="text"
+                  required
+                  maxLength="65"
+                  withCount
+                  height="20px"
+                />
+                <Label
+                  validation={validation}
+                  className="admin"
+                  name="text"
+                  labelText="Описание"
+                  type="text"
+                  required
+                  maxLength="600"
+                  withCount
+                  height="150px"
+                />
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleAddWork}
+                    className="admin__upload-button admin__upload-button_type_select"
+                  >
+                    Сохранить
+                  </button>
+                </div>
+              </form>
+            }
+          />
+        </ClosablePopup>
+      )}
+      {delWork && (
+        <ClosablePopup>
+          <AdminPopup
+            title="Удалить работу?"
+            onClose={closeAllPopups}
+            popupVisible={popupVisible}
+            setPopupVisible={setPopupVisible}
+            children={
+              <form
+                className="admin__form admin__form_type_lead-text"
+                name="admin-lead"
+                method="GET"
+                noValidate
+              >
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleDeleteWork}
+                    className="admin__upload-button admin__upload-button_type_select"
+                  >
+                    Удалить
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDelWork(false)}
+                    className="admin__upload-button"
+                  >
+                    Отмена
+                  </button>
+                </div>
               </form>
             }
           />
