@@ -14,53 +14,58 @@ function Main({
   showModalWithImage,
   showModalWithConfirmation,
   showModalWithLink,
+  texts,
   services,
-  advantagesText,
   advantagesIcons,
-  applicabilityTable,
-  disadvantagesContent,
   phasesIcons,
-  phasesText,
-  pricingContent,
   suppliersContent,
-  suppliersTextContent,
-  postFormContent,
-  leadContent,
   images,
   formRef,
-  mainRef
+  mainRef,
 }) {
   const size = useWindowSize();
   useEffect(() => {
-    window.scrollTo({ top: 0})
-  }, [])
+    window.scrollTo({ top: 0 });
+  }, []);
   return (
     <main className="content">
-      {images && (
-        <Lead mainRef={mainRef} content={leadContent} leadBgImage={images.leadBgImage} />
+      {images && texts && (
+        <Lead
+          mainRef={mainRef}
+          content={texts.lead}
+          leadBgImage={images.leadBgImage}
+        />
       )}
       {services && <Services elements={services} />}
-      <Advantages
-        textContent={advantagesText}
-        icons={advantagesIcons}
-        showModal={showModalWithImage}
-        image={applicabilityTable}
-        withIcons
-      />
-      {size.width > 849 && <Applicability table={applicabilityTable} />}
-      <Disadvantages disadvantagesContent={disadvantagesContent} />
-      <Phases phasesIcons={phasesIcons} phasesText={phasesText} />
-      <Pricing content={pricingContent} />
-      {suppliersContent && (
-        <Suppliers
-          content={suppliersContent}
-          textContent={suppliersTextContent}
-          showModal={showModalWithLink}
+      {images && texts && (
+        <Advantages
+          textContent={texts.advantages}
+          icons={advantagesIcons}
+          showModal={showModalWithImage}
+          image={images.applicabilityTable}
+          withIcons
         />
       )}
       {images && (
+        <>
+          {size.width > 849 && (
+            <Applicability table={images.applicabilityTable} />
+          )}
+        </>
+      )}
+      {texts && <Disadvantages disadvantagesContent={texts.disadvantages} />}
+      {texts && <Phases phasesIcons={phasesIcons} phasesText={texts.phases} />}
+      {texts && <Pricing content={texts.pricing} />}
+      {suppliersContent && (
+        <Suppliers
+          content={suppliersContent}
+          textContent={texts.suppliers}
+          showModal={showModalWithLink}
+        />
+      )}
+      {images && texts && (
         <PostForm
-          content={postFormContent}
+          content={texts.postForm}
           offer={images.postFormOffer}
           showModal={showModalWithConfirmation}
           formRef={formRef}

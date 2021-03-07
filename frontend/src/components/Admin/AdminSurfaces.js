@@ -599,21 +599,23 @@ function AdminSurfaces({
                   </p>
                 </div>
                 <div className="admin__buttons-container">
-                {!isPictureSelected && (
-                  <button
-                    type="submit"
-                    onClick={handleEditPopupButtonClick}
-                    className={`admin__upload-button admin__upload-button_type_select ${
-                      isUploading ? "admin__upload-button_state_uploading" : ""
-                    } ${
-                      isPictureSelected
-                        ? "admin__upload-button_state_uploaded"
-                        : ""
-                    }`}
-                  >
-                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                  </button>
-                )}
+                  {!isPictureSelected && (
+                    <button
+                      type="submit"
+                      onClick={handleEditPopupButtonClick}
+                      className={`admin__upload-button admin__upload-button_type_select ${
+                        isUploading
+                          ? "admin__upload-button_state_uploading"
+                          : ""
+                      } ${
+                        isPictureSelected
+                          ? "admin__upload-button_state_uploaded"
+                          : ""
+                      }`}
+                    >
+                      {isPictureSelected ? "Сохранить" : "Выбрать файл"}
+                    </button>
+                  )}
                   <button
                     type="submit"
                     disabled={!isValid}
@@ -644,21 +646,22 @@ function AdminSurfaces({
                 method="GET"
                 noValidate
               >
-                <button
-                  type="submit"
-                  onClick={handleDeleteSurface}
-                  className="admin__upload-button admin__upload-button_type_select"
-                >
-                  Удалить
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setDelSurface(false)}
-                  className="admin__upload-button"
-                >
-                  Отмена
-                </button>
-                <div className="admin__buttons-container"></div>
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleDeleteSurface}
+                    className="admin__upload-button admin__upload-button_type_select"
+                  >
+                    Удалить
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDelSurface(false)}
+                    className="admin__upload-button"
+                  >
+                    Отмена
+                  </button>
+                </div>
               </form>
             }
           />

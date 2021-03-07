@@ -220,16 +220,36 @@ export const deleteWorkPhoto = (photo, id) => {
   }).then(checkError);
 };
 
+export const saveWork = (work) => {
+  return fetch(`${baseUrl}works`, {
+    method: "POST",
+    headers: headers,
+    credentials: "include",
+    body: JSON.stringify(work),
+  }).then(checkError);
+};
+
+export const patchWork = (work, id) => {
+  return fetch(`${baseUrl}works/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    credentials: "include",
+    body: JSON.stringify(work),
+  }).then(checkError);
+};
+
+export const deleteWork = (id) => {
+  return fetch(`${baseUrl}works/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  }).then(checkError);
+};
+
 export const sendEmail = (data) => {
   return fetch(`${baseUrl}email`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      tel: data.tel,
-      description: data.description,
-    }),
+    body: JSON.stringify(data),
   }).then(checkEmailResponse);
 };
 

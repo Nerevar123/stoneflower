@@ -7,15 +7,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
 function ModalWithCarousel({
   closeModal,
   initialSlide,
   content,
   isModalWithCarouselOpen,
 }) {
-
   function getFocus() {
     const el = document.querySelector(".modal__image-container");
     el.focus();
@@ -116,13 +113,19 @@ function ModalWithCarousel({
                   <div
                     key={item._id}
                     className="modal__image-container"
-                    onLoad={()=>{getFocus()}}
+                    onLoad={() => {
+                      getFocus();
+                    }}
                   >
                     <img
                       key={item._id}
                       alt="Слайд портфолио"
                       id={item._id}
-                      src={item.image.image}
+                      src={
+                        item.image.path
+                          ? process.env.REACT_APP_URL + item.image.path
+                          : item.image
+                      }
                       className="modal__image"
                       draggable="false"
                     />

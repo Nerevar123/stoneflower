@@ -17,24 +17,16 @@ import AdminRequests from "./AdminRequests";
 function Admin({
   adminItems,
   validation,
-  leadContent,
+  texts,
   images,
   services,
-  advantagesText,
-  disadvantagesText,
-  phasesText,
   phasesIcons,
-  pricingContent,
-  contactsContent,
   advices,
-  postFormContent,
   suppliers,
   onSaveData,
   onPatchData,
   onDeleteData,
-  suppliersTextContent,
   surfaces,
-  surfacesTextContent,
   onLogout,
   requests,
   portfolio,
@@ -150,7 +142,7 @@ function Admin({
                 menuRef={menuRef}
                 validation={validation}
                 onPatchData={onPatchData}
-                leadContent={leadContent}
+                leadContent={texts.lead}
                 leadBgImage={images.leadBgImage}
               />
             )}
@@ -172,7 +164,7 @@ function Admin({
           <AdminAdvantages
             menuRef={menuRef}
             validation={validation}
-            advantagesText={advantagesText}
+            advantagesText={texts.advantages}
             onPatchData={onPatchData}
           />
         )}
@@ -180,7 +172,7 @@ function Admin({
           <AdminDisadvantages
             menuRef={menuRef}
             validation={validation}
-            disadvantagesText={disadvantagesText}
+            disadvantagesText={texts.disadvantages}
             onPatchData={onPatchData}
           />
         )}
@@ -188,7 +180,7 @@ function Admin({
           <AdminPhases
             menuRef={menuRef}
             validation={validation}
-            phasesText={phasesText}
+            phasesText={texts.phases}
             onPatchData={onPatchData}
             phasesIcons={phasesIcons}
           />
@@ -197,7 +189,7 @@ function Admin({
           <AdminPricing
             menuRef={menuRef}
             validation={validation}
-            pricingContent={pricingContent}
+            pricingContent={texts.pricing}
             onPatchData={onPatchData}
           />
         )}
@@ -221,7 +213,7 @@ function Admin({
               <AdminContacts
                 menuRef={menuRef}
                 validation={validation}
-                contactsContent={contactsContent}
+                contactsContent={texts.contacts}
                 onPatchData={onPatchData}
                 entranceImage={images.contactsEntranceImage}
               />
@@ -235,7 +227,7 @@ function Admin({
                 menuRef={menuRef}
                 validation={validation}
                 onPatchData={onPatchData}
-                postFormContent={postFormContent}
+                postFormContent={texts.postForm}
                 postFormOffer={images.postFormOffer}
               />
             )}
@@ -248,7 +240,9 @@ function Admin({
                 menuRef={menuRef}
                 validation={validation}
                 portfolio={portfolio}
+                onSaveData={onSaveData}
                 onPatchData={onPatchData}
+                onDeleteData={onDeleteData}
               />
             )}
           </>
@@ -260,7 +254,7 @@ function Admin({
                 menuRef={menuRef}
                 validation={validation}
                 suppliers={suppliers}
-                suppliersTextContent={suppliersTextContent}
+                suppliersTextContent={texts.suppliers}
                 onSaveData={onSaveData}
                 onPatchData={onPatchData}
                 onDeleteData={onDeleteData}
@@ -275,7 +269,7 @@ function Admin({
                 menuRef={menuRef}
                 validation={validation}
                 surfaces={surfaces}
-                surfacesTextContent={surfacesTextContent}
+                surfacesTextContent={texts.surfaces}
                 onPatchData={onPatchData}
               />
             )}

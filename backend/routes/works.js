@@ -4,6 +4,7 @@ const multer = require('multer');
 const {
   getWorks,
   saveWork,
+  patchWork,
   deleteWork,
   updateWorkPhoto,
   putWorkPhoto,
@@ -48,6 +49,15 @@ router.post(
     }),
   }),
   saveWork,
+);
+router.patch(
+  '/:workId',
+  celebrate({
+    params: Joi.object().keys({
+      workId: Joi.string().alphanum().length(24),
+    }),
+  }),
+  patchWork,
 );
 router.delete(
   '/:workId',
