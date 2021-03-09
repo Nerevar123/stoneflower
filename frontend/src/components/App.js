@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Router, Route, useHistory, Switch } from "react-router-dom";
+import { Router, Route, useHistory, Switch, Redirect } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Admin from "./Admin/Admin";
@@ -203,18 +203,16 @@ function App() {
 
   function handleSaveData(data, handler) {
     handler(data)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
   }
 
   function handlePatchData(data, id, handler) {
     handler(data, id)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
   }
@@ -222,9 +220,8 @@ function App() {
   function handleDeleteData(id, handler) {
     console.log(id);
     handler(id)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Удалено", data);
       })
       .catch((err) => console.log(err));
   }
@@ -362,7 +359,11 @@ function App() {
             {texts && <Footer content={texts.contacts} />}
           </Route>
           <Route exact path="/login">
-            <Login validation={validation} onAuthorize={handleLogin} />
+            {isLoggedIn ? (
+              <Redirect to="/admin" />
+            ) : (
+              <Login validation={validation} onAuthorize={handleLogin} />
+            )}
           </Route>
           <ProtectedRoute exact path="/admin" loggedIn={isLoggedIn}>
             {isLoggedIn === true && (

@@ -100,7 +100,9 @@ function AdminLeadEditor({
   };
 
   function handleImageSubmit(e) {
+    e.preventDefault();
     setIsUploading(true);
+
     onPatchData(
       {
         name: "leadBgImage",
