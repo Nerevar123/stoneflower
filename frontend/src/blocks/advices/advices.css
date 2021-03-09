@@ -27,12 +27,11 @@
 }
 
 .advices__image {
-  min-width: 350px;
-  min-height: 280px;
-  max-height: 350px;
+  width: auto;
+  height: auto;
+  max-width: 350px;
   margin: 0 30px 0 0;
-  vertical-align: top;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
 }
 
@@ -77,6 +76,7 @@
   }
   .advices__image {
     width: 100%;
+    max-width: 100%;
     height: auto;
     margin: 0 0 8px 0;
   }
@@ -87,5 +87,10 @@
   }
   .advices__link {
     font-size: 18px;
+  }
+}
+@media screen and (orientation: landscape) and (max-device-width: 849px) {
+  .advices__image {
+    max-width: 100%;
   }
 }

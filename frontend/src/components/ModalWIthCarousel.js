@@ -101,12 +101,12 @@ function ModalWithCarousel({
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-            {size.width > 849 && (
+
               <button
                 onClick={handleClose}
                 className="modal__close-button button modal__close-button_place_carousel"
               ></button>
-            )}
+
             <Slider {...settings} className="modal__slider">
               {content &&
                 content.photos.map((item) => (

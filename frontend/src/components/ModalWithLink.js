@@ -51,6 +51,20 @@ function ModalWithLink({
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    function closeModalWithEsc(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("keydown", closeModalWithEsc);
+
+    return () => {
+      document.removeEventListener("keydown", closeModalWithEsc);
+    };
+  }, []);
+
   const handleClose = (evt) => {
     evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
