@@ -14,7 +14,6 @@ function PortfolioItem({
   isModalWithCarouselOpen,
   previewMode,
 }) {
-  console.log(previewContent);
   const size = useWindowSize();
   const [item, setItem] = useState(null);
   const [photos, setPhotos] = useState(null);

@@ -40,7 +40,6 @@ function AdminPortfolio({
   const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
-  console.log(portfolio)
 
   useEffect(() => {
     resetForm(selectedWork);
