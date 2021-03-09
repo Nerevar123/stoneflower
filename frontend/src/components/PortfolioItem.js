@@ -12,8 +12,8 @@ function PortfolioItem({
   previewContent,
   showModal,
   isModalWithCarouselOpen,
+  previewMode,
 }) {
-  console.log(previewContent)
   const size = useWindowSize();
   const [item, setItem] = useState(null);
   const [photos, setPhotos] = useState(null);
@@ -39,7 +39,9 @@ function PortfolioItem({
   }
 
   function handleImageClick(evt, item) {
-    showModal(evt.target.id, item);
+    if (!previewMode) {
+      showModal(evt.target.id, item);
+    }
   }
 
   function NextArrow(props) {

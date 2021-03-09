@@ -94,6 +94,7 @@
 
 .portfolio__slide {
   margin: 0 25px 0 0;
+  outline: none;
 }
 
 .portfolio__image {
