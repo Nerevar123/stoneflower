@@ -11,6 +11,7 @@
   flex-direction: column;
   min-width: 291px;
   overflow: hidden;
+
 }
 @media screen and (min-width: 1441px) {
   .lead {
@@ -64,6 +65,14 @@
   color: #001717;
   font-weight: 500;
   margin: 0;
+  /* text-shadow: 0 -1px 0 #ffffff, 0 -1px 0 #ffffff, 0 1px 0 #ffffff,
+    0 1px 0 #ffffff, -1px 0 0 #ffffff, 1px 0 0 #ffffff, -1px 0 0 #ffffff,
+    1px 0 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff,
+    -1px 1px 0 #ffffff, 2px 1px 0 #ffffff, -1px -1px 0 #ffffff,
+    1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff,
+    -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff; */
 }
 
 .lead__list-item::before {

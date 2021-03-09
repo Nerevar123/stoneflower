@@ -4,7 +4,6 @@ import useWindowSize from "../hooks/useWindowSize";
 
 function Lead({ content, leadBgImage, mainRef }) {
   const size = useWindowSize();
-
   return (
     <article
       id="main"
@@ -13,7 +12,7 @@ function Lead({ content, leadBgImage, mainRef }) {
       style={{
         backgroundImage: `linear-gradient(
           90deg,
-          rgba(255, 255, 255, 0.58) 0.73%,
+          rgba(255,255,255,0.78) 0%,
           rgba(255, 255, 255, 0) 61.78%
         ), url(${
           leadBgImage && (leadBgImage.path || leadBgImage)

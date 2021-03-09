@@ -13,6 +13,7 @@ function PortfolioItem({
   showModal,
   isModalWithCarouselOpen,
   previewMode,
+  handlePortfolioItemSelection
 }) {
   const size = useWindowSize();
   const [item, setItem] = useState(null);
@@ -23,7 +24,6 @@ function PortfolioItem({
   useEffect(() => {
     if (content && params.itemId) {
       const selectedElement = content.find((el) => el._id === params.itemId);
-
       setItem(selectedElement);
     } else if (previewContent) setItem(previewContent);
   }, [content, params, previewContent]);
@@ -31,6 +31,7 @@ function PortfolioItem({
   useEffect(() => {
     if (item) {
       setPhotos(item.photos);
+      handlePortfolioItemSelection({name: item.title, link: `portfolio/items/${item._id}`})
     }
   }, [item]);
 
