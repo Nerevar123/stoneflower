@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "./Modal";
 import useWindowSize from "../hooks/useWindowSize";
 
@@ -7,6 +7,19 @@ function ModalWithImage({ image, closeModal }) {
     evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
+  useEffect(() => {
+    function closeModalWithEsc(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("keydown", closeModalWithEsc);
+
+    return () => {
+      document.removeEventListener("keydown", closeModalWithEsc);
+    };
+  }, []);
   const size = useWindowSize();
   return (
     <Modal
@@ -16,12 +29,10 @@ function ModalWithImage({ image, closeModal }) {
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__image-container modal__image-container_type_regular">
-            {size.width > 849 && (
               <button
                 onClick={handleClose}
                 className="modal__close-button button"
               ></button>
-            )}
             <img
               className="modal__image modal__image_type_regular"
               src={image}

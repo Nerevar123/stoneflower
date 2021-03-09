@@ -51,6 +51,20 @@ function ModalWithLink({
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    function closeModalWithEsc(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("keydown", closeModalWithEsc);
+
+    return () => {
+      document.removeEventListener("keydown", closeModalWithEsc);
+    };
+  }, []);
+
   const handleClose = (evt) => {
     evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
@@ -88,7 +102,7 @@ function ModalWithLink({
               <div onClick={handleClose} className="modal__overlay"></div>
               <div className="modal__link-container">
                 <p className="modal__link-text">
-                  Перейти на сайт производителя?
+                  Открыть сайт производителя?
                 </p>
                 <a
                   className="modal__link"
@@ -96,7 +110,7 @@ function ModalWithLink({
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Перейти
+                  Открыть
                 </a>
                 <button
                   onClick={handleClose}

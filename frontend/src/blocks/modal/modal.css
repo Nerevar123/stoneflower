@@ -9,6 +9,7 @@
   display: flex;
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  z-index: 15;
 }
 .modal_visible {
   opacity: 1;
@@ -23,7 +24,6 @@
 
 .modal__image-container_type_regular {
   margin: auto auto;
-  width: 90%;
 }
 .modal__image-container:focus {
   outline: none;
@@ -97,7 +97,7 @@
   z-index: 1;
 }
 .modal__image_type_regular {
-  width: 100%;
+  width: 70vw;
 }
 
 .modal__slide {
@@ -152,9 +152,7 @@
   .modal {
     margin: 0;
   }
-  .modal__close-button {
-    right: 0;
-  }
+
   .modal__image-container {
     margin: 0;
   }
@@ -165,6 +163,9 @@
     margin: 0;
   }
   .modal__image-container_type_regular {
+    width: 100%;
+  }
+  .modal__image_type_regular {
     width: 100%;
   }
   .modal__slider {
@@ -202,6 +203,12 @@
     background-image: url("../../images/icons/suppliers-modal-close-icon.svg");
     top: 0;
     width: 46px;
+  }
+  .modal__close-button {
+    right: 0;
+    width: 50px;
+    height: 50px;
+    top: -50px;
   }
 }
 @media screen and (orientation: landscape) {

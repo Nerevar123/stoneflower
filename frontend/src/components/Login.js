@@ -18,13 +18,17 @@ function Login({ validation, onAuthorize }) {
 
   return (
     <section className="login">
-      <h2 className="login__title">Вход</h2>
+      <h2 className="login__heading">Студия Керамогранита 
+«Каменный цветок»</h2>
       <form
         className="login__form"
         name="login"
         onSubmit={handleSubmit}
         method="GET"
       >
+        <h3 className="login__title">
+          Авторизация
+        </h3>
         <fieldset className="login__fields">
           <Label
             validation={validation}
