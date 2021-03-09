@@ -79,6 +79,10 @@ function App() {
   const formRef = useRef();
   const mainRef = useRef();
 
+  function handlePortfolioItemSelection(item) {
+    setPortfolioItem(item);
+  }
+
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
     setPhasesIconList(phasesIcons);
@@ -318,7 +322,7 @@ function App() {
               <Route exact path="/portfolio">
                 <Portfolio
                   content={portfolioContent}
-                  setPortfolioItem={setPortfolioItem}
+                  handlePortfolioItemSelection={handlePortfolioItemSelection}
                 />
               </Route>
               <Route path="/portfolio/items/:itemId">
@@ -326,6 +330,7 @@ function App() {
                   content={portfolioContent}
                   showModal={ShowModalWithCarousel}
                   isModalWithCarouselOpen={isModalWithCarouselOpen}
+                  handlePortfolioItemSelection={handlePortfolioItemSelection}
                 ></PortfolioItem>
               </Route>
             </main>

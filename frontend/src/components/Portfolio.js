@@ -3,9 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-function Portfolio({ content, setPortfolioItem }) {
+function Portfolio({ content, handlePortfolioItemSelection }) {
   useEffect(() => {
-    setPortfolioItem(null);
+    handlePortfolioItemSelection(null);
     window.scrollTo({ top: 0 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -22,7 +22,7 @@ function Portfolio({ content, setPortfolioItem }) {
               <Link
                 className="portfolio__link"
                 onClick={() => {
-                  setPortfolioItem({
+                  handlePortfolioItemSelection({
                     name: portfolioItem.title,
                     link: `/portfolio/items/${portfolioItem._id}`,
                   });
