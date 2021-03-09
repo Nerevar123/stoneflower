@@ -72,7 +72,9 @@ function AdminSurfaces({
     setCurrentExample(data);
   }
 
-  function handleDeleteSurface() {
+  function handleDeleteSurface(e) {
+    e.preventDefault();
+
     onPatchData(
       { example: currentExample._id, image: currentExample.image },
       selectedSurface._id,
@@ -470,32 +472,18 @@ function AdminSurfaces({
                   </p>
                 </div>
                 <div className="admin__buttons-container">
-                  {!isPictureSelected && (
-                    <button
-                      type="submit"
-                      onClick={handleAddPopupButtonClick}
-                      className={`admin__upload-button admin__upload-button_type_select ${
-                        isUploading
-                          ? "admin__upload-button_state_uploading"
-                          : ""
-                      } ${
-                        isPictureSelected
-                          ? "admin__upload-button_state_uploaded"
-                          : ""
-                      }`}
-                    >
-                      {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                    </button>
-                  )}
                   <button
                     type="submit"
-                    disabled={!isValid}
-                    onClick={handleEditSurface}
+                    onClick={handleAddPopupButtonClick}
                     className={`admin__upload-button admin__upload-button_type_select ${
-                      !isValid ? "admin__upload-button_disabled" : ""
+                      isUploading ? "admin__upload-button_state_uploading" : ""
+                    } ${
+                      isPictureSelected
+                        ? "admin__upload-button_state_uploaded"
+                        : ""
                     }`}
                   >
-                    Сохранить
+                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                   </button>
                 </div>
               </form>

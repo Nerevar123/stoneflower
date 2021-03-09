@@ -80,7 +80,9 @@ function AdminSuppliers({
     setCurrentSupplier(data);
   }
 
-  function handleDeleteSupplier() {
+  function handleDeleteSupplier(e) {
+    e.preventDefault();
+
     onDeleteData(currentSupplier._id, deleteSupplier);
   }
 

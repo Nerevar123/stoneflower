@@ -51,6 +51,7 @@ function AdminAdvices({
 
   function handleCreateAdvice(e) {
     e.preventDefault();
+
     onSaveData(
       {
         heading: values.heading,
@@ -74,7 +75,9 @@ function AdminAdvices({
     setDelAdvice(true);
   }
 
-  function handleDeleteAdvice() {
+  function handleDeleteAdvice(e) {
+    e.preventDefault();
+
     onDeleteData(selectedAdvice._id, deleteAdvice);
   }
 
@@ -140,6 +143,7 @@ function AdminAdvices({
     setSelectedAdvice(advices[num]);
     showPreview(false);
   }
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -148,6 +152,7 @@ function AdminAdvices({
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
