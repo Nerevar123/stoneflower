@@ -40,6 +40,7 @@ function AdminPortfolio({
   const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
+  console.log(portfolio)
 
   useEffect(() => {
     resetForm(selectedWork);
@@ -190,6 +191,7 @@ function AdminPortfolio({
       title: values.title || selectedWork.title,
       category: values.category || selectedWork.category,
       text: values.text || selectedWork.text,
+      photos: selectedWork.photos,
     });
     showPreview(true);
   }
@@ -373,7 +375,7 @@ function AdminPortfolio({
               Назад
             </button>
           )}
-          {preview && <PortfolioItem previewContent={compiledData} />}
+          {preview && <PortfolioItem previewMode={true} previewContent={compiledData} />}
         </div>
       </div>
       {addPhoto && (
