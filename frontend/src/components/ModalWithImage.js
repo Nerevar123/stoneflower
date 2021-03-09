@@ -7,6 +7,7 @@ function ModalWithImage({ image, closeModal }) {
     evt.target.closest('.modal').classList.remove('modal_visible');
     closeModal();
   }
+
   useEffect(() => {
     function closeModalWithEsc(e) {
       if (e.key === "Escape") {
