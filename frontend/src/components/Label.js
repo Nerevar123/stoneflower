@@ -14,7 +14,7 @@ function Label({
   const { values, errors, handleChange, resetInput } = validation;
   const [isProtected, setProtected] = useState(false);
   useEffect(() => {
-    if (name === "password") {
+    if (className === "login") {
       setProtected(true);
     }
   }, [name]);
@@ -25,7 +25,6 @@ function Label({
       <div className="admin__input-wrapper">
         {isProtected ? (
           <input
-            type={name}
             name={name}
             className={`input ${className}__input ${
               errors[name] ? `${className}__input_invalid` : ""
