@@ -102,7 +102,7 @@ function ModalWithLink({
               <div onClick={handleClose} className="modal__overlay"></div>
               <div className="modal__link-container">
                 <p className="modal__link-text">
-                  Перейти на сайт производителя?
+                  Открыть сайт производителя?
                 </p>
                 <a
                   className="modal__link"
@@ -110,7 +110,7 @@ function ModalWithLink({
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Перейти
+                  Открыть
                 </a>
                 <button
                   onClick={handleClose}

@@ -1,0 +1,105 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  background: #f7f8fc;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+.login__heading {
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  max-width: 446px;
+  color: #27ae60;
+  align-self: center;
+  margin: 80px auto 0 auto;
+  text-align: center;
+}
+
+.login__form {
+  background: #ffffff;
+  border-radius: 16px;
+  border: none;
+  max-width: 656px;
+  width: 100%;
+  align-items: center;
+  margin: 48px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.login__fields {
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 540px;
+  padding: 0;
+  margin: 24px 0 0 0;
+}
+.login__title {
+  font-family: Roboto, helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 1.25;
+  text-align: center;
+  color: #2e2e2e;
+  margin: 24px 0 0 0;
+}
+.login__input-label {
+  font-family: Roboto, helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c4c4c4;
+}
+.login__input {
+  resize: none;
+  width: calc(100% - 20px);
+  padding: 10px;
+  height: 20px;
+  font-family: Roboto, helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2e2e2e;
+  border: 1px solid #dfe0eb;
+  border-radius: 8px;
+}
+.login__input:focus {
+  outline: none;
+}
+.login__input-container:last-of-type {
+  margin-top: 24px;
+}
+.login__save-button {
+  width: 162px;
+  height: 40px;
+  background: #27ae60;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-family: Roboto, helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 42px 0;
+  color: #fff;
+  cursor: pointer;
+}
+.login__save-button_disabled {
+  background: #aaa;
+}
+.login__error_active {
+    color: #F00;
+    font-family: Roboto, helvetica, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.43;
+    margin: 0 auto;
+}
