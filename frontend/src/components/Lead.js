@@ -12,8 +12,8 @@ function Lead({ content, leadBgImage, mainRef }) {
       style={{
         backgroundImage: `linear-gradient(
           90deg,
-          rgba(255,255,255,0.78) 0%,
-          rgba(255, 255, 255, 0) 61.78%
+          rgba(255,255,255,0.78) 40%,
+          rgba(255, 255, 255, 0) 81.78%
         ), url(${
           leadBgImage && (leadBgImage.path || leadBgImage)
         })`,
