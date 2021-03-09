@@ -380,7 +380,9 @@ function AdminPortfolio({
               Назад
             </button>
           )}
-          {preview && <PortfolioItem previewMode={true} previewContent={compiledData} />}
+          {preview && (
+            <PortfolioItem previewMode={true} previewContent={compiledData} />
+          )}
         </div>
       </div>
       {addPhoto && (
