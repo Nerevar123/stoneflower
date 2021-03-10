@@ -127,7 +127,7 @@ function Footer({
                 Контакты
               </NavLink>
             </nav>
-            {windowSize > 849 && (
+            {windowSize.width > 849 && (
               <>
                 <div className="footer__contacts">
                   <p className="footer__text footer__text_type_minor">
