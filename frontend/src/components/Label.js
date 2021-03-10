@@ -17,6 +17,7 @@ function Label({
     if (className === "login") {
       setProtected(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   return (

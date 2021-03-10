@@ -10,10 +10,9 @@ const emailSchema = new mongoose.Schema({
   tel: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => validator.isMobilePhone(v, 'ru-RU'),
-      message: 'Неправильный формат номера телефона',
-    },
+    minlength: 9,
+    maxlength: 20,
+
   },
   email: {
     type: String,

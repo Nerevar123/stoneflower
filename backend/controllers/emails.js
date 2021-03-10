@@ -2,28 +2,29 @@ const nodemailer = require('nodemailer');
 const Email = require('../models/email');
 
 module.exports.sendMail = (req, res, next) => {
-  const { GMAIL_ADDRESS, GMAIL_PASSWORD } = process.env;
+  const { MAIL_ADDRESS, MAIL_PASSWORD } = process.env;
   const {
     name, tel, email, description,
   } = req.body;
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.yandex.ru',
+    port: '587',
+    secure: false,
     auth: {
-      user: GMAIL_ADDRESS,
-      pass: GMAIL_PASSWORD,
+      user: MAIL_ADDRESS,
+      pass: MAIL_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: '"Stone Flower" <stoneflower@gmail.com>',
+    from: '<fioradipietra.web@yandex.ru>',
     to: 'nerevar123@gmail.com',
     subject: 'Каменный цветок',
-    text: (name, tel, email, description),
-    html: `<p>Name: ${name}</p>
-    <p>tel: ${tel}</p>
-    <p> email: ${email}</p>
-    <p>description: ${description}</p>`,
+    html: `<p>Имя отправителя: ${name}</p>
+    <p>Телефон: ${tel}</p>
+    <p>Email: ${email}</p>
+    <p>Описание задачи: ${description}</p>`,
   };
 
   Email.create({

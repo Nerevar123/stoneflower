@@ -17,10 +17,9 @@ function Footer({
   handleScrollToElement,
 }) {
   const [isFooterExtended, setFooterExtended] = useState(false);
-  console.log(content);
+
   useEffect(() => {
     extended ? setFooterExtended(true) : setFooterExtended(false);
-    console.log(isFooterExtended);
   }, [extended]);
 
   const windowSize = useWindowSize();
