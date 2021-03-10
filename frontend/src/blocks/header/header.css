@@ -207,9 +207,9 @@
     position: absolute;
     top: 0px;
     right: -267px;
-    width: 266px;
-    height: 100vh;
-    min-height: 344px;
+    width: 267px;
+    min-height: 100vh;
+    overflow-y: scroll;
     background-color: #75978c;
     z-index: 2;
     display: flex;
@@ -241,11 +241,14 @@
   .header__link:first-of-type {
     margin-top: 0;
   }
-
+ 
   .header__order-button {
     margin: 32px 0 0 0;
     min-width: 250px;
     min-height: 46px;
     border: 1px solid #ffffff;
+  }
+  .open .header__order-button {
+    margin-bottom: -150px;
   }
 }

@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import arrowIcon from "../images/icons/ArrowRight.svg";
 import useWindowSize from "../hooks/useWindowSize";
 
-function Advantages({ textContent, icons, showModal, image, withIcons }) {
+function Advantages({ textContent, icons, showModal, image, withIcons, advantagesRef }) {
   const [textExpanded, setTextExpanded] = useState(false);
   // const slide = 2;
   function handleOpenEvent() {
@@ -16,7 +16,7 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
   const size = useWindowSize();
 
   return (
-    <article className="advantages">
+    <article className="advantages" ref={advantagesRef}>
       <h2 className="content__title">{textContent.title}</h2>
       <div className="content__info-block">
         <div className="content__text-container">

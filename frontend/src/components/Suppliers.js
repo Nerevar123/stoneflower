@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SuppliersItem from "./SuppliersItem";
 
-function Suppliers({ content, textContent, showModal }) {
+function Suppliers({ content, textContent, showModal, suppliersRef }) {
   const [materialItems, setMaterialItems] = useState([]);
   const [supplierItems, setSupplierItems] = useState([]);
 
@@ -22,7 +22,7 @@ function Suppliers({ content, textContent, showModal }) {
   }, [content]);
 
   return (
-    <article className="suppliers">
+    <article className="suppliers" ref={suppliersRef}>
       <h2 className="content__title content__title_place_suppliers">
         {textContent.heading}
       </h2>

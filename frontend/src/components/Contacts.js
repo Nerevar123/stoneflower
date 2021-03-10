@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import whatsapp_icon from "../images/icons/whatsapp_icon.svg";
 import useWindowSize from "../hooks/useWindowSize";
+import { YMaps, Map, Placemark } from "react-yandex-maps";
 
 function Contacts({ content, entranceImage }) {
   const [whatsAppPhone, setWhatsAppPhone] = useState("");
   const [byBusExpanded, setByBusExpanded] = useState(false);
   const [byVehicleExpanded, setByVehicleExpanded] = useState(false);
   const [byTrainExpanded, setByTrainExpanded] = useState(false);
+  const mapOverlayRef = useRef();
 
   const size = useWindowSize();
-  
+  const mapState = {
+    center: [55.967157, 37.914651],
+    zoom: 17,
+    controls: ["zoomControl"],
+  };
+
   useEffect(() => {
-    window.scrollTo({ top: 0})
-  }, [])
+    window.scrollTo({ top: 0 });
+  }, []);
 
   useEffect(() => {
     if (content.phonePrimary) {
@@ -29,6 +36,10 @@ function Contacts({ content, entranceImage }) {
   }
   function handleByTrainExpand() {
     setByTrainExpanded(!byTrainExpanded);
+  }
+  function handleMapTouch(e) {
+    console.log(e.touches.length)
+    e.touches.length > 1?mapOverlayRef.current.classList.remove('contacts__map-overlay_visible'):mapOverlayRef.current.classList.add('contacts__map-overlay_visible')
   }
   return (
     <article className="contacts">
@@ -138,26 +149,67 @@ function Contacts({ content, entranceImage }) {
           </div>
         </div>
         <div className="contacts__map-wrapper">
-        {size.width < 850 &&
-          <div className="contacts__landmarks">
-             <p className="content__text content__text_place_landmarks">
-              {content.landmarksDescription}
-            </p>
-            {entranceImage &&  <img className="contacts__image" src={entranceImage.path} alt="Изображение входа"/>}
-          </div>}
-          <iframe
+          {size.width < 850 && (
+            <div className="contacts__landmarks">
+              <p className="content__text content__text_place_landmarks">
+                {content.landmarksDescription}
+              </p>
+              {entranceImage && (
+                <img
+                  className="contacts__image"
+                  src={entranceImage.path}
+                  alt="Изображение входа"
+                />
+              )}
+            </div>
+          )}
+          <div
+            className="contacts__map-container"
+            onTouchMove={handleMapTouch}
+            onTouchEnd={()=>{mapOverlayRef.current.classList.remove('contacts__map-overlay_visible')}}
+          >
+            <div className="contacts__map-overlay" ref={mapOverlayRef}>Для перемещения карты дотроньтесь двумя пальцами</div>
+            <YMaps query={{ load: "package.full" }}>
+              <Map
+                state={mapState}
+                className="contacts__map"
+                instanceRef={(ref) => {
+                  if (size.width < 850 && ref) {
+                    ref.behaviors.disable("drag");
+                  }
+                }}
+              >
+                <Placemark
+                  modules={["geoObject.addon.balloon"]}
+                  geometry={[55.967157, 37.914651]}
+                  properties={{
+                    balloonContent:
+                      "Студия керамогранита Каменный цветок </br> г. Ивантеевка, ул. Толмачева 1/2",
+                  }}
+                />
+              </Map>
+            </YMaps>
+          </div>
+          {/* <iframe
             className="contacts__map"
             title="map"
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
             frameBorder="0"
-          ></iframe>
-          {size.width > 849 &&
-          <div className="contacts__landmarks">
-           {entranceImage && <img className="contacts__image" src={entranceImage.path} alt="Изображение входа"/>}
-            <p className="content__text content__text_place_landmarks">
-              {content.landmarksDescription}
-            </p>
-          </div>}
+          ></iframe> */}
+          {size.width > 849 && (
+            <div className="contacts__landmarks">
+              {entranceImage && (
+                <img
+                  className="contacts__image"
+                  src={entranceImage.path}
+                  alt="Изображение входа"
+                />
+              )}
+              <p className="content__text content__text_place_landmarks">
+                {content.landmarksDescription}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </article>
