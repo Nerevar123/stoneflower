@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const Email = require('../models/email');
 
 module.exports.sendMail = (req, res, next) => {
-  const { MAIL_ADDRESS, MAIL_PASSWORD } = process.env;
+  const { MAIL_ADDRESS, MAIL_PASSWORD, MAIL_TO } = process.env;
   const {
     name, tel, email, description,
   } = req.body;
@@ -19,7 +19,7 @@ module.exports.sendMail = (req, res, next) => {
 
   const mailOptions = {
     from: '<fioradipietra.web@yandex.ru>',
-    to: 'nerevar123@gmail.com',
+    to: MAIL_TO,
     subject: 'Каменный цветок',
     html: `<p>Имя отправителя: ${name}</p>
     <p>Телефон: ${tel}</p>

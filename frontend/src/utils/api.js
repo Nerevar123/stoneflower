@@ -1,4 +1,4 @@
-import { baseUrl, checkError, checkEmailResponse, headers } from "./utils";
+import { baseUrl, checkError, headers } from "./utils";
 
 export const getTexts = () => {
   return fetch(`${baseUrl}texts`, {
@@ -250,7 +250,7 @@ export const sendEmail = (data) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify(data),
-  }).then(checkEmailResponse);
+  }).then(checkError);
 };
 
 export const getEmails = () => {
