@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const emailSchema = new mongoose.Schema({
   name: {
@@ -17,10 +16,8 @@ const emailSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => validator.isEmail(v),
-      message: 'Неправильный формат почты',
-    },
+    minlength: 5,
+    maxlength: 80,
   },
   description: {
     type: String,
