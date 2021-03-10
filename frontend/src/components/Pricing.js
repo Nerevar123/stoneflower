@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-scroll";
 import arrowIcon from "../images/icons/ArrowRight.svg";
 
-function Pricing({ content }) {
+function Pricing({ content, pricingRef }) {
   return (
-    <article id="pricing" className="pricing">
+    <article id="pricing" className="pricing" ref={pricingRef}>
       <h2 className="content__title">{content.heading}</h2>
       <div className="content__info-block">
         <div className="content__text-container content__text-container_place_pricing">

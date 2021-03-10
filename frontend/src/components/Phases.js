@@ -1,8 +1,8 @@
 import React from "react";
 
-function Phases({ phasesIcons, phasesText }) {
+function Phases({ phasesIcons, phasesText, phasesRef }) {
   return (
-    <article className="phases">
+    <article className="phases" ref={phasesRef}>
       <h2 className="content__title">{phasesText.title}</h2>
       <div className="phases__scheme-container">
         <div className="phases__scheme-element">

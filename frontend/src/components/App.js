@@ -73,12 +73,22 @@ function App() {
   const [portfolioItem, setPortfolioItem] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [requestsItems, setRequestsItems] = useState(null);
+  const servicesRef = useRef();
+  const advantagesRef = useRef();
+  const applicabilityRef = useRef();
+  const phasesRef = useRef();
+  const pricingRef = useRef();
+  const suppliersRef = useRef();
   //safari compatibility;
   smoothscroll.polyfill();
 
   const formRef = useRef();
   const mainRef = useRef();
-
+  function handlePageLoad() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const item = searchParams.get("item");
+    console.log(item);
+  }
   function handlePortfolioItemSelection(item) {
     setPortfolioItem(item);
   }
@@ -254,6 +264,19 @@ function App() {
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
   };
+  
+  const handleScrollToElement = (ref) => {
+    setTimeout(() => {
+      const offset = -80;
+      const yCoordinate =
+        ref.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        offset;
+      window.scrollTo({ top: yCoordinate, behavior: "smooth" });
+      console.log(servicesRef.current);
+    }, 200);
+
+  }
 
   if (isLoggedIn === null) {
     return <Preloader />;
@@ -267,6 +290,9 @@ function App() {
             <Header
               handleRequestButtonClick={handleRequestButtonClick}
               handleMainLinkClick={handleMainLinkClick}
+              handleScrollToElement={handleScrollToElement}
+              mainRef={mainRef}
+              formRef={formRef}
             />
             <Main
               showModalWithImage={showModalWithImage}
@@ -280,13 +306,30 @@ function App() {
               images={images}
               formRef={formRef}
               mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
             />
-            {texts && <Footer content={texts.contacts} />}
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/surfaces">
             <Header
               handleRequestButtonClick={handleRequestButtonClick}
               handleMainLinkClick={handleMainLinkClick}
+              handleScrollToElement={handleScrollToElement}
+              mainRef={mainRef}
+              formRef={formRef}
             />
             <main className="content">
               <Breadcrumbs link="/surfaces" name="Поверхности" />
@@ -309,12 +352,23 @@ function App() {
                 </>
               )}
             </main>
-            {texts && <Footer content={texts.contacts} />}
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route path="/portfolio">
             <Header
               handleRequestButtonClick={handleRequestButtonClick}
               handleMainLinkClick={handleMainLinkClick}
+              handleScrollToElement={handleScrollToElement}
+              mainRef={mainRef}
+              formRef={formRef}
             />
             <main className="content">
               <Breadcrumbs
@@ -337,23 +391,45 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            {texts && <Footer content={texts.contacts} />}
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/advices">
             <Header
               handleRequestButtonClick={handleRequestButtonClick}
               handleMainLinkClick={handleMainLinkClick}
+              handleScrollToElement={handleScrollToElement}
+              mainRef={mainRef}
+              formRef={formRef}
             />
             <main className="content">
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            {texts && <Footer content={texts.contacts} />}
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/contacts">
             <Header
               handleRequestButtonClick={handleRequestButtonClick}
               handleMainLinkClick={handleMainLinkClick}
+              handleScrollToElement={handleScrollToElement}
+              mainRef={mainRef}
+              formRef={formRef}
             />
             <main className="content">
               <Breadcrumbs link="/contacts" name="Контакты" />
@@ -364,7 +440,15 @@ function App() {
                 />
               )}
             </main>
-            {texts && <Footer content={texts.contacts} />}
+            {texts && <Footer content={texts.contacts} extended={false}              formRef={formRef}
+              mainRef={mainRef}
+              servicesRef={servicesRef}
+              advantagesRef={advantagesRef}
+              applicabilityRef={applicabilityRef}
+              phasesRef={phasesRef}
+              pricingRef={pricingRef}
+              suppliersRef={suppliersRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/login">
             <Login validation={validation} onAuthorize={handleLogin} />

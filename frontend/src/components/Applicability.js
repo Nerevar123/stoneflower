@@ -1,8 +1,8 @@
 import React from "react";
 
-function Applicability ({table}) {
+function Applicability ({table, applicabilityRef}) {
   return (
-  <article id="applicability"className="applicability">
+  <article id="applicability"className="applicability" ref={applicabilityRef}>
     <img src={table && (table.path || table)} className="applicability__table" alt="Таблица"/>
   </article>
   );
