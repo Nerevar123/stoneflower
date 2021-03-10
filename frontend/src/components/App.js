@@ -84,14 +84,6 @@ function App() {
 
   const formRef = useRef();
   const mainRef = useRef();
-  function handlePageLoad() {
-    const searchParams = new URLSearchParams(window.location.search);
-    const item = searchParams.get("item");
-    console.log(item);
-  }
-  function handlePortfolioItemSelection(item) {
-    setPortfolioItem(item);
-  }
 
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
@@ -152,6 +144,10 @@ function App() {
         setSuppliersContent(suppliersItems);
       });
   }, [isLoggedIn]);
+
+  function handlePortfolioItemSelection(item) {
+    setPortfolioItem(item);
+  }
 
   function showModalWithImage(image) {
     document.body.style.overflow = "hidden";
@@ -261,7 +257,7 @@ function App() {
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
   };
-  
+
   const handleScrollToElement = (ref) => {
     setTimeout(() => {
       const offset = -80;
