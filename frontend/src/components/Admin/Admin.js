@@ -26,6 +26,7 @@ function Admin({
   onSaveData,
   onPatchData,
   onDeleteData,
+  onDeleteRequest,
   surfaces,
   onLogout,
   requests,
@@ -131,7 +132,7 @@ function Admin({
         {requests && (
           <>
             {selectedItem === "requests" && (
-              <AdminRequests onDeleteData={onDeleteData} requests={requests} />
+              <AdminRequests onDeleteData={onDeleteRequest} requests={requests} />
             )}
           </>
         )}
