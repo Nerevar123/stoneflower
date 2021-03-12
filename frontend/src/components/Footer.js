@@ -8,7 +8,6 @@ function Footer({
   extended,
 }) {
   const [isFooterExtended, setFooterExtended] = useState(false);
-  console.log(content);
   useEffect(() => {
     extended ? setFooterExtended(true) : setFooterExtended(false);
     console.log(isFooterExtended);
