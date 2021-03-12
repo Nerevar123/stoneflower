@@ -22,12 +22,6 @@ function Main({
   images,
   formRef,
   mainRef,
-  servicesRef,
-  advantagesRef,
-  applicabilityRef,
-  phasesRef,
-  pricingRef,
-  suppliersRef
 }) {
   const size = useWindowSize();
   useEffect(() => {
@@ -42,7 +36,7 @@ function Main({
           leadBgImage={images.leadBgImage}
         />
       )}
-      {services && <Services elements={services} servicesRef={servicesRef} />}
+      {services && <Services elements={services} />}
       {images && texts && (
         <Advantages
           textContent={texts.advantages}
@@ -50,25 +44,23 @@ function Main({
           showModal={showModalWithImage}
           image={images.applicabilityTable}
           withIcons
-          advantagesRef={advantagesRef}
         />
       )}
       {images && (
         <>
           {size.width > 849 && (
-            <Applicability table={images.applicabilityTable} applicabilityRef={applicabilityRef} />
+            <Applicability table={images.applicabilityTable} />
           )}
         </>
       )}
       {texts && <Disadvantages disadvantagesContent={texts.disadvantages} />}
-      {texts && <Phases phasesIcons={phasesIcons} phasesText={texts.phases} phasesRef={phasesRef}/>}
-      {texts && <Pricing content={texts.pricing} pricingRef={pricingRef}/>}
+      {texts && <Phases phasesIcons={phasesIcons} phasesText={texts.phases}/>}
+      {texts && <Pricing content={texts.pricing} />}
       {suppliersContent && (
         <Suppliers
           content={suppliersContent}
           textContent={texts.suppliers}
           showModal={showModalWithLink}
-          suppliersRef={suppliersRef}
         />
       )}
       {images && texts && (
