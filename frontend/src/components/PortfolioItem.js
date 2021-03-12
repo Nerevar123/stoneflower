@@ -31,7 +31,8 @@ function PortfolioItem({
   useEffect(() => {
     if (item) {
       setPhotos(item.photos);
-      handlePortfolioItemSelection({name: item.title, link: `portfolio/items/${item._id}`})
+      if(handlePortfolioItemSelection) {
+      handlePortfolioItemSelection({name: item.title, link: `portfolio/items/${item._id}`})}
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);

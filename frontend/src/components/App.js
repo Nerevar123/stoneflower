@@ -251,7 +251,7 @@ function App() {
   if (isLoggedIn === null) {
     return <Preloader />;
   }
-
+  
   return (
     <>
       <Router history={history} basename="/">
