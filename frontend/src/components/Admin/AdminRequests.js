@@ -36,6 +36,7 @@ function AdminRequests({ requests, onDeleteData }) {
     e.preventDefault();
 
     onDeleteData(selectedForDeleteMessage._id, deleteEmail);
+    setDelMessage(false);
   }
 
   function formatDate(date) {

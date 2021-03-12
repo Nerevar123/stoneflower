@@ -223,10 +223,18 @@ function App() {
   }
 
   function handleDeleteData(id, handler) {
-    console.log(id);
     handler(id)
       .then(() => {
         window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteRequest(id, handler) {
+    handler(id)
+      .then(() => {
+        const newRequests = requestsItems.filter((r) => r._id !== id);
+        setRequestsItems(newRequests);
       })
       .catch((err) => console.log(err));
   }
@@ -246,13 +254,10 @@ function App() {
     setTimeout(() => {
       const offset = -80;
       const yCoordinate =
-        ref.current.getBoundingClientRect().top +
-        window.pageYOffset +
-        offset;
+        ref.current.getBoundingClientRect().top + window.pageYOffset + offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
     }, 200);
-
-  }
+  };
 
   if (isLoggedIn === null) {
     return <Preloader />;
@@ -281,9 +286,9 @@ function App() {
               formRef={formRef}
               mainRef={mainRef}
             />
+
             {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
               mainRef={mainRef}
-
               handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/surfaces">
@@ -344,7 +349,8 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+            {texts && <Footer content={texts.contacts} extended={true}               
+             formRef={formRef}
               mainRef={mainRef}
               handleScrollToElement={handleScrollToElement}/>}
           </Route>
@@ -358,7 +364,8 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+            {texts && <Footer content={texts.contacts} extended={true}               
+             formRef={formRef}
               mainRef={mainRef}
               handleScrollToElement={handleScrollToElement}/>}
           </Route>
@@ -377,7 +384,8 @@ function App() {
                 />
               )}
             </main>
-            {texts && <Footer content={texts.contacts} extended={false}              formRef={formRef}
+            {texts && <Footer content={texts.contacts} extended={false}              
+             formRef={formRef}
               mainRef={mainRef}
               handleScrollToElement={handleScrollToElement}/>}
           </Route>
@@ -397,6 +405,7 @@ function App() {
                   onSaveData={handleSaveData}
                   onPatchData={handlePatchData}
                   onDeleteData={handleDeleteData}
+                  onDeleteRequest = {handleDeleteRequest}
                   onLogout={handleLogout}
                   texts={texts}
                   images={images}
