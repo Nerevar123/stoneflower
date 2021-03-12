@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "../images/footer__logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Footer({
   content,
   extended,
-  formRef,
-  mainRef,
-  servicesRef,
-  advantagesRef,
-  applicabilityRef,
-  phasesRef,
-  pricingRef,
-  suppliersRef,
-  handleScrollToElement,
 }) {
   const [isFooterExtended, setFooterExtended] = useState(false);
   console.log(content);
@@ -40,24 +31,11 @@ function Footer({
                 className="footer__link link"
                 activeClassName="footer__link_active"
                 exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(servicesRef);
-                }}
+                to="/surfaces"
               >
-                Наши услуги
+                Поверхности
               </NavLink>
-              <NavLink
-                className="footer__link link"
-                activeClassName="footer__link_active"
-                exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(phasesRef);
-                }}
-              >
-                Этапы работы
-              </NavLink>
+             
               <NavLink
                 className="footer__link link"
                 activeClassName="footer__link_active"
@@ -70,53 +48,9 @@ function Footer({
                 className="footer__link link"
                 activeClassName="footer__link_active"
                 exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(advantagesRef);
-                }}
-              >
-                Преимущества материала
-              </NavLink>
-              <NavLink
-                className="footer__link link"
-                activeClassName="footer__link_active"
-                exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(pricingRef);
-                }}
-              >
-                Расчет цены
-              </NavLink>
-              <NavLink
-                className="footer__link link"
-                activeClassName="footer__link_active"
-                exact
                 to="/advices"
               >
                 Советы дизайнера
-              </NavLink>
-              <NavLink
-                className="footer__link link"
-                activeClassName="footer__link_active"
-                exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(applicabilityRef);
-                }}
-              >
-                Таблица применимости
-              </NavLink>
-              <NavLink
-                className="footer__link link"
-                activeClassName="footer__link_active"
-                exact
-                to="/"
-                onClick={() => {
-                  handleScrollToElement(suppliersRef);
-                }}
-              >
-                Производители
               </NavLink>
               <NavLink
                 className="footer__link link"
@@ -140,15 +74,6 @@ function Footer({
                     {content.phoneAdditional}
                   </p>
                 </div>
-                <Link
-                  className="footer__order-link"
-                  to="/"
-                  onClick={() => {
-                    handleScrollToElement(formRef);
-                  }}
-                >
-                  Оставить заявку
-                </Link>
               </>
             )}
           </div>

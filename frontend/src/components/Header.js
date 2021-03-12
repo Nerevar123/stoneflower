@@ -4,7 +4,7 @@ import useWindowSize from "../hooks/useWindowSize";
 // import { Link } from "react-scroll";
 import { NavLink, Link } from "react-router-dom";
 
-function Header({ handleRequestButtonClick, handleMainLinkClick, mainRef, formRef, handleScrollToElement }) {
+function Header({ mainRef, formRef, handleScrollToElement }) {
   const [menuOpened, setMenuOpened] = useState(false);
 
   function toggleMenuOpen() {
