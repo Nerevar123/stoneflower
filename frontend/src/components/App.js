@@ -76,7 +76,7 @@ function App() {
 
   const formRef = useRef();
   const mainRef = useRef();
-  
+
   //safari compatibility;
   smoothscroll.polyfill();
 
@@ -239,17 +239,6 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  const handleRequestButtonClick = () => {
-    setTimeout(() => {
-      const offset = -80;
-      const yCoordinate =
-        formRef.current.getBoundingClientRect().top +
-        window.pageYOffset +
-        offset;
-      window.scrollTo({ top: yCoordinate, behavior: "smooth" });
-    }, 200);
-  };
-
   const handleScrollToElement = (ref) => {
     setTimeout(() => {
       const offset = -80;
@@ -287,9 +276,7 @@ function App() {
               mainRef={mainRef}
             />
 
-            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
-              mainRef={mainRef}
-              handleScrollToElement={handleScrollToElement}/>}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/surfaces">
             <Header
@@ -318,9 +305,7 @@ function App() {
                 </>
               )}
             </main>
-            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
-              mainRef={mainRef}
-              handleScrollToElement={handleScrollToElement}/>}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route path="/portfolio">
             <Header
@@ -349,10 +334,7 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            {texts && <Footer content={texts.contacts} extended={true}               
-             formRef={formRef}
-              mainRef={mainRef}
-              handleScrollToElement={handleScrollToElement}/>}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/advices">
             <Header
@@ -364,10 +346,7 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            {texts && <Footer content={texts.contacts} extended={true}               
-             formRef={formRef}
-              mainRef={mainRef}
-              handleScrollToElement={handleScrollToElement}/>}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/contacts">
             <Header
@@ -384,10 +363,7 @@ function App() {
                 />
               )}
             </main>
-            {texts && <Footer content={texts.contacts} extended={false}              
-             formRef={formRef}
-              mainRef={mainRef}
-              handleScrollToElement={handleScrollToElement}/>}
+            {texts && <Footer content={texts.contacts} extended={false} />}
           </Route>
           <Route exact path="/login">
             {isLoggedIn ? (
@@ -405,7 +381,7 @@ function App() {
                   onSaveData={handleSaveData}
                   onPatchData={handlePatchData}
                   onDeleteData={handleDeleteData}
-                  onDeleteRequest = {handleDeleteRequest}
+                  onDeleteRequest={handleDeleteRequest}
                   onLogout={handleLogout}
                   texts={texts}
                   images={images}
