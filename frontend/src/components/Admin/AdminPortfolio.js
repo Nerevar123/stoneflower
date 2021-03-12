@@ -69,6 +69,7 @@ function AdminPortfolio({
 
   function handleEditWork(e) {
     e.preventDefault();
+
     onPatchData(
       {
         title: values.title || selectedWork.title,
@@ -87,6 +88,7 @@ function AdminPortfolio({
 
   function handleAddWork(e) {
     e.preventDefault();
+
     onSaveData(
       {
         title: values.title,
@@ -98,7 +100,9 @@ function AdminPortfolio({
     );
   }
 
-  function handleDeleteWork() {
+  function handleDeleteWork(e) {
+    e.preventDefault();
+
     onDeleteData(selectedWork._id, deleteWork);
   }
 
@@ -117,7 +121,9 @@ function AdminPortfolio({
     setCurrentPhoto(data);
   }
 
-  function handleDeletePhoto() {
+  function handleDeletePhoto(e) {
+    e.preventDefault();
+
     onPatchData(
       { photo: currentPhoto._id, image: currentPhoto.image },
       selectedWork._id,

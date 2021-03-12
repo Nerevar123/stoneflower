@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Router, Route, useHistory, Switch } from "react-router-dom";
+import { Router, Route, useHistory, Switch, Redirect } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Admin from "./Admin/Admin";
@@ -80,10 +80,6 @@ function App() {
   //safari compatibility;
   smoothscroll.polyfill();
 
-  function handlePortfolioItemSelection(item) {
-    setPortfolioItem(item);
-  }
-
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
     setPhasesIconList(phasesIcons);
@@ -143,6 +139,10 @@ function App() {
         setSuppliersContent(suppliersItems);
       });
   }, [isLoggedIn]);
+
+  function handlePortfolioItemSelection(item) {
+    setPortfolioItem(item);
+  }
 
   function showModalWithImage(image) {
     document.body.style.overflow = "hidden";
@@ -208,18 +208,16 @@ function App() {
 
   function handleSaveData(data, handler) {
     handler(data)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
   }
 
   function handlePatchData(data, id, handler) {
     handler(data, id)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Сохранено", data);
       })
       .catch((err) => console.log(err));
   }
@@ -227,13 +225,23 @@ function App() {
   function handleDeleteData(id, handler) {
     console.log(id);
     handler(id)
-      .then((data) => {
+      .then(() => {
         window.location.reload();
-        console.log("Удалено", data);
       })
       .catch((err) => console.log(err));
   }
-  
+
+  const handleRequestButtonClick = () => {
+    setTimeout(() => {
+      const offset = -80;
+      const yCoordinate =
+        formRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        offset;
+      window.scrollTo({ top: yCoordinate, behavior: "smooth" });
+    }, 200);
+  };
+
   const handleScrollToElement = (ref) => {
     setTimeout(() => {
       const offset = -80;
@@ -374,7 +382,11 @@ function App() {
               handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/login">
-            <Login validation={validation} onAuthorize={handleLogin} />
+            {isLoggedIn ? (
+              <Redirect to="/admin" />
+            ) : (
+              <Login validation={validation} onAuthorize={handleLogin} />
+            )}
           </Route>
           <ProtectedRoute exact path="/admin" loggedIn={isLoggedIn}>
             {isLoggedIn === true && (

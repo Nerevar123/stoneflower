@@ -8,9 +8,9 @@ function Footer({
   extended,
 }) {
   const [isFooterExtended, setFooterExtended] = useState(false);
+
   useEffect(() => {
     extended ? setFooterExtended(true) : setFooterExtended(false);
-    console.log(isFooterExtended);
   }, [extended]);
 
   const windowSize = useWindowSize();

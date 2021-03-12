@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Modal from "./Modal";
-import useWindowSize from "../hooks/useWindowSize";
 
 function ModalWithImage({ image, closeModal }) {
   function handleClose(evt) {
@@ -20,8 +19,9 @@ function ModalWithImage({ image, closeModal }) {
     return () => {
       document.removeEventListener("keydown", closeModalWithEsc);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const size = useWindowSize();
+
   return (
     <Modal
       closeModal={closeModal}

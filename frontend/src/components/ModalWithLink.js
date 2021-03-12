@@ -63,6 +63,7 @@ function ModalWithLink({
     return () => {
       document.removeEventListener("keydown", closeModalWithEsc);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClose = (evt) => {

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const emailSchema = new mongoose.Schema({
   name: {
@@ -10,18 +9,15 @@ const emailSchema = new mongoose.Schema({
   tel: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => validator.isMobilePhone(v, 'ru-RU'),
-      message: 'Неправильный формат номера телефона',
-    },
+    minlength: 9,
+    maxlength: 20,
+
   },
   email: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => validator.isEmail(v),
-      message: 'Неправильный формат почты',
-    },
+    minlength: 5,
+    maxlength: 80,
   },
   description: {
     type: String,

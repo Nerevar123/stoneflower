@@ -8,6 +8,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
   const [preview, showPreview] = useState(false);
   const [description, setDescription] = useState("");
   const previewRef = useRef();
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -20,6 +21,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
+
   useEffect(() => {
     setDescription(
       advantagesText.shortTextBeforeAccent +

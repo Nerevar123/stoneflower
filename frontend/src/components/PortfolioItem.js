@@ -33,6 +33,7 @@ function PortfolioItem({
       setPhotos(item.photos);
       handlePortfolioItemSelection({name: item.title, link: `portfolio/items/${item._id}`})
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   function handleTextExpand() {

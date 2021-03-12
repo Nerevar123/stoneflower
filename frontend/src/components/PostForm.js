@@ -6,7 +6,6 @@ import "yup-phone";
 import { sendEmail } from "../utils/api";
 
 function PostForm({ content, offer, showModal, formRef }) {
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const initialValues = {
     name: "",
     tel: "",
@@ -39,8 +38,7 @@ function PostForm({ content, offer, showModal, formRef }) {
         validationSchema={validationSchema}
         onSubmit={async (values, actions) => {
           actions.setSubmitting(true);
-          await sleep(500);
-          sendEmail(values)
+          await sendEmail(values)
             .then(() => {
               actions.resetForm();
               showModal();
@@ -53,13 +51,7 @@ function PostForm({ content, offer, showModal, formRef }) {
             });
         }}
       >
-        {({
-          isSubmitting,
-          dirty,
-          isValid,
-          errors,
-          touched,
-        }) => (
+        {({ isSubmitting, dirty, isValid, errors, touched }) => (
           <Form className="form" noValidate>
             <fieldset className="form__fieldset">
               <div className="form__inputs-wrapper">
@@ -163,7 +155,7 @@ function PostForm({ content, offer, showModal, formRef }) {
               >
                 {isSubmitting ? "Подождите..." : "ОТПРАВИТЬ"}
               </button>
-              <span className="form__error ">{errors.submit}</span>
+              <span className="form__error">{errors.submit}</span>
             </div>
           </Form>
         )}
