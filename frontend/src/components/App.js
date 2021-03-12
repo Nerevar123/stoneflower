@@ -73,17 +73,12 @@ function App() {
   const [portfolioItem, setPortfolioItem] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [requestsItems, setRequestsItems] = useState(null);
-  const servicesRef = useRef();
-  const advantagesRef = useRef();
-  const applicabilityRef = useRef();
-  const phasesRef = useRef();
-  const pricingRef = useRef();
-  const suppliersRef = useRef();
-  //safari compatibility;
-  smoothscroll.polyfill();
 
   const formRef = useRef();
   const mainRef = useRef();
+  
+  //safari compatibility;
+  smoothscroll.polyfill();
 
   useEffect(() => {
     setAdvantagesIcons(advantagesIconsList);
@@ -255,24 +250,12 @@ function App() {
     }, 200);
   };
 
-  const handleMainLinkClick = () => {
-    setTimeout(() => {
-      const offset = 0;
-      const yCoordinate =
-        mainRef.current.getBoundingClientRect().top +
-        window.pageYOffset +
-        offset;
-      window.scrollTo({ top: yCoordinate, behavior: "smooth" });
-    }, 200);
-  };
-
   const handleScrollToElement = (ref) => {
     setTimeout(() => {
       const offset = -80;
       const yCoordinate =
         ref.current.getBoundingClientRect().top + window.pageYOffset + offset;
       window.scrollTo({ top: yCoordinate, behavior: "smooth" });
-      console.log(servicesRef.current);
     }, 200);
   };
 
@@ -286,8 +269,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Header
-              handleRequestButtonClick={handleRequestButtonClick}
-              handleMainLinkClick={handleMainLinkClick}
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
               formRef={formRef}
@@ -304,33 +285,14 @@ function App() {
               images={images}
               formRef={formRef}
               mainRef={mainRef}
-              servicesRef={servicesRef}
-              advantagesRef={advantagesRef}
-              applicabilityRef={applicabilityRef}
-              phasesRef={phasesRef}
-              pricingRef={pricingRef}
-              suppliersRef={suppliersRef}
             />
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                servicesRef={servicesRef}
-                advantagesRef={advantagesRef}
-                applicabilityRef={applicabilityRef}
-                phasesRef={phasesRef}
-                pricingRef={pricingRef}
-                suppliersRef={suppliersRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/surfaces">
             <Header
-              handleRequestButtonClick={handleRequestButtonClick}
-              handleMainLinkClick={handleMainLinkClick}
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
               formRef={formRef}
@@ -356,26 +318,12 @@ function App() {
                 </>
               )}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                servicesRef={servicesRef}
-                advantagesRef={advantagesRef}
-                applicabilityRef={applicabilityRef}
-                phasesRef={phasesRef}
-                pricingRef={pricingRef}
-                suppliersRef={suppliersRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true}               formRef={formRef}
+              mainRef={mainRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route path="/portfolio">
             <Header
-              handleRequestButtonClick={handleRequestButtonClick}
-              handleMainLinkClick={handleMainLinkClick}
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
               formRef={formRef}
@@ -401,26 +349,13 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                servicesRef={servicesRef}
-                advantagesRef={advantagesRef}
-                applicabilityRef={applicabilityRef}
-                phasesRef={phasesRef}
-                pricingRef={pricingRef}
-                suppliersRef={suppliersRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true}               
+             formRef={formRef}
+              mainRef={mainRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/advices">
             <Header
-              handleRequestButtonClick={handleRequestButtonClick}
-              handleMainLinkClick={handleMainLinkClick}
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
               formRef={formRef}
@@ -429,26 +364,13 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                servicesRef={servicesRef}
-                advantagesRef={advantagesRef}
-                applicabilityRef={applicabilityRef}
-                phasesRef={phasesRef}
-                pricingRef={pricingRef}
-                suppliersRef={suppliersRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true}               
+             formRef={formRef}
+              mainRef={mainRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/contacts">
             <Header
-              handleRequestButtonClick={handleRequestButtonClick}
-              handleMainLinkClick={handleMainLinkClick}
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
               formRef={formRef}
@@ -462,21 +384,10 @@ function App() {
                 />
               )}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={false}
-                formRef={formRef}
-                mainRef={mainRef}
-                servicesRef={servicesRef}
-                advantagesRef={advantagesRef}
-                applicabilityRef={applicabilityRef}
-                phasesRef={phasesRef}
-                pricingRef={pricingRef}
-                suppliersRef={suppliersRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={false}              
+             formRef={formRef}
+              mainRef={mainRef}
+              handleScrollToElement={handleScrollToElement}/>}
           </Route>
           <Route exact path="/login">
             {isLoggedIn ? (
