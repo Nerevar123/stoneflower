@@ -276,15 +276,7 @@ function App() {
               mainRef={mainRef}
             />
 
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/surfaces">
             <Header
@@ -313,15 +305,7 @@ function App() {
                 </>
               )}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route path="/portfolio">
             <Header
@@ -350,15 +334,7 @@ function App() {
                 ></PortfolioItem>
               </Route>
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/advices">
             <Header
@@ -370,15 +346,7 @@ function App() {
               <Breadcrumbs link="/advices" name="Советы дизайнера" />
               {advicesContent && <Advices content={advicesContent} />}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={true}
-                formRef={formRef}
-                mainRef={mainRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/contacts">
             <Header
@@ -395,15 +363,7 @@ function App() {
                 />
               )}
             </main>
-            {texts && (
-              <Footer
-                content={texts.contacts}
-                extended={false}
-                formRef={formRef}
-                mainRef={mainRef}
-                handleScrollToElement={handleScrollToElement}
-              />
-            )}
+            {texts && <Footer content={texts.contacts} extended={false} />}
           </Route>
           <Route exact path="/login">
             {isLoggedIn ? (
