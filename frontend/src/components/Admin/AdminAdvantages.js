@@ -156,7 +156,7 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
             labelText="Раскрывающийся текст (описание)"
             type="text"
             required
-            maxLength="950"
+            maxLength="1500"
             withCount
             height="120px"
           />

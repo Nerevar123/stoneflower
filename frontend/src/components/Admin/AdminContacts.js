@@ -193,7 +193,7 @@ function AdminContacts({
             labelText="Адрес"
             type="text"
             required
-            maxLength="40"
+            maxLength="85"
             withCount
             height="20px"
           />
@@ -237,7 +237,7 @@ function AdminContacts({
             labelText="Как добраться"
             type="text"
             required
-            maxLength="65"
+            maxLength="200"
             withCount
             height="20px"
           />
@@ -248,7 +248,7 @@ function AdminContacts({
             labelText="Автобусом из Москвы"
             type="text"
             required
-            maxLength="40"
+            maxLength="200"
             withCount
             height="60px"
           />
@@ -259,7 +259,7 @@ function AdminContacts({
             labelText="Пригородными поездами"
             type="text"
             required
-            maxLength="40"
+            maxLength="200"
             withCount
             height="60px"
           />
@@ -270,7 +270,7 @@ function AdminContacts({
             labelText="На автомобиле"
             type="text"
             required
-            maxLength="40"
+            maxLength="200"
             withCount
             height="60px"
           />
@@ -281,7 +281,7 @@ function AdminContacts({
             labelText="Визуальные ориентиры"
             type="text"
             required
-            maxLength="40"
+            maxLength="600"
             withCount
             height="60px"
           />

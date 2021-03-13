@@ -106,7 +106,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRe
             labelText="Пункт 1"
             type="text"
             required
-            maxLength="260"
+            maxLength="500"
             withCount
             height="80px"
           />
@@ -117,7 +117,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRe
             labelText="Пункт 2"
             type="text"
             required
-            maxLength="260"
+            maxLength="500"
             withCount
             height="80px"
           />
@@ -128,7 +128,7 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRe
             labelText="Пункт 3"
             type="text"
             required
-            maxLength="260"
+            maxLength="500"
             withCount
             height="60px"
           />

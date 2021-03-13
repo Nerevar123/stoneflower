@@ -309,7 +309,7 @@ function AdminPortfolio({
               labelText="Описание"
               type="text"
               required
-              maxLength="600"
+              maxLength="1000"
               withCount
               height="150px"
             />
@@ -625,7 +625,7 @@ function AdminPortfolio({
                   labelText="Описание"
                   type="text"
                   required
-                  maxLength="600"
+                  maxLength="1000"
                   withCount
                   height="150px"
                 />
