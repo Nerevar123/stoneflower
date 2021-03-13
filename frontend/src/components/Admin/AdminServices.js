@@ -223,7 +223,7 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
             labelText="Пункт 1"
             type="text"
             required
-            maxLength="150"
+            maxLength="250"
             withCount
             height="60px"
           />

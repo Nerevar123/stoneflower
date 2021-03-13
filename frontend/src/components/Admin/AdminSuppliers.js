@@ -395,7 +395,7 @@ function AdminSuppliers({
                   labelText="Введите ссылку на сайт производителя"
                   type="url"
                   required
-                  maxLength="50"
+                  maxLength="150"
                   withCount
                 />
                 <div className="admin__form-heading-container">
@@ -470,7 +470,7 @@ function AdminSuppliers({
                   labelText="Введите ссылку на сайт производителя"
                   type="url"
                   required
-                  maxLength="50"
+                  maxLength="150"
                   withCount
                 />
                 <div className="admin__form-heading-container">

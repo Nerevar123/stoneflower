@@ -111,7 +111,7 @@ function AdminPricing({ validation, pricingContent, onPatchData, menuRef }) {
             labelText="Первый абзац"
             type="text"
             required
-            maxLength="300"
+            maxLength="500"
             withCount
             height="75px"
           />
@@ -122,7 +122,7 @@ function AdminPricing({ validation, pricingContent, onPatchData, menuRef }) {
             labelText="Второй абзац"
             type="text"
             required
-            maxLength="200"
+            maxLength="500"
             withCount
             height="40px"
           />

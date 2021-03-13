@@ -255,7 +255,7 @@ function AdminSurfaces({
               labelText="Описание"
               type="text"
               required
-              maxLength="300"
+              maxLength="500"
               withCount
               height="120px"
             />
@@ -266,7 +266,7 @@ function AdminSurfaces({
               labelText="Читать далее"
               type="text"
               required
-              maxLength="500"
+              maxLength="1110"
               withCount
               height="190px"
             />
@@ -397,7 +397,7 @@ function AdminSurfaces({
                   labelText="Название материала"
                   type="url"
                   required
-                  maxLength="50"
+                  maxLength="80"
                   withCount
                 />
                 <Label
@@ -407,7 +407,7 @@ function AdminSurfaces({
                   labelText="Фабрика"
                   type="url"
                   required
-                  maxLength="50"
+                  maxLength="80"
                   withCount
                 />
                 <Label

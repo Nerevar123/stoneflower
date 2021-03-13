@@ -225,7 +225,7 @@ function AdminLeadEditor({
             labelText="Пункт 1"
             type="text"
             required
-            maxLength="65"
+            maxLength="85"
             withCount
             height="20px"
           />
@@ -236,7 +236,7 @@ function AdminLeadEditor({
             labelText="Пункт 2"
             type="text"
             required
-            maxLength="65"
+            maxLength="85"
             withCount
             height="20px"
           />
@@ -247,7 +247,7 @@ function AdminLeadEditor({
             labelText="Пункт 3"
             type="text"
             required
-            maxLength="65"
+            maxLength="85"
             withCount
             height="20px"
           />
