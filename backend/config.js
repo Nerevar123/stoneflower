@@ -12,7 +12,7 @@ const rateLimitConfig = {
 };
 
 const corsConfig = {
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://stone.ner.works', 'https://www.fioredipietra.studio/', 'https://fioredipietra.studio/'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://stone.ner.works', 'https://www.fioredipietra.studio', 'https://fioredipietra.studio'],
   credentials: true,
 };
 

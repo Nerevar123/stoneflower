@@ -8,14 +8,12 @@ const supplierRouter = require('./suppliers');
 const surfaceRouter = require('./surfaces');
 const worksRouter = require('./works');
 
-const {
-  register, login, logout,
-} = require('../controllers/users');
+const { login, logout } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const { notFoundErrorMessage } = require('../utils/constants');
 
 router.post('/signin', login);
-router.post('/signup', register);
+// router.post('/signup', register);
 
 router.use('/email', emailRouter);
 router.use('/services', serviceRouter);
