@@ -1,21 +1,22 @@
 const jwt = require('jsonwebtoken');
 const yn = require('yn');
 const User = require('../models/user');
-const { cryptHash } = require('../utils/crypt');
+// const { cryptHash } = require('../utils/crypt');
+// const { registrationOkMessage, logoutOkMessage } = require('../utils/constants');
+const { logoutOkMessage } = require('../utils/constants');
 const { JWT_SECRET, COOKIES_SECURE, COOKIES_SAMESITE } = require('../config');
-const { registrationOkMessage, logoutOkMessage } = require('../utils/constants');
 
-module.exports.register = (req, res, next) => {
-  const { email, password } = req.body;
+// module.exports.register = (req, res, next) => {
+//   const { email, password } = req.body;
 
-  User.init()
-    .then(() => {
-      cryptHash(password)
-        .then((hash) => User.create({ email, password: hash }))
-        .then(() => res.status(201).send({ message: registrationOkMessage }))
-        .catch(next);
-    });
-};
+//   User.init()
+//     .then(() => {
+//       cryptHash(password)
+//         .then((hash) => User.create({ email, password: hash }))
+//         .then(() => res.status(201).send({ message: registrationOkMessage }))
+//         .catch(next);
+//     });
+// };
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
