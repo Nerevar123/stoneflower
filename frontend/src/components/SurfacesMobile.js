@@ -41,7 +41,7 @@ function SurfacesMobile({ content, showModal, textContent }) {
                   isMobile={true}
                   item={item}
                   key={item._id}
-                  image={item.image}
+                  image={item.examples[0].image}
                   showModal={showModal}
                   title={item.title}
                 />
