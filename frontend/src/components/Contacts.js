@@ -38,8 +38,9 @@ function Contacts({ content, entranceImage }) {
     setByTrainExpanded(!byTrainExpanded);
   }
   function handleMapTouch(e) {
-    console.log(e.touches.length)
-    e.touches.length > 1?mapOverlayRef.current.classList.remove('contacts__map-overlay_visible'):mapOverlayRef.current.classList.add('contacts__map-overlay_visible')
+    e.touches.length > 1
+      ? mapOverlayRef.current.classList.remove("contacts__map-overlay_visible")
+      : mapOverlayRef.current.classList.add("contacts__map-overlay_visible");
   }
   return (
     <article className="contacts">
@@ -166,9 +167,15 @@ function Contacts({ content, entranceImage }) {
           <div
             className="contacts__map-container"
             onTouchMove={handleMapTouch}
-            onTouchEnd={()=>{mapOverlayRef.current.classList.remove('contacts__map-overlay_visible')}}
+            onTouchEnd={() => {
+              mapOverlayRef.current.classList.remove(
+                "contacts__map-overlay_visible"
+              );
+            }}
           >
-            <div className="contacts__map-overlay" ref={mapOverlayRef}>Для перемещения карты дотроньтесь двумя пальцами</div>
+            <div className="contacts__map-overlay" ref={mapOverlayRef}>
+              Для перемещения карты дотроньтесь двумя пальцами
+            </div>
             <YMaps query={{ load: "package.full" }}>
               <Map
                 state={mapState}
@@ -190,18 +197,12 @@ function Contacts({ content, entranceImage }) {
               </Map>
             </YMaps>
           </div>
-          {/* <iframe
-            className="contacts__map"
-            title="map"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A7639d1027e1fff0c230dd3bc78a9a11623774d47c3444ffe47052a5d9cbb5df1&amp;source=constructor"
-            frameBorder="0"
-          ></iframe> */}
           {size.width > 849 && (
             <div className="contacts__landmarks">
               {entranceImage && (
                 <img
                   className="contacts__image"
-                  src={entranceImage.path}
+                  src={entranceImage && (entranceImage.path || entranceImage)}
                   alt="Изображение входа"
                 />
               )}
