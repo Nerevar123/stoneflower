@@ -2,8 +2,8 @@ const fs = require('fs');
 const Supplier = require('../models/supplier');
 const NotFoundError = require('../errors/not-found-error');
 const ValidationError = require('../errors/validation-error');
-const { notFoundErrorMessage } = require('../utils/constants');
-const { validationErrorMessage } = require('../utils/constants');
+const { notFoundErrorMessage, validationErrorMessage } = require('../utils/constants');
+const { logger } = require('../middlewares/logger');
 
 module.exports.getSuppliers = (req, res, next) => {
   Supplier.find({})
@@ -27,7 +27,7 @@ module.exports.deleteSupplier = (req, res, next) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        console.log(data.image);
+        logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
       }
       Supplier.findByIdAndRemove(req.params.supplierId).then((supplier) => res.send(supplier));
     })
@@ -55,7 +55,7 @@ module.exports.updateSupplier = (req, res, next) => {
         try {
           fs.unlinkSync(data.image.path);
         } catch {
-          console.log(data.image);
+          logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
         }
       }
 

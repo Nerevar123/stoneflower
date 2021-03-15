@@ -2,6 +2,7 @@ const fs = require('fs');
 const Service = require('../models/service');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
+const { logger } = require('../middlewares/logger');
 
 module.exports.getServices = (req, res, next) => {
   Service.find({})
@@ -25,8 +26,7 @@ module.exports.deleteService = (req, res, next) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        // next(new NotFoundError(notFoundErrorMessage));
-        console.log(data.image);
+        logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
       }
       Service.findByIdAndRemove(req.params.serviceId).then((service) => res.send(service));
     })
@@ -50,8 +50,7 @@ module.exports.updateService = (req, res, next) => {
         try {
           fs.unlinkSync(data.image.path);
         } catch {
-          // throw new NotFoundError(notFoundErrorMessage);
-          console.log(data.image);
+          logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
         }
       }
       Service.findByIdAndUpdate(

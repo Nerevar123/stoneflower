@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const path = require('path');
 const { celebrate, Joi } = require('celebrate');
 const multer = require('multer');
 const {
@@ -9,6 +8,8 @@ const {
   updateService,
 } = require('../controllers/services');
 const auth = require('../middlewares/auth');
+const ValidationError = require('../errors/validation-error');
+const { validationFileErrorMessage } = require('../utils/constants');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -20,14 +21,13 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
-  // dest: 'uploads/',
   storage,
   limits: {
     fileSize: 2 * 1024 * 1024,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error('please upload png,jpeg or jpg'));
+      return cb(new ValidationError(validationFileErrorMessage));
     }
     return cb(undefined, true);
   },

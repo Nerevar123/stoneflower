@@ -1,3 +1,5 @@
+const { rateLimitErrorMessage } = require('./utils/constants');
+
 const {
   PORT = 3000,
   JWT_SECRET = 'JWT_SECRET',
@@ -9,6 +11,7 @@ const {
 const rateLimitConfig = {
   windowMs: 15 * 60 * 1000,
   max: 1000,
+  message: rateLimitErrorMessage,
 };
 
 const corsConfig = {
