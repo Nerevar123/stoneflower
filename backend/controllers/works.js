@@ -2,6 +2,7 @@ const fs = require('fs');
 const Work = require('../models/work');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
+const { logger } = require('../middlewares/logger');
 
 module.exports.getWorks = (req, res, next) => {
   Work.find({})
@@ -25,8 +26,6 @@ module.exports.patchWork = (req, res, next) => {
   const {
     title, category, text, photos,
   } = req.body;
-
-  console.log(title, category, text, photos);
 
   Work.findByIdAndUpdate(
     req.params.workId,
@@ -70,7 +69,7 @@ module.exports.updateWorkPhoto = async (req, res, next) => {
       try {
         fs.unlinkSync(selected.photos[foundIndex].image.path);
       } catch {
-        console.log(`Изображение не найдено: ${selected.photos[foundIndex].image}`);
+        logger.error(`Ошибка при удалении: ${JSON.stringify(selected.photos[foundIndex].image)}`);
       }
     }
 
@@ -111,7 +110,7 @@ module.exports.deleteWorkPhoto = (req, res, next) => {
   try {
     fs.unlinkSync(image.path);
   } catch {
-    console.log(`Изображение не найдено: ${image}`);
+    logger.error(`Ошибка при удалении: ${JSON.stringify(image)}`);
   }
 
   Work.findByIdAndUpdate(

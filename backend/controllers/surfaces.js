@@ -2,6 +2,7 @@ const fs = require('fs');
 const Surface = require('../models/surface');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
+const { logger } = require('../middlewares/logger');
 
 module.exports.getSurfaces = (req, res, next) => {
   Surface.find({})
@@ -51,7 +52,7 @@ module.exports.updateSurfaceExample = async (req, res, next) => {
       try {
         fs.unlinkSync(selected.examples[foundIndex].image.path);
       } catch {
-        console.log(`Изображение не найдено: ${selected.examples[foundIndex].image}`);
+        logger.error(`Ошибка при удалении: ${JSON.stringify(selected.examples[foundIndex].image)}`);
       }
     }
 
@@ -105,7 +106,7 @@ module.exports.deleteSurfaceExamples = (req, res, next) => {
   try {
     fs.unlinkSync(image.path);
   } catch {
-    console.log(`Изображение не найдено: ${image}`);
+    logger.error(`Ошибка при удалении: ${JSON.stringify(image)}`);
   }
 
   Surface.findByIdAndUpdate(

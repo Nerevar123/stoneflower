@@ -2,6 +2,7 @@ const fs = require('fs');
 const Advice = require('../models/advice');
 const NotFoundError = require('../errors/not-found-error');
 const { notFoundErrorMessage } = require('../utils/constants');
+const { logger } = require('../middlewares/logger');
 
 module.exports.getAdvices = (req, res, next) => {
   Advice.find({})
@@ -27,8 +28,7 @@ module.exports.deleteAdvice = (req, res, next) => {
       try {
         fs.unlinkSync(data.image.path);
       } catch {
-        // next(new NotFoundError(notFoundErrorMessage));
-        console.log(data.image);
+        logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
       }
       Advice.findByIdAndRemove(req.params.adviceId).then((advice) => res.send(advice));
     })
@@ -52,8 +52,7 @@ module.exports.updateAdvice = (req, res, next) => {
         try {
           fs.unlinkSync(data.image.path);
         } catch {
-          // throw new NotFoundError(notFoundErrorMessage);
-          console.log(data.image);
+          logger.error(`Ошибка при удалении: ${JSON.stringify(data.image)}`);
         }
       }
 

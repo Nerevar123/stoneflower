@@ -1,29 +1,31 @@
-const registrationOkMessage = 'Вы успешно зарегистрированы';
 const loginOkMessage = 'Вы успешно вошли в аккаунт';
 const logoutOkMessage = 'Вы успешно вышли из аккаунта';
 const notFoundErrorMessage = 'Запрашиваемый ресурс не найден';
-const notFoundPageErrorMessage = 'Запрашиваемая статья не найдена';
-const notFoundUserErrorMessage = 'Пользователь не найден';
-const forbiddenErrorMessage = 'Недостаточно прав для совершения операции';
 const unauthorizedErrorMessage = 'Необходима авторизация';
 const authorizedErrorMessage = 'Неправильные почта или пароль';
-const duplicateErrorMessage = 'Введенный вами адрес электронной почты уже зарегистрирован';
 const credentialsErrorMessage = 'Необходимо ввести пароль';
 const validationErrorMessage = 'Переданы некорректные данные';
+const validationImageErrorMessage = 'Необходимо прикрепить изображение';
+const validationFileErrorMessage = 'Недопустимый формат файла. Загрузите файл в формате png, jpeg или jpg';
+const validationFilePdfErrorMessage = 'Недопустимый формат файла. Загрузите файл в формате pdf, png, jpeg или jpg';
+const validationSizeErrorMessage = 'Слишком большой файл. Максимальный размер: 2мб';
+const duplicateErrorMessage = 'Введенные данные уже есть в базе';
 const serverErrorMessage = 'На сервере произошла ошибка';
+const rateLimitErrorMessage = 'Превышен лимит запросов, повторите попытку позже';
 
 module.exports = {
-  registrationOkMessage,
   loginOkMessage,
   logoutOkMessage,
   notFoundErrorMessage,
-  notFoundPageErrorMessage,
-  notFoundUserErrorMessage,
-  forbiddenErrorMessage,
   unauthorizedErrorMessage,
   authorizedErrorMessage,
-  duplicateErrorMessage,
   credentialsErrorMessage,
   validationErrorMessage,
+  validationImageErrorMessage,
+  validationFileErrorMessage,
+  validationFilePdfErrorMessage,
+  validationSizeErrorMessage,
+  duplicateErrorMessage,
   serverErrorMessage,
+  rateLimitErrorMessage,
 };

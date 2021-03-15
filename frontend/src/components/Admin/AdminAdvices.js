@@ -282,7 +282,7 @@ function AdminAdvices({
               labelText="Описание"
               type="text"
               required
-              maxLength="2000"
+              maxLength="3000"
               withCount
               height="100px"
             />
@@ -293,7 +293,7 @@ function AdminAdvices({
               labelText="Читать далее"
               type="text"
               required
-              maxLength="2000"
+              maxLength="3000"
               withCount
               height="100px"
             />

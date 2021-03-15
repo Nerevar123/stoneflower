@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const yn = require('yn');
 const User = require('../models/user');
 // const { cryptHash } = require('../utils/crypt');
-// const { registrationOkMessage, logoutOkMessage } = require('../utils/constants');
-const { logoutOkMessage } = require('../utils/constants');
+// const { registrationOkMessage, logoutOkMessage, loginOkMessage } = require('../utils/constants');
+const { logoutOkMessage, loginOkMessage } = require('../utils/constants');
 const { JWT_SECRET, COOKIES_SECURE, COOKIES_SAMESITE } = require('../config');
 
 // module.exports.register = (req, res, next) => {
@@ -13,7 +13,7 @@ const { JWT_SECRET, COOKIES_SECURE, COOKIES_SAMESITE } = require('../config');
 //     .then(() => {
 //       cryptHash(password)
 //         .then((hash) => User.create({ email, password: hash }))
-//         .then(() => res.status(201).send({ message: registrationOkMessage }))
+//         .then(() => res.status(201).send({ message: "Registration success" }))
 //         .catch(next);
 //     });
 // };
@@ -23,14 +23,14 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '30d' });
       res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
+        maxAge: 3600000 * 24 * 30,
         sameSite: COOKIES_SAMESITE,
         secure: yn(COOKIES_SECURE),
         httpOnly: yn(COOKIES_SECURE),
       });
-      res.send({ email: user.email });
+      res.send({ message: loginOkMessage });
     })
     .catch(next);
 };

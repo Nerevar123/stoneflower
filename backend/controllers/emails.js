@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 const Email = require('../models/email');
+const { logger } = require('../middlewares/logger');
+const { serverErrorMessage } = require('../utils/constants');
 
 module.exports.sendMail = (req, res, next) => {
   const { MAIL_ADDRESS, MAIL_PASSWORD, MAIL_TO } = process.env;
@@ -20,7 +22,7 @@ module.exports.sendMail = (req, res, next) => {
   const mailOptions = {
     from: '<fioradipietra.web@yandex.ru>',
     to: MAIL_TO,
-    subject: 'Каменный цветок',
+    subject: `Новая заявка, ${name}`,
     html: `<p>Имя отправителя: ${name}</p>
     <p>Телефон: ${tel}</p>
     <p>Email: ${email}</p>
@@ -34,10 +36,13 @@ module.exports.sendMail = (req, res, next) => {
       transporter
         .sendMail(mailOptions)
         .then((info) => {
-          console.log(`Email sent: ${info.response}`);
+          logger.info(`Email sent: ${info.response}`);
           res.status(201).send(mail);
         })
-        .catch(next);
+        .catch((err) => {
+          logger.error(`Email error: ${err}`);
+          next(serverErrorMessage);
+        });
     })
     .catch(next);
 };

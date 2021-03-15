@@ -103,7 +103,7 @@
   color: #f00;
   position: absolute;
   font-family: "FuturaBookC", helvetica, sans-serif;
-  top: calc(100% + 2px);
+  top: calc(100% + 6px);
   left: 0;
   z-index: 2;
   font-size: 16px;
@@ -125,6 +125,10 @@
 }
 
 .form__button-field {
+  position: relative;
+}
+
+.form__button-container {
   position: relative;
 }
 

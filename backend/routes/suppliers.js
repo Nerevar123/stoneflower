@@ -8,6 +8,8 @@ const {
   updateSupplier,
 } = require('../controllers/suppliers');
 const auth = require('../middlewares/auth');
+const ValidationError = require('../errors/validation-error');
+const { validationFileErrorMessage } = require('../utils/constants');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -25,7 +27,7 @@ const upload = multer({
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png|svg)$/)) {
-      return cb(new Error('please upload png,jpeg or jpg'));
+      return cb(new ValidationError(validationFileErrorMessage));
     }
     return cb(undefined, true);
   },
