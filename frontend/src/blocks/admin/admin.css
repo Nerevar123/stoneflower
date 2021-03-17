@@ -2,7 +2,6 @@
   from {
     transform: translateX(0px);
   }
-
   to {
     transform: translateX(0px);
   }
@@ -17,6 +16,7 @@
   display: flex;
   flex-direction: row;
 }
+
 .admin__file-input {
   display: none;
 }
@@ -366,6 +366,7 @@
   animation-timing-function: ease;
   transition: all 0.2s ease-in-out;
 }
+
 .admin__go-back::before {
   position: absolute;
   min-width: 23px;
@@ -382,6 +383,7 @@
   border-bottom-right-radius: 2px;
   border-top-left-radius: 2px;
 }
+
 .admin__go-back:hover {
   background-color: #2f80ed;
   border: 1px solid #2f80ed;
@@ -400,6 +402,7 @@
   opacity: 0;
   transition: all 0.2s ease-in-out;
 }
+
 .admin__popup_visible {
   opacity: 1;
 }
@@ -474,7 +477,7 @@
   font-size: 16px;
   line-height: 1.5;
   color: #c4c4c4;
-  margin-top:  0;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -634,6 +637,7 @@
   width: 100%;
   justify-content: space-between;
 }
+
 .admin__control-buttons {
   display: flex;
   justify-content: space-between;

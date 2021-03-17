@@ -3,12 +3,6 @@
   display: flex;
   flex-direction: column;
 }
-@media screen and (min-width: 1441px) {
-  .services {
-    margin: 0 auto;
-    max-width: 1280px;
-  }
-}
 
 .services__list {
   padding: 0;
@@ -42,6 +36,13 @@
   line-height: 1.2;
   letter-spacing: 0.04em;
   color: #995750;
+}
+
+@media screen and (min-width: 1441px) {
+  .services {
+    margin: 0 auto;
+    max-width: 1280px;
+  }
 }
 
 @media screen and (max-width: 1060px) {

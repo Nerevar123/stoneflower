@@ -72,6 +72,7 @@
   margin-bottom: 6px;
   transform: rotate(90deg);
 }
+
 .open .link__expand-arrow_place_portfolio {
   margin-top: 0;
   transform: rotate(90deg);
@@ -100,6 +101,7 @@
   left: 0px;
   transform: rotate(-45deg);
 }
+
 .link__expand-arrow_place_portfolio {
   width: 8px;
   height: 28px;
@@ -128,8 +130,6 @@
   left: 0px;
   transform: rotate(-45deg);
 }
-
-
 
 .link_place_pricing {
   min-width: 207px;

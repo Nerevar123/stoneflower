@@ -4,12 +4,6 @@
   flex-direction: column;
   max-width: 1440px;
 }
-@media screen and (min-width: 1441px) {
-  .advices {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-}
 
 .advices__list {
   margin: 32px 0 0 0;
@@ -63,6 +57,13 @@
   color: inherit;
 }
 
+@media screen and (min-width: 1441px) {
+  .advices {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 849px) {
   .advices {
     margin: 0 14px 40px 15px;
@@ -89,6 +90,7 @@
     font-size: 18px;
   }
 }
+
 @media screen and (orientation: landscape) and (max-device-width: 849px) {
   .advices__image {
     max-width: 100%;

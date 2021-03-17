@@ -30,10 +30,11 @@
     margin: 0 calc(165px - 0.253807107 * (1440px - 100vw));
   }
 }
+
 @media screen and (min-width: 1441px) {
   .disadvantages {
     margin: 0 auto;
-    max-width: 1280px
+    max-width: 1280px;
   }
 }
 

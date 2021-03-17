@@ -6,6 +6,7 @@
   background-size: 50%;
   background-position: top right;
 }
+
 .not-found__message-wrapper {
   max-width: 720px;
   width: 100%;
@@ -16,6 +17,7 @@
   margin: 0;
   flex-direction: column;
 }
+
 .not-found__title {
   font-family: EBGaramond, helvetica, sans-serif;
   font-size: 32px;
@@ -26,6 +28,7 @@
   color: #335e58;
   margin: 200px 0 0 23%;
 }
+
 .not-found__message {
   font-family: FuturaBookC, helvetica, sans-serif;
   font-weight: 400;
@@ -38,6 +41,7 @@
   margin: 32px 0 0 23%;
   white-space: pre-line;
 }
+
 .not-found__link {
   margin: 32px 0 0 23%;
   position: relative;
@@ -56,6 +60,7 @@
   text-align: end;
   background-repeat: no-repeat;
 }
+
 .not-found__link::after {
   background-image: url("../../images/icons/ArrowRight.svg");
   content: " ";
@@ -69,17 +74,16 @@
 }
 
 @media screen and (max-width: 849px) {
-
-    .not-found__message-wrapper {
-        align-items: center;
-    }
-    .not-found__title {
-        margin: 200px 0 0 0;
-    }
-    .not-found__message {
-        margin: 32px 0 0 0;
-    }
-    .not-found__link {
-        margin: 32px 0 0 0;
-    }
+  .not-found__message-wrapper {
+    align-items: center;
+  }
+  .not-found__title {
+    margin: 200px 0 0 0;
+  }
+  .not-found__message {
+    margin: 32px 0 0 0;
+  }
+  .not-found__link {
+    margin: 32px 0 0 0;
+  }
 }
