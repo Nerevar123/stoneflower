@@ -15,23 +15,23 @@
 }
 
 .preloader__circle {
-	display: block;
-	width: 50px;
-	height: 50px;
-	border: 3px solid #B6BCBF;
-	border-bottom-color: #D1D2D6;
-	border-radius: 50%;
-  animation: spin .75s infinite linear;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #b6bcbf;
+  border-bottom-color: #d1d2d6;
+  border-radius: 50%;
+  animation: spin 0.75s infinite linear;
   margin-bottom: 16px;
 }
 
 @keyframes spin {
-	100% {
-		transform: rotate(360deg);
-	}
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 650px) {
   .preloader {
     padding-left: 16px;
     padding-right: 16px;

@@ -6,6 +6,7 @@
   height: 100%;
   min-height: 100vh;
 }
+
 .login__heading {
   font-family: Roboto, Helvetica, sans-serif;
   font-weight: 500;
@@ -29,6 +30,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .login__fields {
   border: none;
   outline: none;
@@ -37,6 +39,7 @@
   padding: 0;
   margin: 24px 0 0 0;
 }
+
 .login__title {
   font-family: Roboto, helvetica, sans-serif;
   font-style: normal;
@@ -47,6 +50,7 @@
   color: #2e2e2e;
   margin: 24px 0 0 0;
 }
+
 .login__input-label {
   font-family: Roboto, helvetica, sans-serif;
   font-style: normal;
@@ -55,6 +59,7 @@
   line-height: 1.5;
   color: #c4c4c4;
 }
+
 .login__input {
   resize: none;
   width: calc(100% - 20px);
@@ -69,12 +74,15 @@
   border: 1px solid #dfe0eb;
   border-radius: 8px;
 }
+
 .login__input:focus {
   outline: none;
 }
+
 .login__input-container:last-of-type {
   margin-top: 24px;
 }
+
 .login__save-button {
   width: 162px;
   height: 40px;
@@ -91,15 +99,17 @@
   color: #fff;
   cursor: pointer;
 }
+
 .login__save-button_disabled {
   background: #aaa;
 }
+
 .login__error_active {
-    color: #F00;
-    font-family: Roboto, helvetica, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 1.43;
-    margin: 0 auto;
+  color: #f00;
+  font-family: Roboto, helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0 auto;
 }

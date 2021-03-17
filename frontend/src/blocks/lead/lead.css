@@ -11,13 +11,6 @@
   flex-direction: column;
   min-width: 291px;
   overflow: hidden;
-
-}
-@media screen and (min-width: 1441px) {
-  .lead {
-    padding: 13.889% 165px 10.487%
-    165px;
-  }
 }
 
 .lead__header {
@@ -38,7 +31,6 @@
     2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff,
     -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff,
     2px 2px 0 #ffffff;
-
 }
 
 .list {
@@ -65,14 +57,6 @@
   color: #001717;
   font-weight: 500;
   margin: 0;
-  /* text-shadow: 0 -1px 0 #ffffff, 0 -1px 0 #ffffff, 0 1px 0 #ffffff,
-    0 1px 0 #ffffff, -1px 0 0 #ffffff, 1px 0 0 #ffffff, -1px 0 0 #ffffff,
-    1px 0 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
-    1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff,
-    -1px 1px 0 #ffffff, 2px 1px 0 #ffffff, -1px -1px 0 #ffffff,
-    1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff,
-    -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
-    1px 1px 0 #ffffff; */
 }
 
 .lead__list-item::before {
@@ -109,8 +93,10 @@
   background: #75978c;
 }
 
-@media screen and (min-width: 1440px) {
-
+@media screen and (min-width: 1441px) {
+  .lead {
+    padding: 13.889% 165px 10.487% 165px;
+  }
 }
 
 @media screen and (max-width: 849px) {
@@ -153,7 +139,6 @@
   .lead__link {
     align-self: center;
     min-width: 100%;
-
     font-size: 19px;
   }
   .lead__header {

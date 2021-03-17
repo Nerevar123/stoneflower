@@ -4,19 +4,15 @@
   flex-direction: column;
   max-width: 1440px;
 }
-@media screen and (min-width: 1441px) {
-  .surfaces {
-    margin: 0 auto;
-    max-width: 1280px;
-  }
-}
 
 .surfaces__link {
   margin: 8px 0 0 0;
 }
+
 .surfaces__description-container {
   font-family: "FuturaBookC", Helvetica, sans-serif;
 }
+
 .surfaces__description-container_desktop {
   position: absolute;
   bottom: 0px;
@@ -27,9 +23,11 @@
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
+
 .selected .surfaces__description-container_desktop {
   opacity: 1;
 }
+
 .surfaces__description-heading {
   margin: 0 0 0 0;
   font-weight: 400;
@@ -38,13 +36,15 @@
   letter-spacing: 0.04em;
   color: #001717;
 }
+
 .surfaces__description-item {
   margin: 8px 0 0 0;
   font-size: 16px;
   line-height: 18px;
   letter-spacing: 0.04em;
-  color: #335E58;
+  color: #335e58;
 }
+
 .surfaces__description-accent {
   margin: 0 0 0 8px;
   font-size: 16px;
@@ -71,6 +71,7 @@
   -webkit-tap-highlight-color: transparent;
   height: 380px;
 }
+
 .surfaces__image-container {
   display: flex;
   margin: 0;
@@ -239,13 +240,20 @@
 .selected .surfaces__material-description {
   opacity: 1;
 }
+
 .surfaces__material-description_visible {
   opacity: 1;
 }
 
+@media screen and (min-width: 1441px) {
+  .surfaces {
+    margin: 0 auto;
+    max-width: 1280px;
+  }
+}
+
 @media screen and (max-width: 849px) {
   .surfaces {
-    /* margin: 0 14px 0 15px; */
     margin: 0 0 40px 0;
   }
   .surfaces__list {
@@ -279,10 +287,9 @@
     max-height: fit-content;
   }
   .surfaces__description-item {
-    color: #75978C;
+    color: #75978c;
   }
   .surfaces__image {
-    /* width: calc(100vw - 20px); */
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -298,24 +305,19 @@
     height: 328px;
     width: 100%;
   }
-
   .surfaces__example-image_mobile {
     width: 100%;
   }
-
   .surfaces__list {
     display: flex;
     flex-direction: column;
   }
   .surfaces__list-item {
-    /* margin: 16px 0 32px 0; */
     margin: 0;
     padding: 6px 14px 26px 15px;
     height: auto;
     width: calc(100% - 29px);
-
   }
-
   .surfaces__list {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fill, 1fr);

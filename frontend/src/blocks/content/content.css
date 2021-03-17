@@ -70,6 +70,7 @@
 .content__text_place_suppliers {
   margin-top: 16px;
 }
+
 .content__text_place_portfolio {
   white-space: pre-line;
 }
@@ -90,7 +91,6 @@
 
 .content__text-container_place_surfaces {
   width: 75%;
-
 }
 
 .content__text-container_place_advices {
@@ -109,7 +109,6 @@
 .content__title_place_contacts {
   margin: 88px 0 0 0;
 }
-
 
 @media screen and (min-width: 1440px) {
   .content__text_place_advantages {
@@ -189,5 +188,4 @@
     padding-right: 14px;
     margin: 0;
   }
-
 }
