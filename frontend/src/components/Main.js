@@ -24,9 +24,11 @@ function Main({
   mainRef,
 }) {
   const size = useWindowSize();
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
+
   return (
     <main className="content">
       {images && texts && (
@@ -54,7 +56,7 @@ function Main({
         </>
       )}
       {texts && <Disadvantages disadvantagesContent={texts.disadvantages} />}
-      {texts && <Phases phasesIcons={phasesIcons} phasesText={texts.phases}/>}
+      {texts && <Phases phasesIcons={phasesIcons} phasesText={texts.phases} />}
       {texts && <Pricing content={texts.pricing} />}
       {suppliersContent && (
         <Suppliers

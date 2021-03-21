@@ -5,10 +5,11 @@ import useWindowSize from "../hooks/useWindowSize";
 
 function Advantages({ textContent, icons, showModal, image, withIcons }) {
   const [textExpanded, setTextExpanded] = useState(false);
-  // const slide = 2;
+
   function handleOpenEvent() {
     showModal(image.path);
   }
+
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
@@ -16,7 +17,7 @@ function Advantages({ textContent, icons, showModal, image, withIcons }) {
   const size = useWindowSize();
 
   return (
-    <article className="advantages" >
+    <article className="advantages">
       <h2 className="content__title">{textContent.title}</h2>
       <div className="content__info-block">
         <div className="content__text-container">

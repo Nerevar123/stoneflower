@@ -192,7 +192,7 @@ function AdminPostForm({
           </ul>
           <div className="admin__upload-info admin__upload-info_visible">
             <div
-              style={{ opacity: `${newOffer? "1" : "0"}` }}
+              style={{ opacity: `${newOffer ? "1" : "0"}` }}
               className="admin__progress-info admin__progress-info_completed"
             ></div>
             <input

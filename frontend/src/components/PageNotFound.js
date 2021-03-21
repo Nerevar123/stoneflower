@@ -7,7 +7,7 @@ function PageNotFound() {
       <div className="not-found__message-wrapper">
         <h2 className="not-found__title">Ошибка 404</h2>
         <p className="not-found__message">
-          {`Страница не найдена. 
+          {`Страница не найдена.
           Возможно, она удалена или введён
           некорректный адрес.`}
         </p>

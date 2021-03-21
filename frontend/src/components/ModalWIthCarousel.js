@@ -87,6 +87,7 @@ function ModalWithCarousel({
       </>
     );
   }
+
   const handleClose = (evt) => {
     evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
@@ -101,11 +102,10 @@ function ModalWithCarousel({
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__slider-container">
-
-              <button
-                onClick={handleClose}
-                className="modal__close-button button modal__close-button_place_carousel"
-              ></button>
+            <button
+              onClick={handleClose}
+              className="modal__close-button button modal__close-button_place_carousel"
+            ></button>
 
             <Slider {...settings} className="modal__slider">
               {content &&

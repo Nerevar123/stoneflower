@@ -36,7 +36,7 @@ function AdminLeadEditor({
     setImgData(null);
     setIsPictureSelected(false);
     uploadInputRef.current.value = "";
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();

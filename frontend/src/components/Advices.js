@@ -3,8 +3,8 @@ import AdvicesItem from "./AdvicesItem";
 
 function Advices({ content }) {
   useEffect(() => {
-    window.scrollTo({ top: 0})
-  }, [])
+    window.scrollTo({ top: 0 });
+  }, []);
   return (
     <article className="advices">
       <h2 className="content__title content__title_place_advices">

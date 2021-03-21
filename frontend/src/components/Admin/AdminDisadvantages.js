@@ -3,7 +3,12 @@ import Disadvantages from "../Disadvantages";
 import Label from "../Label";
 import { patchText } from "../../utils/api";
 
-function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRef }) {
+function AdminDisadvantages({
+  validation,
+  disadvantagesText,
+  onPatchData,
+  menuRef,
+}) {
   const [compiledData, setCompiledData] = useState(disadvantagesText);
   const [preview, showPreview] = useState(false);
   const previewRef = useRef();
@@ -84,7 +89,13 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRe
         >
           <div className="admin__form-heading-container">
             <p className="admin__form-heading">Текст</p>
-            <p onClick={() =>{handlePreview(); scrollToPreview()}} className="admin__preview-link">
+            <p
+              onClick={() => {
+                handlePreview();
+                scrollToPreview();
+              }}
+              className="admin__preview-link"
+            >
               Показать превью
             </p>
           </div>
@@ -153,15 +164,18 @@ function AdminDisadvantages({ validation, disadvantagesText, onPatchData, menuRe
         </form>
       </div>
 
-      <div ref={previewRef} style={{minWidth: preview?'1180px':'0'}}className="admin__preview-container">
-        {preview && (<button onClick={scrollToMenu} className="admin__go-back">
-            Назад
-          </button>)}
+      <div
+        ref={previewRef}
+        style={{ minWidth: preview ? "1180px" : "0" }}
+        className="admin__preview-container"
+      >
         {preview && (
-          <Disadvantages disadvantagesContent={compiledData} />
-          )}
-        </div>
-
+          <button onClick={scrollToMenu} className="admin__go-back">
+            Назад
+          </button>
+        )}
+        {preview && <Disadvantages disadvantagesContent={compiledData} />}
+      </div>
     </div>
   );
 }

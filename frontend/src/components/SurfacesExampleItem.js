@@ -1,16 +1,12 @@
 import React from "react";
 
-function SurfacesExampleItem({
-  item,
-  id,
-  forwardRef,
-  showModal,
-}) {
-
+function SurfacesExampleItem({ item, id, forwardRef, showModal }) {
   const handleClickEvent = () => {
     if (showModal) {
       showModal(
-        item.image.path ? process.env.REACT_APP_URL + item.image.path : item.image
+        item.image.path
+          ? process.env.REACT_APP_URL + item.image.path
+          : item.image
       );
     }
   };

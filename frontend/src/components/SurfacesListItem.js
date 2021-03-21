@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import arrow_left from "../images/icons/surfaces_arrow_left.svg";
 import arrow_right from "../images/icons/surfaces_arrow_right.svg";
 import useWindowSize from "../hooks/useWindowSize";
-// import { Link } from "react-scroll";
 
 function SurfacesListItem(props) {
   const size = useWindowSize();
@@ -14,9 +13,7 @@ function SurfacesListItem(props) {
   const [isSelected, setIsSelected] = useState(false);
   const itemId = props.item._id.toString();
 
-
   const handleSlideClick = (item) => {
-
     props.showModal(
       item.image.path ? process.env.REACT_APP_URL + item.image.path : item.image
     );

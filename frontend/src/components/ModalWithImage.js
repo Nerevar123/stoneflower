@@ -3,7 +3,7 @@ import Modal from "./Modal";
 
 function ModalWithImage({ image, closeModal }) {
   function handleClose(evt) {
-    evt.target.closest('.modal').classList.remove('modal_visible');
+    evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
   }
 
@@ -19,7 +19,7 @@ function ModalWithImage({ image, closeModal }) {
     return () => {
       document.removeEventListener("keydown", closeModalWithEsc);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -30,10 +30,10 @@ function ModalWithImage({ image, closeModal }) {
         <>
           <div onClick={handleClose} className="modal__overlay"></div>
           <div className="modal__image-container modal__image-container_type_regular">
-              <button
-                onClick={handleClose}
-                className="modal__close-button button"
-              ></button>
+            <button
+              onClick={handleClose}
+              className="modal__close-button button"
+            ></button>
             <img
               className="modal__image modal__image_type_regular"
               src={image}

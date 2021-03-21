@@ -3,7 +3,7 @@ import Modal from "./Modal";
 
 function ModalWithConfirmation({ closeModal }) {
   function handleClose(evt) {
-    evt.target.closest('.modal').classList.remove('modal_visible');
+    evt.target.closest(".modal").classList.remove("modal_visible");
     closeModal();
   }
   return (
