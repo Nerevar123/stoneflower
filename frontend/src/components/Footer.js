@@ -3,10 +3,7 @@ import logo from "../images/footer__logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
 import { NavLink } from "react-router-dom";
 
-function Footer({
-  content,
-  extended,
-}) {
+function Footer({ content, extended }) {
   const [isFooterExtended, setFooterExtended] = useState(false);
 
   useEffect(() => {
@@ -34,7 +31,7 @@ function Footer({
               >
                 Поверхности
               </NavLink>
-             
+
               <NavLink
                 className="footer__link link"
                 activeClassName="footer__link_active"

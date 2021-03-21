@@ -192,18 +192,22 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
         </form>
       </div>
 
-        <div ref={previewRef} style={{minWidth: preview?'1180px':'0'}}className="admin__preview-container">
-        {preview && (<button onClick={scrollToMenu} className="admin__go-back">
+      <div
+        ref={previewRef}
+        style={{ minWidth: preview ? "1180px" : "0" }}
+        className="admin__preview-container"
+      >
+        {preview && (
+          <button onClick={scrollToMenu} className="admin__go-back">
             Назад
-          </button>)}
+          </button>
+        )}
         {preview && (
           <>
-
-          <Advantages textContent={compiledData} />
+            <Advantages textContent={compiledData} />
           </>
-          )}
-        </div>
-
+        )}
+      </div>
     </div>
   );
 }

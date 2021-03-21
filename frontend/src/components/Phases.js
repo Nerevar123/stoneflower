@@ -2,7 +2,7 @@ import React from "react";
 
 function Phases({ phasesIcons, phasesText }) {
   return (
-    <article className="phases" >
+    <article className="phases">
       <h2 className="content__title">{phasesText.title}</h2>
       <div className="phases__scheme-container">
         <div className="phases__scheme-element">

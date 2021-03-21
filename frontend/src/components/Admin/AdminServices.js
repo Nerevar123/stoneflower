@@ -258,7 +258,7 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
             Назад
           </button>
         )}
-        {preview && <Services inPreview={true} elements={compiledData}/>}
+        {preview && <Services inPreview={true} elements={compiledData} />}
       </div>
     </div>
   );

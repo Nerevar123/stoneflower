@@ -63,7 +63,7 @@ function ModalWithLink({
     return () => {
       document.removeEventListener("keydown", closeModalWithEsc);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClose = (evt) => {
@@ -102,9 +102,7 @@ function ModalWithLink({
             <>
               <div onClick={handleClose} className="modal__overlay"></div>
               <div className="modal__link-container">
-                <p className="modal__link-text">
-                  Открыть сайт производителя?
-                </p>
+                <p className="modal__link-text">Открыть сайт производителя?</p>
                 <a
                   className="modal__link"
                   href={link}

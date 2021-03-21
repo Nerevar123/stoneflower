@@ -13,7 +13,7 @@ function PortfolioItem({
   showModal,
   isModalWithCarouselOpen,
   previewMode,
-  handlePortfolioItemSelection
+  handlePortfolioItemSelection,
 }) {
   const size = useWindowSize();
   const [item, setItem] = useState(null);
@@ -31,10 +31,14 @@ function PortfolioItem({
   useEffect(() => {
     if (item) {
       setPhotos(item.photos);
-      if(handlePortfolioItemSelection) {
-      handlePortfolioItemSelection({name: item.title, link: `portfolio/items/${item._id}`})}
+      if (handlePortfolioItemSelection) {
+        handlePortfolioItemSelection({
+          name: item.title,
+          link: `portfolio/items/${item._id}`,
+        });
+      }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   function handleTextExpand() {

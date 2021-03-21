@@ -6,7 +6,7 @@ import "yup-phone";
 import { sendEmail } from "../utils/api";
 
 function PostForm({ content, offer, showModal, formRef }) {
-  const [submitError, setSubmitError] = useState('');
+  const [submitError, setSubmitError] = useState("");
 
   const initialValues = {
     name: "",
@@ -43,7 +43,7 @@ function PostForm({ content, offer, showModal, formRef }) {
           await sendEmail(values)
             .then(() => {
               actions.resetForm();
-              setSubmitError('');
+              setSubmitError("");
               showModal();
             })
             .catch((error) => {

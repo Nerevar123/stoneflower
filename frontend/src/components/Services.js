@@ -2,7 +2,6 @@ import React from "react";
 import ServicesItem from "./ServicesItem";
 
 function Services({ elements, inPreview }) {
-
   return (
     <article
       id="services"

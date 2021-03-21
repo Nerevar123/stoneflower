@@ -2,9 +2,11 @@ import React, { useState } from "react";
 
 function AdvicesItem(props) {
   const [textExpanded, setTextExpanded] = useState(false);
+
   function handleTextExpand() {
     setTextExpanded(!textExpanded);
   }
+
   return (
     <li className="advices__item">
       <img

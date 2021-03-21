@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
-// import { Link } from "react-scroll";
 import { NavLink, Link } from "react-router-dom";
 
 function Header({ mainRef, formRef, handleScrollToElement }) {
@@ -12,13 +11,20 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
   }
 
   useEffect(() => {
-    menuOpened?document.body.style.overflow = "hidden":document.body.style.overflow = "unset";
+    menuOpened
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
   }, [menuOpened]);
 
   const size = useWindowSize();
   return (
     <header className={`header ${menuOpened ? "open" : ""}`}>
-      <Link to="/" onClick={()=>{handleScrollToElement(mainRef)}}>
+      <Link
+        to="/"
+        onClick={() => {
+          handleScrollToElement(mainRef);
+        }}
+      >
         <img className="header__logo logo" src={header__logo} alt="Логотип" />
       </Link>
 
@@ -30,7 +36,9 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
               activeClassName="header__link_active"
               exact
               to="/"
-              onClick={()=>{handleScrollToElement(mainRef)}}
+              onClick={() => {
+                handleScrollToElement(mainRef);
+              }}
             >
               Главная
             </NavLink>
@@ -72,7 +80,9 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
             <Link
               className="header__order-link"
               to="/"
-              onClick={()=>{handleScrollToElement(formRef)}}
+              onClick={() => {
+                handleScrollToElement(formRef);
+              }}
             >
               Оставить заявку
             </Link>
@@ -98,7 +108,7 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
                 to="/"
                 onClick={() => {
                   toggleMenuOpen();
-                  handleScrollToElement(mainRef)
+                  handleScrollToElement(mainRef);
                 }}
               >
                 Главная
@@ -147,8 +157,7 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
               <Link
                 onClick={() => {
                   toggleMenuOpen();
-                  handleScrollToElement(formRef)
-
+                  handleScrollToElement(formRef);
                 }}
                 className="header__order-link"
                 to="/"

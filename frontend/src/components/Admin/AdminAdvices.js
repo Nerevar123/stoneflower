@@ -438,7 +438,7 @@ function AdminAdvices({
           />
         </ClosablePopup>
       )}
-            {delAdvice && (
+      {delAdvice && (
         <ClosablePopup>
           <AdminPopup
             title="Удалить производителя?"

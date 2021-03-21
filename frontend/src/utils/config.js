@@ -64,12 +64,12 @@ import supplier_LAMINAM from "../images/suppliers/LAMINAM.png";
 import supplier_thesize from "../images/suppliers/thesize.png";
 import supplier_cottodeste from "../images/suppliers/cottodeste.png";
 import supplier_ariostea from "../images/suppliers/ariostea.png";
-// import supplier_panaria from "../images/suppliers/panaria.png";
-// import supplier_florim from "../images/suppliers/Florim.png";
-// import supplier_Ariostea_ULTRA from "../images/suppliers/Ariostea_ULTRA.png";
-// import supplier_neolith from "../images/suppliers/neolith.png";
-// import supplier_kerlite from "../images/suppliers/kerlite.png";
-// import supplier_magnum from "../images/suppliers/magnum.png";
+import supplier_panaria from "../images/suppliers/panaria.png";
+import supplier_florim from "../images/suppliers/Florim.png";
+import supplier_Ariostea_ULTRA from "../images/suppliers/Ariostea_ULTRA.png";
+import supplier_neolith from "../images/suppliers/neolith.png";
+import supplier_kerlite from "../images/suppliers/kerlite.png";
+import supplier_magnum from "../images/suppliers/magnum.png";
 import leadBgImage from "../images/lead-bg-image.jpg";
 import contactsEntranceImage from "../images/contactsEntranceImage.jpg";
 import postFormOffer from "../images/applicability-table.png";
@@ -624,40 +624,64 @@ export const advicesItems = [
 
 export const suppliersItems = [
   {
-    _id: "602b1819532af6e64f00574b",
-    link: "https://www.laminam.com/en/",
-    isMaterial: true,
-    image: supplier_LAMINAM,
-  },
-  {
-    _id: "602b1833532af6e64f00574c",
+    _id: "604e60272aa5d7e33be65448",
     link: "https://www.laminam.com/en/",
     isMaterial: false,
     image: supplier_LAMINAM,
   },
   {
-    _id: "602b183b532af6e64f00574d",
+    _id: "604e60402aa5d7e33be65449",
     link: "https://www.thesize.es/en/",
     isMaterial: false,
     image: supplier_thesize,
   },
   {
-    _id: "602b1840532af6e64f00574e",
+    _id: "604e60492aa5d7e33be6544a",
     link: "https://www.thesize.es/en/",
     isMaterial: true,
-    image: supplier_thesize,
+    image: supplier_neolith,
   },
   {
-    _id: "602b1850532af6e64f00574f",
+    _id: "604e605a2aa5d7e33be6544b",
     link: "https://www.cottodeste.it/",
     isMaterial: true,
+    image: supplier_kerlite,
+  },
+  {
+    _id: "604e60652aa5d7e33be6544c",
+    link: "https://www.cottodeste.it/",
+    isMaterial: false,
     image: supplier_cottodeste,
   },
   {
-    _id: "602b186a532af6e64f005750",
+    _id: "604e60712aa5d7e33be6544d",
     link: "https://www.ariostea.it/",
     isMaterial: false,
     image: supplier_ariostea,
+  },
+  {
+    _id: "604e607d2aa5d7e33be6544e",
+    link: "https://www.ariostea.it/",
+    isMaterial: true,
+    image: supplier_Ariostea_ULTRA,
+  },
+  {
+    _id: "604e60862aa5d7e33be6544f",
+    link: "https://www.florim.com/",
+    isMaterial: true,
+    image: supplier_magnum,
+  },
+  {
+    _id: "604e608e2aa5d7e33be65450",
+    link: "https://www.florim.com/",
+    isMaterial: false,
+    image: supplier_florim,
+  },
+  {
+    _id: "604e609a2aa5d7e33be65451",
+    link: "https://www.panaria.it/collezione/zero3-eternity",
+    isMaterial: false,
+    image: supplier_panaria,
   },
 ];
 
