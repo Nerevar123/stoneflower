@@ -4,21 +4,22 @@ import Label from "../Label";
 import { patchService } from "../../utils/api";
 
 function AdminServices({ validation, services, onPatchData, menuRef }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [selectedService, setSelectedService] = useState({});
   const [compiledData, setCompiledData] = useState(selectedService);
   const [picture, setPicture] = useState(selectedService.image);
   const [preview, showPreview] = useState(false);
-  const uploadInputRef = useRef();
-  const previewRef = useRef();
   const [selectedButton, setSelectedButton] = useState(0);
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const uploadInputRef = useRef();
+  const previewRef = useRef();
+
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(selectedService);
+    resetImage();
     setIsValid(true);
     return () => {
       resetForm();
@@ -32,9 +33,20 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function resetImage() {
+    setImgData(null);
+    setPicture(null);
+    setIsPictureSelected(false);
+  }
+
+  function handleResetClick() {
+    resetImage();
+    uploadInputRef.current.value = null;
+    errors.submit = "";
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -101,7 +113,6 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
     <div className="admin__edit-wrapper">
       <div className="admin__form-area">
         <h2 className="admin__heading">Услуги</h2>
-
         <div className="admin__select-buttons">
           <button
             className={`admin__select-button ${
@@ -169,8 +180,6 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
               type="submit"
               onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
-                isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${
                 isPictureSelected ? "admin__upload-button_state_uploaded" : ""
               }`}
             >
@@ -179,12 +188,20 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
             {isPictureSelected && (
               <button
                 type="button"
+                onClick={handleResetClick}
                 className="admin__upload-button admin__upload-button_type_cancel"
               >
                 Отменить
               </button>
             )}
           </div>
+          <span
+            className={`admin__error ${
+              errors.submit ? "admin__error_active" : ""
+            }`}
+          >
+            {errors.submit || ""}
+          </span>
         </form>
         <form
           className="admin__form admin__form_type_lead-text"
@@ -247,7 +264,6 @@ function AdminServices({ validation, services, onPatchData, menuRef }) {
           </div>
         </form>
       </div>
-
       <div
         ref={previewRef}
         style={{ minWidth: preview ? "400px" : "0" }}

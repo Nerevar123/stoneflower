@@ -20,7 +20,6 @@ function AdminPortfolio({
   onDeleteData,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [selectedWork, setSelectedWork] = useState({});
@@ -33,13 +32,14 @@ function AdminPortfolio({
   const [addWork, setAddWork] = useState(false);
   const [delWork, setDelWork] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState({});
-  const editPopupInputRef = useRef();
-  const addPopupInputRef = useRef();
   const [popupVisible, setPopupVisible] = useState(true);
   const [selectedButton, setSelectedButton] = useState(0);
+
+  const editPopupInputRef = useRef();
+  const addPopupInputRef = useRef();
   const previewRef = useRef();
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(selectedWork);
@@ -133,7 +133,6 @@ function AdminPortfolio({
 
   function handleCreatePhoto(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -147,7 +146,6 @@ function AdminPortfolio({
 
   function handleEditPhoto(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -369,7 +367,6 @@ function AdminPortfolio({
             </button>
           </div>
         </div>
-
         <div
           ref={previewRef}
           className="admin__preview-container"
@@ -439,20 +436,26 @@ function AdminPortfolio({
                     {picture ? picture.name : ""}
                   </p>
                 </div>
-                <button
-                  type="submit"
-                  onClick={handleAddPopupButtonClick}
-                  className={`admin__upload-button admin__upload-button_type_select ${
-                    isUploading ? "admin__upload-button_state_uploading" : ""
-                  } ${
-                    isPictureSelected
-                      ? "admin__upload-button_state_uploaded"
-                      : ""
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleAddPopupButtonClick}
+                    className={`admin__upload-button admin__upload-button_type_select ${
+                      isPictureSelected
+                        ? "admin__upload-button_state_uploaded"
+                        : ""
+                    }`}
+                  >
+                    {isPictureSelected ? "Сохранить" : "Выбрать файл"}
+                  </button>
+                </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
                   }`}
                 >
-                  {isPictureSelected ? "Сохранить" : "Выбрать файл"}
-                </button>
-                <div className="admin__buttons-container"></div>
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />
@@ -518,10 +521,6 @@ function AdminPortfolio({
                       type="submit"
                       onClick={handleEditPopupButtonClick}
                       className={`admin__upload-button admin__upload-button_type_select ${
-                        isUploading
-                          ? "admin__upload-button_state_uploading"
-                          : ""
-                      } ${
                         isPictureSelected
                           ? "admin__upload-button_state_uploaded"
                           : ""
@@ -542,6 +541,13 @@ function AdminPortfolio({
                     Сохранить
                   </button>
                 </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />

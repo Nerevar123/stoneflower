@@ -7,20 +7,10 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
   const [compiledData, setCompiledData] = useState(advantagesText);
   const [preview, showPreview] = useState(false);
   const [description, setDescription] = useState("");
+
   const previewRef = useRef();
 
-  const scrollToPreview = () => {
-    setTimeout(() => {
-      previewRef.current.scrollIntoView({
-        inline: "start",
-        behavior: "smooth",
-      });
-    }, 100);
-  };
   const { values, isValid, resetForm, setIsValid } = validation;
-  const scrollToMenu = () => {
-    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
-  };
 
   useEffect(() => {
     setDescription(
@@ -40,6 +30,19 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
       setIsValid(false);
     };
   }, [advantagesText, description, resetForm, setIsValid]);
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -191,7 +194,6 @@ function AdminAdvantages({ validation, advantagesText, onPatchData, menuRef }) {
           </div>
         </form>
       </div>
-
       <div
         ref={previewRef}
         style={{ minWidth: preview ? "1180px" : "0" }}

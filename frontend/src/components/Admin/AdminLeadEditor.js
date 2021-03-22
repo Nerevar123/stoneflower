@@ -10,14 +10,13 @@ function AdminLeadEditor({
   leadBgImage,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(leadContent);
   const [picture, setPicture] = useState(null);
   const [preview, showPreview] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
-  const previewRef = useRef();
 
+  const previewRef = useRef();
   const uploadInputRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
@@ -92,6 +91,7 @@ function AdminLeadEditor({
 
   const handleUploadButtonClick = (evt) => {
     evt.preventDefault();
+
     if (imgData === null) {
       uploadInputRef.current.click();
     } else {
@@ -101,7 +101,6 @@ function AdminLeadEditor({
 
   function handleImageSubmit(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -120,6 +119,7 @@ function AdminLeadEditor({
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
@@ -170,8 +170,6 @@ function AdminLeadEditor({
               type="submit"
               onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
-                isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${
                 isPictureSelected ? "admin__upload-button_state_uploaded" : ""
               }`}
             >

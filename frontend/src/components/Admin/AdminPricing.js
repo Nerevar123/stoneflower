@@ -6,20 +6,10 @@ import { patchText } from "../../utils/api";
 function AdminPricing({ validation, pricingContent, onPatchData, menuRef }) {
   const [compiledData, setCompiledData] = useState(pricingContent);
   const [preview, showPreview] = useState(false);
-  const previewRef = useRef();
-  const { values, isValid, resetForm, setIsValid } = validation;
 
-  const scrollToPreview = () => {
-    setTimeout(() => {
-      previewRef.current.scrollIntoView({
-        inline: "start",
-        behavior: "smooth",
-      });
-    }, 100);
-  };
-  const scrollToMenu = () => {
-    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
-  };
+  const previewRef = useRef();
+
+  const { values, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(pricingContent);
@@ -29,6 +19,19 @@ function AdminPricing({ validation, pricingContent, onPatchData, menuRef }) {
       setIsValid(false);
     };
   }, [pricingContent, resetForm, setIsValid]);
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();

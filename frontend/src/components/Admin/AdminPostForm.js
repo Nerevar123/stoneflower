@@ -10,17 +10,16 @@ function AdminPostForm({
   postFormOffer,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [compiledData, setCompiledData] = useState(postFormContent);
-  const [offer, setOffer] = useState(postFormOffer);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [preview, showPreview] = useState(false);
   const [newOffer, setNewOffer] = useState(null);
+
   const uploadInputRef = useRef();
   const previewRef = useRef();
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(postFormContent);
@@ -53,11 +52,11 @@ function AdminPostForm({
     );
   }
   const handleReset = () => {
-    setOffer(postFormOffer);
     setNewOffer(null);
     setImgData(null);
     setIsPictureSelected(false);
     uploadInputRef.current.value = "";
+    errors.submit = "";
   };
 
   function handlePreviewClick() {
@@ -71,7 +70,6 @@ function AdminPostForm({
   const onChangePicture = (e) => {
     if (e.target.files[0]) {
       setIsPictureSelected(true);
-      setOffer(e.target.files[0]);
       setNewOffer(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -91,16 +89,18 @@ function AdminPostForm({
   };
 
   function handleImageSubmit(e) {
-    setIsUploading(true);
+    e.preventDefault();
+
     onPatchData(
       {
         name: "postFormOffer",
-        image: offer,
+        image: newOffer,
       },
       postFormOffer.id,
       patchImage
     );
   }
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -109,6 +109,7 @@ function AdminPostForm({
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
@@ -208,8 +209,6 @@ function AdminPostForm({
               type="submit"
               onClick={handleUploadButtonClick}
               className={`admin__upload-button admin__upload-button_type_select ${
-                isUploading ? "admin__upload-button_state_uploading" : ""
-              } ${
                 isPictureSelected ? "admin__upload-button_state_uploaded" : ""
               }`}
             >
@@ -225,9 +224,15 @@ function AdminPostForm({
               </button>
             )}
           </div>
+          <span
+            className={`admin__error ${
+              errors.submit ? "admin__error_active" : ""
+            }`}
+          >
+            {errors.submit || ""}
+          </span>
         </form>
       </div>
-
       <div
         ref={previewRef}
         className="admin__preview-container"
