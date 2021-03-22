@@ -18,7 +18,7 @@ import PortfolioItem from "./PortfolioItem";
 import ProtectedRoute from "./ProtectedRoute";
 import Preloader from "./Preloader";
 import PageNotFound from "./PageNotFound";
-import Blocker from './Blocker';
+import Blocker from "./Blocker";
 
 import {
   getServices,
@@ -146,12 +146,20 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if((Date.now() - parseInt(localStorage.getItem('offerAcceptDate'))) > 604800000) {
-      setIsOfferAccepted({status: false, date: null});
+    if (
+      Date.now() - parseInt(localStorage.getItem("offerAcceptDate")) > 604800000 ||
+      isNaN(parseInt(localStorage.getItem("offerAcceptDate")))
+    ) {
+      setIsOfferAccepted({ status: false, date: null });
+      console.log(parseInt(localStorage.getItem("offerAcceptDate")))
     } else {
-      setIsOfferAccepted({status: true, date: localStorage.getItem('offerAcceptDate')})
+      console.log(parseInt(localStorage.getItem("offerAcceptDate")))
+      setIsOfferAccepted({
+        status: true,
+        date: localStorage.getItem("offerAcceptDate"),
+      });
     }
-  }, [])
+  }, []);
 
   function handlePortfolioItemSelection(item) {
     setPortfolioItem(item);
@@ -280,16 +288,21 @@ function App() {
   }
 
   const handleOfferAcception = () => {
-    setIsOfferAccepted({status: true, date: Date.now()})
-    localStorage.setItem('offerAcceptDate', isOfferAccepted.date)
-  }
+    setIsOfferAccepted({ status: true, date: Date.now() });
+    localStorage.setItem("offerAcceptDate", Date.now());
+  };
 
   return (
     <>
       <Router history={history} basename="/">
         <Switch>
           <Route exact path="/">
-          {images && !isOfferAccepted.status && <Blocker offer={images.postFormOffer} handleOfferAcception={handleOfferAcception}/>}
+            {images && !isOfferAccepted.status && (
+              <Blocker
+                offer={images.postFormOffer}
+                handleOfferAcception={handleOfferAcception}
+              />
+            )}
             <Header
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
@@ -313,7 +326,12 @@ function App() {
             {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/surfaces">
-          {images && !isOfferAccepted.status && <Blocker offer={images.postFormOffer} handleOfferAcception={handleOfferAcception}/>}
+            {images && !isOfferAccepted.status && (
+              <Blocker
+                offer={images.postFormOffer}
+                handleOfferAcception={handleOfferAcception}
+              />
+            )}
             <Header
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
@@ -344,7 +362,12 @@ function App() {
             {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route path="/portfolio">
-          {images && !isOfferAccepted.status && <Blocker offer={images.postFormOffer} handleOfferAcception={handleOfferAcception}/>}
+            {images && !isOfferAccepted.status && (
+              <Blocker
+                offer={images.postFormOffer}
+                handleOfferAcception={handleOfferAcception}
+              />
+            )}
             <Header
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
@@ -375,7 +398,12 @@ function App() {
             {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/advices">
-          {images && !isOfferAccepted.status && <Blocker offer={images.postFormOffer} handleOfferAcception={handleOfferAcception}/>}
+            {images && !isOfferAccepted.status && (
+              <Blocker
+                offer={images.postFormOffer}
+                handleOfferAcception={handleOfferAcception}
+              />
+            )}
             <Header
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
@@ -389,7 +417,12 @@ function App() {
             {texts && <Footer content={texts.contacts} extended={true} />}
           </Route>
           <Route exact path="/contacts">
-          {images && !isOfferAccepted.status && <Blocker offer={images.postFormOffer} handleOfferAcception={handleOfferAcception}/>}
+            {images && !isOfferAccepted.status && (
+              <Blocker
+                offer={images.postFormOffer}
+                handleOfferAcception={handleOfferAcception}
+              />
+            )}
             <Header
               handleScrollToElement={handleScrollToElement}
               mainRef={mainRef}
