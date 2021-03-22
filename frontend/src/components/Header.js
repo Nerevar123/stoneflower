@@ -3,7 +3,7 @@ import header__logo from "../images/logo.svg";
 import useWindowSize from "../hooks/useWindowSize";
 import { NavLink, Link } from "react-router-dom";
 
-function Header({ mainRef, formRef, handleScrollToElement }) {
+function Header({ mainRef, formRef, handleScrollToElement, isOfferAccepted }) {
   const [menuOpened, setMenuOpened] = useState(false);
 
   function toggleMenuOpen() {
@@ -11,10 +11,10 @@ function Header({ mainRef, formRef, handleScrollToElement }) {
   }
 
   useEffect(() => {
-    menuOpened
+    menuOpened || !isOfferAccepted
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "unset");
-  }, [menuOpened]);
+  }, [menuOpened, isOfferAccepted]);
 
   const size = useWindowSize();
   return (
