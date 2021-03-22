@@ -211,7 +211,14 @@ function App() {
       .then(() => {
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (typeof err === "object") {
+          validation.setErrors({ submit: "Ошибка сервера" });
+        } else {
+          validation.setErrors({ submit: err });
+        }
+        console.log(err);
+      });
   }
 
   function handlePatchData(data, id, handler) {
@@ -219,7 +226,14 @@ function App() {
       .then(() => {
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (typeof err === "object") {
+          validation.setErrors({ submit: "Ошибка сервера" });
+        } else {
+          validation.setErrors({ submit: err });
+        }
+        console.log(err);
+      });
   }
 
   function handleDeleteData(id, handler) {

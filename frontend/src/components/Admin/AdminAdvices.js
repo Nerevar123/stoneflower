@@ -13,7 +13,6 @@ function AdminAdvices({
   onDeleteData,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [selectedAdvice, setSelectedAdvice] = useState({});
@@ -29,10 +28,12 @@ function AdminAdvices({
   const popupUploadInputRef = useRef();
   const previewRef = useRef();
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(selectedAdvice);
+    resetImage();
+    uploadInputRef.current.value = null;
     setIsValid(true);
     return () => {
       resetForm();
@@ -43,11 +44,14 @@ function AdminAdvices({
   useEffect(() => {
     setSelectedAdvice(advices[0]);
     setSelectedButton(0);
-    if (selectedAdvice) {
-      setPicture(selectedAdvice.picture);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function resetImage() {
+    setImgData(null);
+    setPicture(null);
+    setIsPictureSelected(false);
+  }
 
   function handleCreateAdvice(e) {
     e.preventDefault();
@@ -65,14 +69,18 @@ function AdminAdvices({
 
   function handleAddClick() {
     setAddAdvice(true);
-    setPicture(null);
-    setImgData(null);
-    setIsPictureSelected(false);
+    resetImage();
     resetForm();
   }
 
   function handleDeleteClick() {
     setDelAdvice(true);
+  }
+
+  function handleResetClick() {
+    resetImage();
+    uploadInputRef.current.value = null;
+    errors.submit = "";
   }
 
   function handleDeleteAdvice(e) {
@@ -83,7 +91,6 @@ function AdminAdvices({
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -228,8 +235,6 @@ function AdminAdvices({
                 type="submit"
                 onClick={handleUploadButtonClick}
                 className={`admin__upload-button admin__upload-button_type_select ${
-                  isUploading ? "admin__upload-button_state_uploading" : ""
-                } ${
                   isPictureSelected ? "admin__upload-button_state_uploaded" : ""
                 }`}
               >
@@ -238,12 +243,20 @@ function AdminAdvices({
               {isPictureSelected && (
                 <button
                   type="button"
+                  onClick={handleResetClick}
                   className="admin__upload-button admin__upload-button_type_cancel"
                 >
                   Отменить
                 </button>
               )}
             </div>
+            <span
+              className={`admin__error ${
+                errors.submit ? "admin__error_active" : ""
+              }`}
+            >
+              {errors.submit || ""}
+            </span>
           </form>
           <form
             className="admin__form admin__form_type_lead-text"
@@ -317,7 +330,6 @@ function AdminAdvices({
             </div>
           </form>
         </div>
-
         <div
           ref={previewRef}
           className="admin__preview-container"
@@ -336,10 +348,10 @@ function AdminAdvices({
           <AdminPopup
             title="Добавить совет"
             onClose={() => {
+              errors.submit = "";
               setPopupVisible(false);
-              setPicture(null);
-              setImgData(null);
-              setIsPictureSelected(false);
+              resetImage();
+              resetForm(selectedAdvice);
               setTimeout(() => {
                 setAddAdvice(false);
               }, 300);
@@ -424,8 +436,6 @@ function AdminAdvices({
                   type="submit"
                   onClick={handlePopupUploadButtonClick}
                   className={`admin__upload-button admin__upload-button_type_select ${
-                    isUploading ? "admin__upload-button_state_uploading" : ""
-                  } ${
                     isPictureSelected
                       ? "admin__upload-button_state_uploaded"
                       : ""
@@ -433,6 +443,13 @@ function AdminAdvices({
                 >
                   {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                 </button>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />
@@ -441,7 +458,7 @@ function AdminAdvices({
       {delAdvice && (
         <ClosablePopup>
           <AdminPopup
-            title="Удалить производителя?"
+            title="Удалить совет?"
             onClose={() => {
               setPopupVisible(false);
               setTimeout(() => {
@@ -457,21 +474,22 @@ function AdminAdvices({
                 method="GET"
                 noValidate
               >
-                <button
-                  type="submit"
-                  onClick={handleDeleteAdvice}
-                  className="admin__upload-button admin__upload-button_type_select"
-                >
-                  Удалить
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setDelAdvice(false)}
-                  className="admin__upload-button"
-                >
-                  Отмена
-                </button>
-                <div className="admin__buttons-container"></div>
+                <div className="admin__buttons-container">
+                  <button
+                    type="submit"
+                    onClick={handleDeleteAdvice}
+                    className="admin__upload-button admin__upload-button_type_select"
+                  >
+                    Удалить
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDelAdvice(false)}
+                    className="admin__upload-button"
+                  >
+                    Отмена
+                  </button>
+                </div>
               </form>
             }
           />

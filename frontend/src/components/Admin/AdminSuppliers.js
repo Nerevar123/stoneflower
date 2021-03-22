@@ -19,7 +19,6 @@ function AdminSuppliers({
   onDeleteData,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [compiledData, setCompiledData] = useState(suppliersTextContent);
@@ -32,12 +31,13 @@ function AdminSuppliers({
   const [delSupplier, setDelSupplier] = useState(false);
   const [currentSupplier, setCurrentSupplier] = useState({});
   const [isMaterial, setIsMaterial] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(true);
+
   const editPopupInputRef = useRef();
   const addPopupInputRef = useRef();
-  const [popupVisible, setPopupVisible] = useState(true);
   const previewRef = useRef();
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(suppliersTextContent);
@@ -114,7 +114,6 @@ function AdminSuppliers({
 
   function handleCreateSupplier(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onSaveData(
       {
@@ -128,7 +127,6 @@ function AdminSuppliers({
 
   function handleEditSupplier(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -197,6 +195,7 @@ function AdminSuppliers({
       setCurrentSupplier({});
     }, 300);
   }
+
   const scrollToPreview = () => {
     setTimeout(() => {
       previewRef.current.scrollIntoView({
@@ -205,6 +204,7 @@ function AdminSuppliers({
       });
     }, 100);
   };
+
   const scrollToMenu = () => {
     menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
   };
@@ -358,7 +358,6 @@ function AdminSuppliers({
             </button>
           </div>
         </div>
-
         <div
           ref={previewRef}
           className="admin__preview-container"
@@ -434,8 +433,6 @@ function AdminSuppliers({
                     type="submit"
                     onClick={handleAddPopupButtonClick}
                     className={`admin__upload-button admin__upload-button_type_select ${
-                      isUploading ? "admin__upload-button_state_uploading" : ""
-                    } ${
                       isPictureSelected
                         ? "admin__upload-button_state_uploaded"
                         : ""
@@ -444,6 +441,13 @@ function AdminSuppliers({
                     {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                   </button>
                 </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />
@@ -510,10 +514,6 @@ function AdminSuppliers({
                       type="submit"
                       onClick={handleEditPopupButtonClick}
                       className={`admin__upload-button admin__upload-button_type_select ${
-                        isUploading
-                          ? "admin__upload-button_state_uploading"
-                          : ""
-                      } ${
                         isPictureSelected
                           ? "admin__upload-button_state_uploaded"
                           : ""
@@ -533,6 +533,13 @@ function AdminSuppliers({
                     Сохранить
                   </button>
                 </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />

@@ -18,6 +18,7 @@ module.exports = ((err, req, res, next) => {
 
   if (err instanceof multer.MulterError) {
     res.status(413).send({ message: validationSizeErrorMessage, details: err.message });
+    return;
   }
 
   // eslint-disable-next-line max-len

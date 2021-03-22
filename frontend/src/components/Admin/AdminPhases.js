@@ -12,21 +12,10 @@ function AdminPhases({
 }) {
   const [compiledData, setCompiledData] = useState(phasesText);
   const [preview, showPreview] = useState(false);
+
   const previewRef = useRef();
 
   const { values, isValid, resetForm, setIsValid } = validation;
-
-  const scrollToPreview = () => {
-    setTimeout(() => {
-      previewRef.current.scrollIntoView({
-        inline: "start",
-        behavior: "smooth",
-      });
-    }, 100);
-  };
-  const scrollToMenu = () => {
-    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
-  };
 
   useEffect(() => {
     resetForm(phasesText);
@@ -36,6 +25,19 @@ function AdminPhases({
       setIsValid(false);
     };
   }, [phasesText, resetForm, setIsValid]);
+
+  const scrollToPreview = () => {
+    setTimeout(() => {
+      previewRef.current.scrollIntoView({
+        inline: "start",
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
+  const scrollToMenu = () => {
+    menuRef.current.scrollIntoView({ inline: "start", behavior: "smooth" });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -180,7 +182,6 @@ function AdminPhases({
           </div>
         </form>
       </div>
-
       <div
         ref={previewRef}
         style={{ minWidth: preview ? "1180px" : "0" }}

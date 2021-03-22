@@ -17,7 +17,6 @@ function AdminSurfaces({
   onPatchData,
   menuRef,
 }) {
-  const [isUploading, setIsUploading] = useState(false);
   const [imgData, setImgData] = useState(null);
   const [isPictureSelected, setIsPictureSelected] = useState(false);
   const [compiledData, setCompiledData] = useState(surfacesTextContent);
@@ -28,13 +27,14 @@ function AdminSurfaces({
   const [delSurface, setDelSurface] = useState(false);
   const [selectedSurface, setSelectedSurface] = useState(null);
   const [currentExample, setCurrentExample] = useState({});
-  const editPopupInputRef = useRef();
-  const addPopupInputRef = useRef();
   const [popupVisible, setPopupVisible] = useState(true);
   const [selectedButton, setSelectedButton] = useState(0);
+
+  const editPopupInputRef = useRef();
+  const addPopupInputRef = useRef();
   const previewRef = useRef();
 
-  const { values, isValid, resetForm, setIsValid } = validation;
+  const { values, errors, isValid, resetForm, setIsValid } = validation;
 
   useEffect(() => {
     resetForm(surfacesTextContent);
@@ -110,7 +110,6 @@ function AdminSurfaces({
 
   function handleCreateSurface(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -128,7 +127,6 @@ function AdminSurfaces({
 
   function handleEditSurface(e) {
     e.preventDefault();
-    setIsUploading(true);
 
     onPatchData(
       {
@@ -360,7 +358,6 @@ function AdminSurfaces({
             </button>
           </div>
         </div>
-
         <div
           ref={previewRef}
           className="admin__preview-container"
@@ -446,14 +443,13 @@ function AdminSurfaces({
                 <p className="admin_requirements-heading">Требования:</p>
                 <ul className="admin__requirements-list">
                   <li className="admin__requirements-item">
-                    • Размер: 100x100px
+                    • Размер: 350x240px
                   </li>
                   <li className="admin__requirements-item">
                     • Вес: не более 1Мб
                   </li>
                   <li className="admin__requirements-item">
-                    • Формат: JPEG (на белом фоне) / PNG (на прозрачном фоне) /
-                    SVG
+                    • Формат: JPEG / PNG
                   </li>
                 </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
@@ -476,8 +472,6 @@ function AdminSurfaces({
                     type="submit"
                     onClick={handleAddPopupButtonClick}
                     className={`admin__upload-button admin__upload-button_type_select ${
-                      isUploading ? "admin__upload-button_state_uploading" : ""
-                    } ${
                       isPictureSelected
                         ? "admin__upload-button_state_uploaded"
                         : ""
@@ -486,6 +480,13 @@ function AdminSurfaces({
                     {isPictureSelected ? "Сохранить" : "Выбрать файл"}
                   </button>
                 </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />
@@ -561,14 +562,13 @@ function AdminSurfaces({
                 <p className="admin_requirements-heading">Требования:</p>
                 <ul className="admin__requirements-list">
                   <li className="admin__requirements-item">
-                    • Размер: 100x100px
+                    • Размер: 350x240px
                   </li>
                   <li className="admin__requirements-item">
                     • Вес: не более 1Мб
                   </li>
                   <li className="admin__requirements-item">
-                    • Формат: JPEG (на белом фоне) / PNG (на прозрачном фоне) /
-                    SVG
+                    • Формат: JPEG / PNG
                   </li>
                 </ul>
                 <div className="admin__upload-info admin__upload-info_visible">
@@ -592,10 +592,6 @@ function AdminSurfaces({
                       type="submit"
                       onClick={handleEditPopupButtonClick}
                       className={`admin__upload-button admin__upload-button_type_select ${
-                        isUploading
-                          ? "admin__upload-button_state_uploading"
-                          : ""
-                      } ${
                         isPictureSelected
                           ? "admin__upload-button_state_uploaded"
                           : ""
@@ -615,6 +611,13 @@ function AdminSurfaces({
                     Сохранить
                   </button>
                 </div>
+                <span
+                  className={`admin__error ${
+                    errors.submit ? "admin__error_active" : ""
+                  }`}
+                >
+                  {errors.submit || ""}
+                </span>
               </form>
             }
           />
@@ -623,7 +626,7 @@ function AdminSurfaces({
       {delSurface && (
         <ClosablePopup>
           <AdminPopup
-            title="Удалить производителя?"
+            title="Удалить элемент?"
             onClose={closeAllPopups}
             popupVisible={popupVisible}
             setPopupVisible={setPopupVisible}
