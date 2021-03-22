@@ -147,13 +147,12 @@ function App() {
 
   useEffect(() => {
     if (
-      Date.now() - parseInt(localStorage.getItem("offerAcceptDate")) > 604800000 ||
+      Date.now() - parseInt(localStorage.getItem("offerAcceptDate")) >
+        604800000 ||
       isNaN(parseInt(localStorage.getItem("offerAcceptDate")))
     ) {
       setIsOfferAccepted({ status: false, date: null });
-      console.log(parseInt(localStorage.getItem("offerAcceptDate")))
     } else {
-      console.log(parseInt(localStorage.getItem("offerAcceptDate")))
       setIsOfferAccepted({
         status: true,
         date: localStorage.getItem("offerAcceptDate"),

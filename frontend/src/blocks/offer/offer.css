@@ -58,5 +58,6 @@
     .offer__message-container {
         top: auto;
         bottom: 0;
+        padding-bottom: 100px;
     }
 }
