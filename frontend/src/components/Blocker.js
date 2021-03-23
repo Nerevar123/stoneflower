@@ -8,10 +8,11 @@ function Blocker({ offer, handleOfferAcception }) {
           "ФИНЦентр" (Московская область, г. Ивантеевка, ул. Толмачёва, дом 1/2,
           пом. 008), на обработку моих персональных данных с использованием
           интернет-сервисов "Adobe Experience Cloud", "Google Analytics" и
-          "Яндекс.Метрика". <br/> С <a href={offer.path} className="offer__link">
+          "Яндекс.Метрика". <br /> С{" "}
+          <a href={offer ? offer.path : "/"} className="offer__link">
             Политикой
-          </a>{" "} ООО "ФИНЦентр" в отношении обработки
-          персональных данных ознакомлен.
+          </a>{" "}
+          ООО "ФИНЦентр" в отношении обработки персональных данных ознакомлен.
         </p>
         <button className="offer__button" onClick={handleOfferAcception}>
           Подтверждаю
