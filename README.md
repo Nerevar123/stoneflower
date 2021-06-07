@@ -1,6 +1,12 @@
 # Stone Flower #
 
-Stone Flower project.
+Website for a store of stone products, with an admin panel.
+
+Access to admin:
+https://stone.ner.works/login
+
+Login: test@mail.com
+Password: testpassword
 
 
 **Technologies**
